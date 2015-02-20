@@ -1,51 +1,24 @@
 <?php
-	ini_set('session.gc_maxlifetime', 31556926);
 	session_start();
-	include 'headers/connect_to_mysql.php';	
+	include 'headers/connect_to_mysql.php';
 	
 	if($_POST)
 	{
-		
 		$user_name = $_POST['user_name'];
 		$password = $_POST['password'];
-		$query = "SELECT * from user where user_name ='$user_name' AND password ='$password'"
+		$query = "SELECT * from `user` where user_name like '{$user_name}' AND password like '{$password}'"
 		or die('error2');
 		$result = mysqli_query($con,$query);
+		$row = mysqli_fetch_array($result);
 		$count = mysqli_num_rows($result);
-		$row = mysqli_fetch_assoc($result);
 
 		if($count == 1)
 		{
-			$app_id = $row['app_id'];
-			$_SESSION['user_name'] = $user_name;
-			$_SESSION['app_id'] = $row['app_id'];
-
-			if(isset($_POST['remember'])) 
-			{
-				$rand  = (rand(10,100));
-				$md5Number = md5($rand);
-				setcookie('username', $md5Number, time()+31556926 );
-				$query = "UPDATE user SET cookie = '$md5Number' where app_id = '$app_id'";
-				mysqli_query($con,$query)
-				or die ('error');
-				header ('Location: index.php');							
-			}
-			
-				header ('Location: dashboard.php');						
-		
+			$_SESSION['user_id'] = $row['user_id'];
+			header("Location: dashboard.php");		
 		}
-
-	else{ 	
-	
-		echo"
-			 <div id='alert1' class='alert alert-warning alert-dismissible' role='alert'>
-  <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
-  <strong>Error!</strong> The Username or Password you have provide is not valid.
-</div>";	
-		
 	}
-}
-		
+	
 ?>
 <!DOCTYPE html>
 <html lang="en">

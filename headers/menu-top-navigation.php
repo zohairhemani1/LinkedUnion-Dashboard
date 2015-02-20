@@ -39,18 +39,12 @@ echo "<!-- BEGIN HEADER -->
                            </a>
                            <ul class='dropdown-menu extended notification'>
                                <li>
-                                   <p>You have 2 new notifications</p>
+                                   <p>You have 1 new notifications</p>
                                </li>
                                <li>
-                                   <a href='delegate.php'>
-                                       <span class='label label-important'><i class='icon-bolt'></i></span>
-                                       Delegation Registration are now open
-								   </a>
-                               </li>
-							   <li>
                                    <a href='#'>
                                        <span class='label label-important'><i class='icon-bolt'></i></span>
-                                       Welcome To Munik Portal              
+                                       Welcome To {$username_allcaps} Portal              
                                    </a>
                                </li>
                                
@@ -69,7 +63,7 @@ echo "<!-- BEGIN HEADER -->
                        <!-- BEGIN SUPPORT -->
                      
                        <li class='dropdown mtop5'>
-                           <a class='dropdown-toggle element' data-placement='bottom' data-toggle='tooltip' href='helpdesk.php' data-original-title='Help'>
+                           <a class='dropdown-toggle element' data-placement='bottom' data-toggle='tooltip' href='#' data-original-title='Help'>
                                <i class='icon-headphones'></i>
                            </a>
                        </li>
@@ -77,7 +71,7 @@ echo "<!-- BEGIN HEADER -->
                        <!-- BEGIN USER LOGIN DROPDOWN -->
                        <li class='dropdown'>
                            <a href='#' class='dropdown-toggle' data-toggle='dropdown'>
-                               <img src='img/avatar1_small.jpg' alt=''>
+                               <img src='img/image/{$image}' alt='' id='profilePic'>
                                              
                                <span class='username'>{$username_allcaps}</span>
                                <b class='caret'></b>
@@ -104,7 +98,7 @@ echo "<!-- BEGIN HEADER -->
 		 
 		 /* getting categories and subcategories from database according to the app_id logged in user*/
 		 
-		$arrow = "arrow";
+		
 		 
 		$query = "SELECT id,name,(select count(*) from `subcategories` sc where sc.menu_id = c.id) as count FROM `categories` c WHERE `app_id` = 1";
 		$sth = $dbh->prepare($query);
@@ -120,16 +114,27 @@ echo "<!-- BEGIN HEADER -->
 		{
 			$category = $row['name'];
 			$id = $row['id'];
-			echo "<li class='has-sub'>
-					<a class='' href='javascript:;'>
-						<span class='icon-box'><i class='icon-cogs'></i>
-						</span> {$category}";
+			echo "<li class='has-sub'>";
 						/* Below code decides whether to put an arrow or now */
+						
 						if(($row['count'])>0)
-							echo "<span class='arrow'>";
+						{
+							echo "<a class='' href='javascript:;'>
+							<span class='icon-box'><i class='icon-cogs'></i>
+							</span> {$category}
+							<span class='arrow'>";
+						}
 						else
-							echo "<span class=''>";
+						{
+							echo "<a class='' href='news.php?category_id={$id}'>
+							<span class='icon-box'><i class='icon-cogs'></i>
+							</span> {$category}
+							<span class=''>
+							";
+						}
 						/* End of arrow logic */
+						
+						
 						echo "</span>
 					</a>";
 			$query_subcategories = "SELECT sc.* from `subcategories` sc, `categories` c where c.`id` = sc.`menu_id` AND sc.menu_id = {$id}";
@@ -138,8 +143,9 @@ echo "<!-- BEGIN HEADER -->
 			echo "<ul class='sub'>";
 			while($row_subcategory = $sth_subcategories->fetch(PDO::FETCH_ASSOC))
 			{
+				$subcategory_id = $row_subcategory['submenu_id'];
 				$subcategory = $row_subcategory['name'] . "<br/>";
-				echo "<li><a class='' href=''>{$subcategory}</a></li>";
+				echo "<li><a class='' href='news.php?category_id={$subcategory_id}'>{$subcategory}</a></li>";
 			}
 				echo "</ul></li>";
 		}

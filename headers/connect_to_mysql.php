@@ -1,11 +1,5 @@
 <?php
 
-/*$db_host = "localhost"; 
-$db_username = "ufcwFive";  
-$db_pass = "Hemani786!";
-$db_name = "ufcwFive"; 
-*/
-
 $db_host = "localhost"; 
 $db_username = "root";  
 $db_pass = "";
