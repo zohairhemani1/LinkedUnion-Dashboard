@@ -1,0 +1,29 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+
+body{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+.share-buttons{
+	list-style: none;
+
+}
+
+.share-buttons li{
+	display: inline;
+	padding: 4px;
+}
+.title{
+	font:"MS Serif", "New York", serif;
+	font-weight:bold;
+	text-align:center;
+	font-size:20px;
+}
