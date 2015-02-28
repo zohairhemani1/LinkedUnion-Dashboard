@@ -453,33 +453,58 @@
                         
                     <div id="toggletext" style=" display:none">
                     <div class="row-fluid">
-               <div class="span4">
+                                       <div class="span8">
+                            <div class="widget">
+                                <div class="widget-title">
+                                    <h4><i class="icon-reorder"></i>Social Icon</h4>
+                                </div>
+                                <div class="widget-body">
                     <ul class="social-icon">
-                      <li>
+                    <div class="control-group">
+                      <label class="control-label">Facebook</label>
+                              <div class="controls">
                           <div class="input-icon left"> <i class="icon-facebook"></i>
-                          <input style="border:none" name="" placeholder="www.Facebook.com" type="text" 
-                          class="input-medium" value="" />
-                      </li>
-                      <li>
+                          <input name="" placeholder="www.Facebook.com" type="text" 
+                          class="input-large" value="" />
+                      </div>
+                      </div>
+                      </div>
+                       <div class="control-group">
+                      <label class="control-label">Twitter</label>
+                              <div class="controls">
                           <div class="input-icon left"> <i class="icon-twitter"></i>
-                          <input style="border:none" name="" placeholder="www.Twitter.com" type="text" 
-                          class="input-medium" value="" />
-                      </li>
-                      <li>
+                          <input name="" placeholder="www.Twitter.com" type="text" 
+                          class="input-large" value="" />
+                      </div>
+                      </div>
+                      </div>
+                      <div class="control-group">
+                      <label class="control-label">Pinterest</label>
+                              <div class="controls">
                           <div class="input-icon left"> <i class="icon-pinterest"></i>
-                          <input style="border:none" name="" placeholder="www.Pinterest.com" type="text" 
-                          class="input-medium" value="" />
-                      </li>
-                      <li>
+                          <input name="" placeholder="www.Pinterest.com" type="text" 
+                          class="input-large" value="" />
+                      </div>
+                      </div>
+                      </div>
+                       <div class="control-group">
+                      <label class="control-label">Google</label>
+                              <div class="controls">
                           <div class="input-icon left"> <i class="icon-google-plus"></i>
-                          <input style="border:none" name="" placeholder="www.Google++.com" type="text" 
-                          class="input-medium" value="" />
-                      </li>
-                    </ul>
+                          <input name="" placeholder="www.Google++.com" type="text" 
+                          class="input-large" value="" />
+                      </div>
+                      </div>
+                      </div>
+                    
                     </div>
                     </div>
+                            </div>
+                            </div>
+                            <!-- END GRID SAMPLE PORTLET-->
+                        </div>
                     </div>
-                    </div>
+
                     <div class="control-group">
                       <label class="control-label">Notification</label>
                     <div class="controls">            
@@ -513,8 +538,7 @@
                                  <input type="text" class="span6 " />
                                 </div>
                                 </div> 
-                  </div>
-                              </div> 
+                  				</div>
 				<div class="form-actions clearfix">
 				<input type="submit"  class="btn btn-success " />
                    </div>
