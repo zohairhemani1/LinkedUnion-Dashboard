@@ -14,17 +14,16 @@
 
 <?php
 
-	include 'headers/connect_to_mysql.php';
 	
 	$facebook = "";
 	$twitter = "";
 	$google = "";
 	$pinterest = "";
 	
-	$app_id = $_GET['app_id'];
+	$app_id = $_GET['appID'];
 	
-	if(isset($_GET['news_id']))
-		$news_id = $_GET['news_id'];
+	if(isset($_GET['newsID']))
+		$news_id = $_GET['newsID'];
 	
 	if(isset($_GET['category']))
 		$category = $_GET['category'];

@@ -7,6 +7,7 @@
 	$logo = $row['logo'];
 	$cover = $row['cover'];
 	$image = $row['image'];
+	$appID = $row['app_id'];
 	$username = $row['user_name'];
 	$username_allcaps = strtoupper($username);
 	

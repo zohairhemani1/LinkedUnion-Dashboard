@@ -42,14 +42,34 @@ include 'headers/menu-top-navigation.php';
 ?>
 
 <?php
-			  	
-			$news_id = $_GET['news_id'];
-			$query = "SELECT n.* from `news` n where `news_id` = {$news_id}";
-			$sth = $dbh->prepare($query);
-			$sth->execute();
-			$row = $sth->fetch(PDO::FETCH_ASSOC);
-			$title = $row['title'];
-			$description = $row['description'];
+			
+			if(isset($_GET['newsID']))
+				$news_id = $_GET['newsID'];
+			
+			if(isset($_GET['categoryID']))
+				$category = $_GET['categoryID'];
+			
+			if(isset($category))
+			{
+				
+				$query = "SELECT * from `news` WHERE `category` = '{$category}'";
+				$result = mysqli_query($con,$query);
+				$row = mysqli_fetch_assoc($result);
+				$title = $row['title'];
+				$description = $row['description'];
+				$social = $row['social'];
+			}
+			else
+			{
+				$query = "select * from news WHERE news_id = '{$news_id}' and app_id = '$appID'";
+				$result = mysqli_query($con,$query);
+				$row = mysqli_fetch_array($result);
+				$title = $row['title'];
+				
+				$description = $row['description'];
+				$social = $row['social'];
+
+			}
 			
 			
 				

@@ -5,7 +5,19 @@ include 'headers/connect_to_mysql.php';
 include 'headers/session.php';
 include 'headers/_user-details.php';
 
-$category_id = $_GET['category_id'];
+$categoryID = $_GET['categoryID'];
+
+$query = "SELECT w.name FROM `webservice_category` wc, `webservices` w WHERE wc.`category` like '{$categoryID}' AND wc.webservice = w.id";
+$result = mysqli_query($con,$query);
+$row = mysqli_fetch_array($result);
+$fileName = $row['name'];
+
+if(!isset($fileName))
+{
+	$fileName = "view.php";
+}
+
+header("Location: $fileName.'?categoryID='.$categoryID");
 
 ?>
 
@@ -61,9 +73,9 @@ include 'headers/menu-top-navigation.php';
     </div>
     <!-- END PAGE HEADER--> 
     <!-- BEGIN PAGE CONTENT-->
-    <div class="row-fluid">
+    <!-- <div class="row-fluid">
       <div class="span12"> 
-        <!-- BEGIN RECENT ORDERS PORTLET-->
+        <!-- BEGIN RECENT ORDERS PORTLET
         <div class="widget">
           <div class="widget-title">
             <h4><i class="icon-tags"></i> <?php echo $username_allcaps; ?> Notification</h4>
@@ -78,7 +90,7 @@ include 'headers/menu-top-navigation.php';
            </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <div class="row-fluid">
       <div class="span12"> 
         <!-- BEGIN RECENT ORDERS PORTLET-->
@@ -87,7 +99,7 @@ include 'headers/menu-top-navigation.php';
           
           <?php 
 		  
-		  $query = "select name from (select c.name ,c.id from `categories` c union select sc.name,sc.submenu_id from `subcategories` sc) `dd` where id ={$category_id}";
+		  $query = "select name from (select c.name ,c.id from `categories` c union select sc.name,sc.submenu_id from `subcategories` sc) `dd` where id ={$categoryID}";
 		  $sth = $dbh->prepare($query);
 		  $sth->execute();
 		  $row = $sth->fetch(PDO::FETCH_ASSOC);
@@ -115,7 +127,7 @@ include 'headers/menu-top-navigation.php';
               
               <?php
 			  	
-				$category_id = $_GET['category_id'];
+				$category_id = $_GET['categoryID'];
 				if ((int) $category_id == $category_id) 
 				{
 					

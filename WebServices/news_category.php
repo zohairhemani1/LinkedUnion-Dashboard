@@ -2,12 +2,11 @@
 	
 	include 'headers/connect_to_mysql.php';
 	
-	$category = $_POST['parameterOne'];
-	$app_id = $_POST['parameterTwo'];
+	$category = $categoryID;
 
 	$returnArray = array();
 	$vowels = array("a", "e", "i", "o", "u", "A", "E", "I", "O", "U");
-	$query = "SELECT * from news WHERE category like '$category' and app_id = '$app_id' order by `time_cone` desc";
+	$query = "SELECT * from news WHERE category like '$category' and app_id = '$appID' order by `time_cone` desc";
 	$result = mysqli_query($con,$query);
 	while($row = mysqli_fetch_assoc($result))
 	{
