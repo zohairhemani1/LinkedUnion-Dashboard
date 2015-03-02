@@ -14,8 +14,6 @@ body {
     font-size:13px;
 }
 
-
-
 /* fix for font awesome icon classes */
 [class^="icon-"], [class*=" icon-"],[class^="icon-"]:hover, [class*=" icon-"]:hover {
     background: none !important;
@@ -249,12 +247,11 @@ a,a:focus, a:hover, a:active {
 /*logo*/
 #header .brand {
     background:#333333;
-    margin-top: -5px !important;
-    opacity:0.9;
+    margin-top: 0px !important;
+    opacity:0.6;
     filter:alpha(opacity=60);
     padding: 18px 35.5px;
     width: 144px;
-	height:28px;
 }
 
 /* header nav bar*/
@@ -394,7 +391,7 @@ a,a:focus, a:hover, a:active {
 
 #main-content {
     margin-top: 0px;
-    margin-left: 225px;
+    margin-left: 215px;
     min-height: 800px;
     background: #f7f7f7 url("../img/body-bg.png");
 }
@@ -410,7 +407,6 @@ a,a:focus, a:hover, a:active {
     margin-top: 12px;
     width: 23px;
     height: 25px;
-	margin-right:-10px;
     background: #e9ebec url("../img/body-bg.png");
 }
 
@@ -1776,11 +1772,6 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
     width: 312px;
 }
 
-#registerform input{
-	width: 312px;
-	}
-
-
 /* style switcher */
 #theme-change {
     position: fixed;
@@ -2538,15 +2529,13 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 .chats li {
     list-style: none;
     padding: 8px 0 5px;
-    margin: 10px auto;
-    font-size: 16px;
-	margin-bottom:100px;
-	font-family:"Comic Sans MS", cursive;
+    margin: 7px auto;
+    font-size: 12px;
 }
 
 .chats li img.avatar {
-    height: 140px;
-    width: 140px;
+    height: 45px;
+    width: 45px;
     -webkit-border-radius: 50% !important;
     -moz-border-radius: 50% !important;
     border-radius: 50% !important;
@@ -2556,12 +2545,11 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
     float: left;
     margin-right: 10px;
     margin-top: 0px;
-	border:#86191D 4px solid;
 }
 
 .chats li .name {
     font-size: 13px;
-    font-weight: bolder;
+    font-weight: 400;
 }
 
 .chats li .datetime {
@@ -2584,10 +2572,8 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 
 .chats li.in .message {
     text-align: left;
-    margin-left: 160px;
-	top:30px;
+    margin-left: 65px;
 }
-
 
 .chats li.in .message .arrow {
     display: block;
@@ -3852,35 +3838,4 @@ jQuery UI Datepicker(new in v1.2.2)
     padding: 6px 10px;
 }
 
-.avialdo-wrapper
-{
-	font-family:"Times New Roman", Times, serif;
-	font-size:24px;
-	line-height:1.2;
-	margin-left: auto;
-	margin-right: auto;
-	width: 70%;
-}
-
-h3
-{
-	font-family:"Times New Roman", Times, serif;
-	font-weight:600;
-}
-
-@media screen and (max-width: 580px) {
-    .chats li.in .message
-	{
-		top:0px;
-	}
-}
-
-#footer a
-{
-	color:#000;
-}
-
-#profilePic
-{
-	height:30px;
-}
+/*on off switch controlle*/

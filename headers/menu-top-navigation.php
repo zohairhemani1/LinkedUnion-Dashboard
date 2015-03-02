@@ -1,5 +1,7 @@
 <?php
 
+	include 'headers/checkloginstatus.php'; 
+	include 'headers/_user-details.php';
 
 $query = "SELECT id,name FROM `categories` WHERE `app_id` = 1";
 $sth = $dbh->prepare("SELECT name, colour FROM fruit");
@@ -14,8 +16,8 @@ echo "<!-- BEGIN HEADER -->
        <div class='navbar-inner'>
            <div class='container-fluid'>
                <!-- BEGIN LOGO -->
-               <a class='brand' href='index.php'>
-                   <img src='img/logo/{$logo}' alt='Admin Lab' />
+               <a id='logo_image' class='brand' href='index.php'>
+                   <img src='img/logo/{$logo}' width='140' alt='Admin Lab' />
                </a>
                <!-- END LOGO -->
                <!-- BEGIN RESPONSIVE MENU TOGGLER -->
@@ -71,7 +73,7 @@ echo "<!-- BEGIN HEADER -->
                        <!-- BEGIN USER LOGIN DROPDOWN -->
                        <li class='dropdown'>
                            <a href='#' class='dropdown-toggle' data-toggle='dropdown'>
-                               <img src='img/image/{$image}' alt='' id='profilePic'>
+                               <img src='img/image/{$image}' width='30' alt='' id='profilePic'>
                                              
                                <span class='username'>{$username_allcaps}</span>
                                <b class='caret'></b>

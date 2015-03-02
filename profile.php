@@ -1,5 +1,6 @@
-<?php
-		include 'headers/connect_to_mysql.php'
+<?php 
+	include 'headers/connect_to_mysql.php'; 
+
 ?>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -7,10 +8,10 @@
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
 <!-- BEGIN HEAD -->
 
-<!-- Mirrored from thevectorlab.net/adminlab/news_details.html by HTTrack Website Copier/3.x [XR&CO'2013], Tue, 04 Nov 2014 08:04:57 GMT -->
+<!-- Mirrored from thevectorlab.net/adminlab/profile.html by HTTrack Website Copier/3.x [XR&CO'2013], Tue, 04 Nov 2014 08:01:42 GMT -->
 <head>
    <meta charset="utf-8" />
-   <title>View</title>
+   <title>Profile</title>
    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
    <meta content="" name="description" />
    <meta content="" name="author" />
@@ -19,6 +20,7 @@
    <link href="assets/bootstrap/css/bootstrap-fileupload.css" rel="stylesheet" />
    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
    <link href="css/style.css" rel="stylesheet" />
+   <link href="css/custom.css" rel="stylesheet" />
    <link href="css/style_responsive.css" rel="stylesheet" />
    <link href="css/style_default.css" rel="stylesheet" id="style_color" />
 
@@ -31,6 +33,7 @@
 <?php
 include 'headers/menu-top-navigation.php'; 
 ?>
+      <!-- END SIDEBAR -->
       <!-- BEGIN PAGE -->  
       <div id="main-content">
          <!-- BEGIN PAGE CONTAINER-->
@@ -41,17 +44,17 @@ include 'headers/menu-top-navigation.php';
 
                   <!-- BEGIN PAGE TITLE & BREADCRUMB-->
                    <h3 class="page-title">
-                     View Details
-                     <small>View details page</small>
+                       Profile
+                     <small>View profile page</small>
                   </h3>
                    <ul class="breadcrumb">
-                        <li>
+ 						<li>
                            <a href="index.php"><i class="icon-home"></i></a> <span class="divider">&nbsp;</span>
                        </li>
-                       <li><a href="#">View</a><span class="divider-last">&nbsp;</span>
+                       <li><a href="#">Profile</a><span class="divider-last">&nbsp;</span>
                        </li>
-                                 
-                                          </ul>
+                       
+                   </ul>
                    <!-- END PAGE TITLE & BREADCRUMB-->
                </div>
             </div>
@@ -61,48 +64,70 @@ include 'headers/menu-top-navigation.php';
                <div class="span12">
                   <div class="widget">
                         <div class="widget-title">
-                           <h4><i class="icon-edit"></i> News Details</h4>
+                           <h4><i class="icon-user"></i>Profile</h4>
                            <span class="tools">
                            <a href="javascript:;" class="icon-chevron-down"></a>
                            </span>                    
                         </div>
                         <div class="widget-body">
-                            <div class="row-fluid blog">
-
-                                <div class="span12">
-                                    <h2>
-                                        Your News Will Goes Here.
-                                    </h2>
-                                    <br>
-
-                                    <div class="row-fluid">
-                                        <div class="span6">
-                                            <ul>
-                                                <li>22 May 2013 12:30 pm</li>
-                                            </ul>
-
-                                        </div>
-                                        <div class="span6 ">
-                                            <ul class="show-right">
-                                                <li><a href="javascript:;"><i class="icon-facebook"></i> Facebook</a></li>
-                                                <li><a href="javascript:;"><i class="icon-twitter"></i> Twitter</a></li>
-                                                <li><a href="javascript:;"><i class="icon-google-plus"></i> Goolge Plus</a></li>
-                                                <li><a href="javascript:;"><i class="icon-pinterest"></i> Pinterest</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <p>
-                                            Nam sed arcu non tellus fringilla fringilla ut vel ipsum. Aliquam ac magna metus. Nam sed arcu non tellus fringilla fringilla ut vel ipsum. Aliquam ac magna metus. Nam sed arcu non tellus fringilla fringilla ut vel ipsum. Aliquam ac magna metus. Nam sed arcu non tellus fringilla fringilla ut vel ipsum. Aliquam ac magna metus. Nam sed arcu non tellus fringilla fringilla ut vel ipsum. Aliquam ac magna metus. Nam sed arcu non tellus fringilla fringilla ut vel ipsum. Aliquam ac magna metus. Nam sed arcu non tellus fringilla fringilla ut vel ipsum. Aliquam ac magna metus. Nam sed arcu non tellus fringilla fringilla ut vel ipsum. Aliquam ac magna metus.
-                                        </p>
-\                                    <!--end post comments-->
+                            <div class="span3">
+                                <div class="text-center profile-pic">
+                                    <img src="img/image/<?php echo $image; ?>" alt="">
                                 </div>
-                                </div></div>
                             </div>
-
+                            <div class="span6">
+                                <h4> <?php echo  $username_allcaps; ?> <br/><small>Web Developer</small></h4>
+                                <table class="table table-borderless">
+                                    <tbody>
+                                    <tr>
+                                        <td class="span2">User Name :</td>
+                                        <td>
+                                            <?php echo  $username_allcaps; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="span2">Password :</td>
+                                        <td>
+                                            torpedo1
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="span2">Email :</td>
+                                        <td>
+                                            arbishpalla@yahoo.com
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="span2">Joined :</td>
+                                        <td>
+                                            13 july 2015
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="span2"></td>
+                                        <td>
+                                        </td>
+                                    </tr>
+   
+                                    </tbody>
+                                </table>
+       
+                            </div>
+       
+                            <div class="space5"></div>
+       
                         </div>
+       
+                                              <div  class="form-actions clearfix">
+                                              <div id="profile_button">
+			<a href="insert_profile.php"><button  type="button"  class="btn btn-success " />Update</button></a>
+            <div>
+                   </div>                  
+
                   </div>
+       </div></div>
                </div>
+            </div>
             <!-- END PAGE CONTENT-->         
          </div>
          <!-- END PAGE CONTAINER-->
@@ -111,7 +136,7 @@ include 'headers/menu-top-navigation.php';
    </div>
    <!-- END CONTAINER -->
    <!-- BEGIN FOOTER -->
- <?php  
+<?php  
 	include 'headers/footer.php';
 	?>
    <!-- END FOOTER -->
@@ -134,9 +159,10 @@ include 'headers/menu-top-navigation.php';
          App.init();
       });
    </script>
+
    <!-- END JAVASCRIPTS -->   
 </body>
 <!-- END BODY -->
 
-<!-- Mirrored from thevectorlab.net/adminlab/news_details.html by HTTrack Website Copier/3.x [XR&CO'2013], Tue, 04 Nov 2014 08:04:58 GMT -->
+<!-- Mirrored from thevectorlab.net/adminlab/profile.html by HTTrack Website Copier/3.x [XR&CO'2013], Tue, 04 Nov 2014 08:01:44 GMT -->
 </html>

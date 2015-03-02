@@ -8,7 +8,7 @@
 
   	#sidebar ul{
   		margin-top:50px;
-  		width: 225px;
+  		width: 215px;
   	}
 
   	/* body container */
@@ -472,10 +472,6 @@
 
 /* Landscape phones and down */
 @media (max-width: 430px) { 
-
-	#registerform input{
-	width: 203px !important;
-	}
     #login .lock{
         display: none !important;
     }
@@ -492,8 +488,6 @@
     .countDays, .countHours, .countMinutes, .countSeconds {
         margin: 10px;
     }
-
-
     #header .brand {
         margin-top: -5px !important;
         padding: 22px 35px !important;
@@ -515,17 +509,6 @@
         border-top-color: #FFF !important;
     }
 }
-
-
-/* Landscape phones and down */
-@media screen and (min-width: 385px) and (max-width: 430px) { 
-
-	#registerform input{
-	width: 203px !important;
-	}
- 
-}
-
 
 /* Landscape phones and down */
 @media (max-width: 385px) {
@@ -556,9 +539,6 @@
     #forgotform #input-email {
         width: 203px;
     }
-	#registerform input{
-	width: 203px;
-	}
 	/* page title*/
 	.page-title small {
 		display: block;
@@ -587,7 +567,6 @@
 
 } 
 
-
 /* Landscape phones and down */
 @media (max-width: 320px) {
     #login .lock{
@@ -609,9 +588,6 @@
     #forgotform #input-email {
         width: 203px;
     }
-	#registerform input{
-	width: 203px;
-	}
     #header .brand {
         margin-top: -5px !important;
         padding: 22px 22px !important;
