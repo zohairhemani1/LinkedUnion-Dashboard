@@ -149,7 +149,7 @@ else if(isset($_GET['forget']) && $_GET['forget']=="true"){
     <div class="control-group">
       <div class="controls">
         <div class="input-prepend"> <span class="add-on"><i class="icon-user"></i></span>
-          <input id="input-name" name="name" type="text" placeholder="Full Name"  required/>
+          <input id="input-name" class="span5" name="name" type="text" placeholder="Full Name"  required/>
         </div>
       </div>
       <div class="space20"></div>
@@ -224,6 +224,7 @@ else if(isset($_GET['forget']) && $_GET['forget']=="true"){
 	
 	
   </script> 
+
 
 <!-- Bootstrap core JavaScript
     ================================================== --> 
