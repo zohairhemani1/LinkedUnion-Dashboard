@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 02, 2015 at 11:48 AM
+-- Generation Time: Mar 02, 2015 at 04:25 PM
 -- Server version: 5.5.27
 -- PHP Version: 5.5.19
 
@@ -29,16 +29,19 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `app` (
   `app_id` int(3) NOT NULL,
   `about_us` varchar(500) NOT NULL,
-  `app_name` varchar(20) NOT NULL
+  `app_name` varchar(20) NOT NULL,
+  `cover` varchar(50) NOT NULL,
+  `logo` varchar(50) NOT NULL,
+  `time_stamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `app`
 --
 
-INSERT INTO `app` (`app_id`, `about_us`, `app_name`) VALUES
-(1, 'United Food and Commercial Workers Local 5 is a 33,000 member labor union based in San Jose, California. The local is a progressive voice in the labor movement and the community with a strong tradition of member advocacy and involvement. It is an affiliate of the United Food and Commercial Workers International union based in Washington DC.\r\n\r\nLocal 5 members work primarily in retail grocery and meat with growing numbers employed in department stores.', 'UFCW 5'),
-(2, 'The United Latinos of the United Food and Commercial Workers Union (UFCW) is an organization of men and women who have joined together to promote the issues and pursue interests important to Latino workers.\r\n“Working Toward Latino Empowerment and Building Latino Pride!” We have a simple but powerful purpose of empowering Latino men and women within the UFCW and within our communities. We are also building Latino pride which will help others better understand our cultural differences.', 'UNITED LATINOS');
+INSERT INTO `app` (`app_id`, `about_us`, `app_name`, `cover`, `logo`, `time_stamp`) VALUES
+(1, 'United Food and Commercial Workers Local 5 is a 33,000 member labor union based in San Jose, California. The local is a progressive voice in the labor movement and the community with a strong tradition of member advocacy and involvement. It is an affiliate of the United Food and Commercial Workers International union based in Washington DC.\r\n\r\nLocal 5 members work primarily in retail grocery and meat with growing numbers employed in department stores.', 'UFCW 5', '', '', '2015-03-02 15:25:06'),
+(2, 'The United Latinos of the United Food and Commercial Workers Union (UFCW) is an organization of men and women who have joined together to promote the issues and pursue interests important to Latino workers.\r\n“Working Toward Latino Empowerment and Building Latino Pride!” We have a simple but powerful purpose of empowering Latino men and women within the UFCW and within our communities. We are also building Latino pride which will help others better understand our cultural differences.', 'UNITED LATINOS', '', '', '2015-03-02 15:25:06');
 
 -- --------------------------------------------------------
 
@@ -294,8 +297,6 @@ CREATE TABLE IF NOT EXISTS `user` (
   `cookie` varchar(50) DEFAULT NULL,
   `image` varchar(50) DEFAULT 'user.jpg',
   `email` varchar(25) DEFAULT NULL,
-  `logo` varchar(100) DEFAULT NULL,
-  `cover` varchar(100) DEFAULT NULL,
   `time_cone` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
@@ -303,9 +304,9 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_id`, `app_id`, `user_name`, `password`, `cookie`, `image`, `email`, `logo`, `cover`, `time_cone`) VALUES
-(1, 1, 'ufcw5', 'torpedo1', '812b4ba287f5ee0bc9d43bbf5bbe87fb', 'steve.png', 'arbishpalla@gmail.com', '9f61408e3afb633e50cdf1b20de6f466.png', 'd1fe173d08e959397adf34b1d77e88d7.png', '2014-11-20 05:17:24'),
-(2, 2, 'unitedlatinos', 'torpedo1', '2a38a4a9316c49e5a833517c45d31070', '2a38a4a9316c49e5a833517c45d31070.png', 'jones436@gmail.com', '3416a75f4cea9109507cacd8e2f2aefc.png', '3416a75f4cea9109507cacd8e2f2aefc.png', '2014-11-20 05:17:24');
+INSERT INTO `user` (`user_id`, `app_id`, `user_name`, `password`, `cookie`, `image`, `email`, `time_cone`) VALUES
+(1, 1, 'ufcw5', 'torpedo1', '812b4ba287f5ee0bc9d43bbf5bbe87fb', 'steve.png', 'arbishpalla@gmail.com', '2014-11-20 05:17:24'),
+(2, 2, 'unitedlatinos', 'torpedo1', '2a38a4a9316c49e5a833517c45d31070', '2a38a4a9316c49e5a833517c45d31070.png', 'jones436@gmail.com', '2014-11-20 05:17:24');
 
 -- --------------------------------------------------------
 
