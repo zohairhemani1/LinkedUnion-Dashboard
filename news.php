@@ -1,5 +1,10 @@
 <?php
 	include 'headers/connect_to_mysql.php';
+	include 'headers/_user-details.php';
+	$category = $_GET['category'];
+	echo "categoty-->".$category;
+	$query_news = "SELECT * FROM news where category = 8 AND app_id = 1 ";
+	$result_news = mysqli_query($con,$query_news);
 ?>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -98,12 +103,17 @@ include 'headers/menu-top-navigation.php';
                                     </tr>
                      
                                            </thead>
-                                    <tbody>
-
+                                   <tbody>
+				<?php
+                while($row = mysqli_fetch_array($result_news))
+                {
+                $news_id = $row['news_id'];
+				$title = $row['title'];
+					echo"
 				<tr class=''>
-					<td>1</td>
-					<td>Your News Will goes here</td>                    
-					<td style='width:27%;'><a href='insert_form.php' id='update_button' class='btn btn-success' >
+					<td>{$news_id}</td>
+					<td>$title</td>                    
+					<td style='width:27%;'><a href='insert_form.php?categoty=$category&news_id=$news_id' id='update_button' class='btn btn-success' >
                     <i class='icon-trash'></i> Update</a>
 					<a href='#' id='delete_button'  class='btn btn-danger'>
                     <i class='icon-edit'></i> Delete</a>
@@ -112,6 +122,9 @@ include 'headers/menu-top-navigation.php';
 					<td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
 					<td style='display:none'><a class='' href='javascript:;'>Delete</a></td>
 				</tr>
+               ";
+			   }
+               ?>
                                     </tbody>
                                 </table>
                             </div>

@@ -1,6 +1,60 @@
 <?php 
 	include 'headers/connect_to_mysql.php';
-?>
+	include 'headers/_user-details.php';
+
+	if(isset($_GET['contact_id']))
+{
+		$conatct_id = $_GET['contact_id'];
+		$formAction = "?contact_id={$conatct_id}";
+		$select_contact = "SELECT * FROM contact where contact_id = '$conatct_id'";
+		$fetch_result = mysqli_query($con,$select_contact);
+		$row = mysqli_fetch_array($fetch_result);
+		$name = $row['name'];
+		$designation = $row['designation'];
+		$address = $row['address'];
+		$phone_no1 = $row['phone_no1'];
+		$phone_no2 = $row['phone_no2'];
+		$fax_no = $row['fax_no'];
+		$email = $row['email'];
+		$time_cone = $row['time_cone'];
+}
+if($_POST)
+{
+	if(isset($_GET['contact_id']))
+	  {
+		$name = $_POST['name'];
+		$designation = $_POST['designation'];
+		$address = $_POST['address'];
+		$phone_no1 = $_POST['phone_no1'];
+		$phone_no2 = $_POST['phone_no2'];
+		$fax_no = $_POST['fax_no'];
+		$email = $_POST['email'];
+		$time_cone = $_POST['time_cone'];
+		$update_contact = "UPDATE contact SET name = '$name', designation = '$designation', address = '$address', phone_no1 = '$phone_no1', 
+		phone_no2 = '$phone_no2', fax_no = '$fax_no', email = '$email', time_cone = now() where contact_id = '$conatct_id' "
+		or die ('error while Updating contact');
+		$contact_update = mysqli_query($con,$update_contact);
+		header ('Location:contact_representative.php?update=true'); 
+		}
+	else
+	  {
+		$name = $_POST['name'];
+		$designation = $_POST['designation'];
+		$address = $_POST['address'];
+		$phone_no1 = $_POST['phone_no1'];
+		$phone_no2 = $_POST['phone_no2'];
+		$fax_no = $_POST['fax_no'];
+		$email = $_POST['email'];
+		$time_cone = $_POST['time_cone'];
+		$insert_contatct = "INSERT INTO contact (name,designation,address,phone_no1,phone_no2,fax_no,email,time_cone,app_id)
+		VALUES ('$name','$designation','$address','$phone_no1','$phone_no2','$fax_no','$email',now(),'$appID') "
+		or die('error while inserting Contact');
+		$result = mysqli_query($con,$insert_contatct);
+		header ('Location:contact_representative.php?insert=true');
+	 }
+	
+}
+	?>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
@@ -71,65 +125,66 @@ include 'headers/menu-top-navigation.php';
             </div>
             <!-- END PAGE HEADER-->
             <!-- BEGIN PAGE CONTENT-->
+
             <div class="row-fluid">
                <div class="span12">
                   <!-- BEGIN SAMPLE FORM widget-->   
                   <div class="widget">
                      <div class="widget-title">
-                        <h4><i class="icon-reorder"></i>Sample Form</h4>
+                        <h4><i class="icon-reorder"></i>Contact Form</h4>
                         <span class="tools">
                            <a href="javascript:;" class="icon-chevron-down"></a>
                         </span>
                      </div>
                      <div class="widget-body form">
                         <!-- BEGIN FORM-->
-                        <form action="insert_form.php" class="form-horizontal">
+                        <form action="insert_contact.php<?php echo $formAction ?>" method="post" class="form-horizontal">
                            <div class="control-group">
                               <label class="control-label">Name</label>
                               <div class="controls">
-                                 <input placeholder="Enter Your Name" type="text" class="span6 " />
+                                 <input placeholder="Enter Your Name" name="name" value="<?php echo $name; ?>" type="text" class="span6 " />
                               </div>
                            </div>
                            <div class="control-group">
                               <label class="control-label">Designation</label>
                               <div class="controls">
-                                 <input placeholder="Enter Your Designation" type="text" class="span6 " />
+                                 <input placeholder="Enter Your Designation"  name="designation" 
+                                 value="<?php echo $designation; ?>" type="text" class="span6 " />
                               </div>
                            </div>
                            <div class="control-group">
                               <label class="control-label">Address</label>
                               <div class="controls">
-                                 <textarea placeholder="Enter Your Address" name="" class="span6 " />
-                                 </textarea>
+                                 <textarea placeholder="Enter Your Address" name="address" class="span6 " /><?php echo $address; ?></textarea>
                               </div>
                            </div>
                            <div class="control-group">
                               <label class="control-label">Phone # (1)</label>
                               <div class="controls">
-                                 <input placeholder="Enter Your Phone No" type="text" class="span6 " />
+                                 <input placeholder="Enter Your Phone No" name="phone_no1" value="<?php echo $phone_no1; ?>" type="text" class="span6 " />
                               </div>
                            </div>
                            <div class="control-group">
                               <label class="control-label">Phone # (2)</label>
                               <div class="controls">
-                                 <input placeholder="Enter Your Phone No" type="text" class="span6 " />
+                                 <input placeholder="Enter Your Phone No" name="phone_no2" value="<?php echo $phone_no2; ?>" type="text" class="span6 " />
                               </div>
                            </div>
                            <div class="control-group">
                               <label class="control-label">Fax #</label>
                               <div class="controls">
-                                 <input placeholder="Enter Your Fax No" type="text" class="span6 " />
+                                 <input placeholder="Enter Your Fax No" name="fax_no" value="<?php echo $fax_no; ?>" type="text" class="span6 " />
                               </div>
                            </div>
                            <div class="control-group">
                               <label class="control-label">Email</label>
                               <div class="controls">
-                                 <input placeholder="Enter Your Email" type="email" class="span6 " />
+                                 <input placeholder="Enter Your Email" name="email" value="<?php echo $email; ?>" type="email" class="span6 " />
                               </div>
                            </div>
-   			<div class="form-actions clearfix">
-				<input type="submit"  class="btn btn-success " />
-                   </div>
+   						<div class="form-actions clearfix">
+							<input type="submit"  class="btn btn-success " />
+                   		</div>
                               </form>
                             <!-- END FORM-->
                         </div>

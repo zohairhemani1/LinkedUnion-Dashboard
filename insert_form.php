@@ -1,8 +1,91 @@
 <?php 
-include 'headers/checkloginstatus.php'; 
 include 'headers/connect_to_mysql.php';
 include 'headers/_user-details.php';
-?>
+	$category = $_POST['category'];
+	echo "category".$category; 
+if(isset($_GET['news_id']))
+{
+			$query_select = "SELECT * FROM news WHERE news_id = 157"
+			or die ('error3');
+			echo "news_id".$news_id;
+			$fetch_result = mysqli_query($con,$query_select);
+			$row = mysqli_fetch_array($fetch_result);
+			$title = $row['title'];
+			$description = $row['description'];
+			$file = $row['file'];
+			$facebook = $row['facebook'];
+			$twitter = $row['twitter'];
+			$google = $row['google'];
+			$pinterest = $row['pinterest']; 	
+			$social = $row['social'];
+			$order = $row['order'];
+			if ($social != null)
+			{
+			$social = "block";
+			$checked = "checked";
+			}
+}
+if($_POST)
+{
+	if(isset($_GET['news_id']))
+	  {
+			$title = $_POST['title'];
+			$title = str_replace("'","\'",$title); 	
+			$description = $_POST['description'];
+			$description = str_replace("'","\'",$description); 	
+			$facebook = $_POST['facebook'];
+			$twitter = $_POST['twitter'];
+			$google = $_POST['google'];
+			$pinterest = $_POST['pinterest'];
+			$social = $_POST['social'];
+			$notification= $_POST['notification'];
+			$order = $_POST['order'];
+			$query_update = "UPDATE news SET time_cone = now(), title = '$title',file = '$file', description = '$description',
+			facebook = '$facebook', twitter = '$twitter', google = '$google', pinterest = '$pinterest',social = '$social',
+			 `order` = '$order' WHERE news_id = '$news_id'";
+			$result_update = mysqli_query($con,$query_update)
+			or die('update error');		
+			
+			$order_select = "SELECT `order`,`news_id` from news where app_id = '$app_id' AND category = '$category'";
+			$result_Select = mysqli_query($con,$order_select)
+				or die('error');	
+			while($row = mysqli_fetch_assoc($result_Select))
+			{
+				$order_other = $row['order'];
+				$news_id_all = $row['news_id'];
+				if($order == $order_other && $news_id != $news_id_all)
+				{
+					$query_update = "UPDATE `news` SET `order` = {$order_old}  WHERE `news_id` = {$news_id_all}";
+					$result_update = mysqli_query($con,$query_update);
+				}
+			}
+			header ('Location:contact_representative.php?update=true'); 
+		}
+	else
+	  {
+
+		include 'parse.php';
+		$title = $_POST['title'];
+		$title = str_replace("'","\'",$title); 	
+		$description = $_POST['description'];
+		$description = str_replace("'","\'",$description);
+		$facebook = $_POST['facebook'];
+		$twitter = $_POST['twitter'];
+		$google = $_POST['google'];
+		$notification = $_POST['notification'];
+		$pinterest = $_POST['pinterest'];
+		$social = $_POST['social'];
+		$order = $_POST['order'];
+		$query = "INSERT INTO news(title,description,file,time_cone,category,app_id,facebook,twitter,google,pinterest,social,`order`)
+				  VALUES ('$title','$description','$file',now(),'$category',$app_id,'$facebook','$twitter','$google','$pinterest','$social',
+			     (SELECT max(n.order)+1 FROM news n WHERE n.category = '$category' AND n.app_id= '$app_id' GROUP BY n.category, n.app_id))";
+		$result = mysqli_query($con,$query)
+	or die('error1');
+		header ('Location:contact_representative.php?insert=true');
+	 }
+	
+}
+	?>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
@@ -62,7 +145,9 @@ include 'headers/menu-top-navigation.php';
                         <li>
                            <a href="index.php"><i class="icon-home"></i></a> <span class="divider">&nbsp;</span>
                        </li>
-                       <li><a href="#">Insert News</a><span class="divider-last">&nbsp;</span>
+                       <li><a href="news.php?category=<?php echo $category?>">Insert News</a><span class="divider-last">&nbsp;</span>
+                       </li>
+                        <li><a href="#">Insert News</a><span class="divider-last">&nbsp;</span>
                        </li>
                        
                </div>
@@ -74,7 +159,7 @@ include 'headers/menu-top-navigation.php';
                   <!-- BEGIN SAMPLE FORM widget-->   
                   <div class="widget">
                      <div class="widget-title">
-                        <h4><i class="icon-reorder"></i>Sample Form</h4>
+                        <h4><i class="icon-reorder"></i>News Form</h4>
                         <span class="tools">
                            <a href="javascript:;" class="icon-chevron-down"></a>
                            <a href="javascript:;" class="icon-remove"></a>
@@ -86,21 +171,21 @@ include 'headers/menu-top-navigation.php';
                            <div class="control-group">
                               <label class="control-label">News</label>
                               <div class="controls">
-                                 <input type="text" class="span12 " />
+                                 <input name="news" value="<?php echo $title; ?>" type="text" class="span12 " />
                                  
                               </div>
                            </div>
                               <div class="control-group">
                               <label class="control-label">Description</label>
                               <div class="controls">
-                                 <textarea class="span12 wysihtml5" rows="6"></textarea>
+                                 <textarea name="description" class="span12 wysihtml5" rows="6"><?php echo $description; ?></textarea>
                               </div>
                            </div>
                               <div class="control-group">
                                   <label class="control-label">Social</label>
                                   <div class="controls">
                           <div class="onoffswitch">
-                    <input type="checkbox" name="social"  class="onoffswitch-checkbox" id="myonoffswitch">
+                    <input name="social" type="checkbox" name="social"  class="onoffswitch-checkbox" id="myonoffswitch">
                     <label class="onoffswitch-label" for="myonoffswitch"> 
                     <span onClick="Toggle();" id="displaytext" class="onoffswitch-inner"></span>
                     <span onClick="Toggle();" id="displaytext" class="onoffswitch-switch"></span> 
@@ -122,8 +207,8 @@ include 'headers/menu-top-navigation.php';
                       <label class="control-label">Facebook</label>
                               <div class="controls">
                           <div class="input-icon left"> <i class="icon-facebook"></i>
-                          <input name="" placeholder="www.Facebook.com" type="text" 
-                          class="span12" value="" />
+                          <input name="facebook" placeholder="www.Facebook.com" type="text" 
+                          class="span12" value="<?php echo $facebook; ?>" />
                       </div>
                       </div>
                       </div>
@@ -131,8 +216,8 @@ include 'headers/menu-top-navigation.php';
                       <label class="control-label">Twitter</label>
                               <div class="controls">
                           <div class="input-icon left"> <i class="icon-twitter"></i>
-                          <input name="" placeholder="www.Twitter.com" type="text" 
-                          class="span12" value="" />
+                          <input name="twitter" placeholder="www.Twitter.com" type="text" 
+                          class="span12" value="<?php echo $twitter; ?>" />
                       </div>
                       </div>
                       </div>
@@ -140,8 +225,8 @@ include 'headers/menu-top-navigation.php';
                       <label class="control-label">Pinterest</label>
                               <div class="controls">
                           <div class="input-icon left"> <i class="icon-pinterest"></i>
-                          <input name="" placeholder="www.Pinterest.com" type="text" 
-                          class="span12" value="" />
+                          <input name="pinterest" placeholder="www.Pinterest.com" type="text" 
+                          class="span12" value="<?php echo $pinterest; ?>" />
                       </div>
                       </div>
                       </div>
@@ -149,8 +234,8 @@ include 'headers/menu-top-navigation.php';
                       <label class="control-label">Google</label>
                               <div class="controls">
                           <div class="input-icon left"> <i class="icon-google-plus"></i>
-                          <input name="" placeholder="www.Google++.com" type="text" 
-                          class="span12" value="" />
+                          <input name="google" placeholder="www.Google++.com" type="text" 
+                          class="span12" value="<?php echo $google; ?>" />
                       </div>
                       </div>
                       </div>

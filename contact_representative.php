@@ -1,5 +1,8 @@
 <?php
 	include 'headers/connect_to_mysql.php';
+	include 'headers/_user-details.php';
+	$query_contact = "SELECT * FROM contact where app_id = '$appID'";
+	$result_contact = mysqli_query($con,$query_contact);
 ?>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -64,6 +67,30 @@ include 'headers/menu-top-navigation.php';
             <!-- END PAGE HEADER-->
 
             <!-- BEGIN ADVANCED TABLE widget-->
+                      <?php
+			if(isset($_GET['insert']) == 'true')
+			{
+				echo"
+			<div class='alert alert-success'>
+					<button class='close' data-dismiss='alert'>×</button>
+					<strong>Success!</strong> The Contact has been added.
+				</div>";
+			}
+	 	else if(isset($_GET['update']) == 'true'){
+      echo"
+	    <div class='alert alert-success'>
+                <button class='close' data-dismiss='alert'>×</button>
+                <strong>Success!</strong> The Contact has been updated.
+            </div>";
+		}
+		else if(isset($_GET['delete']) == 'true'){
+      echo"
+	    <div class='alert alert-success'>
+                <button class='close' data-dismiss='alert'>×</button>
+                <strong>Success!</strong> The Contact has been Deleted.
+            </div>";
+		}
+?>
             <div class="row-fluid">
                 <div class="span12">
                     <!-- BEGIN EXAMPLE TABLE widget-->
@@ -103,22 +130,39 @@ include 'headers/menu-top-navigation.php';
                                            </thead>
                                     <tbody>
 
-				<tr class=''>
-					<td>1</td>
-					<td>Arbish</td>
-                    <td>Php developer</td>
-                    <td>FB Area</td>
-                    <td>98789798</td>
-                    <td>08098900</td>
-                    <td>98789799889</td>
-                    <td>Arbishpalla@yahoo.com</td>
-					<td style='width:19%;'><a href='insert_contact.php' id='update_button' class='btn btn-success' >
+				
+					<?php
+					while($row = mysqli_fetch_array($result_contact)){  
+					$contact_id = $row['contact_id'];
+					$name = $row['name'];
+					$designation = $row['designation'];
+					$address = $row['address'];
+					$phone_no1 = $row['phone_no1'];
+					$phone_no2 = $row['phone_no2'];
+					$fax_no = $row['fax_no'];
+					$email = $row['email'];
+					$time_cone = $row['time_cone'];
+					$order = $row['order'];
+					echo"
+					<tr class=''> 
+					<td>{$contact_id}</td>
+					<td>{$name}</td>
+                    <td>{$designation}</td>
+                    <td>{$address}</td>
+                    <td>{$phone_no1}</td>
+                    <td>{$phone_no2}</td>
+                    <td>{$fax_no}</td>
+                    <td>{$email}</td>
+					<td style='width:19%;'><a href='insert_contact.php?contact_id=$contact_id' id='update_button' class='btn btn-success' >
                     <i class='icon-trash'></i> Update</a>
 					<a href='#' id='delete_button'  class='btn btn-danger'>
                     <i class='icon-edit'></i> delete</a>
 					<td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
 					<td style='display:none'><a class='' href='javascript:;'>Delete</a></td>
-				</tr>
+						</tr>";
+					}
+					?>	
+    			
                                     </tbody>
                                 </table>
                             </div>
