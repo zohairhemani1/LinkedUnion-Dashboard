@@ -123,7 +123,7 @@ include 'headers/menu-top-navigation.php';
                               <div class="controls">
                           <div class="input-icon left"> <i class="icon-facebook"></i>
                           <input name="" placeholder="www.Facebook.com" type="text" 
-                          class="span11" value="" />
+                          class="span12" value="" />
                       </div>
                       </div>
                       </div>
@@ -132,7 +132,7 @@ include 'headers/menu-top-navigation.php';
                               <div class="controls">
                           <div class="input-icon left"> <i class="icon-twitter"></i>
                           <input name="" placeholder="www.Twitter.com" type="text" 
-                          class="span11" value="" />
+                          class="span12" value="" />
                       </div>
                       </div>
                       </div>
@@ -141,7 +141,7 @@ include 'headers/menu-top-navigation.php';
                               <div class="controls">
                           <div class="input-icon left"> <i class="icon-pinterest"></i>
                           <input name="" placeholder="www.Pinterest.com" type="text" 
-                          class="span11" value="" />
+                          class="span12" value="" />
                       </div>
                       </div>
                       </div>
@@ -150,7 +150,7 @@ include 'headers/menu-top-navigation.php';
                               <div class="controls">
                           <div class="input-icon left"> <i class="icon-google-plus"></i>
                           <input name="" placeholder="www.Google++.com" type="text" 
-                          class="span11" value="" />
+                          class="span12" value="" />
                       </div>
                       </div>
                       </div>

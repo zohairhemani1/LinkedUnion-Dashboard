@@ -20,6 +20,7 @@
    <link href="assets/bootstrap/css/bootstrap-fileupload.css" rel="stylesheet" />
    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
    <link href="css/style.css" rel="stylesheet" />
+   <link href="css/custom.css" rel="stylesheet" />
    <link href="css/style_responsive.css" rel="stylesheet" />
    <link href="css/style_default.css" rel="stylesheet" id="style_color" />
 
@@ -46,10 +47,7 @@ include 'headers/menu-top-navigation.php';
                      <small>Home Page</small>
                   </h3>
                    <ul class="breadcrumb">
-                        <li>
-                           <a href="index.php"><i class="icon-home"></i></a> <span class="divider">&nbsp;</span>
-                       </li>
-                       <li><a href="#">View</a><span class="divider-last">&nbsp;</span>
+                       <li><a href="#"<i class="icon-home"></i></a><span class="divider-last">&nbsp;</span>
                        </li>
                                  
                                           </ul>

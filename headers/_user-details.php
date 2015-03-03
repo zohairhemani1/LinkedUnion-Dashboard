@@ -1,6 +1,6 @@
 <?php
 	$user_id = $_SESSION['user_id'];
-	
+	echo "user_d-->{$user_id}";
 	$query = "SELECT * FROM `user` u, `app` a WHERE u.app_id = a.app_id and u.user_id = '{$user_id}'";
 	$result = mysqli_query($con,$query);
 	$row = mysqli_fetch_array($result);

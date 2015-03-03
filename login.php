@@ -15,7 +15,7 @@
 		if($count == 1)
 		{
 			$_SESSION['user_id'] = $row['user_id'];
-			header("Location: dashboard.php");		
+			header("Location: index.php");		
 		}
 	}
 	
@@ -32,10 +32,10 @@
 <title>Signin - Munik</title>
 
 <!-- Bootstrap core CSS -->
-<link href="stylesheet/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-<link href="stylesheet/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+<link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link href="css/style.css" rel="stylesheet" type="text/css">
-<link href="css/style_responsive.css" rel="stylesheet" type="text/css">
+<link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
 <link href="css/style_default.css" rel="stylesheet" type="text/css" id="style_color">
 
 <!-- Just for debugging purposes. Don't actually copy this line! -->
@@ -123,7 +123,7 @@ else if(isset($_GET['forget']) && $_GET['forget']=="true"){
     <div class="control-group">
       <div class="controls">
         <div class="input-prepend"> <span class="add-on"><i class="icon-envelope"></i></span>
-          <input id="input-email" type="text" name="email" placeholder="Email Address"  />
+          <input required id="input-email" type="text" name="email" placeholder="Email Address"  />
         </div>
       </div>
       <div class="space20"></div>
@@ -188,16 +188,16 @@ else if(isset($_GET['forget']) && $_GET['forget']=="true"){
 <div id="login-copyright"> <a href ="https://www.facebook.com/avialdo.inc">2014-15 &copy; Avialdo.</a> </div>
 <!-- END COPYRIGHT --> 
 <!-- js placed at the end of the document so the pages load faster --> 
-<script src="script/jquery-1.8.3.min.js"></script> 
-<script src="stylesheet/bootstrap/js/bootstrap.min.js"></script> 
-<script src="script/jquery.blockui.js"></script> 
-<script src="script/scripts.js"></script> 
+   <script src="js/jquery-1.8.3.min.js"></script>
+   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+   <script src="js/jquery.blockui.js"></script>
+   <script type="text/javascript" src="assets/chosen-bootstrap/chosen/chosen.jquery.min.js"></script>
+   <script type="text/javascript" src="assets/uniform/jquery.uniform.min.js"></script>
+   <script src="js/scripts.js"></script>
 <script>
     jQuery(document).ready(function() {     
       App.initLogin();
-    
-	
-	<?php 
+    	<?php 
 	if(isset($_GET['register']) && $_GET['register']=="false"){
 	
 	echo "
