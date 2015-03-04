@@ -3,10 +3,10 @@
 	include 'headers/checkloginstatus.php'; 
 	include 'headers/_user-details.php';
 
-$query = "SELECT id,name FROM `categories` WHERE `app_id` = 1";
+/*$query = "SELECT id,name FROM `categories` WHERE `app_id` = '{$appID}'";
 $sth = $dbh->prepare("SELECT name, colour FROM fruit");
 $sth->execute();
-
+*/
 
 
 
@@ -17,7 +17,7 @@ echo "<!-- BEGIN HEADER -->
            <div class='container-fluid'>
                <!-- BEGIN LOGO -->
                <a id='logo_image' class='brand' href='index.php'>
-                   <img src='img/logo/{$logo}' width='140' alt='Admin Lab' />
+                   <img src='img/logo/{$logo}' width='140' alt='Admin Lab' style='margin-left:-5px; margin-top:-12px;' />
                </a>
                <!-- END LOGO -->
                <!-- BEGIN RESPONSIVE MENU TOGGLER -->
@@ -102,7 +102,7 @@ echo "<!-- BEGIN HEADER -->
 		 
 		
 		 
-		$query = "SELECT id,name,(select count(*) from `subcategories` sc where sc.menu_id = c.id) as count FROM `categories` c WHERE `app_id` = 1";
+		$query = "SELECT id,name,(select count(*) from `subcategories` sc where sc.menu_id = c.id) as count FROM `categories` c WHERE `app_id` = '{$appID}'";
 		$sth = $dbh->prepare($query);
 		$sth->execute();
 		echo "<div id='container' class='row-fluid'>
@@ -128,7 +128,7 @@ echo "<!-- BEGIN HEADER -->
 						}
 						else
 						{
-							echo "<a class='' href='news.php?category_id={$id}'>
+							echo "<a class='' href='news.php?categoryID={$id}'>
 							<span class='icon-box'><i class='icon-cogs'></i>
 							</span> {$category}
 							<span class=''>
@@ -147,7 +147,7 @@ echo "<!-- BEGIN HEADER -->
 			{
 				$subcategory_id = $row_subcategory['submenu_id'];
 				$subcategory = $row_subcategory['name'] . "<br/>";
-				echo "<li><a class='' href='news.php?category_id={$subcategory_id}'>{$subcategory}</a></li>";
+				echo "<li><a class='' href='news.php?categoryID={$subcategory_id}'>{$subcategory}</a></li>";
 			}
 				echo "</ul></li>";
 		}

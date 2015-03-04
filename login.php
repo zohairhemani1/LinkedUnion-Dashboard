@@ -29,7 +29,7 @@
 <meta name="description" content="">
 <meta name="author" content="Wahab Jawed">
 <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
-<title>Signin - Munik</title>
+<title>Signin - Linked Union</title>
 
 <!-- Bootstrap core CSS -->
 <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
@@ -52,7 +52,7 @@
 <body id="login-body">
 <div class="login-header"> 
   <!-- BEGIN LOGO -->
-  <div id="logo" class="center"> <img src="img/logo.png" alt="logo" class="center" /> </div>
+  <div id="logo" class="center"> <!--<img src="img/logo/linkedunion-logo.jpg" alt="logo" class="center" />--> </div>
   <!-- END LOGO --> 
 </div>
 
@@ -80,7 +80,7 @@ else if(isset($_GET['forget']) && $_GET['forget']=="true"){
     <input type="hidden" value="login" name="type">
     <div class="lock"> <i class="icon-lock"></i> </div>
     <div class="control-wrap">
-      <h4>Delegation Login</h4>
+      <h4>Login</h4>
       <div class="control-group">
         <div class="controls">
           <div class="input-prepend"> <span class="add-on"><i class="icon-user"></i></span>
@@ -135,7 +135,7 @@ else if(isset($_GET['forget']) && $_GET['forget']=="true"){
   <!-- BEGIN REGISTER FORM -->
   <form id="registerform" class="form-vertical no-padding no-margin hide" action="login.php" method="post">
     <center>
-      <h4>MUNIK VI Registration</h4>
+      <h4>Linked Union Registeration</h4>
     </center>
     <p class="center">Enter the required details below</p>
     <?php 
