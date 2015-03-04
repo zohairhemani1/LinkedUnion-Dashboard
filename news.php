@@ -1,9 +1,9 @@
 <?php
+	session_start();
 	include 'headers/connect_to_mysql.php';
 	include 'headers/_user-details.php';
-	$category = $_GET['category'];
-	echo "categoty-->".$category;
-	$query_news = "SELECT * FROM news where category = 8 AND app_id = 1 ";
+	$category_id = $_GET['category_id'];
+	$query_news = "SELECT * FROM news where n.category = $category_id AND c.app_id = $appID ORDER by `order` ";
 	$result_news = mysqli_query($con,$query_news);
 ?>
 <!DOCTYPE html>
@@ -71,6 +71,31 @@ include 'headers/menu-top-navigation.php';
             <!-- END PAGE HEADER-->
 
             <!-- BEGIN ADVANCED TABLE widget-->
+                        <!-- BEGIN ADVANCED TABLE widget-->
+                      <?php
+			if(isset($_GET['insert']) == 'true')
+			{
+				echo"
+			<div class='alert alert-success'>
+					<button class='close' data-dismiss='alert'>×</button>
+					<strong>Success!</strong> The Contact has been added.
+				</div>";
+			}
+	 	else if(isset($_GET['update']) == 'true'){
+      echo"
+	    <div class='alert alert-success'>
+                <button class='close' data-dismiss='alert'>×</button>
+                <strong>Success!</strong> The Contact has been updated.
+            </div>";
+		}
+		else if(isset($_GET['delete']) == 'true'){
+      echo"
+	    <div class='alert alert-success'>
+                <button class='close' data-dismiss='alert'>×</button>
+                <strong>Success!</strong> The Contact has been Deleted.
+            </div>";
+		}
+?>
             <div class="row-fluid">
                 <div class="span12">
                 
@@ -78,14 +103,14 @@ include 'headers/menu-top-navigation.php';
                     <!-- BEGIN EXAMPLE TABLE widget-->
                     <div class="widget">
                         <div class="widget-title">
-                            <h4><i class="icon-reorder"></i>Index Table</h4>
+                            <h4><i class="icon-reorder"></i>News Table</h4>
                             <span class="tools">
                                 <a href="javascript:;" class="icon-chevron-down"></a>
                             </span>
                         </div>
 <div class="widget-body">
 			<div class="btn-group">
-               <a href="insert_form.php"><button type="button" class="btn btn-primary"> Add New <i class="icon-plus"></i> </button></a>
+               <a href="insert_form.php?category_id=<?php echo $category_id; ?>"><button type="button" class="btn btn-primary"> Add New <i class="icon-plus"></i> </button></a>
                               </div>
                 <div class="portlet-body">
                                 
@@ -107,17 +132,19 @@ include 'headers/menu-top-navigation.php';
 				<?php
                 while($row = mysqli_fetch_array($result_news))
                 {
-                $news_id = $row['news_id'];
+				$news_id = $row['news_id'];	
+                $order = $row['order'];
 				$title = $row['title'];
 					echo"
 				<tr class=''>
-					<td>{$news_id}</td>
+					<td>{$order}</td>
 					<td>$title</td>                    
-					<td style='width:27%;'><a href='insert_form.php?categoty=$category&news_id=$news_id' id='update_button' class='btn btn-success' >
+					<td style='width:27%;'><a href='insert_form.php?category_id=$category_id&&news_id=$news_id' id='update_button' 
+					class='btn btn-success'>
                     <i class='icon-trash'></i> Update</a>
 					<a href='#' id='delete_button'  class='btn btn-danger'>
                     <i class='icon-edit'></i> Delete</a>
-					<a href='view.php' id='view_button' class='btn btn-info'>
+					<a href='view.php?news_id=$news_id' id='view_button' class='btn btn-info'>
                     <i class='icon-edit'></i> View</a></td>
 					<td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
 					<td style='display:none'><a class='' href='javascript:;'>Delete</a></td>

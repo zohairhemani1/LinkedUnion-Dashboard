@@ -1,5 +1,19 @@
 <?php
-		include 'headers/connect_to_mysql.php'
+		include 'headers/connect_to_mysql.php';
+		$news_id = $_GET['news_id'];
+		$query_select = "SELECT * FROM news WHERE news_id = '$news_id'"
+		or die ('error while fething news');
+		$result  = mysqli_query($con,$query_select);
+		$row = mysqli_fetch_array($result);
+		$title = $row['title'];
+		$description = $row['description'];
+		$time_cone = $row['time_cone'];
+		$facebook = $row['facebook'];
+		$twitter  = $row['twitter'];
+		$google = $row['google'];
+		$pinterest = $row['pinterest'];
+		$social = $row['social'];
+		echo "social--->".$social;
 ?>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -71,29 +85,29 @@ include 'headers/menu-top-navigation.php';
 
                                 <div class="span12">
                                     <h2>
-                                        Your News Will Goes Here.
+                                       <?php echo $title; ?>
                                     </h2>
                                     <br>
 
                                     <div class="row-fluid">
                                         <div class="span6">
                                             <ul>
-                                                <li>22 May 2013 12:30 pm</li>
+                                                <li><?php echo $time_cone; ?></li>
                                             </ul>
 
                                         </div>
                                         <div class="span6 ">
                                             <ul class="show-right">
-                                                <li><a href="javascript:;"><i class="icon-facebook"></i> Facebook</a></li>
-                                                <li><a href="javascript:;"><i class="icon-twitter"></i> Twitter</a></li>
-                                                <li><a href="javascript:;"><i class="icon-google-plus"></i> Goolge Plus</a></li>
-                                                <li><a href="javascript:;"><i class="icon-pinterest"></i> Pinterest</a></li>
+                                                <li><a href="<?php echo $facebook; ?>"><i class="icon-facebook"></i> Facebook</a></li>
+                                                <li><a href="<?php echo $twitter; ?>"><i class="icon-twitter"></i> Twitter</a></li>
+                                                <li><a href="<?php echo $google; ?>"><i class="icon-google-plus"></i> Goolge Plus</a></li>
+                                                <li><a href="<?php echo $pinterest; ?>"><i class="icon-pinterest"></i> Pinterest</a></li>
                                             </ul>
                                         </div>
                                     </div>
                                     <div>
                                         <p>
-                                            Nam sed arcu non tellus fringilla fringilla ut vel ipsum. Aliquam ac magna metus. Nam sed arcu non tellus fringilla fringilla ut vel ipsum. Aliquam ac magna metus. Nam sed arcu non tellus fringilla fringilla ut vel ipsum. Aliquam ac magna metus. Nam sed arcu non tellus fringilla fringilla ut vel ipsum. Aliquam ac magna metus. Nam sed arcu non tellus fringilla fringilla ut vel ipsum. Aliquam ac magna metus. Nam sed arcu non tellus fringilla fringilla ut vel ipsum. Aliquam ac magna metus. Nam sed arcu non tellus fringilla fringilla ut vel ipsum. Aliquam ac magna metus. Nam sed arcu non tellus fringilla fringilla ut vel ipsum. Aliquam ac magna metus.
+                                           <?php echo $description; ?>
                                         </p>
 \                                    <!--end post comments-->
                                 </div>

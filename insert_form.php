@@ -1,13 +1,21 @@
 <?php 
 include 'headers/connect_to_mysql.php';
 include 'headers/_user-details.php';
-	$category = $_POST['category'];
-	echo "category".$category; 
+	$category_id = $_GET['category_id'];
+	$news_id = $_GET['news_id'];
 if(isset($_GET['news_id']))
 {
-			$query_select = "SELECT * FROM news WHERE news_id = 157"
+			$formAction = "{$category_id}&&news_id=$news_id";
+}
+else
+{
+		$formAction = $category_id;			
+}
+			
+if(isset($_GET['news_id']))
+{
+			$query_select = "SELECT * FROM news WHERE news_id = $news_id"
 			or die ('error3');
-			echo "news_id".$news_id;
 			$fetch_result = mysqli_query($con,$query_select);
 			$row = mysqli_fetch_array($fetch_result);
 			$title = $row['title'];
@@ -27,8 +35,8 @@ if(isset($_GET['news_id']))
 }
 if($_POST)
 {
-	if(isset($_GET['news_id']))
-	  {
+		if(isset($_GET['news_id']))
+		  {
 			$title = $_POST['title'];
 			$title = str_replace("'","\'",$title); 	
 			$description = $_POST['description'];
@@ -45,25 +53,28 @@ if($_POST)
 			 `order` = '$order' WHERE news_id = '$news_id'";
 			$result_update = mysqli_query($con,$query_update)
 			or die('update error');		
-			
-			$order_select = "SELECT `order`,`news_id` from news where app_id = '$app_id' AND category = '$category'";
+				$order_select = "SELECT `order`,`news_id` from news WHERE app_id = '$appID' and category = '$category_id	' ";
 			$result_Select = mysqli_query($con,$order_select)
 				or die('error');	
-			while($row = mysqli_fetch_assoc($result_Select))
-			{
+			while($row = mysqli_fetch_array($result_Select))
+				{
 				$order_other = $row['order'];
 				$news_id_all = $row['news_id'];
-				if($order == $order_other && $news_id != $news_id_all)
-				{
-					$query_update = "UPDATE `news` SET `order` = {$order_old}  WHERE `news_id` = {$news_id_all}";
-					$result_update = mysqli_query($con,$query_update);
+				if($order == $order_other && $news_id != $news_id_all )
+					{
+					$order_update = "UPDATE `news` SET `order` = '$order_other'  WHERE `news_id` = '$news_id_all' "
+					or die ('error');
+					$order_result = mysqli_query($con,$order_update);
+					echo "order_old-->{$order}&nbsp;news_old-->{$news_id}<br>order_new-->{$order_other}&nbsp;news_new-->{$news_id_all}";
+					}
 				}
-			}
-			header ('Location:contact_representative.php?update=true'); 
-		}
-	else
+		  	
+			
+		  
+			header ("Location:news.php?category_id={$category_id}&&update=true");
+}
+else
 	  {
-
 		include 'parse.php';
 		$title = $_POST['title'];
 		$title = str_replace("'","\'",$title); 	
@@ -77,15 +88,18 @@ if($_POST)
 		$social = $_POST['social'];
 		$order = $_POST['order'];
 		$query = "INSERT INTO news(title,description,file,time_cone,category,app_id,facebook,twitter,google,pinterest,social,`order`)
-				  VALUES ('$title','$description','$file',now(),'$category',$app_id,'$facebook','$twitter','$google','$pinterest','$social',
-			     (SELECT max(n.order)+1 FROM news n WHERE n.category = '$category' AND n.app_id= '$app_id' GROUP BY n.category, n.app_id))";
+				  VALUES ('$title','$description','$file',now(),'$category_id','$appID','$facebook','$twitter','$google','$pinterest','$social',
+			     (SELECT max(n.order)+1 FROM news n WHERE n.category = '$category_id' AND n.app_id= '$appID' GROUP BY n.category, n.app_id))"
+				 or die ('error');
 		$result = mysqli_query($con,$query)
 	or die('error1');
-		header ('Location:contact_representative.php?insert=true');
-	 }
+			header ("Location:news.php?category_id={$category_id}&&insert=true");
+	  }
 	
-}
+	}
+
 	?>
+	
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
@@ -159,7 +173,7 @@ include 'headers/menu-top-navigation.php';
                   <!-- BEGIN SAMPLE FORM widget-->   
                   <div class="widget">
                      <div class="widget-title">
-                        <h4><i class="icon-reorder"></i>News Form</h4>
+                        <h4><i class="icon-reorder"></i>Insert Form</h4>
                         <span class="tools">
                            <a href="javascript:;" class="icon-chevron-down"></a>
                            <a href="javascript:;" class="icon-remove"></a>
@@ -167,11 +181,11 @@ include 'headers/menu-top-navigation.php';
                      </div>
                      <div class="widget-body form">
                         <!-- BEGIN FORM-->
-                        <form action="insert_form.php" class="form-horizontal">
+                        <form action="insert_form.php?category_id=<?php echo $formAction; ?>" method="post" class="form-horizontal">
                            <div class="control-group">
                               <label class="control-label">News</label>
                               <div class="controls">
-                                 <input name="news" value="<?php echo $title; ?>" type="text" class="span12 " />
+                                 <input name="title" value="<?php echo $title; ?>" type="text" class="span12 " />
                                  
                               </div>
                            </div>
@@ -179,6 +193,13 @@ include 'headers/menu-top-navigation.php';
                               <label class="control-label">Description</label>
                               <div class="controls">
                                  <textarea name="description" class="span12 wysihtml5" rows="6"><?php echo $description; ?></textarea>
+                              </div>
+                           </div>
+                            <div  style=" <?php if(!isset($_GET['news_id']))
+						{echo "display:none;";} ?>" class="control-group">
+                              <label class="control-label">Order</label>
+                              <div class="controls">
+                                 <input name="order" class="span12" value="<?php echo $order; ?>" />
                               </div>
                            </div>
                               <div class="control-group">

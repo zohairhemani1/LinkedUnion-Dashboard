@@ -1,8 +1,8 @@
 <?php
 	include 'headers/connect_to_mysql.php';
 	include 'headers/_user-details.php';
-	$query_stay = "SELECT * FROM stayconected where app_id = $appID ";
-	$result_stay = mysqli_query($con,$query_stay);
+	$query_location = "SELECT * FROM location where app_id = $appID ";
+	$result_location = mysqli_query($con,$query_location);
 ?>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -13,7 +13,7 @@
 <!-- Mirrored from thevectorlab.net/adminlab/editable_table.html by HTTrack Website Copier/3.x [XR&CO'2013], Tue, 04 Nov 2014 07:58:54 GMT -->
 <head>
    <meta charset="utf-8" />
-   <title>Stay Conected</title>
+   <title>office Location</title>
    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
    <meta content="" name="description" />
    <meta content="" name="author" />
@@ -49,14 +49,14 @@ include 'headers/menu-top-navigation.php';
                    <!-- END THEME CUSTOMIZER-->
                   <!-- BEGIN PAGE TITLE & BREADCRUMB-->     
                   <h3 class="page-title">
-                     Stay Conected  
-                     <small>View All Stay Conected</small>
+                     Office Location  
+                     <small>View All Office Location</small>
                   </h3>
                    <ul class="breadcrumb">
                        <li>
                <a href="index.php"><i class="icon-home"></i></a> <span class="divider">&nbsp;</span>
                        </li>
-                       <li><a href="#">Stay Conected</a><span class="divider-last">&nbsp;</span>
+                       <li><a href="#">Office Location</a><span class="divider-last">&nbsp;</span>
                        </li>
                        
                    </ul>
@@ -72,21 +72,21 @@ include 'headers/menu-top-navigation.php';
 				echo"
 			<div class='alert alert-success'>
 					<button class='close' data-dismiss='alert'>×</button>
-					<strong>Success!</strong> The Stay Conected has been added.
+					<strong>Success!</strong> The Office Location has been added.
 				</div>";
 			}
 	 	else if(isset($_GET['update']) == 'true'){
       echo"
 	    <div class='alert alert-success'>
                 <button class='close' data-dismiss='alert'>×</button>
-                <strong>Success!</strong> The Stay Conected has been updated.
+                <strong>Success!</strong> The Office Location has been updated.
             </div>";
 		}
 		else if(isset($_GET['delete']) == 'true'){
       echo"
 	    <div class='alert alert-success'>
                 <button class='close' data-dismiss='alert'>×</button>
-                <strong>Success!</strong> The Stay Conected has been Deleted.
+                <strong>Success!</strong> The Office Location has been Deleted.
             </div>";
 		}
 ?>
@@ -95,14 +95,14 @@ include 'headers/menu-top-navigation.php';
                     <!-- BEGIN EXAMPLE TABLE widget-->
                     <div class="widget">
                         <div class="widget-title">
-                            <h4><i class="icon-reorder"></i>Stay Conected Table</h4>
+                            <h4><i class="icon-reorder"></i>Office Location Table</h4>
                             <span class="tools">
                                 <a href="javascript:;" class="icon-chevron-down"></a>
                             </span>
                         </div>
 <div class="widget-body">
 			<div class="btn-group">
-               <a href="insert_stayConected.php"><button type="button" class="btn btn-primary"> Add New <i class="icon-plus"></i> </button></a>
+               <a href="insert_location.php"><button type="button" class="btn btn-primary"> Add New <i class="icon-plus"></i> </button></a>
                               </div>
 
                             <div class="portlet-body">
@@ -112,33 +112,37 @@ include 'headers/menu-top-navigation.php';
                                     <thead>
                                     <tr>
 								 <th style='width:8px;'>id</th>
-                                    <th>Name</th>
-                                    <th>Link</th>
+                                    <th>Title</th>
+                                    <th>Address</th>
+                                    <th>Phone No</th>
+                                    <th>Website</th>
                                     <th>Status</th>
                                         <div class='widths'>
                                         <th style='display:none'>Edit</th>
                                         <th style='display:none'>Delete</th>
-                                    </div>
+                                    	</div>
                                     </tr>
                      
                                            </thead>
                                     <tbody>
 
-				        <?php
-								while($row = mysqli_fetch_array($result_stay))
+							<?php			
+							while($row = mysqli_fetch_array($result_location))
 							{
-								$id = $row['id'];
-								$order = $row['order'];
-								$name = $row['name'];
-								$link = $row['link'];
-								
-                              echo" 
-                <tr class=''>
-				     <td>{$id}</td>
-					<td>{$name}</td>
-					<td>{$link}</td>
-               
-					<td style='width:19%;'><a href='insert_stayConected.php?id=$id' id='update_button' class='btn btn-success' >
+							$office_id = $row['office_id'];
+							$office_title = $row['office_title'];
+							$address = $row['address'];
+							$phone_no = $row['phone_no'];
+							$website = $row['website'];    
+							 echo"<tr>
+							
+							<td>${office_id}</td>;
+							<td >${office_title}</td>
+							<td>${address}</td>
+							<td>${phone_no}</td>
+							<td>${website}</td>
+	               
+					<td style='width:19%;'><a href='insert_location.php?office_id=$office_id' id='update_button' class='btn btn-success' >
                     <i class='icon-trash'></i> Update</a>
 					<a href='#' id='delete_button'  class='btn btn-danger'>
                     <i class='icon-edit'></i> delete</a>

@@ -1,42 +1,50 @@
 <?php 
 	include 'headers/connect_to_mysql.php';
 	include 'headers/_user-details.php';
-
-	if(isset($_GET['id']))
+	
+	if(isset($_GET['office_id']))
 {
-		$id = $_GET['id'];
-		$formAction = "?id={$id}";
-		$select_stayconected = "SELECT * FROM stayconected where id = '$id'";
-		$fetch_result = mysqli_query($con,$select_stayconected);
-		$row = mysqli_fetch_array($fetch_result);
-		$name = $row['name'];
-		$link = $row['link'];
+		$office_id = $_GET['office_id'];
+		$formAction = "?office_id=$office_id";
+		$select_location = "SELECT * FROM location where office_id = $office_id";
+		$fetch_result = mysqli_query($con,$select_location);
+		$row = mysqli_fetch_array($fetch_result)
+		or die('error');
+		$office_title = $row['office_title'];
+		$address = $row['address'];
+		$file = $row['file'];
+		$phone_no = $row['phone_no'];
+		$website = $row['website'];
 }
 if($_POST)
 {
-	if(isset($_GET['id']))
+	if(isset($_GET['office_id']))
 	  {
-		$name = $_POST['name'];
-		$link = $_POST['link'];
-		$update_stayconected = "UPDATE stayconected SET name = '$name', link = '$link', where id = '$id' "
-		or die ('error while Updating stayconected');
-		$stayconected_update = mysqli_query($con,$update_stayconected);
-		header ('Location:stay_connected.php?update=true'); 
+		include 'headers/image_upload.php';
+		$office_title = $_POST['office_title'];
+		$address = $_POST['address'];
+		$phone_no = $_POST['phone_no'];
+		$website = $_POST['website'];
+		$query = "UPDATE location SET time_cone = now(),  office_title = '$office_title', address = '$address',
+		 phone_no = '$phone_no',website = '$website'  WHERE office_id = '$office_id'";
+		$result = mysqli_query($con,$query);
+		header ('Location: location.php?update=true');
 		}
 	else
 	  {
-		$name = $_POST['name'];
-		$link = $_POST['link'];
-		$insert_contatct = "INSERT INTO stayconected (name,link,app_id)
-		VALUES ('$name','$link','$appID') "
-		or die('error while inserting Stya Conected');
-		$result = mysqli_query($con,$insert_contatct);
-		header ('Location:stay_connected.php?insert=true');
+		$office_title = $_POST['office_title'];
+		$address = $_POST['address'];
+		$phone_no = $_POST['phone_no'];
+		$website = $_POST['website'];
+		$query_location = "INSERT INTO location(office_title,address,phone_no,website,time_cone,app_id)
+		VALUES ('$office_title','$address','$phone_no','$website',now(),'$appID')";
+		mysqli_query($con,$query_location)
+		or die('error1');
+		header ("Location: location.php?insert=true");
 	 }
 	
 }
 	?>
-
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
@@ -45,7 +53,7 @@ if($_POST)
 
 <!-- Mirrored from thevectorlab.net/adminlab/form_component.html by HTTrack Website Copier/3.x [XR&CO'2013], Tue, 04 Nov 2014 07:57:43 GMT -->
 <head>   <meta charset="utf-8" />
-   <title>Stay Conected</title>
+   <title>Contact Reprensentative</title>
    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
    <meta content="" name="description" />
    <meta content="" name="author" />
@@ -87,78 +95,68 @@ include 'headers/menu-top-navigation.php';
             <div class="row-fluid">
                <div class="span12">
                    <!-- BEGIN THEME CUSTOMIZER-->
-
+                 
                    <!-- END THEME CUSTOMIZER-->
                   <h3 class="page-title">
-                     Stay Conected
-                     <small>Stay Conected page</small>
+                     Office Location
+                     <small>Insert your office Location </small>
                   </h3>
                    <ul class="breadcrumb">
-                           <li>
+
+                       
+                   <li>
                            <a href="index.php"><i class="icon-home"></i></a> <span class="divider">&nbsp;</span>
                        </li>
-                       <li><a href="#">insert Stay Conected</a><span class="divider-last">&nbsp;</span>
+                       <li><a href="#">Insert Office Location</a><span class="divider-last">&nbsp;</span>
                        </li>
                        
-               </div>
+                   </ul> 
+                                 </div>
             </div>
             <!-- END PAGE HEADER-->
             <!-- BEGIN PAGE CONTENT-->
+
             <div class="row-fluid">
                <div class="span12">
                   <!-- BEGIN SAMPLE FORM widget-->   
                   <div class="widget">
                      <div class="widget-title">
-                        <h4><i class="icon-reorder"></i>Insert Stay Conected</h4>
+                        <h4><i class="icon-reorder"></i>Office Location Form</h4>
                         <span class="tools">
                            <a href="javascript:;" class="icon-chevron-down"></a>
-                         </span>
+                        </span>
                      </div>
                      <div class="widget-body form">
                         <!-- BEGIN FORM-->
-                        <form action="insert_stayConected.php<?php echo $formAction; ?>" method="post" class="form-horizontal">
+                        <form action="insert_location.php<?php echo $formAction ?>" method="post" class="form-horizontal">
                            <div class="control-group">
-                              <label class="control-label">Custom Dropdown</label>
+                              <label class="control-label">Office title</label>
                               <div class="controls">
-                                 <select name="name"  class="span6 chosen" data-placeholder="Choose a Category" tabindex="1">
-                                    <option value="<?php echo $name; ?>"><?php echo $name; ?></option>
-                                  <option value="twitter">Twitter</option>
-                                  <option value="youtube">Youtube</option>
-                                  <option value="linkedIn">LinkedIn</option>
-                                  <option value="behance">Behance</option>
-                                  <option value="blogger">Blogger</option>
-                                  <option value="deviantArt">DeviantArt</option>
-                                  <option value="digg">Digg</option>
-                                  <option value="dribbble">Dribbble</option>
-                                  <option value="feed">Feed</option>
-                                  <option value="flicker">Flickr</option>
-                                  <option value="forrst">Forrst</option>
-                                  <option value="google++">Google+</option>
-                                  <option value="gowalla">Gowalla</option>
-                                  <option value="lastfm">Lastfm</option>
-                                  <option value="mtspace">Myspace</option>
-                                  <option value="paypal">PayPal</option>
-                                  <option value="picasa">Picasa</option>
-                                  <option value="pinterest">Pinterest</option>
-                                  <option value="sharethis">Share-This</option>
-                                  <option value="skype">Skype</option>
-                                  <option value="stumbleupon">Stumbleupon</option>
-                                  <option value="tumblr">Tumblr</option>
-                                  <option value="viddlr">Viddlr</option>
-                                  <option value="vimeo">Vimeo</option>
-                                  <option value="wordpress">Wordpress</option>
-                                 </select>
-                              </div>
-                           </div>                         
-                             <div class="control-group">
-                              <label class="control-label">Link</label>
-                              <div class="controls">
-                                 <input name="link" value="<?php echo $link; ?>" placeholder="Enter Your Link" type="text" class="span6 " />
+                                 <input placeholder="Enter Your Office title" name="office_title" 
+                                 value="<?php echo $office_title; ?>" type="text" class="span6 " />
                               </div>
                            </div>
-   			<div class="form-actions clearfix">
-				<input type="submit"  class="btn btn-success " />
-                   </div>
+                           <div class="control-group">
+                              <label class="control-label">Address</label>
+                              <div class="controls">
+                                 <textarea placeholder="Enter Your Address" name="address" class="span6 " /><?php echo $address; ?></textarea>
+                              </div>
+                           </div>
+                           <div class="control-group">
+                              <label class="control-label">Phone No</label>
+                              <div class="controls">
+                                 <input placeholder="Enter Your Phone No" name="phone_no" value="<?php echo $phone_no ?>" type="text" class="span6 " />
+                              </div>
+                           </div>
+                           <div class="control-group">
+                              <label class="control-label">Website</label>
+                              <div class="controls">
+                                 <input placeholder="Enter Your Website" name="website" value="<?php echo $website; ?>" type="text" class="span6 " />
+                              </div>
+                           </div>
+   						<div class="form-actions clearfix">
+							<input type="submit"  class="btn btn-success " />
+                   		</div>
                               </form>
                             <!-- END FORM-->
                         </div>
