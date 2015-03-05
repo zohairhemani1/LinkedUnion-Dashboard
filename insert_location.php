@@ -2,6 +2,12 @@
 	include 'headers/connect_to_mysql.php';
 	include 'headers/_user-details.php';
 	
+	$office_title = "";
+	$address = "";
+	$phone_no = "";
+	$website = "";
+	$formAction = "";
+	
 	if(isset($_GET['office_id']))
 {
 		$office_id = $_GET['office_id'];
@@ -28,7 +34,7 @@ if($_POST)
 		$query = "UPDATE location SET time_cone = now(),  office_title = '$office_title', address = '$address',
 		 phone_no = '$phone_no',website = '$website'  WHERE office_id = '$office_id'";
 		$result = mysqli_query($con,$query);
-		header ('Location: location.php?update=true');
+		header ('Location: office_location.php?update=true');
 		}
 	else
 	  {
@@ -40,7 +46,7 @@ if($_POST)
 		VALUES ('$office_title','$address','$phone_no','$website',now(),'$appID')";
 		mysqli_query($con,$query_location)
 		or die('error1');
-		header ("Location: location.php?insert=true");
+		header ("Location: office_location.php?insert=true");
 	 }
 	
 }
