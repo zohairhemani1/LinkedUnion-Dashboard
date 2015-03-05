@@ -1,8 +1,23 @@
 <?php 
 include 'headers/connect_to_mysql.php';
 include 'headers/_user-details.php';
-	$category_id = $_GET['category_id'];
-	$news_id = $_GET['news_id'];
+	$category_id = $_GET['categoryID'];
+	if(isset($_GET['news_id']))
+		$news_id = $_GET['news_id'];
+	
+	$title = "";	
+	$description = "";
+	$facebook = "";
+	$twitter = "";
+	$google = "";
+	$pinterest = "";
+	$social = "";
+	$notification= "";
+	$order = "";
+	
+	
+	
+	
 if(isset($_GET['news_id']))
 {
 			$formAction = "{$category_id}&&news_id=$news_id";
