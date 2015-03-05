@@ -13,7 +13,6 @@
 		$google = $row['google'];
 		$pinterest = $row['pinterest'];
 		$social = $row['social'];
-		echo "social--->".$social;
 ?>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -96,8 +95,8 @@ include 'headers/menu-top-navigation.php';
                                             </ul>
 
                                         </div>
-                                        <div class="span6 ">
-                                            <ul class="show-right">
+                                        <div class="span6">
+                                            <ul class="show-right" style=" <?php if($social == null){echo "display:none";} ?>">
                                                 <li><a href="<?php echo $facebook; ?>"><i class="icon-facebook"></i> Facebook</a></li>
                                                 <li><a href="<?php echo $twitter; ?>"><i class="icon-twitter"></i> Twitter</a></li>
                                                 <li><a href="<?php echo $google; ?>"><i class="icon-google-plus"></i> Goolge Plus</a></li>
@@ -106,10 +105,12 @@ include 'headers/menu-top-navigation.php';
                                         </div>
                                     </div>
                                     <div>
-                                        <p>
+                                   
+                                        <p class="show-right">
                                            <?php echo $description; ?>
                                         </p>
-\                                    <!--end post comments-->
+                                        
+                                 <!--end post comments-->
                                 </div>
                                 </div></div>
                             </div>
