@@ -11,11 +11,16 @@ $query = "SELECT w.name FROM `webservice_category` wc, `webservices` w WHERE wc.
 $result = mysqli_query($con,$query);
 $row = mysqli_fetch_array($result);
 $fileName = $row['name'];
-
 if(isset($fileName))
 {
-	header("Location: {$fileName}?categoryID={$categoryID}");
+	if($fileName != "view.php")
+		header("Location: {$fileName}?categoryID={$categoryID}");
 }
+
+
+
+	
+
 
 
 
