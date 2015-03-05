@@ -68,14 +68,14 @@ include 'headers/menu-top-navigation.php';
                    <!-- END THEME CUSTOMIZER-->
                   <!-- BEGIN PAGE TITLE & BREADCRUMB-->     
                   <h3 class="page-title">
-                     Contact  Representative
-                     <small>view All contact</small>
+                     Dashboard
+                     <small>view All </small>
                   </h3>
                    <ul class="breadcrumb">
                         <li>
                            <a href="index.php"><i class="icon-home"></i></a> <span class="divider">&nbsp;</span>
                        </li>
-                       <li><a href="#">Contact representative</a><span class="divider-last">&nbsp;</span>
+                       <li><a href="#">News</a><span class="divider-last">&nbsp;</span>
                        </li>
                        
                        </ul>
@@ -124,7 +124,7 @@ include 'headers/menu-top-navigation.php';
 		  
 		  ?>
 
-                            <h4><i class="icon-reorder"></i>Contact representative Table</h4>
+                            <h4><i class="icon-tags"></i> <?php echo $name; ?> Articles</h4>
                             <span class="tools">
                                 <a href="javascript:;" class="icon-chevron-down"></a>
                             </span>
