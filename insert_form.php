@@ -134,6 +134,7 @@ else
    <link rel="stylesheet" type="text/css" href="assets/bootstrap-daterangepicker/daterangepicker.css" />
    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
    <link rel="stylesheet" type="text/css" href="css/main.css" />
+   <link rel="stylesheet" type="text/css" href="css/custom.css"/>
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
@@ -251,6 +252,7 @@ include 'headers/menu-top-navigation.php';
                       </div>
                       </div>
                       </div>
+
                        <div class="control-group">
                       <label class="control-label">Google</label>
                               <div class="controls">
@@ -270,7 +272,7 @@ include 'headers/menu-top-navigation.php';
                     </div>
                     <div class="control-group">
                       <label class="control-label">Notification</label>
-                    <div class="controls">            
+                   <div class="controls">            
                         <div class="pushNotification">
                         <input type="checkbox" name="social" class="pushNotification-checkbox" id="mypushNotification" >
                         <label class="pushNotification-label" for="mypushNotification">

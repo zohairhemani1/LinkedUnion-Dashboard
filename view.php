@@ -54,8 +54,8 @@ include 'headers/menu-top-navigation.php';
 
                   <!-- BEGIN PAGE TITLE & BREADCRUMB-->
                    <h3 class="page-title">
-                     View Details
-                     <small>View details page</small>
+                     View Page
+                     
                   </h3>
                    <ul class="breadcrumb">
                         <li>

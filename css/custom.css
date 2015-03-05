@@ -1,14 +1,25 @@
 
         .onoffswitch {
-    position: relative; width: 90px;
+    position: relative; width: 113px;
     -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
     }
     .onoffswitch-checkbox {
     display: none;
     }
     .onoffswitch-label {
-    display: block; overflow: hidden; cursor: pointer;
-    border: 2px solid #999999; border-radius: 20px;
+	display: block;
+	overflow: hidden;
+	cursor: pointer;
+	border-width: 2px;
+	border-style: solid;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	-moz-border-top-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+	border-image: none;
+	border-radius: 5px;
+	height: 28px;
     }
     .onoffswitch-inner {
     display: block; width: 200%; margin-left: -100%;
@@ -23,27 +34,36 @@
     .onoffswitch-inner:before {
     content: "ON";
     padding-left: 10px;
-    background-color: #34A7C1; color: #FFFFFF;
+	background: -moz-linear-gradient(center bottom , #08C, #05C) repeat scroll 0% 0% #08C;
     }
     .onoffswitch-inner:after {
     content: "OFF";
     padding-right: 10px;
-    background-color: #EEEEEE; color: #999999;
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+	color: #000;
+	background-image: -moz-linear-gradient(center bottom , #FEFEFE, #E6E6E6);
     text-align: right;
     }
     .onoffswitch-switch {
-    display: block; width: 18px; margin: 6px;
-    background: #FFFFFF;
-    border: 2px solid #999999; border-radius: 20px;
-    position: absolute; top: 0; bottom: 0; right: 56px;
-    -moz-transition: all 0.3s ease-in 0s; -webkit-transition: all 0.3s ease-in 0s;
-    -o-transition: all 0.3s ease-in 0s; transition: all 0.3s ease-in 0s;
+	display: block;
+	width: 53px;
+	margin: 6px;
+	border-radius: 4px;
+	position: absolute;
+	transition: all 0.3s ease-in 0s;
+	height: 30px;
+	top: -6px;
+	bottom: 0px;
+	background: -moz-linear-gradient(center top , #FEFEFE, #E6E6E6) repeat scroll 0% 0% #FEFEFE;
+	border: 1px solid #E6E6E6;
+	right:51px;
     }
     .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
     margin-left: 0;
     }
     .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
-    right: 0px;
+    right: -4px;
     }
 	/*Push Notificattion Start here*/
 	
@@ -53,15 +73,26 @@
 
  	
 	    .pushNotification {
-    position: relative; width: 90px;
+    position: relative;  width: 113px;
     -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
     }
     .pushNotification-checkbox {
     display: none;
     }
     .pushNotification-label {
-    display: block; overflow: hidden; cursor: pointer;
-    border: 2px solid #999999; border-radius: 20px;
+	display: block;
+	overflow: hidden;
+	cursor: pointer;
+	border-width: 2px;
+	border-style: solid;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	-moz-border-top-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+	border-image: none;
+	border-radius: 5px;
+	height: 28px;
     }
     .pushNotification-inner {
     display: block; width: 200%; margin-left: -100%;
@@ -76,39 +107,59 @@
     .pushNotification-inner:before {
     content: "ON";
     padding-left: 10px;
-    background-color: #34A7C1; color: #FFFFFF;
+    background: -moz-linear-gradient(center bottom , #08C, #05C) repeat scroll 0% 0% #08C;
     }
     .pushNotification-inner:after {
     content: "OFF";
     padding-right: 10px;
-    background-color: #EEEEEE; color: #999999;
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+	color: #000;
+	background-image: -moz-linear-gradient(center bottom , #FEFEFE, #E6E6E6);
     text-align: right;
     }
     .pushNotification-switch {
-    display: block; width: 18px; margin: 6px;
-    background: #FFFFFF;
-    border: 2px solid #999999; border-radius: 20px;
-    position: absolute; top: 0; bottom: 0; right: 56px;
-    -moz-transition: all 0.3s ease-in 0s; -webkit-transition: all 0.3s ease-in 0s;
-    -o-transition: all 0.3s ease-in 0s; transition: all 0.3s ease-in 0s;
-    }
+	display: block;
+	width: 53px;
+	margin: 6px;
+	border-radius: 4px;
+	position: absolute;
+	transition: all 0.3s ease-in 0s;
+	height: 30px;
+	top: -6px;
+	bottom: 0px;
+	background: -moz-linear-gradient(center top , #FEFEFE, #E6E6E6) repeat scroll 0% 0% #FEFEFE;
+	border: 1px solid #E6E6E6;
+	right:51px; 
+	   }
     .pushNotification-checkbox:checked + .pushNotification-label .pushNotification-inner {
     margin-left: 0;
     }
     .pushNotification-checkbox:checked + .pushNotification-label .pushNotification-switch {
-    right: 0px;
+    right: -4px;
     }
 		
 	    .publish {
-    position: relative; width: 90px;
+    position: relative; width: 113px;
     -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
     }
     .publish-checkbox {
     display: none;
     }
     .publish-label {
-    display: block; overflow: hidden; cursor: pointer;
-    border: 2px solid #999999; border-radius: 20px;
+	display: block;
+	overflow: hidden;
+	cursor: pointer;
+	border-width: 2px;
+	border-style: solid;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	-moz-border-top-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+	border-image: none;
+	border-radius: 5px;
+	height: 28px;
     }
     .publish-inner {
     display: block; width: 200%; margin-left: -100%;
@@ -123,27 +174,36 @@
     .publish-inner:before {
     content: "ON";
     padding-left: 10px;
-    background-color: #34A7C1; color: #FFFFFF;
+    background: -moz-linear-gradient(center bottom , #08C, #05C) repeat scroll 0% 0% #08C;
     }
     .publish-inner:after {
     content: "OFF";
     padding-right: 10px;
-    background-color: #EEEEEE; color: #999999;
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+	color: #000;
+	background-image: -moz-linear-gradient(center bottom , #FEFEFE, #E6E6E6);
     text-align: right;
     }
     .publish-switch {
-    display: block; width: 18px; margin: 6px;
-    background: #FFFFFF;
-    border: 2px solid #999999; border-radius: 20px;
-    position: absolute; top: 0; bottom: 0; right: 56px;
-    -moz-transition: all 0.3s ease-in 0s; -webkit-transition: all 0.3s ease-in 0s;
-    -o-transition: all 0.3s ease-in 0s; transition: all 0.3s ease-in 0s;
+	display: block;
+	width: 53px;
+	margin: 6px;
+	border-radius: 4px;
+	position: absolute;
+	transition: all 0.3s ease-in 0s;
+	height: 30px;
+	top: -6px;
+	bottom: 0px;
+	background: -moz-linear-gradient(center top , #FEFEFE, #E6E6E6) repeat scroll 0% 0% #FEFEFE;
+	border: 1px solid #E6E6E6;
+	right:51px; 
     }
     .publish-checkbox:checked + .publish-label .publish-inner {
     margin-left: 0;
     }
     .publish-checkbox:checked + .publish-label .publish-switch {
-    right: 0px;
+    right: -4px;
     }
 	
 #update_button {
