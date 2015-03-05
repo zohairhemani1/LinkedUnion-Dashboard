@@ -3,6 +3,7 @@
 	include 'headers/_user-details.php';
 	$query_contact = "SELECT * FROM contact where app_id = '$appID'";
 	$result_contact = mysqli_query($con,$query_contact);
+	
 ?>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -156,7 +157,7 @@ include 'headers/menu-top-navigation.php';
 					<td style='width:19%;'><a href='insert_contact.php?contact_id=$contact_id' id='update_button' class='btn btn-success' >
                     <i class='icon-trash'></i> Update</a>
 					<a href='#' id='delete_button'  class='btn btn-danger'>
-                    <i class='icon-edit'></i> delete</a>
+                    <i class='icon-edit'></i> Delete</a>
 					<td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
 					<td style='display:none'><a class='' href='javascript:;'>Delete</a></td>
 						</tr>";

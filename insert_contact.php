@@ -2,22 +2,31 @@
 	include 'headers/connect_to_mysql.php';
 	include 'headers/_user-details.php';
 
+	$name = "";
+	$designation = "";
+	$address = "";
+	$phone_no1 = "";
+	$phone_no2 = "";
+	$fax_no = "";
+	$email = "";
+	$time_cone = "";
+	$formAction = "";
 	if(isset($_GET['contact_id']))
-{
-		$conatct_id = $_GET['contact_id'];
-		$formAction = "?contact_id={$conatct_id}";
-		$select_contact = "SELECT * FROM contact where contact_id = '$conatct_id'";
-		$fetch_result = mysqli_query($con,$select_contact);
-		$row = mysqli_fetch_array($fetch_result);
-		$name = $row['name'];
-		$designation = $row['designation'];
-		$address = $row['address'];
-		$phone_no1 = $row['phone_no1'];
-		$phone_no2 = $row['phone_no2'];
-		$fax_no = $row['fax_no'];
-		$email = $row['email'];
-		$time_cone = $row['time_cone'];
-}
+	{
+			$conatct_id = $_GET['contact_id'];
+			$formAction = "?contact_id={$conatct_id}";
+			$select_contact = "SELECT * FROM contact where contact_id = '$conatct_id'";
+			$fetch_result = mysqli_query($con,$select_contact);
+			$row = mysqli_fetch_array($fetch_result);
+			$name = $row['name'];
+			$designation = $row['designation'];
+			$address = $row['address'];
+			$phone_no1 = $row['phone_no1'];
+			$phone_no2 = $row['phone_no2'];
+			$fax_no = $row['fax_no'];
+			$email = $row['email'];
+			$time_cone = $row['time_cone'];
+	}
 if($_POST)
 {
 	if(isset($_GET['contact_id']))
@@ -34,7 +43,7 @@ if($_POST)
 		phone_no2 = '$phone_no2', fax_no = '$fax_no', email = '$email', time_cone = now() where contact_id = '$conatct_id' "
 		or die ('error while Updating contact');
 		$contact_update = mysqli_query($con,$update_contact);
-		header ('Location:contact_representative.php?update=true'); 
+		header ('Location:union_representatives.php?update=true'); 
 		}
 	else
 	  {
@@ -50,7 +59,7 @@ if($_POST)
 		VALUES ('$name','$designation','$address','$phone_no1','$phone_no2','$fax_no','$email',now(),'$appID') "
 		or die('error while inserting Contact');
 		$result = mysqli_query($con,$insert_contatct);
-		header ('Location:contact_representative.php?insert=true');
+		header ('Location:union_representatives.php?insert=true');
 	 }
 	
 }
