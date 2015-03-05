@@ -28,79 +28,94 @@ if(isset($fileName))
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
 <!-- BEGIN HEAD -->
 
-<!-- Mirrored from thevectorlab.net/adminlab/blank.html by HTTrack Website Copier/3.x [XR&CO'2013], Tue, 04 Nov 2014 07:58:59 GMT -->
-
+<!-- Mirrored from thevectorlab.net/adminlab/editable_table.html by HTTrack Website Copier/3.x [XR&CO'2013], Tue, 04 Nov 2014 07:58:54 GMT -->
 <head>
-<meta charset="utf-8" />
-<title>Dashboard</title>
-<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-<meta content="" name="description" />
-<meta content="" name="author" />
-<link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-<link href="assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
-<link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-<link href="css/style.css" rel="stylesheet" />
-<link href="css/custom.css" rel="stylesheet" />
-<link href="css/style_responsive.css" rel="stylesheet" />
-<link href="css/style_default.css" rel="stylesheet" id="style_color" />
-<link href="assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
-<link rel="stylesheet" type="text/css" href="assets/uniform/css/uniform.default.css" />
-<link rel="stylesheet" href="assets/data-tables/DT_bootstrap.css" />
+   <meta charset="utf-8" />
+   <title>Contact Representative</title>
+   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+   <meta content="" name="description" />
+   <meta content="" name="author" />
+   <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+   <link href="assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
+   <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+   <link href="css/style.css" rel="stylesheet" />
+   <link href="css/custom.css" rel="stylesheet" />
 
+   <link href="css/style_responsive.css" rel="stylesheet" />
+   <link href="css/style_default.css" rel="stylesheet" id="style_color" />
+
+   <link href="assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
+   <link rel="stylesheet" type="text/css" href="assets/uniform/css/uniform.default.css" />
+
+   <link rel="stylesheet" href="assets/data-tables/DT_bootstrap.css" />
 
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
 <body class="fixed-top">
+   <!-- BEGIN HEADER -->
 <?php
 include 'headers/menu-top-navigation.php'; 
-?>
-<!-- BEGIN PAGE -->
-<div id="main-content"> 
-  <!-- BEGIN PAGE CONTAINER-->
-  <div class="container-fluid"> 
-    <!-- BEGIN PAGE HEADER-->
-    <div class="row-fluid">
-      <div class="span12"> 
-        
-        <!-- BEGIN PAGE TITLE & BREADCRUMB-->
-        <h3 class="page-title"> Dashboard </h3>
-        <ul class="breadcrumb">
-          <li> <a href="#"><i class="icon-home"></i></a><span class="divider">&nbsp;</span> </li>
-          <li> <a href="#">Muhammad Zohair></a> <span class="divider-last">&nbsp;</span> </li>
-        </ul>
-        <!-- END PAGE TITLE & BREADCRUMB--> 
-      </div>
-    </div>
-    <!-- END PAGE HEADER--> 
-    <!-- BEGIN PAGE CONTENT-->
-    <!-- <div class="row-fluid">
-      <div class="span12"> 
-        <!-- BEGIN RECENT ORDERS PORTLET
-        <div class="widget">
-          <div class="widget-title">
-            <h4><i class="icon-tags"></i> <?php echo $username_allcaps; ?> Notification</h4>
-            <span class="tools"> <a href="javascript:;" class="icon-chevron-down"></a> <a href="javascript:;" class="icon-remove"></a> </span> </div>
-          <div class="widget-body">
-          <div class="alert alert-success">
-                                        <button class="close" data-dismiss="alert">×</button>
-                                        <strong>Welcome to <?php echo $username_allcaps; ?> Mobile Application Portal</strong> 
-                                    </div>
+?>      <!-- BEGIN PAGE -->
+      <div id="main-content">
+         <!-- BEGIN PAGE CONTAINER-->
+         <div class="container-fluid">
+            <!-- BEGIN PAGE HEADER-->
+            <div class="row-fluid">
+               <div class="span12">
+                   <!-- BEGIN THEME CUSTOMIZER-->
 
-          
-           </div>
-        </div>
-      </div>
-    </div> -->
-    <div class="row-fluid">
-      <div class="span12"> 
-        <!-- BEGIN RECENT ORDERS PORTLET-->
-        <div class="widget">
-          <div class="widget-title">
-          
-          <?php 
-		  
-		  $query = "select name from (select c.name ,c.id from `categories` c union select sc.name,sc.submenu_id from `subcategories` sc) `dd` where id ={$categoryID}";
+                   <!-- END THEME CUSTOMIZER-->
+                  <!-- BEGIN PAGE TITLE & BREADCRUMB-->     
+                  <h3 class="page-title">
+                     Contact  Representative
+                     <small>view All contact</small>
+                  </h3>
+                   <ul class="breadcrumb">
+                        <li>
+                           <a href="index.php"><i class="icon-home"></i></a> <span class="divider">&nbsp;</span>
+                       </li>
+                       <li><a href="#">Contact representative</a><span class="divider-last">&nbsp;</span>
+                       </li>
+                       
+                       </ul>
+                  <!-- END PAGE TITLE & BREADCRUMB-->
+               </div>
+            </div>
+            <!-- END PAGE HEADER-->
+
+            <!-- BEGIN ADVANCED TABLE widget-->
+                      <?php
+			if(isset($_GET['insert']) == 'true')
+			{
+				echo"
+			<div class='alert alert-success'>
+					<button class='close' data-dismiss='alert'>×</button>
+					<strong>Success!</strong> The Contact has been added.
+				</div>";
+			}
+	 	else if(isset($_GET['update']) == 'true'){
+      echo"
+	    <div class='alert alert-success'>
+                <button class='close' data-dismiss='alert'>×</button>
+                <strong>Success!</strong> The Contact has been updated.
+            </div>";
+		}
+		else if(isset($_GET['delete']) == 'true'){
+      echo"
+	    <div class='alert alert-success'>
+                <button class='close' data-dismiss='alert'>×</button>
+                <strong>Success!</strong> The Contact has been Deleted.
+            </div>";
+		}
+?>
+            <div class="row-fluid">
+                <div class="span12">
+                    <!-- BEGIN EXAMPLE TABLE widget-->
+                    <div class="widget">
+                        <div class="widget-title">
+             <?php 
+		  		  $query = "select name from (select c.name ,c.id from `categories` c union select sc.name,sc.submenu_id from `subcategories` sc) `dd` where id ={$categoryID}";
 		  $sth = $dbh->prepare($query);
 		  $sth->execute();
 		  $row = $sth->fetch(PDO::FETCH_ASSOC);
@@ -108,26 +123,39 @@ include 'headers/menu-top-navigation.php';
 		  
 		  
 		  ?>
-          
-            <h4><i class="icon-tags"></i> <?php echo $name; ?> Articles</h4>
-            <span class="tools"> <a href="javascript:;" class="icon-chevron-down"></a></span> </div>
-          <div class="widget-body">
-            
-            <table class="table table-striped table-bordered table-advance table-hover">
-              <thead>
-                <tr>
-                  <th width="10%"><i class="icon-leaf"></i> <span class="hidden-phone">S No</span></th>
-                  <th width="55%"><i class="icon-user"></i> <span class="hidden-phone ">Task</span></th>
-                  <th width="10%"><i class="icon-tags"> </i><span class="hidden-phone">Status</span></th>
-                  <th width="10%"><i class="icon-tags"> </i><span class="hidden-phone">Status</span></th>
-                  <th width="10%"><i class="icon-tags"> </i><span class="hidden-phone">Status</span></th>
-                  <th width="5%">Status</span></th>
-                </tr>
-              </thead>
-              <tbody>
-              
-              <?php
-			  	
+
+                            <h4><i class="icon-reorder"></i>Contact representative Table</h4>
+                            <span class="tools">
+                                <a href="javascript:;" class="icon-chevron-down"></a>
+                            </span>
+                        </div>
+<div class="widget-body">
+			<div class="btn-group">
+               <a href="insert_contact.php"><button type="button" class="btn btn-primary"> Add New <i class="icon-plus"></i> </button></a>
+                              </div>
+
+                            <div class="portlet-body">
+                                
+                                <div id="width" class="space15"></div>
+                                <table class="table table-striped table-hover table-bordered" id="sample_editable_1">
+                                    <thead>
+                                    <tr>
+								 <th style="width:30px;">S No</th>
+                                    <th>Task</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                        <div class="widths">
+                                        <th style="display:none">Edit</th>
+                                        <th style="display:none">Delete</th>
+                                    </div>
+                                    </tr>
+                     
+                                           </thead>
+                                    <tbody>
+
+				
+					<?php
+
 				$category_id = $_GET['categoryID'];
 				//if ((int) $category_id == $category_id) 
 				//{
@@ -144,53 +172,44 @@ include 'headers/menu-top-navigation.php';
 						if($row['published']==1)
 							$published = "Published";
 							
-						 echo "<tr>
-								  <td class='highlight'><a href='#'>{$count}</a></td>
-								  <td><a href='institutionDetail.php'>{$row['title']}</a></td>
-								  <td><span class='label label-warning label-mini'>{$published}</span></td>
-								  <td><a href='view.php?news_id={$news_id}' class='btn btn-mini'>View</a></td>
-								  <td><a href='update.php' class='btn btn-mini'>Update</a></td>
-								  <td><a href='delete.php' class='btn btn-mini'>Delete</a></td>
-							  </tr>";
+					echo"
+					<tr class=''> 
+								  <td style='width:3%'><a href='#'>{$count}</a></td>
+								  <td style='width:40%'><a href='institutionDetail.php'>{$row['title']}</a></td>
+								  <td style='width:3%'><span class='label label-warning label-mini'>{$published}</span></td>
+								  <td style='width:19%;'><a href='insert_contact.php?contact_id=$contact_id' 
+								  id='update_button' class='btn btn-success'> <i class='icon-trash'></i> Update</a>																					 							 	 
+								  <a href='#' id='delete_button'  class='btn btn-danger'>
+								  <i class='icon-edit'></i> delete</a>
+								  <a href='view.php?news_id={$news_id}' id='view_button' class='btn btn-info'>View</a></td>
+								  <td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
+								 <td style='display:none'><a class='' href='javascript:;'>Delete</a></td>
+								  </tr>";
 					}
-					
-					
-				//}
-				
+					?>	
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div> 
+                    <!-- END EXAMPLE TABLE widget-->
+                </div>
+            </div>
 
-				
-			  ?>
-              
-              
-                <!-- <tr>
-                  <td class="highlight"><a href="#">1</a></td>
-                  <td><a href="institutionDetail.php">Filling out Institution Information</a></td>
-                  <td>
-                    <a href="institutionDetail.php" class="btn btn-mini visible-phone hidden-tablet">View</a></td>
-                <td><a href="institutionDetail.php" class="btn btn-mini">View</a></td>
-                </tr> -->
-              </tbody>
-            </table>
-            <div class="space7"></div>
-          </div>
-        </div>
-        <!-- END RECENT ORDERS PORTLET--> 
+            <!-- END ADVANCED TABLE widget-->
+
+            <!-- END PAGE CONTENT-->
+         </div>
+         <!-- END PAGE CONTAINER-->
       </div>
-    </div>
-  </div>
-  
-  <!-- END PAGE CONTENT--> 
-</div>
-<!-- END PAGE CONTAINER-->
-</div>
-<!-- END PAGE -->
-</div>
-<!-- END CONTAINER --> 
-<!-- BEGIN FOOTER -->
-<div id="footer"> <a href ="https://www.facebook.com/avialdo.inc">2014-15 &copy; LinkedUnion</a>
-  <div class="span pull-right"> <span class="go-top"><i class="icon-arrow-up"></i></span> </div>
-</div>
-<!-- END FOOTER -->
+      <!-- END PAGE -->
+   </div>
+   <!-- END CONTAINER -->
+   <!-- BEGIN FOOTER -->
+<?php  
+	include 'headers/footer.php';
+	?>
+   <!-- END FOOTER -->
    <!-- BEGIN JAVASCRIPTS -->
    <!-- Load javascripts at bottom, this will reduce page load time -->
    <script src="js/jquery-1.8.3.min.js"></script>
@@ -217,5 +236,5 @@ include 'headers/menu-top-navigation.php';
 </body>
 <!-- END BODY -->
 
-<!-- Mirrored from thevectorlab.net/adminlab/blank.html by HTTrack Website Copier/3.x [XR&CO'2013], Tue, 04 Nov 2014 07:58:59 GMT -->
+<!-- Mirrored from thevectorlab.net/adminlab/editable_table.html by HTTrack Website Copier/3.x [XR&CO'2013], Tue, 04 Nov 2014 07:58:55 GMT -->
 </html>
