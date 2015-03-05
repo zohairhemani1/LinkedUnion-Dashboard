@@ -2,8 +2,12 @@
 	include 'headers/connect_to_mysql.php';
 	include 'headers/_user-details.php';
 
+	$name = "";
+	$link = "";
+	$id="";
+	
 	if(isset($_GET['id']))
-{
+	{
 		$id = $_GET['id'];
 		$formAction = "?id={$id}";
 		$select_stayconected = "SELECT * FROM stayconected where id = '$id'";
@@ -11,17 +15,18 @@
 		$row = mysqli_fetch_array($fetch_result);
 		$name = $row['name'];
 		$link = $row['link'];
-}
+	}
+	
 if($_POST)
 {
 	if(isset($_GET['id']))
 	  {
 		$name = $_POST['name'];
 		$link = $_POST['link'];
-		$update_stayconected = "UPDATE stayconected SET name = '$name', link = '$link', where id = '$id' "
+		$update_stayconected = "UPDATE `stayconected` SET `name` = '{$name}', `link` = '{$link}' where id = '{$id}' "
 		or die ('error while Updating stayconected');
 		$stayconected_update = mysqli_query($con,$update_stayconected);
-		header ('Location:stay_connected.php?update=true'); 
+		header ('Location: stay_connected.php?update=true'); 
 		}
 	else
 	  {
@@ -31,7 +36,7 @@ if($_POST)
 		VALUES ('$name','$link','$appID') "
 		or die('error while inserting Stya Conected');
 		$result = mysqli_query($con,$insert_contatct);
-		header ('Location:stay_connected.php?insert=true');
+		header ('Location: stay_connected.php?insert=true');
 	 }
 	
 }

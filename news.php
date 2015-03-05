@@ -177,7 +177,7 @@ include 'headers/menu-top-navigation.php';
 								  <td style='width:3%'><a href='#'>{$count}</a></td>
 								  <td style='width:40%'><a href='institutionDetail.php'>{$row['title']}</a></td>
 								  <td style='width:3%'><span class='label label-warning label-mini'>{$published}</span></td>
-								  <td style='width:19%;'><a href='insert_contact.php?contact_id=$contact_id' 
+								  <td style='width:19%;'><a href='insert_contact.php?contact_id=' 
 								  id='update_button' class='btn btn-success'> <i class='icon-trash'></i> Update</a>																					 							 	 
 								  <a href='#' id='delete_button'  class='btn btn-danger'>
 								  <i class='icon-edit'></i> delete</a>

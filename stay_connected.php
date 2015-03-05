@@ -1,8 +1,6 @@
 <?php
 	include 'headers/connect_to_mysql.php';
 	include 'headers/_user-details.php';
-	$query_stay = "SELECT * FROM stayconected where app_id = $appID ";
-	$result_stay = mysqli_query($con,$query_stay);
 ?>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -125,28 +123,31 @@ include 'headers/menu-top-navigation.php';
                                     <tbody>
 
 				        <?php
-								while($row = mysqli_fetch_array($result_stay))
-							{
-								$id = $row['id'];
-								$order = $row['order'];
-								$name = $row['name'];
-								$link = $row['link'];
-								
-                              echo" 
-                <tr class=''>
-				     <td>{$id}</td>
-					<td>{$name}</td>
-					<td>{$link}</td>
-               
-					<td style='width:19%;'><a href='insert_stayConected.php?id=$id' id='update_button' class='btn btn-success' >
-                    <i class='icon-trash'></i> Update</a>
-					<a href='#' id='delete_button'  class='btn btn-danger'>
-                    <i class='icon-edit'></i> delete</a>
-					<td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
-					<td style='display:none'><a class='' href='javascript:;'>Delete</a></td>
-				</tr>";
-				}
-												?>
+						
+						$query_stay = "SELECT * FROM stayconected where app_id = '$appID' ";
+						$result_stay = mysqli_query($con,$query_stay);
+						
+						while($row = mysqli_fetch_array($result_stay))
+						{
+							$id = $row['id'];
+							$name = $row['name'];
+							$link = $row['link'];
+							
+						  echo" 
+								<tr class=''>
+									 <td>{$id}</td>
+									<td>{$name}</td>
+									<td>{$link}</td>
+							   
+									<td style='width:19%;'><a href='insert_stayConected.php?id=$id' id='update_button' class='btn btn-success' >
+									<i class='icon-trash'></i> Update</a>
+									<a href='#' id='delete_button'  class='btn btn-danger'>
+									<i class='icon-edit'></i> Delete</a>
+									<td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
+									<td style='display:none'><a class='' href='javascript:;'>Delete</a></td>
+								</tr>";
+						}
+						?>
                                     </tbody>
                                 </table>
                             </div>
