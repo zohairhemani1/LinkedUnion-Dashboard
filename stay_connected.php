@@ -11,7 +11,7 @@
 <!-- Mirrored from thevectorlab.net/adminlab/editable_table.html by HTTrack Website Copier/3.x [XR&CO'2013], Tue, 04 Nov 2014 07:58:54 GMT -->
 <head>
    <meta charset="utf-8" />
-   <title>Stay Conected</title>
+   <title>Stay Connected</title>
    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
    <meta content="" name="description" />
    <meta content="" name="author" />
@@ -100,7 +100,7 @@ include 'headers/menu-top-navigation.php';
                         </div>
 <div class="widget-body">
 			<div class="btn-group">
-               <a href="insert_stayConected.php"><button type="button" class="btn btn-primary"> Add New <i class="icon-plus"></i> </button></a>
+               <a href="insert_stayconnected.php"><button type="button" class="btn btn-primary"> Add New <i class="icon-plus"></i> </button></a>
                               </div>
 
                             <div class="portlet-body">
@@ -124,7 +124,8 @@ include 'headers/menu-top-navigation.php';
 
 				        <?php
 						
-						$query_stay = "SELECT * FROM stayconected where app_id = '$appID' ";
+						
+						$query_stay = "SELECT * FROM stayconected where app_id = '{$appID}' ";
 						$result_stay = mysqli_query($con,$query_stay);
 						
 						while($row = mysqli_fetch_array($result_stay))
@@ -139,7 +140,7 @@ include 'headers/menu-top-navigation.php';
 									<td>{$name}</td>
 									<td>{$link}</td>
 							   
-									<td style='width:19%;'><a href='insert_stayConected.php?id=$id' id='update_button' class='btn btn-success' >
+									<td style='width:19%;'><a href='insert_stayconnected.php?id=$id' id='update_button' class='btn btn-success' >
 									<i class='icon-trash'></i> Update</a>
 									<a href='#' id='delete_button'  class='btn btn-danger'>
 									<i class='icon-edit'></i> Delete</a>

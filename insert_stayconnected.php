@@ -5,6 +5,7 @@
 	$name = "";
 	$link = "";
 	$id="";
+	$formAction = "";
 	
 	if(isset($_GET['id']))
 	{
@@ -19,10 +20,11 @@
 	
 if($_POST)
 {
+	$name = $_POST['name'];
+	$link = $_POST['link'];
+	
 	if(isset($_GET['id']))
 	  {
-		$name = $_POST['name'];
-		$link = $_POST['link'];
 		$update_stayconected = "UPDATE `stayconected` SET `name` = '{$name}', `link` = '{$link}' where id = '{$id}' "
 		or die ('error while Updating stayconected');
 		$stayconected_update = mysqli_query($con,$update_stayconected);
@@ -30,12 +32,10 @@ if($_POST)
 		}
 	else
 	  {
-		$name = $_POST['name'];
-		$link = $_POST['link'];
-		$insert_contatct = "INSERT INTO stayconected (name,link,app_id)
-		VALUES ('$name','$link','$appID') "
-		or die('error while inserting Stya Conected');
-		$result = mysqli_query($con,$insert_contatct);
+		$insert_contact = "INSERT INTO `stayconected` (name,link,app_id)
+		VALUES ('$name','$link','$appID')"
+		or die('error while inserting Stay Connected');
+		$result = mysqli_query($con,$insert_contact);
 		header ('Location: stay_connected.php?insert=true');
 	 }
 	
@@ -121,7 +121,7 @@ include 'headers/menu-top-navigation.php';
                      </div>
                      <div class="widget-body form">
                         <!-- BEGIN FORM-->
-                        <form action="insert_stayConected.php<?php echo $formAction; ?>" method="post" class="form-horizontal">
+                        <form action="insert_stayconnected.php<?php echo $formAction; ?>" method="post" class="form-horizontal">
                            <div class="control-group">
                               <label class="control-label">Custom Dropdown</label>
                               <div class="controls">
