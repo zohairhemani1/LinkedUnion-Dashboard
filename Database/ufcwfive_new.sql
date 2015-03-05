@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10.7
+-- version 4.2.11
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Mar 04, 2015 at 01:10 PM
--- Server version: 5.5.32-cll-lve
--- PHP Version: 5.4.23
+-- Host: 127.0.0.1
+-- Generation Time: Mar 05, 2015 at 01:51 PM
+-- Server version: 5.5.27
+-- PHP Version: 5.5.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `ufcwFive`
+-- Database: `ufcwfive`
 --
 
 -- --------------------------------------------------------
@@ -48,11 +48,10 @@ INSERT INTO `app` (`app_id`, `about_us`, `app_name`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `categories` (
-  `id` int(15) NOT NULL AUTO_INCREMENT,
+`id` int(15) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `app_id` int(5) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+  `app_id` int(5) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `categories`
@@ -82,7 +81,7 @@ INSERT INTO `categories` (`id`, `name`, `app_id`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `contact` (
-  `contact_id` int(11) NOT NULL AUTO_INCREMENT,
+`contact_id` int(11) NOT NULL,
   `name` varchar(50) DEFAULT NULL,
   `designation` varchar(100) DEFAULT NULL,
   `address` varchar(100) DEFAULT NULL,
@@ -91,9 +90,8 @@ CREATE TABLE IF NOT EXISTS `contact` (
   `fax_no` varchar(30) DEFAULT NULL,
   `email` varchar(40) DEFAULT NULL,
   `time_cone` varchar(15) DEFAULT NULL,
-  `app_id` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`contact_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=44 ;
+  `app_id` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `contact`
@@ -141,15 +139,14 @@ INSERT INTO `contact` (`contact_id`, `name`, `designation`, `address`, `phone_no
 --
 
 CREATE TABLE IF NOT EXISTS `location` (
-  `office_id` bigint(20) NOT NULL AUTO_INCREMENT,
+`office_id` bigint(20) NOT NULL,
   `office_title` varchar(100) DEFAULT NULL,
   `address` varchar(100) DEFAULT NULL,
   `phone_no` varchar(15) DEFAULT NULL,
   `website` varchar(50) DEFAULT NULL,
   `time_cone` varchar(100) DEFAULT NULL,
-  `app_id` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`office_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
+  `app_id` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `location`
@@ -173,7 +170,7 @@ INSERT INTO `location` (`office_id`, `office_title`, `address`, `phone_no`, `web
 --
 
 CREATE TABLE IF NOT EXISTS `news` (
-  `news_id` bigint(20) NOT NULL AUTO_INCREMENT,
+`news_id` bigint(20) NOT NULL,
   `title` varchar(200) NOT NULL,
   `description` varchar(5000) NOT NULL,
   `file` varchar(100) NOT NULL,
@@ -186,9 +183,8 @@ CREATE TABLE IF NOT EXISTS `news` (
   `pinterest` varchar(20) DEFAULT NULL,
   `social` varchar(2) DEFAULT NULL,
   `order` int(100) DEFAULT NULL,
-  `published` int(2) NOT NULL,
-  PRIMARY KEY (`news_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=541 ;
+  `published` int(2) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=541 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `news`
@@ -247,12 +243,11 @@ INSERT INTO `news` (`news_id`, `title`, `description`, `file`, `time_cone`, `cat
 --
 
 CREATE TABLE IF NOT EXISTS `stayconected` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `name` varchar(15) DEFAULT NULL,
   `link` varchar(50) DEFAULT NULL,
-  `app_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
+  `app_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `stayconected`
@@ -315,7 +310,7 @@ INSERT INTO `subcategories` (`menu_id`, `submenu_id`, `name`) VALUES
 
 CREATE TABLE IF NOT EXISTS `user` (
   `user_id` int(2) NOT NULL,
-  `app_id` int(11) NOT NULL AUTO_INCREMENT,
+`app_id` int(11) NOT NULL,
   `user_name` varchar(100) DEFAULT NULL,
   `password` varchar(20) DEFAULT NULL,
   `cookie` varchar(50) DEFAULT NULL,
@@ -323,9 +318,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   `email` varchar(25) DEFAULT NULL,
   `logo` varchar(100) DEFAULT NULL,
   `cover` varchar(100) DEFAULT NULL,
-  `time_cone` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`app_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+  `time_cone` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
@@ -333,7 +327,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`user_id`, `app_id`, `user_name`, `password`, `cookie`, `image`, `email`, `logo`, `cover`, `time_cone`) VALUES
 (1, 1, 'ufcw5', 'torpedo1', '812b4ba287f5ee0bc9d43bbf5bbe87fb', 'steve.png', 'arbishpalla@gmail.com', '9f61408e3afb633e50cdf1b20de6f466.png', 'd1fe173d08e959397adf34b1d77e88d7.png', '2014-11-20 05:17:24'),
-(2, 2, 'unitedlatinos', 'torpedo1', '2a38a4a9316c49e5a833517c45d31070', '2a38a4a9316c49e5a833517c45d31070.png', 'jones436@gmail.com', '3416a75f4cea9109507cacd8e2f2aefc.png', '3416a75f4cea9109507cacd8e2f2aefc.png', '2014-11-20 05:17:24');
+(2, 2, 'unitedlatinos', 'torpedo1', '2a38a4a9316c49e5a833517c45d31070', '2a38a4a9316c49e5a833517c45d31070.png', 'jones436@gmail.com', '3416a75f4cea9109507cacd8e2f2aefc.png', '3416a75f4cea9109507cacd8e2f2aefc.png', '2014-11-20 05:17:24'),
+(3, 3, 'scbtc', 'torpedo1', NULL, 'steve.png', 'zohairhemani@avialdo.com', 'scbtc.png', 'scbtc-cover.jpg', NULL);
 
 -- --------------------------------------------------------
 
@@ -343,8 +338,7 @@ INSERT INTO `user` (`user_id`, `app_id`, `user_name`, `password`, `cookie`, `ima
 
 CREATE TABLE IF NOT EXISTS `webservices` (
   `id` int(3) NOT NULL,
-  `name` varchar(40) NOT NULL,
-  PRIMARY KEY (`id`)
+  `name` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -367,11 +361,10 @@ INSERT INTO `webservices` (`id`, `name`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `webservice_category` (
-  `id` int(2) NOT NULL AUTO_INCREMENT,
+`id` int(2) NOT NULL,
   `webservice` int(2) NOT NULL,
-  `category` float NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+  `category` float NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `webservice_category`
@@ -390,6 +383,97 @@ INSERT INTO `webservice_category` (`id`, `webservice`, `category`) VALUES
 (10, 1, 7),
 (11, 1, 9);
 
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `categories`
+--
+ALTER TABLE `categories`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `contact`
+--
+ALTER TABLE `contact`
+ ADD PRIMARY KEY (`contact_id`);
+
+--
+-- Indexes for table `location`
+--
+ALTER TABLE `location`
+ ADD PRIMARY KEY (`office_id`);
+
+--
+-- Indexes for table `news`
+--
+ALTER TABLE `news`
+ ADD PRIMARY KEY (`news_id`);
+
+--
+-- Indexes for table `stayconected`
+--
+ALTER TABLE `stayconected`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+ ADD PRIMARY KEY (`app_id`);
+
+--
+-- Indexes for table `webservices`
+--
+ALTER TABLE `webservices`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `webservice_category`
+--
+ALTER TABLE `webservice_category`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `categories`
+--
+ALTER TABLE `categories`
+MODIFY `id` int(15) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
+--
+-- AUTO_INCREMENT for table `contact`
+--
+ALTER TABLE `contact`
+MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=44;
+--
+-- AUTO_INCREMENT for table `location`
+--
+ALTER TABLE `location`
+MODIFY `office_id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=28;
+--
+-- AUTO_INCREMENT for table `news`
+--
+ALTER TABLE `news`
+MODIFY `news_id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=541;
+--
+-- AUTO_INCREMENT for table `stayconected`
+--
+ALTER TABLE `stayconected`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+MODIFY `app_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `webservice_category`
+--
+ALTER TABLE `webservice_category`
+MODIFY `id` int(2) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
