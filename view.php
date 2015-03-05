@@ -34,7 +34,7 @@
    <link href="css/style.css" rel="stylesheet" />
    <link href="css/style_responsive.css" rel="stylesheet" />
    <link href="css/style_default.css" rel="stylesheet" id="style_color" />
-
+<link href="css/custom.css" rel="stylesheet" />
    <link href="assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
    <link rel="stylesheet" type="text/css" href="assets/uniform/css/uniform.default.css" />
 </head>
@@ -104,9 +104,9 @@ include 'headers/menu-top-navigation.php';
                                             </ul>
                                         </div>
                                     </div>
-                                    <div>
+                                    
                                    
-                                        <p class="show-right">
+                                        <p class="View_box">
                                            <?php echo $description; ?>
                                         </p>
                                         
