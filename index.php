@@ -58,34 +58,133 @@ include 'headers/menu-top-navigation.php';
             <!-- END PAGE HEADER-->
             <!-- BEGIN PAGE CONTENT-->
             <div class="row-fluid">
-               <div class="span12">
+               <div class="span9">
                   <div class="widget">
                         <div class="widget-title">
-                           <h4><i class="icon-home"></i> About Us</h4>
+                           <h4><i class="icon-edit"></i> ABOUT us</h4>
                            <span class="tools">
                            <a href="javascript:;" class="icon-chevron-down"></a>
+                           <a href="javascript:;" class="icon-remove"></a>
                            </span>                    
                         </div>
                         <div class="widget-body">
                             <div class="row-fluid blog">
 
-                                 <div class="span12">
+                                <div class="span12">
                                     <img src="img/cover/<?php echo $cover ;?>" alt="">
-                                   <div>
-                                   <h3>
-                                   About Us
-                                   </h3>
+                                    <div>
                                         <p>
-                                        <?php echo $about_us; ?>
-                                          </p>
-                                                                                                                    <!--end post comments-->
+                                        <?php echo $about_us ;?>
+                                        </p>
+                                    </div>
+                                    <!--end media-->
+                                    <!--begin post comments-->
+                                    <!--end post comments-->
                                 </div>
-                                </div></div>
                             </div>
 
                         </div>
                   </div>
                </div>
+               <div class="span3">
+                   <div class="blog-side-bar">
+                       <h2>categories</h2>
+                       <ul class="unstyled">
+                           <li><a href="#"><i class="icon-chevron-right"></i>  Sports</a></li>
+                           <li><a href="#"><i class="icon-chevron-right"></i> Funny</a></li>
+                           <li><a href="#"><i class="icon-chevron-right"></i> Finance</a></li>
+                           <li><a href="#"><i class="icon-chevron-right"></i> Travel</a></li>
+                           <li><a href="#"><i class="icon-chevron-right"></i> Fashion</a></li>
+                           <li><a href="#"><i class="icon-chevron-right"></i> Arts &amp; Artist</a></li>
+                           <li><a href="#"><i class="icon-chevron-right"></i> Technology</a></li>
+                           <li><a href="#"><i class="icon-chevron-right"></i> Crime</a></li>
+                           <li><a href="#"><i class="icon-chevron-right"></i> Life Style</a></li>
+                       </ul>
+                       <hr>
+                       <h2>Latest news</h2>
+                       <div class="space15"></div>
+                       <div class="row-fluid">
+                           <div class="span3">
+                               <img alt="" src="img/news/news-thumb-1.jpg">
+                           </div>
+                           <div class="span9">
+                               <h5>
+                                   <a href="javascript:;">Worldwide 10 Restaurants</a>
+                               </h5>
+                               <p>Nam sed arcu non tellus
+                                   fringilla fringilla ut vel ipsum.</p>
+                           </div>
+                       </div>
+                       <div class="space10"></div>
+                       <div class="row-fluid">
+                           <div class="span3">
+                               <img alt="" src="img/news/news-thumb-2.jpg">
+                           </div>
+                           <div class="span9">
+                               <h5>
+                                   <a href="javascript:;">Worldwide 10 Restaurants</a>
+                               </h5>
+                               <p>Nam sed arcu non tellus
+                                   fringilla fringilla ut vel ipsum.</p>
+                           </div>
+                       </div>
+                       <div class="space10"></div>
+                       <div class="row-fluid">
+                           <div class="span3">
+                               <img alt="" src="img/news/news-thumb-3.jpg">
+                           </div>
+                           <div class="span9">
+                               <h5>
+                                   <a href="javascript:;">Worldwide 10 Restaurants</a>
+                               </h5>
+                               <p>Nam sed arcu non tellus
+                                   fringilla fringilla ut vel ipsum.</p>
+                           </div>
+                       </div>
+                       <hr>
+                       <h2>popular news</h2>
+                       <div class="space15"></div>
+                       <div class="row-fluid">
+                           <div class="span3">
+                               <img alt="" src="img/news/news-thumb-1.jpg">
+                           </div>
+                           <div class="span9">
+                               <h5>
+                                   <a href="javascript:;">Worldwide 10 Restaurants</a>
+                               </h5>
+                               <p>Nam sed arcu non tellus
+                                   fringilla fringilla ut vel ipsum.</p>
+                           </div>
+                       </div>
+                       <div class="space10"></div>
+                       <div class="row-fluid">
+                           <div class="span3">
+                               <img alt="" src="img/news/news-thumb-2.jpg">
+                           </div>
+                           <div class="span9">
+                               <h5>
+                                   <a href="javascript:;">Worldwide 10 Restaurants</a>
+                               </h5>
+                               <p>Nam sed arcu non tellus
+                                   fringilla fringilla ut vel ipsum.</p>
+                           </div>
+                       </div>
+                       <div class="space10"></div>
+                       <div class="row-fluid">
+                           <div class="span3">
+                               <img alt="" src="img/news/news-thumb-3.jpg">
+                           </div>
+                           <div class="span9">
+                               <h5>
+                                   <a href="javascript:;">Worldwide 10 Restaurants</a>
+                               </h5>
+                               <p>Nam sed arcu non tellus
+                                   fringilla fringilla ut vel ipsum.</p>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+            </div>
             <!-- END PAGE CONTENT-->         
          </div>
          <!-- END PAGE CONTAINER-->
