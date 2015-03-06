@@ -2,11 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title></title>
+<title>VIEW PAGE</title>
 <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
-<!--<script type="text/javascript">var switchTo5x=true;</script>
-<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-<script type="text/javascript">stLight.options({publisher: "614faf4b-56f5-4d25-9ca7-06b957f4ee83", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>-->
 
 </head>
 
@@ -14,11 +11,14 @@
 
 <?php
 
+	include 'headers/connect_to_mysql.php';
 	
 	$facebook = "";
 	$twitter = "";
 	$google = "";
 	$pinterest = "";
+	$title= "";
+	$description = "";
 	
 	$app_id = $_GET['appID'];
 	
@@ -42,7 +42,7 @@
 	}
 	else
 	{
-		$query = "select * from news WHERE news_id = '{$news_id}' and app_id = '$app_id'";
+		$query = "select * from news WHERE `news_id` = '{$news_id}' and `app_id` = '{$app_id}'";
 		$result = mysqli_query($con,$query);
 		$row = mysqli_fetch_array($result);
 		$title = $row['title'];

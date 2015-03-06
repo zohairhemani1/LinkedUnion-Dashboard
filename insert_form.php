@@ -1,9 +1,21 @@
 <?php 
 include 'headers/connect_to_mysql.php';
 include 'headers/_user-details.php';
+<<<<<<< HEAD
 	$categoryID = $_GET['categoryID'];
 	if(isset($_GET['news_id']))
+=======
+ 
+	if(isset($_GET['news_id'])){
+>>>>>>> origin/master
 		$news_id = $_GET['news_id'];
+		$formAction = "{$category_id}&&news_id=$news_id";
+	}
+	if(isset($_GET['categoryID'])){
+		$category_id = $_GET['categoryID'];
+		$formAction = $category_id;
+	}
+	
 	
 	$title = "";	
 	$description = "";
@@ -14,6 +26,7 @@ include 'headers/_user-details.php';
 	$social = "";
 	$notification= "";
 	$order = "";
+<<<<<<< HEAD
 	$social = "";
 	
 	
@@ -26,6 +39,10 @@ else
 {
 		$formAction = $categoryID;			
 }
+=======
+	
+
+>>>>>>> origin/master
 			
 if(isset($_GET['news_id']))
 {
@@ -89,7 +106,11 @@ if($_POST)
 		  	
 			
 		  
+<<<<<<< HEAD
 			header ("Location:news.php?categoryID=$categoryID&update=true");
+=======
+			//header ("Location:news.php?category_id={$category_id}&&update=true");
+>>>>>>> origin/master
 }
 else
 	  {
@@ -111,7 +132,11 @@ else
 				 or die ('error');
 		$result = mysqli_query($con,$query)
 	or die('error1');
+<<<<<<< HEAD
 			header ("Location:news.php?categoryID=$categoryID&insert=true");
+=======
+			header ("Location:news.php?categoryID={$category_id}&&insert=true");
+>>>>>>> origin/master
 	  }
 	
 	}

@@ -65,7 +65,7 @@ include 'headers/menu-top-navigation.php';
 
             <!-- BEGIN ADVANCED TABLE widget-->
                                   <?php
-			if(isset($_GET['insert']) == 'true')
+			if(isset($_GET['insert']) == true)
 			{
 				echo"
 			<div class='alert alert-success'>
@@ -73,14 +73,14 @@ include 'headers/menu-top-navigation.php';
 					<strong>Success!</strong> The Stay Conected has been added.
 				</div>";
 			}
-	 	else if(isset($_GET['update']) == 'true'){
+	 	else if(isset($_GET['update']) == true){
       echo"
 	    <div class='alert alert-success'>
                 <button class='close' data-dismiss='alert'>×</button>
                 <strong>Success!</strong> The Stay Conected has been updated.
             </div>";
 		}
-		else if(isset($_GET['delete']) == 'true'){
+		else if(isset($_GET['delete']) == true){
       echo"
 	    <div class='alert alert-success'>
                 <button class='close' data-dismiss='alert'>×</button>
@@ -125,7 +125,7 @@ include 'headers/menu-top-navigation.php';
 				        <?php
 						
 						
-						$query_stay = "SELECT * FROM stayconected where app_id = '{$appID}' ";
+						$query_stay = "SELECT * FROM stayconected WHERE app_id = $appID ";
 						$result_stay = mysqli_query($con,$query_stay);
 						
 						while($row = mysqli_fetch_array($result_stay))

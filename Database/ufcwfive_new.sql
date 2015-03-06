@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 05, 2015 at 01:51 PM
+-- Generation Time: Mar 05, 2015 at 11:06 PM
 -- Server version: 5.5.27
 -- PHP Version: 5.5.19
 
@@ -61,7 +61,7 @@ INSERT INTO `categories` (`id`, `name`, `app_id`) VALUES
 (1, 'About', 1),
 (2, 'Get Educated', 1),
 (3, 'Member Benefits', 1),
-(4, 'Member Resources', 1),
+(4, 'Member Resourc', 1),
 (5, 'Stay Connected', 1),
 (6, 'Member Discounts', 1),
 (7, 'Negotiation Update', 1),
@@ -90,47 +90,50 @@ CREATE TABLE IF NOT EXISTS `contact` (
   `fax_no` varchar(30) DEFAULT NULL,
   `email` varchar(40) DEFAULT NULL,
   `time_cone` varchar(15) DEFAULT NULL,
-  `app_id` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=latin1;
+  `app_id` varchar(20) DEFAULT NULL,
+  `order` int(2) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `contact`
 --
 
-INSERT INTO `contact` (`contact_id`, `name`, `designation`, `address`, `phone_no1`, `phone_no2`, `fax_no`, `email`, `time_cone`, `app_id`) VALUES
-(10, 'Jami Moore', 'Alameda County', '28870 Mission Blvd.\r\nHayward, CA 94544', '(510) 583-8421', '(510) 889-0870', '(510) 889-6415	', 'jmoore@ufcw5.org', '2015-02-06 08:3', '1'),
-(12, 'John Nunes', 'Alameda County', '28870 Mission Blvd.\r\nHayward, CA 94544', '(510) 583-8410	', '(510) 889-0870', '(510) 889-6415', 'jnunes@ufcw5.org', '2015-02-09 18:2', '1'),
-(13, 'John Bueno	', 'Alameda County', '28870 Mission Blvd.\r\nHayward, CA 94544', '(510) 889-0870', ' (510) 889-0870', '(510) 889-6415', 'jbueno@ufcw5.org', '2015-02-06 08:3', '1'),
-(14, 'Maggie Feder', 'Alameda County', '28870 Mission Blvd. \r\nHayward, CA 94544			', '(510) 583-8424', '(510) 889-0870 ', '(510) 889-6415', 'mfeder@ufcw5.org', '2015-02-06 08:3', '1'),
-(15, 'Marla Donati		', 'Alameda County', '28870 Mission Blvd.\r\nHayward, CA 94544', '(510) 583-8419', ' (510) 889-0870', '(510) 889-6415', 'mdonati@ufcw5.org', '2015-02-06 08:3', '1'),
-(16, 'Mike Henneberry', 'Alameda County', '28870 Mission Blvd. \r\nHayward, CA 94544\r\n', '(510) 583-8420', ' (510) 889-0870', '(510) 889-6415', 'mhenneberry@ufcw5.org', '2015-02-09 17:3', '1'),
-(17, 'Angela Jo Willmes', 'Alameda County', '28870 Mission Blvd.\r\nHayward, CA 94544\r\n\r\n	', '(510) 583-8423', ' (510) 889-0870', '(510) 889-6415', 'awillmes@ufcw5.org', '2015-02-09 18:2', '1'),
-(18, 'Bambi Marien', 'Contra Costa County', '4121 Alhambra Ave. \r\nMartinez, CA 94553\r\n\r\n\r\n\r\n', ' (925) 269-2421', '(925) 228-8800', '(925) 370-7305', 'bmarien@ufcw5.org', '2015-02-06 08:2', '1'),
-(19, 'Jack	Landes', 'Contra Costa County', '4121 Alhambra Ave. \r\nMartinez, CA 94553', '( 925) 269-2426', '(925) 228-8800', '(925) 370-7305', 'jlandes@ufcw5.org', '2015-02-09 18:2', '1'),
-(20, 'Oscar Orozco', 'Contra Costa County', '4121 Alhambra Ave. \r\nMartinez, CA 94553\r\n', '( 925) 269-2420', '(925) 228-8800', '(925) 370-7305', 'oorozco@ufcw5.org', '2015-02-06 08:2', '1'),
-(21, 'Pam Danniel', 'Contra Costa County', ' 4121 Alhambra Ave. \r\nMartinez, CA 94553		', '(925) 269-2442', '(925) 228-8800', '(925) 370-7305', 'pdanniel@ufcw5.org', '2015-02-09 18:2', '1'),
-(22, 'Pete Derenale', 'Contra Costa County', '4121 Alhambra Ave. \r\nMartinez, CA 94553\r\n	 	', '(925) 269-2445', '(925) 228-8800', '(925) 370-7305', 'pderenale@ufcw5.org', '2015-02-09 18:2', '1'),
-(23, 'John Frahm', 'Eureka', '840 E St., Suite 8\r\nEureka, CA 95501', '(707) 442-1751 ext.3', '  ', '(707) 442-9572', 'jfrahm@ufcw5.org', '2015-02-09 18:2', '1'),
-(24, 'John Rossi	', 'Novato / San Francisco', '85 Galli Drive\r\nNovato, CA 94949', '(415) 883-6833 ext.3', '(415) 693-0143', '(415) 883-1043', 'jrossi@ufcw5.org', '2015-02-09 18:3', '1'),
-(25, 'Lance Wood', 'Novato / San Francisco', '85 Galli Drive\r\nNovato, CA 94949\r\n', '(415) 883-6833 ext.3', '(415) 693-0143', '(415) 883-1043', 'lwood@ufcw5.org', '2015-02-09 17:4', '1'),
-(26, 'Katie Johnston	', 'San Francisco', '323 Geary Street, Room 709\r\nSan Francisco, CA 94102\r\n', '(415) 693-0143 ext.3', ' ', '(415) 693-9352', 'kjohnston@ufcw5.org', '2015-02-09 17:5', '1'),
-(27, 'Mike	 Jones		', 'San Francisco', '323 Geary Street, Room 709\r\n', '(415) 693-0143 ext.3', 'San Francisco, CA 94', '(415) 693-9352', 'mjones@ufcw5.org', '2015-02-09 18:3', '1'),
-(28, 'Mike Frenna', 'South San Francisco', '208 Miller Ave.\r\nSouth San Francisco 94080', '(650) 871-3539', '(650) 871-5730', '(650) 866-3504', 'mfrenna@ufcw5.org', '2015-02-09 18:3', '1'),
-(29, 'Dustin Tyssen		', 'South San Francisco', '208 Miller Ave.\r\nSouth San Francisco 94080\r\n\r\n\r\n\r\nFax: ', '(650) 871-3541', '(650) 871-5730', '(650) 866-3504', 'dtyssen@ufcw5.org', '2015-02-09 17:5', '1'),
-(30, 'Juan Escobar		', 'South San Francisco', '208 Miller Ave.\r\nSouth San Francisco 94080\r\n', '(650) 871-3526', '(650) 871-5730', '(650) 866-3504', 'jescobar@ufcw5.org', '2015-02-09 17:5', '1'),
-(31, 'Carl	Nakano		', 'San Jose', '240 South Market Street, \r\nSan Jose, CA 95113', '(408) 625-5615', '(408) 998-0428', '(408) 971-8355', 'cnakano@ufcw5.org', '2015-02-09 18:0', '1'),
-(32, 'Elise	Blazek		', 'San Jose', '240 South Market Street\r\nSan Jose, CA 95113', '(408) 625-5620', '(408) 998-0428', '(408) 971-8355', 'eblazek@ufcw5.org', '2015-02-09 18:0', '1'),
-(33, 'Gladis Gallardo	', 'San Jose', '240 South Market Street\r\nSan Jose, CA 95113', '(408) 625-5645', '(408) 998-0428', '(408) 971-8355', 'ggallardo@ufcw5.org', '2015-02-09 18:1', '1'),
-(34, 'James Cortez	', 'San Jose', '240 South Market Street\r\nSan Jose, CA 95113', '(408 )625-5635', '(408) 998-0428', '(408) 971-8355', 'jcortez@ufcw5.org', '2015-02-09 18:1', '1'),
-(35, 'Jon Hughes	', 'San Jose', '240 South Market Street\r\nSan Jose, CA 95113', '(408) 625-5629	', '(408) 998-0428', '(408) 971-8355', 'jhughes@ufcw5.org', '2015-02-09 18:1', '1'),
-(36, 'Kelly	Martinez		', 'San Jose', '240 South Market Street\r\nSan Jose, CA 95113', '(408) 625-5613', '(408) 998-0428', '(408) 971-8355', 'kmartinez@ufcw5.org', '2015-02-09 18:1', '1'),
-(37, 'Laurie Mesa		', 'San Jose', '240 South Market Street\r\nSan Jose, CA 95113', '(408) 625-5624', '(408) 998-0428', '(408) 971-8355', 'lmesa@ufcw5.org', '2015-02-09 18:1', '1'),
-(38, 'Letresa Perkins', 'San Jose', '240 South Market Street\r\nSan Jose, CA 95113', '(408) 625-5607	', '(408) 998-0428', '(408) 971-8355', 'lperkins@ufcw5.org', '2015-02-09 18:1', '1'),
-(39, 'Phil	Fidandis', 'San Jose', '240 South Market Street\r\nSan Jose, CA 95113', '(408) 625-5647	', '(408) 998-0428', '(408) 971-8355', 'pfidandis@ufcw5.org', '2015-02-09 18:1', '1'),
-(40, 'Terry Gonzales', 'San Jose', '240 South Market Street\r\nSan Jose, CA 95113', '(408) 625-5621', '(408) 998-0428', '(408) 971-8355', 'tgonzales@ufcw5.org', '2015-02-09 18:2', '1'),
-(41, 'Todd Tamone', 'San Jose', '240 South Market Street\r\nSan Jose, CA 95113	\r\n', '(408) 625-5611', '(408) 998-0428', '(408) 971-8355', 'ttamone@ufcw5.org', '2015-02-09 18:2', '1'),
-(42, 'Tony Alexander	', 'San Jose', '240 South Market Street\r\nSan Jose, CA 95113', '(408) 625-5614	', '(408) 998-0428', '(408) 971-8355', 'talexander@ufcw5.org', '2015-02-09 18:2', '1'),
-(43, 'Pete Maturino', 'President', '1145 North Main Street\r\nSalinas, CA 93906\r\n \r\nPhone: \r\nFax: (831) 757-9115', '(408)- 6255-(595)', ' ', ' (831) 757-9115', 'pmaturino@ufcw5.org', '2015-02-10 08:5', '2');
+INSERT INTO `contact` (`contact_id`, `name`, `designation`, `address`, `phone_no1`, `phone_no2`, `fax_no`, `email`, `time_cone`, `app_id`, `order`) VALUES
+(10, 'Jami Moore', 'Alameda County', '28870 Mission Blvd.\r\nHayward, CA 94544', '(510) 583-8421', '(510) 889-0870', '(510) 889-6415	', 'jmoore@ufcw5.org', '2015-03-05 20:5', '1', 1),
+(12, 'John Nunes', 'Alameda County', '28870 Mission Blvd.\r\nHayward, CA 94544', '(510) 583-8410	', '(510) 889-0870', '(510) 889-6415', 'jnunes@ufcw5.org', '2015-02-09 18:2', '1', 2),
+(13, 'John Bueno	', 'Alameda County', '28870 Mission Blvd.\r\nHayward, CA 94544', '(510) 889-0870', ' (510) 889-0870', '(510) 889-6415', 'jbueno@ufcw5.org', '2015-02-06 08:3', '1', 3),
+(14, 'Maggie Feder', 'Alameda County', '28870 Mission Blvd. \r\nHayward, CA 94544			', '(510) 583-8424', '(510) 889-0870 ', '(510) 889-6415', 'mfeder@ufcw5.org', '2015-02-06 08:3', '1', 4),
+(15, 'Marla Donati		', 'Alameda County', '28870 Mission Blvd.\r\nHayward, CA 94544', '(510) 583-8419', ' (510) 889-0870', '(510) 889-6415', 'mdonati@ufcw5.org', '2015-02-06 08:3', '1', 5),
+(16, 'Mike Henneberry', 'Alameda County', '28870 Mission Blvd. \r\nHayward, CA 94544\r\n', '(510) 583-8420', ' (510) 889-0870', '(510) 889-6415', 'mhenneberry@ufcw5.org', '2015-02-09 17:3', '1', 6),
+(17, 'Angela Jo Willmes', 'Alameda County', '28870 Mission Blvd.\r\nHayward, CA 94544\r\n\r\n	', '(510) 583-8423', ' (510) 889-0870', '(510) 889-6415', 'awillmes@ufcw5.org', '2015-02-09 18:2', '1', 7),
+(18, 'Bambi Marien', 'Contra Costa County', '4121 Alhambra Ave. \r\nMartinez, CA 94553\r\n\r\n\r\n\r\n', ' (925) 269-2421', '(925) 228-8800', '(925) 370-7305', 'bmarien@ufcw5.org', '2015-02-06 08:2', '1', 0),
+(19, 'Jack	Landes', 'Contra Costa County', '4121 Alhambra Ave. \r\nMartinez, CA 94553', '( 925) 269-2426', '(925) 228-8800', '(925) 370-7305', 'jlandes@ufcw5.org', '2015-02-09 18:2', '1', 0),
+(20, 'Oscar Orozco', 'Contra Costa County', '4121 Alhambra Ave. \r\nMartinez, CA 94553\r\n', '( 925) 269-2420', '(925) 228-8800', '(925) 370-7305', 'oorozco@ufcw5.org', '2015-02-06 08:2', '1', 0),
+(21, 'Pam Danniel', 'Contra Costa County', ' 4121 Alhambra Ave. \r\nMartinez, CA 94553		', '(925) 269-2442', '(925) 228-8800', '(925) 370-7305', 'pdanniel@ufcw5.org', '2015-02-09 18:2', '1', 0),
+(22, 'Pete Derenale', 'Contra Costa County', '4121 Alhambra Ave. \r\nMartinez, CA 94553\r\n	 	', '(925) 269-2445', '(925) 228-8800', '(925) 370-7305', 'pderenale@ufcw5.org', '2015-02-09 18:2', '1', 0),
+(23, 'John Frahm', 'Eureka', '840 E St., Suite 8\r\nEureka, CA 95501', '(707) 442-1751 ext.3', '  ', '(707) 442-9572', 'jfrahm@ufcw5.org', '2015-02-09 18:2', '1', 0),
+(24, 'John Rossi	', 'Novato / San Francisco', '85 Galli Drive\r\nNovato, CA 94949', '(415) 883-6833 ext.3', '(415) 693-0143', '(415) 883-1043', 'jrossi@ufcw5.org', '2015-02-09 18:3', '1', 0),
+(25, 'Lance Wood', 'Novato / San Francisco', '85 Galli Drive\r\nNovato, CA 94949\r\n', '(415) 883-6833 ext.3', '(415) 693-0143', '(415) 883-1043', 'lwood@ufcw5.org', '2015-02-09 17:4', '1', 0),
+(26, 'Katie Johnston	', 'San Francisco', '323 Geary Street, Room 709\r\nSan Francisco, CA 94102\r\n', '(415) 693-0143 ext.3', ' ', '(415) 693-9352', 'kjohnston@ufcw5.org', '2015-02-09 17:5', '1', 0),
+(27, 'Mike	 Jones		', 'San Francisco', '323 Geary Street, Room 709\r\n', '(415) 693-0143 ext.3', 'San Francisco, CA 94', '(415) 693-9352', 'mjones@ufcw5.org', '2015-02-09 18:3', '1', 0),
+(28, 'Mike Frenna', 'South San Francisco', '208 Miller Ave.\r\nSouth San Francisco 94080', '(650) 871-3539', '(650) 871-5730', '(650) 866-3504', 'mfrenna@ufcw5.org', '2015-02-09 18:3', '1', 0),
+(29, 'Dustin Tyssen		', 'South San Francisco', '208 Miller Ave.\r\nSouth San Francisco 94080\r\n\r\n\r\n\r\nFax: ', '(650) 871-3541', '(650) 871-5730', '(650) 866-3504', 'dtyssen@ufcw5.org', '2015-02-09 17:5', '1', 0),
+(30, 'Juan Escobar		', 'South San Francisco', '208 Miller Ave.\r\nSouth San Francisco 94080\r\n', '(650) 871-3526', '(650) 871-5730', '(650) 866-3504', 'jescobar@ufcw5.org', '2015-02-09 17:5', '1', 0),
+(31, 'Carl	Nakano		', 'San Jose', '240 South Market Street, \r\nSan Jose, CA 95113', '(408) 625-5615', '(408) 998-0428', '(408) 971-8355', 'cnakano@ufcw5.org', '2015-02-09 18:0', '1', 0),
+(32, 'Elise	Blazek		', 'San Jose', '240 South Market Street\r\nSan Jose, CA 95113', '(408) 625-5620', '(408) 998-0428', '(408) 971-8355', 'eblazek@ufcw5.org', '2015-02-09 18:0', '1', 0),
+(33, 'Gladis Gallardo	', 'San Jose', '240 South Market Street\r\nSan Jose, CA 95113', '(408) 625-5645', '(408) 998-0428', '(408) 971-8355', 'ggallardo@ufcw5.org', '2015-02-09 18:1', '1', 0),
+(34, 'James Cortez	', 'San Jose', '240 South Market Street\r\nSan Jose, CA 95113', '(408 )625-5635', '(408) 998-0428', '(408) 971-8355', 'jcortez@ufcw5.org', '2015-02-09 18:1', '1', 0),
+(35, 'Jon Hughes	', 'San Jose', '240 South Market Street\r\nSan Jose, CA 95113', '(408) 625-5629	', '(408) 998-0428', '(408) 971-8355', 'jhughes@ufcw5.org', '2015-02-09 18:1', '1', 0),
+(36, 'Kelly	Martinez		', 'San Jose', '240 South Market Street\r\nSan Jose, CA 95113', '(408) 625-5613', '(408) 998-0428', '(408) 971-8355', 'kmartinez@ufcw5.org', '2015-02-09 18:1', '1', 0),
+(37, 'Laurie Mesa		', 'San Jose', '240 South Market Street\r\nSan Jose, CA 95113', '(408) 625-5624', '(408) 998-0428', '(408) 971-8355', 'lmesa@ufcw5.org', '2015-02-09 18:1', '1', 0),
+(38, 'Letresa Perkins', 'San Jose', '240 South Market Street\r\nSan Jose, CA 95113', '(408) 625-5607	', '(408) 998-0428', '(408) 971-8355', 'lperkins@ufcw5.org', '2015-02-09 18:1', '1', 0),
+(39, 'Phil	Fidandis', 'San Jose', '240 South Market Street\r\nSan Jose, CA 95113', '(408) 625-5647	', '(408) 998-0428', '(408) 971-8355', 'pfidandis@ufcw5.org', '2015-02-09 18:1', '1', 0),
+(40, 'Terry Gonzales', 'San Jose', '240 South Market Street\r\nSan Jose, CA 95113', '(408) 625-5621', '(408) 998-0428', '(408) 971-8355', 'tgonzales@ufcw5.org', '2015-02-09 18:2', '1', 0),
+(41, 'Todd Tamone', 'San Jose', '240 South Market Street\r\nSan Jose, CA 95113	\r\n', '(408) 625-5611', '(408) 998-0428', '(408) 971-8355', 'ttamone@ufcw5.org', '2015-02-09 18:2', '1', 0),
+(42, 'Tony Alexander	', 'San Jose', '240 South Market Street\r\nSan Jose, CA 95113', '(408) 625-5614	', '(408) 998-0428', '(408) 971-8355', 'talexander@ufcw5.org', '2015-02-09 18:2', '1', 0),
+(43, 'Pete Maturino', 'President', '1145 North Main Street\r\nSalinas, CA 93906\r\n \r\nPhone: \r\nFax: (831) 757-9115', '(408)- 6255-(595)', ' ', ' (831) 757-9115', 'pmaturino@ufcw5.org', '2015-02-10 08:5', '2', 0),
+(46, 'Muhammad Zohair', 'President', '343/3 Afshan Apartment Ground Floor Garden East', '235235', '325235', '2542352', 'zohairhemani@avialdo.com', '2015-03-05 20:4', '1', 0),
+(47, 'Muhammad Zohair', 'President', '343/3 Afshan Apartment Ground Floor Garden East', '235235', '325235', '2542352', 'zohairhemani@avialdo.com', '2015-03-05 20:4', '1', 0);
 
 -- --------------------------------------------------------
 
@@ -146,7 +149,7 @@ CREATE TABLE IF NOT EXISTS `location` (
   `website` varchar(50) DEFAULT NULL,
   `time_cone` varchar(100) DEFAULT NULL,
   `app_id` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `location`
@@ -161,7 +164,10 @@ INSERT INTO `location` (`office_id`, `office_title`, `address`, `phone_no`, `web
 (10, 'Novato Office', '85 Galli Drive, Novato, CA 94949\r\n', '(415) 883-6833', 'ufcw5.org', '2015-02-06 08:05:05', '1'),
 (11, 'Salinas Office', '1145 North Main Street, Salinas, CA 93906\r\n', '(831) 757-3094', 'ufcw5.org', '2015-02-06 08:05:23', '1'),
 (13, 'South San Francisco Office', '208 Miller Ave., South San Francisco 94080\r\n', '(650) 871-5730', 'ufcw5.org', '2015-02-06 08:06:01', '1'),
-(27, 'UFCW United Latinos', '1145 North Main Street\r\nSalinas, CA 93906', '(408) 625-5595', 'www.ufcwunitedlatinos.org', '2015-02-09 21:57:40', '2');
+(27, 'UFCW United Latinos', '1145 North Main Street\r\nSalinas, CA 93906', '(408) 625-5595', 'www.ufcwunitedlatinos.org', '2015-02-09 21:57:40', '2'),
+(28, 'Avialdo', 'Afshan Apartments', '021-5423523', 'avialdo.com', '2015-03-05 20:54:46', '1'),
+(29, 'Avialdo', 'Afshan Apartments', '021-5423523', 'avialdo.com', '2015-03-05 20:55:15', '1'),
+(30, 'fdfs', 'fsdfsfjsklsdf', '4545', 'fsdfklj', '2015-03-05 21:31:55', '1');
 
 -- --------------------------------------------------------
 
@@ -184,7 +190,7 @@ CREATE TABLE IF NOT EXISTS `news` (
   `social` varchar(2) DEFAULT NULL,
   `order` int(100) DEFAULT NULL,
   `published` int(2) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=541 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=546 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `news`
@@ -194,7 +200,7 @@ INSERT INTO `news` (`news_id`, `title`, `description`, `file`, `time_cone`, `cat
 (152, 'Lucky-Save Mart Implements Contract Changes', '<b>Lucky-Save Mart store''s</b> has implemented the terms of a so called last, best and final offer dated <b>November 11. </b>\r\n<img src="http://ufcw5.org/wp-content/themes/ufcw5/images/logo.png">\r\nThe company has followed up with a road show of labor relations staff fanning out through the stores explaining the implementation. \r\n<a href="tel:555-555-1212">555-555-1212</a>\r\nFurther, the company has accused the union of reneging on an agreement to meet on November 24 with Federal Mediation. Since the company illegally implemented conditions the need for a meeting is moot since the venue for resolving the situation is now with the National Labor Relations Board (NLRB).\r\n<a href="mailto:me@anydomainname.com">me@anydomainname.com</a>\r\n\r\nThere is no defense to the indefensible. The company<strong>â€™</strong>s excuse for implementing conditions, many of which are clearly not OK with most employees, is that the union and company were at impasse. Save Mart claims there were no issues left on the table to negotiate. This assertion is completely false. There were substantive issues on the table to be resolved, the company refused to meet and tried to force impasse by email negotiations. The employer declared impasse over non-mandatory subjects. Â The employer failed to provide information, which Local 5 required for negotiations such as confirmation of their need for additional economic relief. This is a classic case of bad faith bargaining. Local 5 has multiple labor board charges filed against the company which the NLRB is now investigating.\r\n\r\n<a href="http://www.google.com" target="_blank"> Click to read full story </a>\r\n\r\nLocal 5s position is that implementation of the negative impacts of the offer s be reversed by the NLRB, that the positive aspects be maintained and bargaining should resume on a level playing field.\r\n\r\nPlease continue to monitor the website, FB and the hotline (800) 619.4036 for further updates.', 'b6d767d2f8ed5d21a44b0e5886680cb9.png', '2015-02-12 08:08:23', '1.1', 1, '', '', '', '', 'on', 1, 1),
 (154, 'UFCW President Hansen Statement in Response to President Obamas Executive Action on Immigration', 'WASHINGTON, D.C. Joe Hansen, International President of the United Food and Commercial Workers International Union (UFCW), today released the following statement in response to President Obama plan to take executive action on immigration. Today the President announced he will take belated but necessary action to provide relief to immigrant workers, families, and communities. Make no mistake this is not a substitute for comprehensive immigration reform. But it will prevent the deportation of many immigrants who would have qualified for citizenship under the Senate bill that passed over 500 days ago.For nearly a year and a half, the House Republican leadership has refused to take action to fix our broken immigration system. The President has both a legal right and moral responsibility to step in. At the UFCW, this has been our fight for decades. Our members and their families have persevered through raids and deportations. UFCW members have mobilized to defeat racist ballot initiatives and our union has assisted workers with the legalization process while negotiating contracts that protect our members where the law fails to. All along, those in UFCW gold have lobbied for comprehensive immigration reform at protests, marches, rallies, town halls, and just yesterday, in front of the White House. We will continue to call on Congress to send legislation to the Presidents desk. But with no bill to sign, President Obama is rightly using his pen to provide relief to those who are trying to make a better life for themselves and their families. Executive action is not all we need or deserve. But it is a step in the right direction and for that we are thankful. The United Food and Commercial Workers International Union (UFCW) represents more than 1.3 million workers, primarily in the retail and meatpacking, food processing and poultry industries. The UFCW protects the rights of workers and strengthens Americas middle class by fighting for health care reform, living wages, retirement security, safe working conditions and the right to unionize so that working men and women and their families can realize the American Dream. For more information about the UFCWs effort to protect workers rights and strengthen Americas middle class, visit www.ufcw.org, or join our online community at www.facebook.com/UFCWinternational and www.twitter.com/ufcw.image002', '28dd2c7955ce926456240b2ff0100bde.png', '2015-02-12 06:34:34', '1.2', 1, '', '', '', '', 'on', 2, 1),
 (156, 'Lucky-Save Mart Implements Contract Changes ', 'Lucky-Save Mart stores has implemented the terms of a so called <strong>â€œ</strong>last, best and final offer<strong>â€ </strong>dated November 11. The company has followed up with a road show of labor relations staff fanning out through the stores <strong>â€œ</strong>explaining<strong>â€ </strong>the implementation.Further, the company has accused the union of reneging on an agreement to meet on November 24 with Federal Mediation. Since the company illegally implemented conditions the need for a meeting is moot since the venue for resolving the situation is now with the National Labor Relations Board (NLRB).There is no defense to the indefensible. The company<strong>â€™</strong>s excuse for implementing conditions, many of which are clearly not OK with most employees, is that the union and company were at impasse. Save Mart claims there were no issues left on the table to negotiate. This assertion is completely false. There were substantive issues on the table to be resolved, the company refused to meet and tried to force impasse by email negotiations. The employer declared impasse over non-mandatory subjects. Â The employer failed to provide information, which Local 5 required for negotiations such as confirmation of their need for additional economic relief. This is a classic case of bad faith bargaining. Local 5 has multiple labor board charges filed against the company which the NLRB is now investigating.Local 5<strong>â€™</strong>s position is that implementation of the negative impacts of the offer s be reversed by the NLRB, that the positive aspects be maintained and bargaining should resume on a level playing field.Please continue to monitor the website, FB and the hotline (1 800 619-4036) for further updates.To download flyer click here:Â <a href="http://ufcw5.org/wp-content/uploads/2014/11/FinalLSMImplementation.pdf">FinalLSMImplementation</a>                                                                                                              ', 'd2ddea18f00665ce8623e36bd4e3c7c5.png', '2015-02-12 08:10:15', '1.3', 1, '', '', '', '', 'on', 4, 1),
-(157, 'Local 5 President and President-Elect Meet with International President ', 'Local 5 President Ron Lind and President-Elect John Nunes met with UFCW President Joe Hansen and Secretary-Treasurer Marc Perrone on November 7 in Washington DC. The purpose of the visit was to brief the international officers about the Lucky-Save Mart situation and answer any questions the international had about the state of negotiations. The meeting was productive and President Hansen and Secretary-Treasurer Perrone indicated support for efforts to maintain high standards in the unionized grocery industry in Northern California and across the country.', 'c20ad4d76fe97759aa27a0c99bff6710.png', '2015-02-12 08:08:38', '1.4', 1, '', '', '', '', 'on', 3, 0),
+(157, 'Local 5 President and President-Elect Meet with International President ', '<ol><li>Local 5 Pr<b>esident<i> Ron Lind and President-Elect John Nunes met with UFCW President Joe Hansen and Secretary-Treasurer Marc Perrone on November 7 in Washington DC. The purpose of the visit was to brief the intern<u>ational officers about the Lucky-Save Mart situation and answer any questions the international had about the state of negotiations. The meeting was pr</u></i><u>oductive and President Hansen and Secretary-Treasurer Perrone indicated support for efforts to maintain high standards in the unionized grocery industry in Northern California and across the coun</u>try.</b></li></ol>', 'c20ad4d76fe97759aa27a0c99bff6710.png', '2015-03-05 21:37:01', '1.4', 1, '', '', '', '', '', 3, 0),
 (158, 'UFCW Local 5 Members say No to Concessions ', 'In meetings held by the union with Lucky-Save Mart members from Ukiah to Salinas and all points in between, workers represented by Local 5 made it clear they oppose takeaways. At well-attended gatherings, that started Sunday and concluded Wednesday evening, members voted by 99% to oppose give backs to the company.\r\n\r\nOriginally meetings were set with the membership to vote on a last best and final offer made by the company. When word was received from the international union requesting Local 5 hold off on a strike/ratification vote the local changed the vote to an advisory referendum on the last, best and final offer. The request by the international is provided for in article 23 of the constitution and the local agreed to the request. Additionally, the company claims the last, best and final offer was withdrawn. Since the offer was supposedly withdrawn Local 5 has made a request for additional bargaining dates under the auspices of the Federal Mediation & Conciliation Service (FMCS) to conclude bargaining. A meeting is in the process of being set with the federal mediator and company when all the principals can attend.\r\n\r\nThanks go out to all members who attended and made their voices heard. Speak with your rep, steward, contact your local office and watch the website and Facebook for updates.', '98f13708210194c475687be6106a3b84.png', '2015-01-23 17:10:11', '6', 1, NULL, NULL, NULL, NULL, NULL, 4, 0),
 (270, 'Executive Action on Immigration ', ' President Obamas executive action to provide relief to immigrant workers, families, and communities is a victory for the UFCW, our members, and the entire nation.  While executive action is not a substitute for comprehensive immigration reform, it is a step in the right direction and will directly impact tens of thousands of our members.\r\nA UFCW working group made up of key staff from the Civil Rights and Community Action, Food Processing, Packing, and Manufacturing, Legislative and Political, Legal, and Communications Departments is developing a plan to work with you to help eligible members access these newly expanded programs. This will include a comprehensive checklist of what is needed, worksite flyers, and other important resources.\r\nAttached is the fact sheet sheet for your local union officers and staff explaining what the President’s actions entail and their timeline for implementation.', 'd1fe173d08e959397adf34b1d77e88d7.png', '2015-02-13 05:43:56', '6', 2, '', '', '', '', '', 1, 0),
 (271, 'President Obamas Immigration Announcement', 'On November 20, 2014, the president announced executive actions that his administration will be taking to help fix our dysfunctional immigration system.\r\n Here’s what we know about the new programs: \r\n&#61623; A new Deferred Action for Parents (DAP) program will allow undocumented people who have a U.S. citizen or lawful permanent resident son or daughter to apply for work authorization and protection from deportation, if the person has been in the U.S. since January 1, 2010. An estimated 4.1 million people should qualify for this program.\r\n&#61623; The existing Deferred Action for Childhood Arrivals (DACA) program will be expanded and now will cover people who entered the U.S. before their sixteenth birthday and have lived continuously in the U.S. since January 1, 2010. People who were “aged out” of DACA by being older than age 31 on June 15, 2012, are now eligible to apply, regardless of how old they are now. Approximately 300,000 people will be benefit from these changes.\r\n&#61623; Certain spouses of lawful permanent residents may be able to get their lawful permanent resident (“green card”) status through a waiver process. Spouses of U.S. citizens are currently able to apply through this process.\r\nHere’s what you can do: \r\n&#61623; Even if you are eligible for these programs, you cannot apply for them yet! The government expects that it will start accepting applications within three months from now for those eligible for expanded DACA, and within six months from now for those eligible for DAP.\r\n&#61623; Do not take advice about your immigration case from a notary public or an immigration consultant. Contact only a qualified immigration lawyer or an accredited representative for legal advice about your case. If you encounter notario fraud, report it!\r\n&#61623; If you know someone who is in immigration detention and is eligible for one of these programs, advise them to identify themselves to their case officer, or the ICE Information Line at 888-351-4024, and explain that they are eligible for one of these new programs.\r\n&#61623; If you believe you are eligible, begin preparing now by gathering documents that prove:\r\n that you were in the U.S. yesterday (on November 20, 2014),\r\n that you have been in the U.S. since January 1, 2010, and\r\n that you have a U.S. citizen or lawful permanent resident son or daughter.\r\n(Read our Top Ten Ways You Can Prepare for Executive Action on Immigration.) \r\n&#61623; Stay informed and sign up at www.nilc.org/relief.html to receive updates. As we find out about webinars, we’ll share them with you. We’ll also share materials and information about new developments. To receive these updates by email, subscribe to our Immigration Issues email list (http://tinyurl.com/mxbmyse).\r\nTo download, print and share this flyer check here.', 'e2c420d928d4bf8ce0ff2ec19b371514.png', '2015-02-13 05:38:02', '8', 2, 'www.facebook.com', 'www.facebook.com', 'www.gmail.com.', 'www.pinterest.com', '', 3, 0),
@@ -234,7 +240,12 @@ INSERT INTO `news` (`news_id`, `title`, `description`, `file`, `time_cone`, `cat
 (537, 'Volunteer', 'This is Volunteer Article.', '', NULL, '11.2', 3, NULL, NULL, NULL, NULL, NULL, NULL, 0),
 (538, 'Upcoming Events', 'This is the article for Upcoming Events.', '', NULL, '12.1', 3, NULL, NULL, NULL, NULL, NULL, NULL, 0),
 (539, 'Building Trade Meetings', 'This is the article for Building Trade Meetings.', '', NULL, '12.2', 3, NULL, NULL, NULL, NULL, NULL, NULL, 0),
-(540, 'lmlkm', 'mlkmklmlkklmk', '', '2015-03-04 05:58:57', 'news', 1, '', '', '', '', '', NULL, 0);
+(540, 'lmlkm', 'mlkmklmlkklmk', '', '2015-03-04 05:58:57', 'news', 1, '', '', '', '', '', NULL, 0),
+(541, 'a', 'a', '', '2015-03-05 21:41:03', '', 1, '', '', '', '', '', NULL, 0),
+(542, 'a', 'a', '', '2015-03-05 21:41:27', '', 1, '', '', '', '', '', NULL, 0),
+(543, '', 'This is my first <u>news </u><b>article.</b><br>&nbsp;Hello World<br><br>', '', '2015-03-06 02:13:22', '', 1, '', '', '', '', '', NULL, 0),
+(544, 'News Titleee Testing.', 'This is my first <u>news </u><b>article.</b><br><blockquote></blockquote><ul><li>&nbsp;Hello World</li><li>&nbsp;Lorem Ipsum</li></ul><img alt="" src="http://"><img alt="" src="http://2.bp.blogspot.com/-ZVxEkrY04Fs/U15D5uCL-xI/AAAAAAAAOdQ/pJ-Wc99LmPY/s1600/logo_col_874x288.png"><br>', '', '2015-03-06 02:14:36', '', 1, '', '', '', '', '', NULL, 0),
+(545, '', '', '', '2015-03-06 02:16:39', '', 1, '', '', '', '', '', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -247,21 +258,23 @@ CREATE TABLE IF NOT EXISTS `stayconected` (
   `name` varchar(15) DEFAULT NULL,
   `link` varchar(50) DEFAULT NULL,
   `app_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `stayconected`
 --
 
 INSERT INTO `stayconected` (`id`, `name`, `link`, `app_id`) VALUES
-(1, 'Facebook', 'https://www.facebook.com/ufcw5?ref=hnav', 1),
-(2, 'Twitter', 'http://www.twitter.com/ufcw5', 1),
-(3, 'Youtube', 'http://www.youtube.com/user/ufcwvoice', 1),
+(1, 'twitter', 'pp.com', 1),
+(2, 'Twitter', 'http://www.twitter.com/asiofnasif', 1),
+(3, 'Youtube', 'http://www.youtube.com/user/uiasnfuiasn', 1),
 (4, 'Instagram', 'http://instagram.com/ufcw5', 1),
 (7, 'Twitter', 'twitter@twitter.com', 2),
 (8, 'Facebook', 'facebook.com/ufcwunitedlatinos', 2),
 (10, 'Instagram', 'instagram@instagram.com', 2),
-(24, 'Flickr', 'https://www.flickr.com/people/ufcw5/', 1);
+(24, 'Flickr', 'https://www.flickr.com/people/ufcw5/', 1),
+(30, 'youtube', 'hellowrld.', 1),
+(31, 'twitter', 'twiiter.com/zohairhemani', 1);
 
 -- --------------------------------------------------------
 
@@ -448,22 +461,22 @@ MODIFY `id` int(15) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
 -- AUTO_INCREMENT for table `contact`
 --
 ALTER TABLE `contact`
-MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=44;
+MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=48;
 --
 -- AUTO_INCREMENT for table `location`
 --
 ALTER TABLE `location`
-MODIFY `office_id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=28;
+MODIFY `office_id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
-MODIFY `news_id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=541;
+MODIFY `news_id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=546;
 --
 -- AUTO_INCREMENT for table `stayconected`
 --
 ALTER TABLE `stayconected`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=32;
 --
 -- AUTO_INCREMENT for table `user`
 --
