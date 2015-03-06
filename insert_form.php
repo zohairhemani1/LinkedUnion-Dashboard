@@ -8,7 +8,7 @@ include 'headers/_user-details.php';
  
 	if(isset($_GET['news_id'])){
 		$news_id = $_GET['news_id'];
-		$formAction = "{$category_id}&&news_id=$news_id";
+		$formAction = "{$categoryID}&&news_id=$news_id";
 	}
 	if(isset($_GET['categoryID'])){
 		$category_id = $_GET['categoryID'];
