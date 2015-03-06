@@ -133,9 +133,9 @@ include 'headers/menu-top-navigation.php';
                             </span>
                         </div>
 <div class="widget-body">
-			<div class="btn-group">
+			<div class="btn-group" id="addButton">
                <a href="insert_form.php?categoryID=<?php echo $categoryID; ?>"><button type="button" class="btn btn-primary"> Add New <i class="icon-plus"></i> </button></a>
-                              </div>
+             </div>
 
                             <div class="portlet-body">
                                 
@@ -237,6 +237,16 @@ include 'headers/menu-top-navigation.php';
            App.init();
            TableEditable.init();
        });
+   </script>
+   <script>
+   
+		<!-- determining if the current categoryID is a cat or a subcat. If subcat and count is 1, then hide the add new button  -->
+		var count = '<?php echo $count;?>';
+		var category = '<?php echo $categoryID; ?>';
+		if(count == 1 && (!(category % 1 === 0)))
+		{
+			$("#addButton").hide();
+		}
    </script>
 </body>
 <!-- END BODY -->
