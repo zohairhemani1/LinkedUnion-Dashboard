@@ -94,18 +94,13 @@ include 'headers/menu-top-navigation.php';
                            <li><a href="#"><i class="icon-chevron-right"></i> Funny</a></li>
                            <li><a href="#"><i class="icon-chevron-right"></i> Finance</a></li>
                            <li><a href="#"><i class="icon-chevron-right"></i> Travel</a></li>
-                           <li><a href="#"><i class="icon-chevron-right"></i> Fashion</a></li>
-                           <li><a href="#"><i class="icon-chevron-right"></i> Arts &amp; Artist</a></li>
-                           <li><a href="#"><i class="icon-chevron-right"></i> Technology</a></li>
-                           <li><a href="#"><i class="icon-chevron-right"></i> Crime</a></li>
-                           <li><a href="#"><i class="icon-chevron-right"></i> Life Style</a></li>
                        </ul>
                        <hr>
                        <h2>Latest news</h2>
                        <div class="space15"></div>
                        <div class="row-fluid">
                            <div class="span3">
-                               <img alt="" src="img/news/news-thumb-1.jpg">
+                               <img alt="" src="img/avialdo.png">
                            </div>
                            <div class="span9">
                                <h5>
@@ -118,7 +113,7 @@ include 'headers/menu-top-navigation.php';
                        <div class="space10"></div>
                        <div class="row-fluid">
                            <div class="span3">
-                               <img alt="" src="img/news/news-thumb-2.jpg">
+                               <img alt="" src="img/avialdo.png">
                            </div>
                            <div class="span9">
                                <h5>
@@ -131,7 +126,7 @@ include 'headers/menu-top-navigation.php';
                        <div class="space10"></div>
                        <div class="row-fluid">
                            <div class="span3">
-                               <img alt="" src="img/news/news-thumb-3.jpg">
+                               <img alt="" src="img/avialdo.png">
                            </div>
                            <div class="span9">
                                <h5>
@@ -142,45 +137,6 @@ include 'headers/menu-top-navigation.php';
                            </div>
                        </div>
                        <hr>
-                       <h2>popular news</h2>
-                       <div class="space15"></div>
-                       <div class="row-fluid">
-                           <div class="span3">
-                               <img alt="" src="img/news/news-thumb-1.jpg">
-                           </div>
-                           <div class="span9">
-                               <h5>
-                                   <a href="javascript:;">Worldwide 10 Restaurants</a>
-                               </h5>
-                               <p>Nam sed arcu non tellus
-                                   fringilla fringilla ut vel ipsum.</p>
-                           </div>
-                       </div>
-                       <div class="space10"></div>
-                       <div class="row-fluid">
-                           <div class="span3">
-                               <img alt="" src="img/news/news-thumb-2.jpg">
-                           </div>
-                           <div class="span9">
-                               <h5>
-                                   <a href="javascript:;">Worldwide 10 Restaurants</a>
-                               </h5>
-                               <p>Nam sed arcu non tellus
-                                   fringilla fringilla ut vel ipsum.</p>
-                           </div>
-                       </div>
-                       <div class="space10"></div>
-                       <div class="row-fluid">
-                           <div class="span3">
-                               <img alt="" src="img/news/news-thumb-3.jpg">
-                           </div>
-                           <div class="span9">
-                               <h5>
-                                   <a href="javascript:;">Worldwide 10 Restaurants</a>
-                               </h5>
-                               <p>Nam sed arcu non tellus
-                                   fringilla fringilla ut vel ipsum.</p>
-                           </div>
                        </div>
                    </div>
                </div>
