@@ -106,12 +106,11 @@ include 'headers/menu-top-navigation.php';
                               </div>
 
                             <div class="portlet-body">
-                                
                                 <div id="width" class="space15"></div>
                          <table class='table table-striped table-hover table-bordered' id='sample_editable_1'>
                                     <thead>
                                     <tr>
-								 <th style='width:8px;'>id</th>
+								 <th style='width:8px;'>S.No</th>
                                     <th>Title</th>
                                     <th>Address</th>
                                     <th>Phone No</th>
@@ -130,13 +129,14 @@ include 'headers/menu-top-navigation.php';
 							while($row = mysqli_fetch_array($result_location))
 							{
 							$office_id = $row['office_id'];
+							$order = $row['order'];
 							$office_title = $row['office_title'];
 							$address = $row['address'];
 							$phone_no = $row['phone_no'];
 							$website = $row['website'];    
 							 echo"<tr>
 							
-							<td>${office_id}</td>;
+							<td>${order}</td>;
 							<td >${office_title}</td>
 							<td>${address}</td>
 							<td>${phone_no}</td>
@@ -144,7 +144,7 @@ include 'headers/menu-top-navigation.php';
 	               
 					<td style='width:19%;'><a href='insert_location.php?office_id=$office_id' id='update_button' class='btn btn-success' >
                     <i class='icon-trash'></i> Update</a>
-					<a href='#' id='delete_button'  class='btn btn-danger'>
+					<a href='delete_location.php?office_id=$office_id' id='delete_button'  class='btn btn-danger'>
                     <i class='icon-edit'></i> Delete</a>
 					<td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
 					<td style='display:none'><a class='' href='javascript:;'>Delete</a></td>

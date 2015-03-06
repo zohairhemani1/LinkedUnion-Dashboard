@@ -109,7 +109,7 @@ include 'headers/menu-top-navigation.php';
                          <table class='table table-striped table-hover table-bordered' id='sample_editable_1'>
                                     <thead>
                                     <tr>
-								 <th style='width:8px;'>id</th>
+								 <th style='width:8px;'>S.No</th>
                                     <th>Name</th>
                                     <th>Link</th>
                                     <th>Status</th>
@@ -131,18 +131,19 @@ include 'headers/menu-top-navigation.php';
 						while($row = mysqli_fetch_array($result_stay))
 						{
 							$id = $row['id'];
+							$order = $row['order'];
 							$name = $row['name'];
 							$link = $row['link'];
 							
 						  echo" 
 								<tr class=''>
-									 <td>{$id}</td>
+									 <td>{$order}</td>
 									<td>{$name}</td>
 									<td>{$link}</td>
 							   
 									<td style='width:19%;'><a href='insert_stayconnected.php?id=$id' id='update_button' class='btn btn-success' >
 									<i class='icon-trash'></i> Update</a>
-									<a href='#' id='delete_button'  class='btn btn-danger'>
+									<a href='delete_stayconected.php?id=$id' id='delete_button'  class='btn btn-danger'>
 									<i class='icon-edit'></i> Delete</a>
 									<td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
 									<td style='display:none'><a class='' href='javascript:;'>Delete</a></td>

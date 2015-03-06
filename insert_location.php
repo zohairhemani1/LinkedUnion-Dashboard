@@ -21,6 +21,7 @@
 		$file = $row['file'];
 		$phone_no = $row['phone_no'];
 		$website = $row['website'];
+		$order = $row['order'];
 }
 if($_POST)
 {
@@ -31,8 +32,9 @@ if($_POST)
 		$address = $_POST['address'];
 		$phone_no = $_POST['phone_no'];
 		$website = $_POST['website'];
+		$order = $_POST['order'];
 		$query = "UPDATE location SET time_cone = now(),  office_title = '$office_title', address = '$address',
-		 phone_no = '$phone_no',website = '$website'  WHERE office_id = '$office_id'";
+		 phone_no = '$phone_no',website = '$website',`order` = $order  WHERE office_id = '$office_id'";
 		$result = mysqli_query($con,$query);
 		header ('Location: office_location.php?update=true');
 		}
@@ -42,8 +44,9 @@ if($_POST)
 		$address = $_POST['address'];
 		$phone_no = $_POST['phone_no'];
 		$website = $_POST['website'];
-		$query_location = "INSERT INTO location(office_title,address,phone_no,website,time_cone,app_id)
-		VALUES ('$office_title','$address','$phone_no','$website',now(),'$appID')";
+		$query_location = "INSERT INTO location(office_title,address,phone_no,website,time_cone,app_id,`order`)
+		VALUES ('$office_title','$address','$phone_no','$website',now(),'$appID',
+		(SELECT max(l.order)+1 FROM location l WHERE l.app_id= '$appID' GROUP BY l.app_id))";
 		mysqli_query($con,$query_location)
 		or die('error1');
 		header ("Location: office_location.php?insert=true");
@@ -138,26 +141,32 @@ include 'headers/menu-top-navigation.php';
                            <div class="control-group">
                               <label class="control-label">Office title</label>
                               <div class="controls">
-                                 <input placeholder="Enter Your Office title" name="office_title" 
+                                 <input required placeholder="Enter Your Office title" name="office_title" 
                                  value="<?php echo $office_title; ?>" type="text" class="span6 " />
                               </div>
                            </div>
                            <div class="control-group">
                               <label class="control-label">Address</label>
                               <div class="controls">
-                                 <textarea placeholder="Enter Your Address" name="address" class="span6 " /><?php echo $address; ?></textarea>
+                                 <textarea required placeholder="Enter Your Address" name="address" class="span6 " /><?php echo $address; ?></textarea>
                               </div>
                            </div>
                            <div class="control-group">
                               <label class="control-label">Phone No</label>
                               <div class="controls">
-                                 <input placeholder="Enter Your Phone No" name="phone_no" value="<?php echo $phone_no ?>" type="text" class="span6 " />
+                                 <input required placeholder="Enter Your Phone No" name="phone_no" value="<?php echo $phone_no ?>" type="text" class="span6 " />
                               </div>
                            </div>
                            <div class="control-group">
                               <label class="control-label">Website</label>
                               <div class="controls">
-                                 <input placeholder="Enter Your Website" name="website" value="<?php echo $website; ?>" type="text" class="span6 " />
+                                 <input required placeholder="Enter Your Website" name="website" value="<?php echo $website; ?>" type="text" class="span6 " />
+                              </div>
+                           </div>
+                            <div class="control-group" style=" <?php if(!isset($_GET['office_id'])){echo "display:none;";} ?>">
+                              <label class="control-label">Order</label>
+                              <div class="controls">
+                                 <input placeholder="Enter Your Order" name="order" value="<?php echo $order; ?>" type="text" class="span6 " />
                               </div>
                            </div>
    						<div class="form-actions clearfix">

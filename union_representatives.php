@@ -1,7 +1,7 @@
 <?php
 	include 'headers/connect_to_mysql.php';
 	include 'headers/_user-details.php';
-	$query_contact = "SELECT * FROM contact where app_id = '$appID'";
+	$query_contact = "SELECT * FROM contact where app_id = '$appID' ORDER by `order`";
 	$result_contact = mysqli_query($con,$query_contact);
 	
 ?>
@@ -14,7 +14,7 @@
 <!-- Mirrored from thevectorlab.net/adminlab/editable_table.html by HTTrack Website Copier/3.x [XR&CO'2013], Tue, 04 Nov 2014 07:58:54 GMT -->
 <head>
    <meta charset="utf-8" />
-   <title>Contact Representative</title>
+   <title>Union Representative</title>
    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
    <meta content="" name="description" />
    <meta content="" name="author" />
@@ -51,14 +51,14 @@ include 'headers/menu-top-navigation.php';
                    <!-- END THEME CUSTOMIZER-->
                   <!-- BEGIN PAGE TITLE & BREADCRUMB-->     
                   <h3 class="page-title">
-                     Contact  Representative
-                     <small>view All contact</small>
+                     Union  Representative
+                     <small>view All </small>
                   </h3>
                    <ul class="breadcrumb">
                         <li>
                            <a href="index.php"><i class="icon-home"></i></a> <span class="divider">&nbsp;</span>
                        </li>
-                       <li><a href="#">Contact representative</a><span class="divider-last">&nbsp;</span>
+                       <li><a href="#">Union representative</a><span class="divider-last">&nbsp;</span>
                        </li>
                        
                        </ul>
@@ -74,21 +74,21 @@ include 'headers/menu-top-navigation.php';
 				echo"
 			<div class='alert alert-success'>
 					<button class='close' data-dismiss='alert'>×</button>
-					<strong>Success!</strong> The Contact has been added.
+					<strong>Success!</strong> The Union Representative has been added.
 				</div>";
 			}
 	 	else if(isset($_GET['update']) == 'true'){
       echo"
 	    <div class='alert alert-success'>
                 <button class='close' data-dismiss='alert'>×</button>
-                <strong>Success!</strong> The Contact has been updated.
+                <strong>Success!</strong> The Union Representative has been updated.
             </div>";
 		}
 		else if(isset($_GET['delete']) == 'true'){
       echo"
 	    <div class='alert alert-success'>
                 <button class='close' data-dismiss='alert'>×</button>
-                <strong>Success!</strong> The Contact has been Deleted.
+                <strong>Success!</strong> The Union Representative has been Deleted.
             </div>";
 		}
 ?>
@@ -97,7 +97,7 @@ include 'headers/menu-top-navigation.php';
                     <!-- BEGIN EXAMPLE TABLE widget-->
                     <div class="widget">
                         <div class="widget-title">
-                            <h4><i class="icon-reorder"></i>Contact representative Table</h4>
+                            <h4><i class="icon-reorder"></i>Union Representative Table</h4>
                             <span class="tools">
                                 <a href="javascript:;" class="icon-chevron-down"></a>
                             </span>
@@ -113,7 +113,7 @@ include 'headers/menu-top-navigation.php';
                                 <table class="table table-striped table-hover table-bordered" id="sample_editable_1">
                                     <thead>
                                     <tr>
-								 <th style="width:8px;">id</th>
+								 <th style="width:8px;">S.No</th>
                                     <th>Name</th>
                                     <th>Designation</th>
                                     <th>Address</th>
@@ -135,6 +135,7 @@ include 'headers/menu-top-navigation.php';
 					<?php
 					while($row = mysqli_fetch_array($result_contact)){  
 					$contact_id = $row['contact_id'];
+					$order = $row['order'];
 					$name = $row['name'];
 					$designation = $row['designation'];
 					$address = $row['address'];
@@ -146,7 +147,7 @@ include 'headers/menu-top-navigation.php';
 					$order = $row['order'];
 					echo"
 					<tr class=''> 
-					<td>{$contact_id}</td>
+					<td>{$order}</td>
 					<td>{$name}</td>
                     <td>{$designation}</td>
                     <td>{$address}</td>
@@ -156,7 +157,7 @@ include 'headers/menu-top-navigation.php';
                     <td>{$email}</td>
 					<td style='width:19%;'><a href='insert_contact.php?contact_id=$contact_id' id='update_button' class='btn btn-success' >
                     <i class='icon-trash'></i> Update</a>
-					<a href='#' id='delete_button'  class='btn btn-danger'>
+					<a href='delete_contact.php?contact_id=$contact_id' id='delete_button'  class='btn btn-danger'>
                     <i class='icon-edit'></i> Delete</a>
 					<td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
 					<td style='display:none'><a class='' href='javascript:;'>Delete</a></td>

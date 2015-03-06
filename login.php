@@ -20,47 +20,49 @@
 	}
 	
 ?>
+
 <!DOCTYPE html>
-<html lang="en">
+<!--
+Template Name: Admin Lab Dashboard build with Bootstrap v2.3.1
+Template Version: 1.3
+Author: Mosaddek Hossain
+Website: http://thevectorlab.net/
+-->
+
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<!-- BEGIN HEAD -->
+
+<!-- Mirrored from thevectorlab.net/adminlab/login.html by HTTrack Website Copier/3.x [XR&CO'2013], Tue, 04 Nov 2014 07:53:14 GMT -->
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author" content="Wahab Jawed">
-<link rel="shortcut icon" href="../../assets/ico/favicon.ico">
-<title>Signin - Linked Union</title>
-
-<!-- Bootstrap core CSS -->
-<link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-<link href="css/style.css" rel="stylesheet" type="text/css">
-<link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-<link href="assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
-<link href="css/style_default.css" rel="stylesheet" type="text/css" id="style_color">
-
-<!-- Just for debugging purposes. Don't actually copy this line! -->
-<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-
-<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+  <meta charset="utf-8" />
+  <title>Signin - Linked Union</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta content="" name="description" />
+  <meta content="" name="author" />
+  <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+  <link href="css/style.css" rel="stylesheet" />
+  <link href="css/style_responsive.css" rel="stylesheet" />
+  <link href="css/style_default.css" rel="stylesheet" id="style_color" />
 </head>
-
+<!-- END HEAD -->
 <!-- BEGIN BODY -->
 <body id="login-body">
-<div class="login-header"> 
-  <!-- BEGIN LOGO -->
-  <div id="logo" class="center"> <!--<img src="img/logo/linkedunion-logo.jpg" alt="logo" class="center" />--> </div>
-  <!-- END LOGO --> 
-</div>
+  <div style="height:78px" class="login-header">
+      <!-- BEGIN LOGO -->
+      <div id="logo" class="center">
+          <img src="img/linkedunion.png" class="logo" alt="logo" class="center" />
+      </div>
+      <!-- END LOGO -->
+  </div>
 
-<!-- BEGIN LOGIN -->
-<div id="login"> 
-  <!-- BEGIN LOGIN FORM -->
-  <form id="loginform" class="form-vertical no-padding no-margin" action="login.php" method="post">
-    <?php 
+  <!-- BEGIN LOGIN -->
+  <div id="login">
+    <!-- BEGIN LOGIN FORM -->
+    <form id="loginform" class="form-vertical no-padding no-margin" action="login.php" method="post">
+        <?php 
 	if(isset($_GET['fail']) && $_GET['fail']=="true"){
       echo"<div class='alert alert-danger' role='alert'>
   <strong>Oh dear!</strong> Something went awry!
@@ -77,40 +79,43 @@ else if(isset($_GET['forget']) && $_GET['forget']=="true"){
 <center> Kindly Check your email for the credentials</center></div>";
 }
 ?>
-    <input type="hidden" value="login" name="type">
-    <div class="lock"> <i class="icon-lock"></i> </div>
-    <div class="control-wrap">
-      <h4>Login</h4>
-      <div class="control-group">
-        <div class="controls">
-          <div class="input-prepend"> <span class="add-on"><i class="icon-user"></i></span>
-            <input id="input-username" name="user_name" type="text" placeholder="Username" />
-          </div>
-        </div>
+      <div class="lock">
+          <i class="icon-lock"></i>
       </div>
-      <div class="control-group">
-        <div class="controls">
-          <div class="input-prepend"> <span class="add-on"><i class="icon-key"></i></span>
-            <input id="input-password" name="password" type="password" placeholder="Password" />
+      <div class="control-wrap">
+          <h4>Login</h4>
+          <div class="control-group">
+              <div class="controls">
+                  <div class="input-prepend">
+                      <span class="add-on"><i class="icon-user"></i></span><input id="input-username" type="text" name="user_name" placeholder="Username" />
+                  </div>
+              </div>
           </div>
-          <div class="mtop10">
-            <div class="block-hint pull-left small">
-              <input type="checkbox" id="">
-              Remember Me </div>
-            <div class="block-hint pull-right"> <a href="javascript:;" class="" id="forget-password">Forgot Password?</a> </div>
+          <div class="control-group">
+              <div class="controls">
+                  <div class="input-prepend">
+                      <span class="add-on"><i class="icon-key"></i></span><input id="input-password" name="password" type="password" placeholder="Password" />
+                  </div>
+                  <div class="mtop10">
+                      <div class="block-hint pull-left small">
+                          <input type="checkbox" id=""> Remember Me
+                      </div>
+                      <div class="block-hint pull-right">
+                          <a href="javascript:;" class="" id="forget-password">Forgot Password?</a>
+                      </div>
+                  </div>
+
+                  <div class="clearfix space5"></div>
+              </div>
+
           </div>
-          <div class="clearfix space5"></div>
-        </div>
       </div>
-    </div>
-    <input type="submit" id="login-btn" class="btn btn-block login-btn" value="Login" />
-    <center>
-      Don't have an account yet? <a href="javascript:;" class="" id="register"> Register Now</a>
-    </center>
-  </form>
-  <!-- END LOGIN FORM --> 
-  <!-- BEGIN FORGOT PASSWORD FORM -->
-  <form id="forgotform" class="form-vertical no-padding no-margin hide" action="login.php" method="post">
+
+      <input type="submit" id="login-btn" class="btn btn-block login-btn" value="Login" />
+    </form>
+    <!-- END LOGIN FORM -->        
+    <!-- BEGIN FORGOT PASSWORD FORM -->
+      <form id="forgotform" class="form-vertical no-padding no-margin hide" action="login.php" method="post">
     <input type="hidden" value="forget" name="type">
     <p class="center">Enter your e-mail address below to reset your password.</p>
     <?php 
@@ -130,6 +135,19 @@ else if(isset($_GET['forget']) && $_GET['forget']=="true"){
     </div>
     <input type="submit" id="forget-btn" class="btn btn-block login-btn" value="Submit" />
   </form>
+
+    <form id="forgotform" class="form-vertical no-padding no-margin hide" action="http://thevectorlab.net/adminlab/index.html">
+      <p class="center">Enter your e-mail address below to reset your password.</p>
+      <div class="control-group">
+        <div class="controls">
+          <div class="input-prepend">
+            <span class="add-on"><i class="icon-envelope"></i></span><input id="input-email" type="text" placeholder="Email"  />
+          </div>
+        </div>
+        <div class="space20"></div>
+      </div>
+      <input type="button" id="forget-btn" class="btn btn-block login-btn" value="Submit" />
+    </form>
   <!-- END FORGOT PASSWORD FORM --> 
   
   <!-- BEGIN REGISTER FORM -->
@@ -181,20 +199,20 @@ else if(isset($_GET['forget']) && $_GET['forget']=="true"){
     <input type="submit" id="register-btn" class="btn btn-block login-btn" style="width:100%" value="Register" />
   </form>
   <!-- END REGISTER FORM --> 
-  
-</div>
-<!-- END LOGIN --> 
-<!-- BEGIN COPYRIGHT -->
-<div id="login-copyright"> <a href ="https://www.facebook.com/avialdo.inc">2014-15 &copy; Avialdo.</a> </div>
-<!-- END COPYRIGHT --> 
-<!-- js placed at the end of the document so the pages load faster --> 
-   <script src="js/jquery-1.8.3.min.js"></script>
-   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-   <script src="js/jquery.blockui.js"></script>
-   <script type="text/javascript" src="assets/chosen-bootstrap/chosen/chosen.jquery.min.js"></script>
-   <script type="text/javascript" src="assets/uniform/jquery.uniform.min.js"></script>
-   <script src="js/scripts.js"></script>
-<script>
+
+  </div>
+  <!-- END LOGIN -->
+  <!-- BEGIN COPYRIGHT -->
+  <div id="login-copyright">
+     <font color="#22878E">2015 &copy;</font><a href="http://www.linkedunion.com"> Linked Union.
+  </div>
+  <!-- END COPYRIGHT -->
+  <!-- BEGIN JAVASCRIPTS -->
+  <script src="js/jquery-1.8.3.min.js"></script>
+  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="js/jquery.blockui.js"></script>
+  <script src="js/scripts.js"></script>
+  <script>
     jQuery(document).ready(function() {     
       App.initLogin();
     	<?php 
@@ -221,14 +239,12 @@ else if(isset($_GET['forget']) && $_GET['forget']=="true"){
 	
 	
 	});
-	
-	
-  </script> 
 
-
-<!-- Bootstrap core JavaScript
-    ================================================== --> 
-<!-- Placed at the end of the document so the pages load faster -->
-
+    });
+  </script>
+  <!-- END JAVASCRIPTS -->
 </body>
+<!-- END BODY -->
+
+<!-- Mirrored from thevectorlab.net/adminlab/login.html by HTTrack Website Copier/3.x [XR&CO'2013], Tue, 04 Nov 2014 07:53:14 GMT -->
 </html>

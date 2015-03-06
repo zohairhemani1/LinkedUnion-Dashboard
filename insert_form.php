@@ -1,7 +1,7 @@
 <?php 
 include 'headers/connect_to_mysql.php';
 include 'headers/_user-details.php';
-	$category_id = $_GET['categoryID'];
+	$categoryID = $_GET['categoryID'];
 	if(isset($_GET['news_id']))
 		$news_id = $_GET['news_id'];
 	
@@ -14,17 +14,17 @@ include 'headers/_user-details.php';
 	$social = "";
 	$notification= "";
 	$order = "";
-	
+	$social = "";
 	
 	
 	
 if(isset($_GET['news_id']))
 {
-			$formAction = "{$category_id}&&news_id=$news_id";
+			$formAction = "$categoryID&news_id=$news_id";
 }
 else
 {
-		$formAction = $category_id;			
+		$formAction = $categoryID;			
 }
 			
 if(isset($_GET['news_id']))
@@ -42,10 +42,13 @@ if(isset($_GET['news_id']))
 			$pinterest = $row['pinterest']; 	
 			$social = $row['social'];
 			$order = $row['order'];
-			if ($social != null)
+			if ($social == "on")
 			{
 			$social = "block";
 			$checked = "checked";
+			}
+			else{
+			$social = "none";
 			}
 }
 if($_POST)
@@ -64,11 +67,11 @@ if($_POST)
 			$notification= $_POST['notification'];
 			$order = $_POST['order'];
 			$query_update = "UPDATE news SET time_cone = now(), title = '$title',file = '$file', description = '$description',
-			facebook = '$facebook', twitter = '$twitter', google = '$google', pinterest = '$pinterest',social = '$social',
+			facebook = '$facebook', twitter = '$twitter', google = '$google', pinterest = '$pinterest', social = '$social',
 			 `order` = '$order' WHERE news_id = '$news_id'";
 			$result_update = mysqli_query($con,$query_update)
 			or die('update error');		
-				$order_select = "SELECT `order`,`news_id` from news WHERE app_id = '$appID' and category = '$category_id	' ";
+				$order_select = "SELECT `order`,`news_id` from news WHERE app_id = '$appID' and category = '$categoryID' ";
 			$result_Select = mysqli_query($con,$order_select)
 				or die('error');	
 			while($row = mysqli_fetch_array($result_Select))
@@ -80,13 +83,13 @@ if($_POST)
 					$order_update = "UPDATE `news` SET `order` = '$order_other'  WHERE `news_id` = '$news_id_all' "
 					or die ('error');
 					$order_result = mysqli_query($con,$order_update);
-					echo "order_old-->{$order}&nbsp;news_old-->{$news_id}<br>order_new-->{$order_other}&nbsp;news_new-->{$news_id_all}";
+
 					}
 				}
 		  	
 			
 		  
-			header ("Location:news.php?category_id={$category_id}&&update=true");
+			header ("Location:news.php?categoryID=$categoryID&update=true");
 }
 else
 	  {
@@ -103,12 +106,12 @@ else
 		$social = $_POST['social'];
 		$order = $_POST['order'];
 		$query = "INSERT INTO news(title,description,file,time_cone,category,app_id,facebook,twitter,google,pinterest,social,`order`)
-				  VALUES ('$title','$description','$file',now(),'$category_id','$appID','$facebook','$twitter','$google','$pinterest','$social',
-			     (SELECT max(n.order)+1 FROM news n WHERE n.category = '$category_id' AND n.app_id= '$appID' GROUP BY n.category, n.app_id))"
+				  VALUES ('$title','$description','$file',now(),'$categoryID','$appID','$facebook','$twitter','$google','$pinterest','$social',
+			     (SELECT max(n.order)+1 FROM news n WHERE n.category = '$categoryID' AND n.app_id= '$appID' GROUP BY n.category, n.app_id))"
 				 or die ('error');
 		$result = mysqli_query($con,$query)
 	or die('error1');
-			header ("Location:news.php?category_id={$category_id}&&insert=true");
+			header ("Location:news.php?categoryID=$categoryID&insert=true");
 	  }
 	
 	}
@@ -197,7 +200,7 @@ include 'headers/menu-top-navigation.php';
                      </div>
                      <div class="widget-body form">
                         <!-- BEGIN FORM-->
-                        <form action="insert_form.php?category_id=<?php echo $formAction; ?>" method="post" class="form-horizontal">
+                        <form action="insert_form.php?categoryID=<?php echo $formAction; ?>" method="post" class="form-horizontal">
                            <div class="control-group">
                               <label class="control-label">News</label>
                               <div class="controls">
@@ -222,7 +225,7 @@ include 'headers/menu-top-navigation.php';
                                   <label class="control-label">Social</label>
                                   <div class="controls">
                           <div class="onoffswitch">
-                    <input name="social" type="checkbox" name="social"  class="onoffswitch-checkbox" id="myonoffswitch">
+                    <input name="social" type="checkbox" name="social"  class="onoffswitch-checkbox" id="myonoffswitch" <?php echo $checked; ?>>
                     <label class="onoffswitch-label" for="myonoffswitch"> 
                     <span onClick="Toggle();" id="displaytext" class="onoffswitch-inner"></span>
                     <span onClick="Toggle();" id="displaytext" class="onoffswitch-switch"></span> 
@@ -232,7 +235,7 @@ include 'headers/menu-top-navigation.php';
                     </div>
                         <div class="controls">
                         
-                    <div id="toggletext" style=" display:none">
+                    <div id="toggletext" style=" display:<?php echo $social; ?>">
                     <div class="row-fluid">
                              <div class="span8">
                             <div class="widget">

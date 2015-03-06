@@ -17,13 +17,6 @@ if(isset($fileName))
 		header("Location: {$fileName}?categoryID={$categoryID}");
 }
 
-
-
-	
-
-
-
-
 ?>
 
 
@@ -96,21 +89,21 @@ include 'headers/menu-top-navigation.php';
 				echo"
 			<div class='alert alert-success'>
 					<button class='close' data-dismiss='alert'>×</button>
-					<strong>Success!</strong> The Contact has been added.
+					<strong>Success!</strong> The {$name} has been added.
 				</div>";
 			}
 	 	else if(isset($_GET['update']) == 'true'){
       echo"
 	    <div class='alert alert-success'>
                 <button class='close' data-dismiss='alert'>×</button>
-                <strong>Success!</strong> The Contact has been updated.
+                <strong>Success!</strong> The {$name} has been updated.
             </div>";
 		}
 		else if(isset($_GET['delete']) == 'true'){
       echo"
 	    <div class='alert alert-success'>
                 <button class='close' data-dismiss='alert'>×</button>
-                <strong>Success!</strong> The Contact has been Deleted.
+                <strong>Success!</strong> The {$name} has been Deleted.
             </div>";
 		}
 ?>
@@ -161,11 +154,11 @@ include 'headers/menu-top-navigation.php';
 				
 					<?php
 
-				$category_id = $_GET['categoryID'];
+				$categoryID = $_GET['categoryID'];
 				//if ((int) $category_id == $category_id) 
 				//{
 					
-					$query = "SELECT n.* from `news` n where category = {$category_id}";
+					$query = "SELECT n.* from `news` n where category = {$categoryID}";
 					$sth = $dbh->prepare($query);
 					$sth->execute();
 					$count = 0;
@@ -181,12 +174,12 @@ include 'headers/menu-top-navigation.php';
 					<tr class=''> 
 								  <td style='width:3%'><a href='#'>{$count}</a></td>
 								  <td style='width:40%'><a href='institutionDetail.php'>{$row['title']}</a></td>
-								  <td style='width:3%'><span class='label label-warning label-mini'>{$published}</span></td>
-								  <td style='width:19%;'><a href='insert_form.php?news_id={$news_id}' 
-								  id='update_button' class='btn btn-success'> <i class='icon-trash'></i> Update</a>																					 							 	 
-								  <a href='#' id='delete_button'  class='btn btn-danger'>
-								  <i class='icon-edit'></i> Delete</a>
-								  <a href='view.php?news_id={$news_id}' id='view_button' class='btn btn-info'>View</a></td>
+								  <td style='width:3%'><span id='published' class='label label-warning label-mini'>{$published}</span></td>
+								  <td width='19%' ><a href='insert_form.php?categoryID=$categoryID&news_id={$news_id}' 
+								  id='update_button' class='btn btn-success'> <i class='icon-edit'></i> Update</a>																					 							 	 
+								  <a href='delete_form.php?categoryID=$categoryID&news_id={$news_id}' id='delete_button'  class='btn btn-danger'>
+								  <i class='icon-trash'></i> Delete</a>
+								  <a href='view.php?news_id={$news_id}' id='view_button' class='btn btn-info'><i class='icon-eye-open'></i> View</a></td>
 								  <td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
 								 <td style='display:none'><a class='' href='javascript:;'>Delete</a></td>
 								  </tr>";

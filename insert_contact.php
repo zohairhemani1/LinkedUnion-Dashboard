@@ -11,6 +11,7 @@
 	$email = "";
 	$time_cone = "";
 	$formAction = "";
+	$order = "";
 	if(isset($_GET['contact_id']))
 	{
 			$conatct_id = $_GET['contact_id'];
@@ -26,6 +27,7 @@
 			$fax_no = $row['fax_no'];
 			$email = $row['email'];
 			$time_cone = $row['time_cone'];
+			$order= $row['order'];
 	}
 if($_POST)
 {
@@ -39,8 +41,9 @@ if($_POST)
 		$fax_no = $_POST['fax_no'];
 		$email = $_POST['email'];
 		$time_cone = $_POST['time_cone'];
+		$order = $_POST['order'];
 		$update_contact = "UPDATE contact SET name = '$name', designation = '$designation', address = '$address', phone_no1 = '$phone_no1', 
-		phone_no2 = '$phone_no2', fax_no = '$fax_no', email = '$email', time_cone = now() where contact_id = '$conatct_id' "
+		phone_no2 = '$phone_no2', fax_no = '$fax_no', email = '$email', time_cone = now(), `order` = $order where contact_id = '$conatct_id' "
 		or die ('error while Updating contact');
 		$contact_update = mysqli_query($con,$update_contact);
 		header ('Location:union_representatives.php?update=true'); 
@@ -55,8 +58,9 @@ if($_POST)
 		$fax_no = $_POST['fax_no'];
 		$email = $_POST['email'];
 		$time_cone = $_POST['time_cone'];
-		$insert_contatct = "INSERT INTO contact (name,designation,address,phone_no1,phone_no2,fax_no,email,time_cone,app_id)
-		VALUES ('$name','$designation','$address','$phone_no1','$phone_no2','$fax_no','$email',now(),'$appID') "
+		$insert_contatct = "INSERT INTO contact (name,designation,address,phone_no1,phone_no2,fax_no,email,time_cone,app_id,`order`)
+		VALUES ('$name','$designation','$address','$phone_no1','$phone_no2','$fax_no','$email',now(),'$appID',
+		(SELECT max(c.order)+1 FROM contact c WHERE c.app_id= '$appID' GROUP BY c.app_id)) "
 		or die('error while inserting Contact');
 		$result = mysqli_query($con,$insert_contatct);
 		header ('Location:union_representatives.php?insert=true');
@@ -147,52 +151,64 @@ include 'headers/menu-top-navigation.php';
                      </div>
                      <div class="widget-body form">
                         <!-- BEGIN FORM-->
-                        <form action="insert_contact.php<?php echo $formAction ?>" method="post" class="form-horizontal">
+                        <form action="insert_contact.php<?php echo $formAction ?>" name="myform" method="post" class="form-horizontal">
                            <div class="control-group">
                               <label class="control-label">Name</label>
                               <div class="controls">
-                                 <input placeholder="Enter Your Name" name="name" value="<?php echo $name; ?>" type="text" class="span6 " />
+                                 <input required placeholder="Enter Your Name" name="name" value="<?php echo $name; ?>" type="text" class="span6 " />
                               </div>
                            </div>
                            <div class="control-group">
                               <label class="control-label">Designation</label>
                               <div class="controls">
-                                 <input placeholder="Enter Your Designation"  name="designation" 
+                                 <input required placeholder="Enter Your Designation"  name="designation" 
                                  value="<?php echo $designation; ?>" type="text" class="span6 " />
                               </div>
                            </div>
                            <div class="control-group">
                               <label class="control-label">Address</label>
                               <div class="controls">
-                                 <textarea placeholder="Enter Your Address" name="address" class="span6 " /><?php echo $address; ?></textarea>
+                                 <textarea required placeholder="Enter Your Address" name="address" class="span6 " /><?php echo $address; ?></textarea>
                               </div>
                            </div>
                            <div class="control-group">
                               <label class="control-label">Phone # (1)</label>
                               <div class="controls">
-                                 <input placeholder="Enter Your Phone No" name="phone_no1" value="<?php echo $phone_no1; ?>" type="text" class="span6 " />
+                                 <input required placeholder="Enter Your Phone No" name="phone_no1" value="<?php echo $phone_no1; ?>"
+                                  type="text" class="span6 " onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" />
+ 								   <span id="error" style="color: Red; display: none">* Input digits (0 - 9)</span>
+ 
                               </div>
                            </div>
                            <div class="control-group">
                               <label class="control-label">Phone # (2)</label>
                               <div class="controls">
-                                 <input placeholder="Enter Your Phone No" name="phone_no2" value="<?php echo $phone_no2; ?>" type="text" class="span6 " />
+                                 <input required placeholder="Enter Your Phone No" name="phone_no2" value="<?php echo $phone_no2; ?>" type="text" 
+                                 class="span6 " onkeypress="return isNumeric(event);" ondrop="return false;" onpaste="return false;" />
+ 								   <span id="error1" style="color: Red; display: none">* Input digits (0 - 9)</span>
                               </div>
                            </div>
                            <div class="control-group">
                               <label class="control-label">Fax #</label>
                               <div class="controls">
-                                 <input placeholder="Enter Your Fax No" name="fax_no" value="<?php echo $fax_no; ?>" type="text" class="span6 " />
+                                 <input required placeholder="Enter Your Fax No" name="fax_no" value="<?php echo $fax_no; ?>" type="text" 
+                                 class="span6 " />
                               </div>
                            </div>
                            <div class="control-group">
                               <label class="control-label">Email</label>
                               <div class="controls">
-                                 <input placeholder="Enter Your Email" name="email" value="<?php echo $email; ?>" type="email" class="span6 " />
+                                 <input required placeholder="Enter Your Email" name="email" value="<?php echo $email; ?>" type="email" class="span6 " />
+                              </div>
+                           </div>
+                             <div class="control-group" style=" <?php if(!isset($_GET['contact_id'])){echo "display:none;";} ?>">
+                              <label class="control-label">Order</label>
+                              <div class="controls">
+                                 <input placeholder="Enter Your Order" name="order" value="<?php echo $order; ?>" type="text" class="span6 " />
                               </div>
                            </div>
    						<div class="form-actions clearfix">
-							<input type="submit"  class="btn btn-success " />
+							<input type="submit" class="btn btn-success " />
                    		</div>
                               </form>
                             <!-- END FORM-->
@@ -247,33 +263,28 @@ include 'headers/menu-top-navigation.php';
          App.init();
       });
    </script>
-   <script>
-function toggle() {
-	var ele = document.getElementById("ToggleText");
-	var text = document.getElementById("DisplayText");
-	if(ele.style.display == "block") {
- 		ele.style.display = "none";
-  	}
-	else {
-		ele.style.display = "block";
-	}
-} 
+   		<script>
+         var specialKeys = new Array();
+        specialKeys.push(8); //Backspace
+        function IsNumeric(e) 
+		{
+            var keyCode = e.which ? e.which : e.keyCode
+            var ret = ((keyCode >= 37 && keyCode <= 65 )  || specialKeys.indexOf(keyCode) != -1)            
+			document.getElementById("error").style.display = ret ? "none" : "inline";
+            return ret;
+		}
+		</script>
+ <script>
+ var specialKeys1 = new Array();
+        specialKeys1.push(8); //Backspace
+        function isNumeric(e) 
+		{
+			var keyCode1 = e.which ? e.which : e.keyCode1
+            var ret1 = ((keyCode1 >= 37 && keyCode1 <= 65) || specialKeys1.indexOf(keyCode1) != -1);
+            document.getElementById("error1").style.display = ret1 ? "none" : "inline";
+            return ret1;
+		}
 </script>
-<script>
-function Toggle() {
-	var ele = document.getElementById("toggletext");
-	var text = document.getElementById("displaytext");
- 	if(ele.style.display == "block") {
- 		ele.style.display = "none";
- 
-  	}
-	else {
-		ele.style.display = "block";
-	}
-} 
-</script>
-
-
    <!-- END JAVASCRIPTS -->   
 </body>
 <!-- END BODY -->

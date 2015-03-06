@@ -6,6 +6,7 @@
 	$link = "";
 	$id="";
 	$formAction = "";
+	$order = "";
 	
 	if(isset($_GET['id']))
 	{
@@ -16,24 +17,25 @@
 		$row = mysqli_fetch_array($fetch_result);
 		$name = $row['name'];
 		$link = $row['link'];
+		$order = $row['order'];
 	}
 	
 if($_POST)
 {
 	$name = $_POST['name'];
 	$link = $_POST['link'];
-	
+	$order = $row['order'];
 	if(isset($_GET['id']))
 	  {
-		$update_stayconected = "UPDATE `stayconected` SET `name` = '{$name}', `link` = '{$link}' where id = '{$id}' "
+		$update_stayconected = "UPDATE `stayconected` SET `name` = '$name', `link` = '$link',`order` = $order  where id = '{$id}' "
 		or die ('error while Updating stayconected');
 		$stayconected_update = mysqli_query($con,$update_stayconected);
 		header ('Location: stay_connected.php?update=true'); 
 		}
 	else
 	  {
-		$insert_contact = "INSERT INTO `stayconected` (name,link,app_id)
-		VALUES ('$name','$link','$appID')"
+		$insert_contact = "INSERT INTO `stayconected` (name,link,app_id,`order`)
+		VALUES ('$name','$link','$appID',(SELECT max(s.order)+1 FROM stayconected s WHERE s.app_id= '$appID' GROUP BY s.app_id))"
 		or die('error while inserting Stay Connected');
 		$result = mysqli_query($con,$insert_contact);
 		header ('Location: stay_connected.php?insert=true');
@@ -125,7 +127,7 @@ include 'headers/menu-top-navigation.php';
                            <div class="control-group">
                               <label class="control-label">Custom Dropdown</label>
                               <div class="controls">
-                                 <select name="name"  class="span6 chosen" data-placeholder="Choose a Category" tabindex="1">
+                                 <select required name="name" class="span6 chosen" data-placeholder="Choose a Category" tabindex="1">
                                     <option value="<?php echo $name; ?>"><?php echo $name; ?></option>
                                   <option value="twitter">Twitter</option>
                                   <option value="youtube">Youtube</option>
@@ -158,7 +160,13 @@ include 'headers/menu-top-navigation.php';
                              <div class="control-group">
                               <label class="control-label">Link</label>
                               <div class="controls">
-                                 <input name="link" value="<?php echo $link; ?>" placeholder="Enter Your Link" type="text" class="span6 " />
+                                 <input required name="link" value="<?php echo $link; ?>" placeholder="Enter Your Link" type="text" class="span6 " />
+                              </div>
+                           </div>
+                             <div class="control-group" style=" <?php if(!isset($_GET['id'])){echo "display:none;";} ?>">
+                              <label class="control-label">Order</label>
+                              <div class="controls">
+                                 <input name="order" value="<?php echo $order; ?>" placeholder="Enter Your Order" type="text" class="span6 " />
                               </div>
                            </div>
    			<div class="form-actions clearfix">
