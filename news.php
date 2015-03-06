@@ -1,20 +1,22 @@
 <?php
-
 include 'headers/checkloginstatus.php'; 
 include 'headers/connect_to_mysql.php';
 include 'headers/session.php';
 include 'headers/_user-details.php';
-
 $categoryID = $_GET['categoryID'];
-
+$url = "";
+$redirect="";
 $query = "SELECT w.name FROM `webservice_category` wc, `webservices` w WHERE wc.`category` like '{$categoryID}' AND wc.webservice = w.id";
 $result = mysqli_query($con,$query);
 $row = mysqli_fetch_array($result);
 $fileName = $row['name'];
 if(isset($fileName))
 {
-	if($fileName != "view.php")
-		header("Location: {$fileName}?categoryID={$categoryID}");
+	if($fileName != "view.php" && $fileName != "news_category.php"){
+		$url = "{$fileName}?categoryID={$categoryID}";
+		$redirect = 1;
+		//header("Location: {$fileName}?categoryID={$categoryID}");
+	}
 }
 
 
@@ -45,15 +47,18 @@ if(isset($fileName))
    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
    <link href="css/style.css" rel="stylesheet" />
    <link href="css/custom.css" rel="stylesheet" />
-
    <link href="css/style_responsive.css" rel="stylesheet" />
    <link href="css/style_default.css" rel="stylesheet" id="style_color" />
-
    <link href="assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
    <link rel="stylesheet" type="text/css" href="assets/uniform/css/uniform.default.css" />
-
    <link rel="stylesheet" href="assets/data-tables/DT_bootstrap.css" />
 
+   <script>
+   if(<?php echo $redirect;?> == 1){
+				window.location.href = '<?php echo $url; ?>';
+   }
+	</script>
+   
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
@@ -174,6 +179,8 @@ include 'headers/menu-top-navigation.php';
 						$news_id = $row['news_id'];
 						$count++;
 						$published = "Unpublished";
+						
+						
 						if($row['published']==1)
 							$published = "Published";
 							

@@ -26,7 +26,7 @@
 		$fileImage = $row['file'];
 		$news_id = $row['news_id'];
 		$newArray['description'] = $description_toclean;
-		$newArray['title'] = strtoupper($title);
+		$newArray['title'] = $title;
 		$newArray['file'] = $fileImage;
 		$newArray['news_id'] = $news_id;
 		

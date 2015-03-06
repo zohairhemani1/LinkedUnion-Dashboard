@@ -1,9 +1,16 @@
 <?php 
 include 'headers/connect_to_mysql.php';
 include 'headers/_user-details.php';
-	$category_id = $_GET['categoryID'];
-	if(isset($_GET['news_id']))
+ 
+	if(isset($_GET['news_id'])){
 		$news_id = $_GET['news_id'];
+		$formAction = "{$category_id}&&news_id=$news_id";
+	}
+	if(isset($_GET['categoryID'])){
+		$category_id = $_GET['categoryID'];
+		$formAction = $category_id;
+	}
+	
 	
 	$title = "";	
 	$description = "";
@@ -15,17 +22,7 @@ include 'headers/_user-details.php';
 	$notification= "";
 	$order = "";
 	
-	
-	
-	
-if(isset($_GET['news_id']))
-{
-			$formAction = "{$category_id}&&news_id=$news_id";
-}
-else
-{
-		$formAction = $category_id;			
-}
+
 			
 if(isset($_GET['news_id']))
 {
@@ -86,7 +83,7 @@ if($_POST)
 		  	
 			
 		  
-			header ("Location:news.php?category_id={$category_id}&&update=true");
+			//header ("Location:news.php?category_id={$category_id}&&update=true");
 }
 else
 	  {
@@ -108,7 +105,7 @@ else
 				 or die ('error');
 		$result = mysqli_query($con,$query)
 	or die('error1');
-			header ("Location:news.php?category_id={$category_id}&&insert=true");
+			header ("Location:news.php?categoryID={$category_id}&&insert=true");
 	  }
 	
 	}
@@ -197,7 +194,7 @@ include 'headers/menu-top-navigation.php';
                      </div>
                      <div class="widget-body form">
                         <!-- BEGIN FORM-->
-                        <form action="insert_form.php?category_id=<?php echo $formAction; ?>" method="post" class="form-horizontal">
+                        <form action="insert_form.php?categoryID=<?php echo $formAction; ?>" method="post" class="form-horizontal">
                            <div class="control-group">
                               <label class="control-label">News</label>
                               <div class="controls">
