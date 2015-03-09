@@ -5,11 +5,8 @@ include 'headers/_user-details.php';
 	if($_GET['news_id']){
 		$categoryID = $_GET['categoryID'];
 		$news_id = $_GET['news_id'];
-<<<<<<< HEAD
 		$formAction = "$categoryID&news_id=$news_id"; 
-=======
-		$formAction = "{$categoryID}&&news_id=$news_id";
->>>>>>> origin/master
+		//$formAction = "{$categoryID}&&news_id=$news_id";
 	}
 	else if($_GET['categoryID']){
 		$categoryID = $_GET['categoryID'];
