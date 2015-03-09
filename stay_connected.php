@@ -125,7 +125,12 @@ include 'headers/menu-top-navigation.php';
 
 				        <?php
 						
+<<<<<<< HEAD
 						$query_stay = "SELECT * FROM stayconected WHERE app_id = $appID ";
+=======
+						
+						$query_stay = "SELECT * FROM stayconected WHERE app_id = '$appID' ";
+>>>>>>> origin/master
 						$result_stay = mysqli_query($con,$query_stay);
 						
 						while($row = mysqli_fetch_array($result_stay))
