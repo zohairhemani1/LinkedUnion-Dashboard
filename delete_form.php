@@ -1,7 +1,7 @@
 <?php 
 	include 'headers/connect_to_mysql.php';
 	$news_id = $_GET['news_id'];
-	$categoryID = $row['categoryID'];
+	$categoryID = $_GET['categoryID'];
 	$query_delete = "DELETE FROM news WHERE news_id = $news_id"
 	or die('error while deleting news');
 	$result = mysqli_query($con,$query_delete);

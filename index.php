@@ -2,6 +2,7 @@
 	session_start();
 		include 'headers/connect_to_mysql.php';
 		include 'headers/_user-details.php';
+
 ?>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -95,49 +96,36 @@ include 'headers/menu-top-navigation.php';
                            <li><a href="#"><i class="icon-chevron-right"></i> Finance</a></li>
                            <li><a href="#"><i class="icon-chevron-right"></i> Travel</a></li>
                        </ul>
-                       <hr>
-                       <h2>Latest news</h2>
-                       <div class="space15"></div>
-                       <div class="row-fluid">
-                           <div class="span3">
-                               <img alt="" src="img/avialdo.png">
+						<hr>
+                        <h2>Latest news</h2>
+                      <?php 
+					$query_select = "SELECT SUBSTRING(`description`, 1, 44) as description,title,news_id FROM news ORDER BY `order` desc LIMIT 3"
+					or die('error while selecing value');
+					$result_select = mysqli_query($con,$query_select);
+					   while($row = mysqli_fetch_array($result_select))
+					   	{
+						   	$news_id = $row['news_id'];
+							$title = $row['title'];
+							$description = $row['description'];
+							   echo"
+							<div class='space15'></div>
+                       <div class='row-fluid'>
+                           <div class='span3'>
+                               <img alt='' src='img/avialdo.png'>
                            </div>
-                           <div class="span9">
-                               <h5>
-                                   <a href="javascript:;">Worldwide 10 Restaurants</a>
+                           <div class='span9'>
+                                <h5>
+                                   <a href='view.php?news_id=$news_id'>$title</a>
                                </h5>
-                               <p>Nam sed arcu non tellus
-                                   fringilla fringilla ut vel ipsum.</p>
+                               <p>$description,...</p>
                            </div>
                        </div>
-                       <div class="space10"></div>
-                       <div class="row-fluid">
-                           <div class="span3">
-                               <img alt="" src="img/avialdo.png">
-                           </div>
-                           <div class="span9">
-                               <h5>
-                                   <a href="javascript:;">Worldwide 10 Restaurants</a>
-                               </h5>
-                               <p>Nam sed arcu non tellus
-                                   fringilla fringilla ut vel ipsum.</p>
-                           </div>
-                       </div>
-                       <div class="space10"></div>
-                       <div class="row-fluid">
-                           <div class="span3">
-                               <img alt="" src="img/avialdo.png">
-                           </div>
-                           <div class="span9">
-                               <h5>
-                                   <a href="javascript:;">Worldwide 10 Restaurants</a>
-                               </h5>
-                               <p>Nam sed arcu non tellus
-                                   fringilla fringilla ut vel ipsum.</p>
-                           </div>
-                       </div>
-                       <hr>
-                       </div>
+                       
+							";						   
+							}
+						   ?>
+                           
+
                    </div>
                </div>
             </div>

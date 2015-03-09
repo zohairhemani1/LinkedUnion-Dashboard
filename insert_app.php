@@ -1,58 +1,58 @@
-<?php 
+<?php
 	include 'headers/connect_to_mysql.php';
-	include 'headers/_user-details.php';
-
-	$name = "";
-	$link = "";
-	$id="";
-	$formAction = "";
-	$order = "";
-	
-	if(isset($_GET['id']))
-	{
-		$id = $_GET['id'];
-		$formAction = "?id={$id}";
-		$select_stayconected = "SELECT * FROM stayconected where id = '$id'";
-		$fetch_result = mysqli_query($con,$select_stayconected);
-		$row = mysqli_fetch_array($fetch_result);
-		$name = $row['name'];
-		$link = $row['link'];
-		$order = $row['order'];
-	}
-	
-if($_POST)
+	include 'headers/logo.php';
+	include 'headers/cover.php';
+	$logo_image = "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image";		
+	$cover_image = "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image";
+if(isset($_GET['app_id']))
 {
-	$name = $_POST['name'];
-	$link = $_POST['link'];
-	$order = $row['order'];
-	if(isset($_GET['id']))
-	  {
-		$update_stayconected = "UPDATE `stayconected` SET `name` = '$name', `link` = '$link',`order` = $order  where id = '{$id}' "
-		or die ('error while Updating stayconected');
-		$stayconected_update = mysqli_query($con,$update_stayconected);
-		header ('Location: stay_connected.php?update=true'); 
+		$app_id=  $_GET['app_id'];
+		$formAction = "&app_id=$app_id";
+		$query = "SELECT * FROM app a, user u where a.app_id AND u.app_id = $app_id ";
+		$result = mysqli_query($con,$query);	
+		$row = mysqli_fetch_array($result)
+		or die ('error3');
+		$app_name = $row['app_name'];
+		$logo = $row['logo'];
+		$cover = $row['cover'];
+		$about_us = $row['about_us'];
+	if($logo != null || $cover != null )
+		{
+			$logo_image = "img/logo/{$logo}";		
+			$cover_image = "img/cover/{$cover}";
 		}
-	else
-	  {
-		$insert_contact = "INSERT INTO `stayconected` (name,link,app_id,`order`)
-		VALUES ('$name','$link','$appID',(SELECT max(s.order)+1 FROM stayconected s WHERE s.app_id= '$appID' GROUP BY s.app_id))"
-		or die('error while inserting Stay Connected');
-		$result = mysqli_query($con,$insert_contact);
-		header ('Location: stay_connected.php?insert=true');
-	 }
-	
+		else
+		{
+			$logo_image = "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image";		
+			$cover_image = "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image";
+			
+		}
+
+	if($_POST)
+	{
+		$name = $_POST['name'];
+		$query = "UPDATE app SET  app_name = '$app_name',about_us = '$about_us', logo = '$logo', cover = '$cover' WHERE app_id = '$app_id'";
+		$result = mysqli_query($con,$query);
+		header("Location: info.php?update=true");
+	}
+}	
+else if ($_POST)
+{
+		$app_name = $_POST['app_name'];
+		$about_us = $_POST['about_us'];
+		$query = "INSERT INTO app(app_name,about_us,logo,cover)
+		VALUES ('$app_name','$about_us','$logo','$cover')";
+		mysqli_query($con,$query)
+		or die('error while updating app');
+		header("Location: app.php?insert=true");	
+
 }
-	?>
 
-<!DOCTYPE html>
-<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
-<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
-<!-- BEGIN HEAD -->
+?>
 
-<!-- Mirrored from thevectorlab.net/adminlab/form_component.html by HTTrack Website Copier/3.x [XR&CO'2013], Tue, 04 Nov 2014 07:57:43 GMT -->
-<head>   <meta charset="utf-8" />
-   <title>Stay Conected</title>
+<!doctype html>
+<html>
+<head>
    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
    <meta content="" name="description" />
    <meta content="" name="author" />
@@ -78,7 +78,12 @@ if($_POST)
    <link rel="stylesheet" type="text/css" href="assets/bootstrap-daterangepicker/daterangepicker.css" />
    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
    <link rel="stylesheet" type="text/css" href="css/main.css" />
+
+<title>Linked Union App  </title>
+
 </head>
+
+<body>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
 <body class="fixed-top">
@@ -97,16 +102,19 @@ include 'headers/menu-top-navigation.php';
 
                    <!-- END THEME CUSTOMIZER-->
                   <h3 class="page-title">
-                     Stay Conected
-                     <small>Stay Conected page</small>
+                     App
+                     <small>Make your own app</small>
                   </h3>
-                   <ul class="breadcrumb">
-                           <li>
-                           <a href="index.php"><i class="icon-home"></i></a> <span class="divider">&nbsp;</span>
+                  <ul class="breadcrumb">
+                       <li>
+                           <a href="index.php"><i class="icon-home"></i></a><span class="divider">&nbsp;</span>
                        </li>
-                       <li><a href="#">insert Stay Conected</a><span class="divider-last">&nbsp;</span>
+                       <li>
+                           <a href="app.php">App</a> <span class="divider">&nbsp;</span>
                        </li>
-                       
+                       <li><a href="#">Insert_app</a><span class="divider-last">&nbsp;</span></li>
+                   </ul>
+
                </div>
             </div>
             <!-- END PAGE HEADER-->
@@ -116,60 +124,62 @@ include 'headers/menu-top-navigation.php';
                   <!-- BEGIN SAMPLE FORM widget-->   
                   <div class="widget">
                      <div class="widget-title">
-                        <h4><i class="icon-reorder"></i>Insert Stay Conected</h4>
+                        <h4><i class="icon-reorder"></i>Insert App</h4>
                         <span class="tools">
                            <a href="javascript:;" class="icon-chevron-down"></a>
                          </span>
                      </div>
                      <div class="widget-body form">
                         <!-- BEGIN FORM-->
-                        <form action="insert_stayconnected.php<?php echo $formAction; ?>" method="post" class="form-horizontal">
-                           <div class="control-group">
-                              <label class="control-label">Custom Dropdown</label>
-                              <div class="controls">
-                                 <select required name="name" class="span6 chosen" data-placeholder="Choose a Category" tabindex="1">
-                                    <option value="<?php echo $name; ?>"><?php echo $name; ?></option>
-                                  <option value="twitter">Twitter</option>
-                                  <option value="youtube">Youtube</option>
-                                  <option value="linkedIn">LinkedIn</option>
-                                  <option value="behance">Behance</option>
-                                  <option value="blogger">Blogger</option>
-                                  <option value="deviantArt">DeviantArt</option>
-                                  <option value="digg">Digg</option>
-                                  <option value="dribbble">Dribbble</option>
-                                  <option value="feed">Feed</option>
-                                  <option value="flicker">Flickr</option>
-                                  <option value="forrst">Forrst</option>
-                                  <option value="google++">Google+</option>
-                                  <option value="gowalla">Gowalla</option>
-                                  <option value="lastfm">Lastfm</option>
-                                  <option value="mtspace">Myspace</option>
-                                  <option value="paypal">PayPal</option>
-                                  <option value="picasa">Picasa</option>
-                                  <option value="pinterest">Pinterest</option>
-                                  <option value="sharethis">Share-This</option>
-                                  <option value="skype">Skype</option>
-                                  <option value="stumbleupon">Stumbleupon</option>
-                                  <option value="tumblr">Tumblr</option>
-                                  <option value="viddlr">Viddlr</option>
-                                  <option value="vimeo">Vimeo</option>
-                                  <option value="wordpress">Wordpress</option>
-                                 </select>
-                              </div>
-                           </div>                         
+                        <form action="insert_app.php<?php echo $formAction; ?>" method="post" class="form-horizontal">
                              <div class="control-group">
-                              <label class="control-label">Link</label>
+                              <label class="control-label">App Name</label>
                               <div class="controls">
-                                 <input required name="link" value="<?php echo $link; ?>" placeholder="Enter Your Link" type="text" class="span6 " />
+                                 <input required name="app_name" value="<?php echo $app_name; ?>" 
+                                 placeholder="Enter Your App Name" type="text" class="span6 " />
                               </div>
                            </div>
-                             <div class="control-group" style=" <?php if(!isset($_GET['id'])){echo "display:none;";} ?>">
-                              <label class="control-label">Order</label>
+                             <div class="control-group">
+                              <label class="control-label">About App</label>
                               <div class="controls">
-                                 <input name="order" value="<?php echo $order; ?>" placeholder="Enter Your Order" type="text" class="span6 " />
+                      <textarea required name="about_app" placeholder="Enter About Your App " rows="6" type="text" class="span6 "><?php echo $about_us; ?></textarea>
                               </div>
                            </div>
-   			<div class="form-actions clearfix">
+                            <div class="control-group">
+                            <label class="control-label">Logo</label>
+                            <div class="controls">
+                                <div class="fileupload fileupload-new" data-provides="fileupload">
+                                    <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+                                        <img src="<?php echo $logo_image; ?>" alt="" />
+                                    </div>
+                                    <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                                    <div>
+                               <span class="btn btn-file"><span class="fileupload-new">Select image</span>
+                               <span class="fileupload-exists">Change</span>
+                               <input type="file" name="logo" class="default" /></span>
+                                        <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+                                    </div>
+                                </div>
+                                    </div>
+                                </div>
+                        <div class="control-group">
+                            <label class="control-label">Cover</label>
+                            <div class="controls">
+                                <div class="fileupload fileupload-new" data-provides="fileupload">
+                                    <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+                                        <img src="<?php echo $cover_image; ?>" alt="" />
+                                    </div>
+                                    <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                                    <div>
+                               <span class="btn btn-file"><span class="fileupload-new">Select image</span>
+                               <span class="fileupload-exists">Change</span>
+                               <input type="file" name="cover" class="default" /></span>
+                                        <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+                                    </div>
+                                </div>
+								 </div>
+                                </div>
+    			<div class="form-actions clearfix">
 				<input type="submit"  class="btn btn-success " />
                    </div>
                               </form>
@@ -225,37 +235,6 @@ include 'headers/menu-top-navigation.php';
          App.init();
       });
    </script>
-   <script>
-function toggle() {
-	var ele = document.getElementById("ToggleText");
-	var text = document.getElementById("DisplayText");
-	if(ele.style.display == "block") {
- 		ele.style.display = "none";
-  	}
-	else {
-		ele.style.display = "block";
-	}
-} 
-</script>
-<script>
-function Toggle() {
-	var ele = document.getElementById("toggletext");
-	var text = document.getElementById("displaytext");
- 	if(ele.style.display == "block") {
- 		ele.style.display = "none";
- 
-  	}
-	else {
-		ele.style.display = "block";
-	}
-} 
-</script>
-
-
-   <!-- END JAVASCRIPTS -->   
 </body>
-<!-- END BODY -->
-
-<!-- Mirrored from thevectorlab.net/adminlab/form_component.html by HTTrack Website Copier/3.x [XR&CO'2013], Tue, 04 Nov 2014 07:58:52 GMT -->
 </html>
 

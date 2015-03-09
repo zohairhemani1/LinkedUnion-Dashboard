@@ -2,17 +2,14 @@
 include 'headers/connect_to_mysql.php';
 include 'headers/_user-details.php';
 
-	$categoryID = $_GET['categoryID'];
-	if(isset($_GET['news_id']))
-
- 
-	if(isset($_GET['news_id'])){
+	if($_GET['news_id']){
+		$categoryID = $_GET['categoryID'];
 		$news_id = $_GET['news_id'];
-		$formAction = "{$category_id}&&news_id=$news_id";
+		$formAction = "$categoryID&news_id=$news_id"; 
 	}
-	if(isset($_GET['categoryID'])){
-		$category_id = $_GET['categoryID'];
-		$formAction = $category_id;
+	else if($_GET['categoryID']){
+		$categoryID = $_GET['categoryID'];
+		$formAction = $categoryID;
 	}
 	
 	
@@ -27,17 +24,7 @@ include 'headers/_user-details.php';
 	$order = "";
 	$social = "";
 	
-	
-	
-if(isset($_GET['news_id']))
-{
-			$formAction = "$categoryID&news_id=$news_id";
-}
-else
-{
-		$formAction = $categoryID;			
-}
-	
+
 
 			
 if(isset($_GET['news_id']))
@@ -63,6 +50,7 @@ if(isset($_GET['news_id']))
 			else{
 			$social = "none";
 			}
+
 }
 if($_POST)
 {
@@ -125,10 +113,14 @@ else
 				 or die ('error');
 		$result = mysqli_query($con,$query)
 	or die('error1');
-			header ("Location:news.php?categoryID={$category_id}&&insert=true");
+		if($social = "on")
+		{
+			$required = "required";
+		}
+			header ("Location:news.php?categoryID=$categoryID&insert=true");
 	  }
-	
-	}
+
+}
 
 	?>
 	
@@ -188,15 +180,16 @@ include 'headers/menu-top-navigation.php';
                      Insert News
                      <small>Insert News page</small>
                   </h3>
-                   <ul class="breadcrumb">
-                        <li>
-                           <a href="index.php"><i class="icon-home"></i></a> <span class="divider">&nbsp;</span>
+                  <ul class="breadcrumb">
+                       <li>
+                           <a href="index.php"><i class="icon-home"></i></a><span class="divider">&nbsp;</span>
                        </li>
-                       <li><a href="news.php?category=<?php echo $category?>">Insert News</a><span class="divider-last">&nbsp;</span>
+                       <li>
+                           <a href="news.php?categoryID=<?php echo $categoryID ?>">News</a> <span class="divider">&nbsp;</span>
                        </li>
-                        <li><a href="#">Insert News</a><span class="divider-last">&nbsp;</span>
-                       </li>
-                       
+                       <li><a href="#">Insert News</a><span class="divider-last">&nbsp;</span></li>
+                   </ul>
+
                </div>
             </div>
             <!-- END PAGE HEADER-->
@@ -214,19 +207,28 @@ include 'headers/menu-top-navigation.php';
                      </div>
                      <div class="widget-body form">
                         <!-- BEGIN FORM-->
-                        <form action="insert_form.php?categoryID=<?php echo $formAction; ?>" method="post" class="form-horizontal">
+                        <form name="myform" action="insert_form.php?categoryID=<?php echo $formAction; ?>" method="post" class="form-horizontal">
                            <div class="control-group">
                               <label class="control-label">News</label>
                               <div class="controls">
-                                 <input name="title" value="<?php echo $title; ?>" type="text" class="span12 " />
-                                 
+                                 <input name="title" value="<?php echo $title; ?>" type="text" class="span12 " 
+                                 onKeyDown="limitText(this.form.title,this.form.countdown,200);" 
+                                 onKeyUp="limitText(this.from.title,this.form.countdown,200);"/>
+  								<div class="space3"></div>
+								<font size="2">Maximum Charachter</font>
+                              <input style="height:0px" readonly type="text" id="space" class="span1" name="countdown" value="200" size="1" />
                               </div>
                            </div>
                               <div class="control-group">
                               <label class="control-label">Description</label>
                               <div class="controls">
-                                 <textarea name="description" class="span12 wysihtml5" rows="6"><?php echo $description; ?></textarea>
-                              </div>
+                                 <textarea name="description" class="span12 s" rows="6" 
+                                 onKeyDown="limitText(this.form.description,this.form.countdown1,5000);" 
+                                 onKeyUp="limitText(this.from.description,this.form.countdown1,5000);"><?php echo $description; ?></textarea>
+  								<div class="space3"></div>
+								<font size="2">Maximum Charachter</font>
+                              <input readonly type="text" id="space" class="span1" name="countdown1" value="5000" size="1"  />
+                               </div>
                            </div>
                             <div  style=" <?php if(!isset($_GET['news_id']))
 						{echo "display:none;";} ?>" class="control-group">
@@ -249,7 +251,7 @@ include 'headers/menu-top-navigation.php';
                     </div>
                         <div class="controls">
                         
-                    <div id="toggletext" style=" display:<?php echo $social; ?>">
+                    <div id="toggletext" style="display:<?php echo $social; ?>">
                     <div class="row-fluid">
                              <div class="span8">
                             <div class="widget">
@@ -261,7 +263,7 @@ include 'headers/menu-top-navigation.php';
                       <label class="control-label">Facebook</label>
                               <div class="controls">
                           <div class="input-icon left"> <i class="icon-facebook"></i>
-                          <input name="facebook" placeholder="www.Facebook.com" type="text" 
+                          <input <?php echo $required; ?> name="facebook" placeholder="www.Facebook.com" type="text" 
                           class="span12" value="<?php echo $facebook; ?>" />
                       </div>
                       </div>
@@ -270,7 +272,7 @@ include 'headers/menu-top-navigation.php';
                       <label class="control-label">Twitter</label>
                               <div class="controls">
                           <div class="input-icon left"> <i class="icon-twitter"></i>
-                          <input name="twitter" placeholder="www.Twitter.com" type="text" 
+                          <input <?php echo $required; ?> name="twitter" placeholder="www.Twitter.com" type="text" 
                           class="span12" value="<?php echo $twitter; ?>" />
                       </div>
                       </div>
@@ -279,7 +281,7 @@ include 'headers/menu-top-navigation.php';
                       <label class="control-label">Pinterest</label>
                               <div class="controls">
                           <div class="input-icon left"> <i class="icon-pinterest"></i>
-                          <input name="pinterest" placeholder="www.Pinterest.com" type="text" 
+                          <input <?php echo $required; ?> name="pinterest" placeholder="www.Pinterest.com" type="text" 
                           class="span12" value="<?php echo $pinterest; ?>" />
                       </div>
                       </div>
@@ -289,7 +291,7 @@ include 'headers/menu-top-navigation.php';
                       <label class="control-label">Google</label>
                               <div class="controls">
                           <div class="input-icon left"> <i class="icon-google-plus"></i>
-                          <input name="google" placeholder="www.Google++.com" type="text" 
+                          <input <?php echo $required; ?> name="google" placeholder="www.Google++.com" type="text" 
                           class="span12" value="<?php echo $google; ?>" />
                       </div>
                       </div>
@@ -427,7 +429,15 @@ function Toggle() {
 	}
 } 
 </script>
-
+<script>
+function limitText(limitField, limitCount, limitNum) {
+	if (limitField.value.length > limitNum) {
+		limitField.value = limitField.value.substring(0, limitNum);
+	} else {
+		limitCount.value = limitNum - limitField.value.length;
+	}
+}
+</script>
 
    <!-- END JAVASCRIPTS -->   
 </body>

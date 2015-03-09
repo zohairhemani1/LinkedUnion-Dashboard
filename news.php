@@ -6,7 +6,7 @@ include 'headers/_user-details.php';
 $categoryID = $_GET['categoryID'];
 $url = "";
 $redirect="";
-$query = "SELECT w.name FROM `webservice_category` wc, `webservices` w WHERE wc.`category` like '{$categoryID}' AND wc.webservice = w.id";
+$query = "SELECT w.name FROM `webservice_category` wc, `webservices` w WHERE wc.`category` like '{$categoryID}' AND wc.webservice = w.id order by `order`";
 $result = mysqli_query($con,$query);
 $row = mysqli_fetch_array($result);
 $fileName = $row['name'];
