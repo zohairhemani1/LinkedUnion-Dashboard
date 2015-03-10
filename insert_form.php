@@ -5,11 +5,8 @@ include 'headers/_user-details.php';
 	if($_GET['news_id']){
 		$categoryID = $_GET['categoryID'];
 		$news_id = $_GET['news_id'];
-<<<<<<< HEAD
 		$formAction = "$categoryID&news_id=$news_id"; 
-=======
 		$formAction = "{$categoryID}&&news_id=$news_id";
->>>>>>> origin/master
 	}
 	else if($_GET['categoryID']){
 		$categoryID = $_GET['categoryID'];
@@ -226,13 +223,10 @@ include 'headers/menu-top-navigation.php';
                               <div class="control-group">
                               <label class="control-label">Description</label>
                               <div class="controls">
-                                 <textarea name="description" class="span12 s" rows="6" 
+                                 <textarea name="description" class="span12 wysihtml5" rows="6" 
                                  onKeyDown="limitText(this.form.description,this.form.countdown1,5000);" 
                                  onKeyUp="limitText(this.from.description,this.form.countdown1,5000);"><?php echo $description; ?></textarea>
-  								<div class="space3"></div>
-								<font size="2">Maximum Charachter</font>
-                              <input readonly type="text" id="space" class="span1" name="countdown1" value="5000" size="1"  />
-                               </div>
+  								
                            </div>
                             <div  style=" <?php if(!isset($_GET['news_id']))
 						{echo "display:none;";} ?>" class="control-group">
