@@ -48,14 +48,14 @@ include 'headers/menu-top-navigation.php';
                    <!-- END THEME CUSTOMIZER-->
                   <!-- BEGIN PAGE TITLE & BREADCRUMB-->     
                   <h3 class="page-title">
-                     Stay Conected  
+                     Stay Connected  
                      <small>View All Stay Conected</small>
                   </h3>
                    <ul class="breadcrumb">
                        <li>
                <a href="index.php"><i class="icon-home"></i></a> <span class="divider">&nbsp;</span>
                        </li>
-                       <li><a href="#">Stay Conected</a><span class="divider-last">&nbsp;</span>
+                       <li><a href="#">Stay Connected</a><span class="divider-last">&nbsp;</span>
                        </li>
                        
                    </ul>
@@ -94,7 +94,7 @@ include 'headers/menu-top-navigation.php';
                     <!-- BEGIN EXAMPLE TABLE widget-->
                     <div class="widget">
                         <div class="widget-title">
-                            <h4><i class="icon-reorder"></i>Stay Conected Table</h4>
+                            <h4><i class="icon-reorder"></i>Stay Connected Table</h4>
                             <span class="tools">
                                 <a href="javascript:;" class="icon-chevron-down"></a>
                             </span>
@@ -125,12 +125,8 @@ include 'headers/menu-top-navigation.php';
 
 				        <?php
 						
-<<<<<<< HEAD
-						$query_stay = "SELECT * FROM stayconected WHERE app_id = $appID ";
-=======
 						
 						$query_stay = "SELECT * FROM stayconected WHERE app_id = '$appID' ";
->>>>>>> origin/master
 						$result_stay = mysqli_query($con,$query_stay);
 						
 						while($row = mysqli_fetch_array($result_stay))

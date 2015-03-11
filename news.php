@@ -6,7 +6,7 @@ include 'headers/_user-details.php';
 $categoryID = $_GET['categoryID'];
 $url = "";
 $redirect="";
-$query = "SELECT w.name FROM `webservice_category` wc, `webservices` w WHERE wc.`category` like '{$categoryID}' AND wc.webservice = w.id order by `order`";
+$query = "SELECT w.name FROM `webservice_category` wc, `webservices` w WHERE wc.`category` like '{$categoryID}' AND wc.webservice = w.id";
 $result = mysqli_query($con,$query);
 $row = mysqli_fetch_array($result);
 $fileName = $row['name'];
@@ -48,7 +48,8 @@ if(isset($fileName))
 
    <script>
    if(<?php echo $redirect;?> == 1){
-				window.location.href = '<?php echo $url; ?>';
+			//alert('redirecting');
+			window.location.href = '<?php echo $url; ?>';
    }
 	</script>
    
