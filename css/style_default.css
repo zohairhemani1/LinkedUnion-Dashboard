@@ -1,6 +1,6 @@
 body {
     color: #868686;
-    background: #32C2CD url(../img/bg-default.jpg) !important;
+    background: #32C2CD url(../img/bg-grey.jpg) !important;
 }
 #main-content {
     box-shadow: 0 0 10px #757575;
@@ -25,8 +25,8 @@ ul.faq-list li a:hover, ul.faq-list li a.active{
 }
 
 #header.navbar-inverse .divider-vertical {
-    border-left-color: #2c2d2f;
-    border-right-color: #181a1b;
+    border-left-color: #;
+    border-right-color: #;
 }
 
 #sidebar > ul > li > a {
@@ -59,7 +59,7 @@ ul.faq-list li a:hover, ul.faq-list li a.active{
 }
 
 #sidebar > ul > li > ul.sub > li {
-    border-bottom: 1px solid #3393A2;
+    border-bottom: 1px solid #363646;
 }
 
 #sidebar > ul > li > ul.sub > li:last-child {

@@ -4,31 +4,29 @@ if(isset($_GET['id']))
 {
 		$id = $_GET['id'];
 		$formAction = "ANDid=$id";
-		$query = "SELECT * FROM webservice_category where id = $id ";
+		$query = "SELECT * FROM webserviceS where id = $id ";
 		$result = mysqli_query($con,$query);	
 		$row = mysqli_fetch_array($result)
 		or die ('error3');
-		$webservices = $row['webservices'];
-		$category = $row['category'];
+		$name = $row['name'];
 
 	if($_POST)
 	{
-		$id=  $_GET['category'];
-		$webservices = $_POST['webservices'];
+		$id=  $_GET['id'];
+		$name = $_POST['name'];
 		$category = $_POST['category'];
-		$query = "UPDATE webservice_category SET  webservices = '$webservices',category = '$category' WHERE id = '$id'";
+		$query = "UPDATE webservices SET  name = '$name' WHERE id = '$id'";
 		$result = mysqli_query($con,$query);
-		header("Location: category.php?update=true");
+		header("Location: webservices.php?update=true");
 	}
 }	
 else 
 {
 	if($_POST)
 	{
-		$webservices = $_POST['webservices'];
-		$category = $_POST['category'];
-		$query_inserting = "INSERT INTO webservice_category(webservices,category)
-		VALUES ('$webservices','$category')";
+		$name = $_POST['name'];
+		$query_inserting = "INSERT INTO webservices(name)
+		VALUES ('$name')";
 		mysqli_query($con,$query_inserting)
 		or die('error while inserting Webservices');
 		header("Location: webservices.php?insert=true");	
@@ -115,7 +113,7 @@ include 'headers/menu-top-navigation.php';
                   <!-- BEGIN SAMPLE FORM widget-->   
                   <div class="widget">
                      <div class="widget-title">
-                        <h4><i class="icon-reorder"></i>Insert Category</h4>
+                        <h4><i class="icon-reorder"></i>Insert Webservices</h4>
                         <span class="tools">
                            <a href="javascript:;" class="icon-chevron-down"></a>
                          </span>
@@ -124,20 +122,12 @@ include 'headers/menu-top-navigation.php';
                         <!-- BEGIN FORM-->
                         <form action="insert_webservice.php<?php echo $formAction; ?>" method="post" class="form-horizontal">
                              <div class="control-group">
-                              <label class="control-label">Webservices</label>
+                              <label class="control-label">Name</label>
                               <div class="controls">
-                                 <input required name="webservices" value="<?php echo $webservices; ?>" 
+                                 <input required name="name" value="<?php echo $name; ?>" 
                                  placeholder="Enter Your Webservices" type="text" class="span6 " />
                               </div>
                            </div>
-                         <div class="control-group">
-                              <label class="control-label">Category </label>
-                              <div class="controls">
-                                 <input required name="category" value="<?php echo $category; ?>" 
-                                 placeholder="Enter Your Category Name" type="text" class="span6 " />
-                              </div>
-                          </div>
-
     			<div class="form-actions clearfix">
 				<input type="submit"  class="btn btn-success " />
                    </div>

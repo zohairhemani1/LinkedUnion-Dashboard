@@ -123,9 +123,8 @@ include 'headers/menu-top-navigation.php';
                                 <table class="table table-striped table-hover table-bordered" id="sample_editable_1">
                                     <thead>
                                     <tr>
-								 <th style="width:30px;">S No</th>
-                                    <th>Webservice</th>
-                                    <th>Category</th>
+								 <th style="width:25px;">S No</th>
+                                    <th>Name</th>
                                     <th>Action</th>
                                         <div class="widths">
                                         <th style="display:none">Edit</th>
@@ -138,19 +137,17 @@ include 'headers/menu-top-navigation.php';
 
 				
 					<?php
-					$query_app = "SELECT * FROM webservice_category limit 50";
+					$query_app = "SELECT * FROM webservices limit 50";
 					$result_app = mysqli_query($con,$query_app);
 					
 					while($row = mysqli_fetch_array($result_app))
 					{
-						$category = $row['category'];
-						$webservice = $row['webservice'];							
+						$name = $row['name'];
 						$id = $row['id'];
 					echo"
 					<tr class=''> 
 								  <td style='width:3%'><a href='#'>{$id}</a></td>
-								<td style='width:35%'><a href='#'>{$webservice}</a></td>
-								<td style='width:3%'><a href='#'>{$category}</a></td>
+								<td style='width:35%'><a href='#'>{$name}</a></td>
 								  <td width='10%' ><a href='insert_webservice.php?id={$id}' 
 								  id='update_button' class='btn btn-success'> <i class='icon-edit'></i> Update</a>																					 							 	 
 								  <a href='delete_webservice.php?id={$id}' id='delete_button'  class='btn btn-danger'>

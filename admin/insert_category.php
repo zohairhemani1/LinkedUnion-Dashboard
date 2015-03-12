@@ -130,16 +130,8 @@ include 'headers/menu-top-navigation.php';
                              <div class="control-group">
                               <label class="control-label">App Id</label>
                               <div class="controls">
-                                 <select class="span6" name="app_id" data-placeholder="Choose a Category" tabindex="1">
-                                    <?php $query_select = "SELECT * FROM app";
-									$result_select = mysqli_query($con,$query_select)
-									or die ('error'); 
-									while($row = mysqli_fetch_array($result_select)){
-										$app_id = $row['app_id'];
-                                    echo"
-                                    <option value=''>{$app_id}</option>
- 										";                                
-									}?>
+                                 <select class="span6 chosen" name="app_id" data-placeholder="Choose a Category" tabindex="1">
+									<?php echo include 'headers/app_detail.php'; ?>
                                  </select>
                               </div>
                            </div>
@@ -157,7 +149,8 @@ include 'headers/menu-top-navigation.php';
                                  placeholder="Enter Your Category Sub category" type="text" class="span6 " />
                               </div>
                           </div>
-                           <span id="responce"></span>
+
+                      <span id="responce"></span>
     			<div class="form-actions clearfix">
 				<input type="submit"  class="btn btn-success " />
                    </div>
