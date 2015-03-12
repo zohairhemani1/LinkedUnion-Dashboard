@@ -60,14 +60,14 @@ include 'headers/menu-top-navigation.php';
                    <!-- END THEME CUSTOMIZER-->
                   <!-- BEGIN PAGE TITLE & BREADCRUMB-->     
                   <h3 class="page-title">
-                     Webservice
+                     Notification
                      <small>view All </small>
                   </h3>
                    <ul class="breadcrumb">
                         <li>
                            <a href="index.php"><i class="icon-home"></i></a> <span class="divider">&nbsp;</span>
                        </li>
-                       <li><a href="#">Webservices</a><span class="divider-last">&nbsp;</span>
+                       <li><a href="#">Notification</a><span class="divider-last">&nbsp;</span>
                        </li>
                        
                        </ul>
@@ -83,21 +83,21 @@ include 'headers/menu-top-navigation.php';
 				echo"
 			<div class='alert alert-success'>
 					<button class='close' data-dismiss='alert'>×</button>
-					<strong>Success!</strong> The Webservices has been added.
+					<strong>Success!</strong> The Notification has been added.
 				</div>";
 			}
 	 	else if(isset($_GET['update']) == 'true'){
       echo"
 	    <div class='alert alert-success'>
                 <button class='close' data-dismiss='alert'>×</button>
-                <strong>Success!</strong> The Webservices has been updated.
+                <strong>Success!</strong> The Notification has been updated.
             </div>";
 		}
 		else if(isset($_GET['delete']) == 'true'){
       echo"
 	    <div class='alert alert-success'>
                 <button class='close' data-dismiss='alert'>×</button>
-                <strong>Success!</strong> The Webservices has been Deleted.
+                <strong>Success!</strong> The Notification has been Deleted.
             </div>";
 		}
 ?>
@@ -107,14 +107,14 @@ include 'headers/menu-top-navigation.php';
                     <div class="widget">
                         <div class="widget-title">
 
-                            <h4><i class="icon-tags"></i>Webservices</h4>
+                            <h4><i class="icon-tags"></i>Notification</h4>
                             <span class="tools">
                                 <a href="javascript:;" class="icon-chevron-down"></a>
                             </span>
                         </div>
 <div class="widget-body">
 			<div class="btn-group">
-               <a href="insert_webservice.php"><button type="button" class="btn btn-primary"> Add New <i class="icon-plus"></i> </button></a>
+               <a href="insert_notification.php"><button type="button" class="btn btn-primary"> Add New <i class="icon-plus"></i> </button></a>
                               </div>
 
                             <div class="portlet-body">
@@ -124,8 +124,9 @@ include 'headers/menu-top-navigation.php';
                                     <thead>
                                     <tr>
 								 <th style="width:25px;">S No</th>
-                                    <th>Name</th>
-                                    <th>Action</th>
+                                    <th>Platform</th>
+                                    <th>App Name</th>
+                                     <th>Action</th>
                                         <div class="widths">
                                         <th style="display:none">Edit</th>
                                         <th style="display:none">Delete</th>
@@ -137,20 +138,22 @@ include 'headers/menu-top-navigation.php';
 
 				
 					<?php
-					$query_app = "SELECT * FROM webservices limit 50";
+					$query_app = "SELECT * FROM webservice_category limit 50";
 					$result_app = mysqli_query($con,$query_app);
 					
 					while($row = mysqli_fetch_array($result_app))
 					{
-						$name = $row['name'];
 						$id = $row['id'];
+						$platform = $row['platform'];
+						$app_name = $row['app_name'];
 					echo"
 					<tr class=''> 
 								  <td style='width:3%'><a href='#'>{$id}</a></td>
-								<td style='width:35%'><a href='#'>{$name}</a></td>
-								  <td width='10%' ><a href='insert_webservice.php?id={$id}' 
+								<td style='width:35%'><a href='#'>{$platform}</a></td>
+								<td style='width:35%'><a href='#'>{$app_name}</a></td>
+								  <td style='width:17%'><a href='insert_notification.php?id={$id}' 
 								  id='update_button' class='btn btn-success'> <i class='icon-edit'></i> Update</a>																					 							 	 
-								  <a href='delete_webservice.php?id={$id}' id='delete_button'  class='btn btn-danger'>
+								  <a href='delete_notification.php?id={$id}' id='delete_button'  class='btn btn-danger'>
 								  <i class='icon-trash'></i> Delete</a>
 									  <td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
 								 <td style='display:none'><a class='' href='javascript:;'>Delete</a></td>

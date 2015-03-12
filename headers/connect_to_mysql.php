@@ -1,8 +1,8 @@
 <?php
 
 $db_host = "localhost"; 
-$db_username = "ufcwFive";  
-$db_pass = "Hemani786!";
+$db_username = "root";  
+$db_pass = "";
 $db_name = "ufcwFive"; 
 
 // Run the connection here  

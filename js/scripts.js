@@ -2214,7 +2214,7 @@ var App = function () {
             handleSidebarToggler();
 
             if (isMainPage) { // this is for demo purpose. you may remove handleIntro function for your project
-//                handleIntro();
+                handleIntro();
             }
         },
 
@@ -2307,8 +2307,7 @@ try{
         var mins = ( value - hours*60 );
         return (hours < 10 ? "0"+hours : hours) + ":" + ( mins == 0 ? "00" : mins );
     }});
-}
-    catch (e){
+} catch (e){
     errorMessage(e);
 }
 

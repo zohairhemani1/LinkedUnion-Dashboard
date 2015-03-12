@@ -4,32 +4,34 @@ if(isset($_GET['id']))
 {
 		$id = $_GET['id'];
 		$formAction = "?ANDid=$id";
-		$query = "SELECT * FROM webservices where id = $id ";
+		$query = "SELECT * FROM webservice_category where id = $id ";
 		$result = mysqli_query($con,$query);	
 		$row = mysqli_fetch_array($result)
 		or die ('error3');
-		$name = $row['name'];
+		$webservice = $row['webservice'];
+		$category = $row['category'];
+		
 
 	if($_POST)
 	{
 		$id=  $_GET['id'];
-		$name = $_POST['name'];
+		$webservice = $_POST['webservice'];
 		$category = $_POST['category'];
-		$query = "UPDATE webservices SET  name = '$name' WHERE id = '$id'";
+		$query = "UPDATE webservice_category SET  webservice = '$webservice', category = '$category' WHERE id = '$id'";
 		$result = mysqli_query($con,$query);
-		header("Location: webservices.php?update=true");
+		header("Location: webservice_category.php?update=true");
 	}
 }	
 else 
 {
 	if($_POST)
 	{
-		$name = $_POST['name'];
-		$query_inserting = "INSERT INTO webservices(name)
-		VALUES ('$name')";
+		$webservice = $_POST['webservice'];
+		$query_inserting = "INSERT INTO webservice_category(webservice,category)
+		VALUES ('$webservice','$category')";
 		mysqli_query($con,$query_inserting)
 		or die('error while inserting Webservices');
-		header("Location: webservices.php?insert=true");	
+		header("Location: webservice_category.php?insert=true");	
 	}	
 }
 
@@ -68,7 +70,7 @@ else
 	<link rel="stylesheet" href="../assets/data-tables/DT_bootstrap.css" />
    <link rel="stylesheet" type="text/css" href="../assets/chosen-bootstrap/chosen/chosen.css" />
 
-<title>Avialdo -Dashboard </title>
+<title>LinkedUnion -Dashboard </title>
 
 </head>
 
@@ -91,17 +93,17 @@ include 'headers/menu-top-navigation.php';
 
                    <!-- END THEME CUSTOMIZER-->
                   <h3 class="page-title">
-                     Webservices
-                     <small>Adjust your Webservices</small>
+                     Parent Child
+                     <small>Adjust your Parent Child</small>
                   </h3>
                   <ul class="breadcrumb">
                        <li>
                            <a href="app.php"><i class="icon-home"></i></a><span class="divider">&nbsp;</span>
                        </li>
                        <li>
-                           <a href="webservices.php">Webservices</a> <span class="divider">&nbsp;</span>
+                           <a href="webservices.php">Parent Child</a> <span class="divider">&nbsp;</span>
                        </li>
-                       <li><a href="#">Insert Webservices</a><span class="divider-last">&nbsp;</span></li>
+                       <li><a href="#">Insert Parent Child</a><span class="divider-last">&nbsp;</span></li>
                    </ul>
 
                </div>
@@ -113,7 +115,7 @@ include 'headers/menu-top-navigation.php';
                   <!-- BEGIN SAMPLE FORM widget-->   
                   <div class="widget">
                      <div class="widget-title">
-                        <h4><i class="icon-reorder"></i>Insert Webservices</h4>
+                        <h4><i class="icon-reorder"></i>Insert Webservice Category</h4>
                         <span class="tools">
                            <a href="javascript:;" class="icon-chevron-down"></a>
                          </span>
@@ -121,11 +123,20 @@ include 'headers/menu-top-navigation.php';
                      <div class="widget-body form">
                         <!-- BEGIN FORM-->
                         <form action="insert_webservice.php<?php echo $formAction; ?>" method="post" class="form-horizontal">
-                             <div class="control-group">
-                              <label class="control-label">Name</label>
+                           <div class="control-group">
+                              <label class="control-label">Parent</label>
                               <div class="controls">
-                                 <input required name="name" value="<?php echo $name; ?>" 
-                                 placeholder="Enter Your Webservices" type="text" class="span6 " />
+                                 <select class="span6 chosen" name="Parent" data-placeholder="Choose your parent" tabindex="1">
+									<?php echo include 'headers/app_detail.php'; ?>
+                                 </select>
+                              </div>
+                           </div>
+                            <div class="control-group">
+                              <label class="control-label">Child</label>
+                              <div class="controls">
+                                 <select class="span6 chosen" name="child" data-placeholder="Choose your Child" tabindex="1">
+									<?php echo include 'headers/app_detail.php'; ?>
+                                 </select>
                               </div>
                            </div>
     			<div class="form-actions clearfix">

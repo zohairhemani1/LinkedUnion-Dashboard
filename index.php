@@ -99,7 +99,7 @@ include 'headers/menu-top-navigation.php';
 						<hr>
                         <h2>Latest news</h2>
                       <?php 
-					$query_select = "SELECT SUBSTRING(`description`, 1, 44) as description,title,news_id FROM news ORDER BY `order` desc LIMIT 3"
+					$query_select = "SELECT SUBSTRING(`description`, 1, 44) as description,title,news_id FROM news where app_id = '$appID' ORDER BY `order` desc LIMIT 3"
 					or die('error while selecing value');
 					$result_select = mysqli_query($con,$query_select);
 					   while($row = mysqli_fetch_array($result_select))

@@ -3,7 +3,7 @@
 if(isset($_GET['id']))
 {
 		$id = $_GET['id'];
-		$formAction = "ANDid=$id";
+		$formAction = "?ANDid=$id";
 		$query = "SELECT * FROM categories where id = $id ";
 		$result = mysqli_query($con,$query);	
 		$row = mysqli_fetch_array($result)

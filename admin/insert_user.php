@@ -5,7 +5,7 @@
 if(isset($_GET['user_id']))
 {
 		$user_id = $_GET['user_id'];
-		$formAction = "ANDuser_id=$user_id";
+		$formAction = "?ANDuser_id=$user_id";
 		$query = "SELECT * FROM user where user_id = $user_id ";
 		$result = mysqli_query($con,$query);	
 		$row = mysqli_fetch_array($result)

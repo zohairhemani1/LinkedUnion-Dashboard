@@ -95,20 +95,15 @@ echo"
 
          <!-- BEGIN SIDEBAR MENU -->
           <ul class='sidebar-menu'>
-			  			        <li class='has-sub'>
-                  <a href='javascript:;' class=''>
-                      <span class='icon-box'><i class='icon-th'></i></span> Category
-                      <span class='arrow'></span>
-                  </a>
-                  <ul class='sub'>
-                      <li><a class='' href='insert_category.php'>Add Category</a></li>
-                      <li><a class='' href='category.php'>View Category</a></li>
-					  <li><a class='' href='category.php'>Web Services</a></li>
-                  		
-				  </ul>
-              </li>
-                <li><a class='' href='user.php'><span class='icon-box'><i class='icon-user'></i></span>User</a></li>
-       <!-- END SIDEBAR MENU -->
+	                  <li><a class='' href='app.php'><span class='icon-box'><i class='icon-user'></i></span>All App</a></li>
+                      <li><a class='' href='category.php'><span class='icon-box'><i class='icon-user'></i></span>Category</a></li>
+					  <li><a class='' href='webservices.php'><span class='icon-box'><i class='icon-user'></i></span>Webservices</a></li>
+					  <li><a data-placement='bottom' data-original-title='Webservices Category' class='tooltips' href='webservices_category.php'><span class='icon-box'><i class='icon-user'></i></span>Webservices Cate...</a></li>
+                      <li><a class='' href='user.php'><span class='icon-box'><i class='icon-user'></i></span>User</a></li>
+					  <li><a class='' href='parent.php'><span class='icon-box'><i class='icon-user'></i></span>Parent Child</a></li>
+    				  <li><a class='' href='notification.php'><span class='icon-box'><i class='icon-user'></i></span>Notification</a></li>	
+	</ul>
+	   <!-- END SIDEBAR MENU -->
       </div>
       <!-- END SIDEBAR -->";
 	  

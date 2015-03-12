@@ -7,7 +7,7 @@
 if(isset($_GET['app_id']))
 {
 		$app_id=  $_GET['app_id'];
-		$formAction = "&app_id=$app_id";
+		$formAction = "?&app_id=$app_id";
 		$query = "SELECT * FROM app where app_id = $app_id ";
 		$result = mysqli_query($con,$query);	
 		$row = mysqli_fetch_array($result)
