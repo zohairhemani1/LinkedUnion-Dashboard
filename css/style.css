@@ -246,12 +246,12 @@ a,a:focus, a:hover, a:active {
 
 /*logo*/
 #header .brand {
-    background:#333333;
-    margin-top: 0px !important;
-    opacity:0.6;
-    filter:alpha(opacity=60);
-    padding: 18px 35.5px;
-    width: 144px;
+	margin-top: 0px !important;
+	padding: 18px 35.5px;
+	width: 144px;
+	background: none repeat scroll 0% 0% rgb(0, 73, 144);
+	opacity: 0.9;
+	height: 24px;
 }
 
 /* header nav bar*/

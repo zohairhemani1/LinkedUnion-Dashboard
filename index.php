@@ -59,7 +59,7 @@ include 'headers/menu-top-navigation.php';
             <!-- END PAGE HEADER-->
             <!-- BEGIN PAGE CONTENT-->
             <div class="row-fluid">
-               <div class="span9">
+               <div class="span12">
                   <div class="widget">
                         <div class="widget-title">
                            <h4><i class="icon-edit"></i> ABOUT us</h4>
@@ -87,7 +87,7 @@ include 'headers/menu-top-navigation.php';
                         </div>
                   </div>
                </div>
-               <div class="span3">
+<!--               <div class="span3">
                    <div class="blog-side-bar">
                        <h2>categories</h2>
                        <ul class="unstyled">
@@ -99,7 +99,7 @@ include 'headers/menu-top-navigation.php';
 						<hr>
                         <h2>Latest news</h2>
                       <?php 
-					$query_select = "SELECT SUBSTRING(`description`, 1, 44) as description,title,news_id FROM news where app_id = '$appID' ORDER BY `order` desc LIMIT 3"
+	/*				$query_select = "SELECT SUBSTRING(`description`, 1, 44) as description,title,news_id FROM news where app_id = '$appID' ORDER BY `order` desc LIMIT 3"
 					or die('error while selecing value');
 					$result_select = mysqli_query($con,$query_select);
 					   while($row = mysqli_fetch_array($result_select))
@@ -126,7 +126,10 @@ include 'headers/menu-top-navigation.php';
 						   ?>
                            
 
-                   </div>
+                   </div>*/
+             ?>
+			   -->
+               </div>
                </div>
             </div>
             <!-- END PAGE CONTENT-->         
