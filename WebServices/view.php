@@ -19,6 +19,8 @@
 	$pinterest = "";
 	$title= "";
 	$description = "";
+	$news_id = "";
+	$app_id = "";
 	
 	$app_id = $_GET['appID'];
 	
@@ -27,6 +29,8 @@
 	
 	if(isset($_GET['category']))
 		$category = $_GET['category'];
+	
+	
 	
 	if(isset($category))
 	{
