@@ -106,9 +106,9 @@ include 'headers/menu-top-navigation.php';
                                     </div>
                                     
                                    
-                                        <p class="View_box">
+                                        <div class="View_box">
                                            <?php echo $description; ?>
-                                        </p>
+                                        </div>
                                         
                                  <!--end post comments-->
                                 </div>

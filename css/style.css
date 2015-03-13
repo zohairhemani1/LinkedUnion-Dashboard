@@ -251,7 +251,7 @@ a,a:focus, a:hover, a:active {
 	width: 144px;
 	background: none repeat scroll 0% 0% rgb(0, 73, 144);
 	opacity: 0.9;
-	height: 24px;
+	height: 23px;
 }
 
 /* header nav bar*/
@@ -3488,4 +3488,6 @@ ul.amounts li {
 .feedback .control-group  {
     margin-bottom: 15px;
 }
-
+#cke_42 {
+    display: none;
+}

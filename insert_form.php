@@ -223,15 +223,14 @@ include 'headers/menu-top-navigation.php';
                               <input style="height:0px" readonly type="text" id="space" class="span1" name="countdown" value="200" size="1" />
                               </div>
                            </div>
-                              <div class="control-group">
-                              <label class="control-label">Description</label>
-                              <div class="controls">
-                                 <textarea name="description" class="span12 wysihtml5" rows="6" 
-                                 onKeyDown="limitText(this.form.description,this.form.countdown1,5000);" 
-                                 onKeyUp="limitText(this.from.description,this.form.countdown1,5000);"><?php echo $description; ?></textarea>
-  								
-                           </div>
-                            <div  style=" <?php if(!isset($_GET['news_id']))
+                                <div class="control-group">
+                                    <label class="control-label">Description</label>
+                                    <div class="controls">
+                                        <textarea name="description" class="span12 ckeditor" name="editor1" rows="6"><?php echo $description; ?></textarea>
+                                    </div>
+                                </div>
+ 
+                            <div style=" <?php if(!isset($_GET['news_id']))
 						{echo "display:none;";} ?>" class="control-group">
                               <label class="control-label">Order</label>
                               <div class="controls">
@@ -353,8 +352,10 @@ include 'headers/menu-top-navigation.php';
 				<input type="submit"  class="btn btn-success " />
                    </div>
                               </form>
-                            <!-- END FORM-->
-                        </div>
+ 
+ 										</div>
+					 </div>                      
+                      </div>
                     </div>
                     <!-- END EXTRAS widget-->
                 </div>
@@ -398,6 +399,7 @@ include 'headers/menu-top-navigation.php';
    <script type="text/javascript" src="assets/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
    <script type="text/javascript" src="assets/bootstrap-inputmask/bootstrap-inputmask.min.js"></script>
    <script src="assets/fancybox/source/jquery.fancybox.pack.js"></script>
+   
    <script src="js/scripts.js"></script>
    <script>
       jQuery(document).ready(function() {       

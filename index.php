@@ -2,7 +2,8 @@
 	session_start();
 		include 'headers/connect_to_mysql.php';
 		include 'headers/_user-details.php';
-
+		include 'headers/session.php';
+	
 ?>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
