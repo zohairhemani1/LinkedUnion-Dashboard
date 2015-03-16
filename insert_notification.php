@@ -1,6 +1,33 @@
 <?php
-include 'headers/_user-details.php';
+
+
 include 'headers/connect_to_mysql.php';
+include 'headers/_user-details.php';
+
+if($_POST)
+{
+	$app_name = $_POST['app_id'];
+	$android = $_POST['android'];
+	$ios = $_POST['ios'];
+	$notificationMsg = $_POST['notification'];
+	$time = $_POST['time'];
+	$date = $_POST['date'];
+	
+	$query = "INSERT INTO pushMessage(pushMessage,timeStamp,authorAppID) VALUES ('$notificationMsg',now(),'$appID')";
+	$result = mysqli_query($con,$query);
+	
+	$query = "SELECT max(pushID) as maxPushID from `pushmessage`";
+	$result = mysqli_query($con,$query);
+	$row = mysqli_fetch_assoc($result);
+	$maxID = $row['maxPushID'];
+	
+	for($i=0; $i<count($app_name); $i++)
+	{
+		$query = "INSERT INTO pushbridge(pushID,appID) VALUES ('$maxID','$app_name[$i]')";
+		$result = mysqli_query($con,$query);
+	}
+	
+}
 
 ?>
 
@@ -89,13 +116,13 @@ include 'headers/menu-top-navigation.php';
                      </div>
                      <div class="widget-body form">
                         <!-- BEGIN FORM-->
-                        <form action="insert_webservice.php<?php echo $formAction; ?>" method="post" class="form-horizontal">
+                        <form action="insert_notification.php" method="post" class="form-horizontal">
                              <div class="control-group">
                               <label class="control-label">App Name</label>
                               <div class="controls">
-                                 <select data-placeholder="Select Your App" name="app_id" class="span6 chosen" multiple="multiple" tabindex="1">
+                                 <select data-placeholder="Select Your App" name="app_id[]" class="span6 chosen" multiple="multiple" tabindex="1">
                                     <option value=""></option>
-                                	<?php echo include 'headers/app_detail.php'; ?> 
+                                	<?php echo include 'headers/child-apps.php'; ?> 
                                       </select>
                                </div>
                              </div>
@@ -103,10 +130,10 @@ include 'headers/menu-top-navigation.php';
                               <label class="control-label">Platform</label>
                               <div class="controls">
                                  <label class="checkbox">
-                                 <input name="platform" type="checkbox" value="" /> Android
+                                 <input name="android" type="checkbox" value="android" /> Android
                                  </label>
                                  <label class="checkbox">
-                                 <input name="platform" type="checkbox" value="" /> Ios
+                                 <input name="ios" type="checkbox" value="ios" /> Ios
                                  </label>
                               </div>
                            </div>
@@ -120,7 +147,7 @@ include 'headers/menu-top-navigation.php';
                                     <label class="control-label">Time</label>
                                     <div class="controls">
                                         <div class="input-append bootstrap-timepicker-component">
-                                            <input class=" m-ctrl-small timepicker-default" type="text" />
+                                            <input class=" m-ctrl-small timepicker-default" type="text" name="time"/>
                                             <span class="add-on"><i class="icon-time"></i></span>
                                         </div>
                                     </div>
@@ -129,7 +156,7 @@ include 'headers/menu-top-navigation.php';
                         <label class="control-label">Date</label>
                         <div class="controls">
                             <div class="input-append date date-picker" data-date="12-02-2012" data-date-format="dd-mm-yyyy" data-date-viewmode="years">
-                                <input class=" m-ctrl-medium date-picker" size="16" type="text" value="12-02-2012" /><span class="add-on"><i class="icon-calendar"></i></span>
+                                <input class=" m-ctrl-medium date-picker" size="16" type="text" value="12-02-2012" name="date" /><span class="add-on"><i class="icon-calendar"></i></span>
                             </div>
                         </div>
                                 </div>
