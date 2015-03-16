@@ -3,7 +3,7 @@
 $db_host = "localhost"; 
 $db_username = "root";  
 $db_pass = "";
-$db_name = "ufcwFive"; 
+$db_name = "ufcwfive"; 
 
 // Run the connection here  
 

@@ -1,6 +1,5 @@
 <?php
 
-
 include 'headers/connect_to_mysql.php';
 include 'headers/_user-details.php';
 
@@ -13,7 +12,7 @@ if($_POST)
 	$time = $_POST['time'];
 	$date = $_POST['date'];
 	
-	$query = "INSERT INTO pushMessage(pushMessage,timeStamp,authorAppID) VALUES ('$notificationMsg',now(),'$appID')";
+	$query = "INSERT INTO pushmessage(pushMessage,timeStamp,authorAppID) VALUES ('$notificationMsg',now(),'$appID')";
 	$result = mysqli_query($con,$query);
 	
 	$query = "SELECT max(pushID) as maxPushID from `pushmessage`";
