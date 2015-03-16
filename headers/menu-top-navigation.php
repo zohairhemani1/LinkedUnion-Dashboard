@@ -79,8 +79,8 @@ echo "<!-- BEGIN HEADER -->
                                <b class='caret'></b>
                            </a>
                            <ul class='dropdown-menu'>
-                               <li><a href='invoice.php'><i class='icon-file'></i> Invoice</a></li>
-                               <li><a href='password.php'><i class='icon-asterisk'></i> Password</a></li>
+                               <li><a href='profile.php'><i class='icon-user'></i> Profile</a></li>
+                               <li><a href='#'><i class='icon-asterisk'></i> Setting</a></li>
                                <li class='divider'></li>
                                <li><a href='login.php?logout=true'><i class='icon-key'></i> Log Out</a></li>
                            </ul>
@@ -102,9 +102,13 @@ echo "<!-- BEGIN HEADER -->
 		 
 		
 		 
-		$query = "SELECT id,name,(select count(*) from `subcategories` sc where sc.menu_id = c.id) as count FROM `categories` c WHERE `app_id` = '{$appID}'";
+		$query = "SELECT id,SUBSTRING(`name`, 1, 14) as name,(select count(*) from `subcategories` sc where sc.menu_id = c.id) as count FROM `categories` c WHERE `app_id` = '{$appID}'";
 		$sth = $dbh->prepare($query);
 		$sth->execute();
+		if("SUBSTRING(`name`, 1, 14) as name " == true)
+		{
+			$hover =  "data-placement='bottom' data-original-title='Webservices Category'";	
+		}
 		echo "<div id='container' class='row-fluid'>
 				  <!-- BEGIN SIDEBAR -->
 				  <div id='sidebar' class='nav-collapse collapse'>
@@ -121,14 +125,14 @@ echo "<!-- BEGIN HEADER -->
 						
 						if(($row['count'])>0)
 						{
-							echo "<a class='' href='javascript:;'>
+							echo "<a {$hover}  class='' href='javascript:;'>
 							<span class='icon-box'><i class='icon-cogs'></i>
 							</span> {$category}
 							<span class='arrow'>";
 						}
 						else
 						{
-							echo "<a class='' href='news.php?categoryID={$id}'>
+							echo "<a {$hover}  class='' href='news.php?categoryID={$id}'>
 							<span class='icon-box'><i class='icon-cogs'></i>
 							</span> {$category}
 							<span class=''>

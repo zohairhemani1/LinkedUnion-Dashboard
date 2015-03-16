@@ -2,6 +2,7 @@
 include 'headers/connect_to_mysql.php';
 include 'headers/_user-details.php';
 
+
 	if($_GET['news_id']){
 		$categoryID = $_GET['categoryID'];
 		$news_id = $_GET['news_id'];
@@ -27,8 +28,8 @@ include 'headers/_user-details.php';
 	$notification= "";
 	$order = "";
 	$social = "";
-	
-
+	$url = "";
+	$redirect="";
 
 			
 if(isset($_GET['news_id']))
@@ -91,10 +92,12 @@ if($_POST)
 
 					}
 				}
-		  	
+		  			$url = "news.php?categoryID=$categoryID&update=true";
+					$redirect = 1;
 			
 		  
-			header ("Location:news.php?categoryID=$categoryID&update=true");
+			//header ("Location:news.php?categoryID=$categoryID&update=true");
+			
 			//header ("Location:news.php?category_id={$category_id}&&update=true");
 }
 else
@@ -121,6 +124,8 @@ else
 		{
 			$required = "required";
 		}
+			$url = "news.php?categoryID=$categoryID&insert=true";
+			$redirect = 1;
 			header ("Location:news.php?categoryID=$categoryID&insert=true");
 	  }
 
@@ -163,6 +168,13 @@ else
    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
    <link rel="stylesheet" type="text/css" href="css/main.css" />
    <link rel="stylesheet" type="text/css" href="css/custom.css"/>
+   <script>
+   if(<?php echo $redirect;?> == 1){
+			//alert('redirecting');
+			window.location.href = '<?php echo $url; ?>';
+   }
+	</script>
+   
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->

@@ -3491,3 +3491,6 @@ ul.amounts li {
 #cke_42 {
     display: none;
 }
+.sorting_disabled {
+    width: 32px !important;
+}

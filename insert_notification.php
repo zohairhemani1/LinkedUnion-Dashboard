@@ -1,39 +1,6 @@
 <?php
-	include '../headers/connect_to_mysql.php';
-if(isset($_GET['id']))
-{
-		$id = $_GET['id'];
-		$formAction = "?ANDid=$id";
-		$query = "SELECT * FROM notification where id = $id ";
-		$result = mysqli_query($con,$query);	
-		$row = mysqli_fetch_array($result)
-		or die ('error3');
-		$webservice = $row['webservice'];
-		$category = $row['category'];
-		
-
-	if($_POST)
-	{
-		$id=  $_GET['id'];
-		$webservice = $_POST['webservice'];
-		$category = $_POST['category'];
-		$query = "UPDATE notification SET  webservice = '$webservice', category = '$category' WHERE id = '$id'";
-		$result = mysqli_query($con,$query);
-		header("Location: webservice_category.php?update=true");
-	}
-}	
-else 
-{
-	if($_POST)
-	{
-		$webservice = $_POST['webservice'];
-		$query_inserting = "INSERT INTO webservice_category(webservice,category)
-		VALUES ('$webservice','$category')";
-		mysqli_query($con,$query_inserting)
-		or die('error while inserting Webservices');
-		header("Location: webservice_category.php?insert=true");	
-	}	
-}
+include 'headers/_user-details.php';
+include 'headers/connect_to_mysql.php';
 
 ?>
 
@@ -43,32 +10,32 @@ else
    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
    <meta content="" name="description" />
    <meta content="" name="author" />
-   	<link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-   	<link href="../assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
-   	<link href="../assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-   	<link href="../css/style.css" rel="assets" />
-   	<link href="../css/style_responsive.css" rel="stylesheet" />
-   	<link href="../css/style_default.css" rel="stylesheet" id="style_color" />
-   	<link href="../assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
-   	<link rel="stylesheet" type="text/css" href="../assets/uniform/css/uniform.default.css" />
-   	<link rel="stylesheet" type="text/css" href="../assets/jquery-ui/jquery-ui-1.10.1.custom.min.css"/>
-   	<link rel="stylesheet" type="text/css" href="../assets/bootstrap-wysihtml5/bootstrap-wysihtml5.css" />
-   	<link rel="stylesheet" type="text/css" href="../assets/jquery-tags-input/jquery.tagsinput.css" />    
-   	<link rel="stylesheet" href="../assets/bootstrap-toggle-buttons/static/stylesheets/bootstrap-toggle-buttons.css" />
-   	<link rel="stylesheet" type="text/css" href="../assets/gritter/css/jquery.gritter.css" />
-	<link rel="stylesheet" type="text/css" href="../assets/bootstrap-daterangepicker/daterangepicker.css" />
-	<link rel="stylesheet" type="text/css" href="../assets/bootstrap-datepicker/css/datepicker.css" />
-	<link rel="stylesheet" type="text/css" href="../assets/bootstrap-timepicker/compiled/timepicker.css" />
-	<link rel="stylesheet" type="text/css" href="../assets/bootstrap-colorpicker/css/colorpicker.css" />
-    <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-	<link href="../assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
-	<link href="../assets/bootstrap/css/bootstrap-fileupload.css" rel="stylesheet" />
-	<link href="../assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-	<link href="../css/style.css" rel="stylesheet" />
-	<link href="../css/style_responsive.css" rel="stylesheet" />
-	<link href="../css/style_default.css" rel="stylesheet" id="style_color" />
-	<link rel="stylesheet" href="../assets/data-tables/DT_bootstrap.css" />
-   <link rel="stylesheet" type="text/css" href="../assets/chosen-bootstrap/chosen/chosen.css" />
+   	<link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+   	<link href="assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
+   	<link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+   	<link href="css/style.css" rel="assets" />
+   	<link href="css/style_responsive.css" rel="stylesheet" />
+   	<link href="css/style_default.css" rel="stylesheet" id="style_color" />
+   	<link href="assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
+   	<link rel="stylesheet" type="text/css" href="assets/uniform/css/uniform.default.css" />
+   	<link rel="stylesheet" type="text/css" href="assets/jquery-ui/jquery-ui-1.10.1.custom.min.css"/>
+   	<link rel="stylesheet" type="text/css" href="assets/bootstrap-wysihtml5/bootstrap-wysihtml5.css" />
+   	<link rel="stylesheet" type="text/css" href="assets/jquery-tags-input/jquery.tagsinput.css" />    
+   	<link rel="stylesheet" href="assets/bootstrap-toggle-buttons/static/stylesheets/bootstrap-toggle-buttons.css" />
+   	<link rel="stylesheet" type="text/css" href="assets/gritter/css/jquery.gritter.css" />
+	<link rel="stylesheet" type="text/css" href="assets/bootstrap-daterangepicker/daterangepicker.css" />
+	<link rel="stylesheet" type="text/css" href="assets/bootstrap-datepicker/css/datepicker.css" />
+	<link rel="stylesheet" type="text/css" href="assets/bootstrap-timepicker/compiled/timepicker.css" />
+	<link rel="stylesheet" type="text/css" href="assets/bootstrap-colorpicker/css/colorpicker.css" />
+    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
+	<link href="assets/bootstrap/css/bootstrap-fileupload.css" rel="stylesheet" />
+	<link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+	<link href="css/style.css" rel="stylesheet" />
+	<link href="css/style_responsive.css" rel="stylesheet" />
+	<link href="css/style_default.css" rel="stylesheet" id="style_color" />
+	<link rel="stylesheet" href="assets/data-tables/DT_bootstrap.css" />
+   <link rel="stylesheet" type="text/css" href="assets/chosen-bootstrap/chosen/chosen.css" />
 
 <title>LinkedUnion -Dashboard </title>
 
@@ -143,7 +110,7 @@ include 'headers/menu-top-navigation.php';
                                  </label>
                               </div>
                            </div>
-                           <div class="control-group">
+                            <div class="control-group">
                               <label class="control-label">Notification</label>
                               <div class="controls">
                                  <textarea name="notification" placeholder="Write your Notification" class="span6 " rows="3"></textarea>
@@ -194,30 +161,30 @@ include 'headers/menu-top-navigation.php';
  
    <!-- BEGIN JAVASCRIPTS -->
    <!-- Load javascripts at bottom, this will reduce page load time -->
-   <script src="../js/jquery-1.8.3.min.js"></script>
-   <script src="../assets/jquery-ui/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
-<script src="../assets/bootstrap/js/bootstrap.min.js"></script>   
-   <script src="../js/jquery.blockui.js"></script>
+   <script src="js/jquery-1.8.3.min.js"></script>
+   <script src="assets/jquery-ui/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>   
+   <script src="js/jquery.blockui.js"></script>
    <!-- ie8 fixes -->
    <!--[if lt IE 9]>
    <script src="js/excanvas.js"></script>
    <script src="js/respond.js"></script>
    <![endif]-->   
-   <script type="text/javascript" src="../assets/uniform/jquery.uniform.min.js"></script>
-   <script type="text/javascript" src="../assets/data-tables/jquery.dataTables.js"></script>
-   <script type="text/javascript" src="../assets/data-tables/DT_bootstrap.js"></script>
-   <script type="text/javascript" src="../assets/chosen-bootstrap/chosen/chosen.jquery.min.js"></script>
-   <script type="text/javascript" src="../assets/jquery-tags-input/jquery.tagsinput.min.js"></script>
-   <script type="text/javascript" src="../assets/bootstrap-wysihtml5/wysihtml5-0.3.0.js"></script> 
-   <script type="text/javascript" src="../assets/bootstrap-wysihtml5/bootstrap-wysihtml5.js"></script>
-   <script type="text/javascript" src="../assets/bootstrap-toggle-buttons/static/js/jquery.toggle.buttons.js"></script>
-   <script type="text/javascript" src="../assets/bootstrap-datepicker/js/bootstrap-datepicker.js"></script> 
-	<script type="text/javascript" src="../assets/bootstrap-daterangepicker/date.js"></script> 
-    <script type="text/javascript" src="../assets/bootstrap-daterangepicker/daterangepicker.js"></script> 
-    <script type="text/javascript" src="../assets/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script> 
-    <script type="text/javascript" src="../assets/bootstrap-timepicker/js/bootstrap-timepicker.js"></script> 
-   <script src="../js/scripts.js"></script>
-      <script src="../js/table-editable.js"></script>
+   <script type="text/javascript" src="assets/uniform/jquery.uniform.min.js"></script>
+   <script type="text/javascript" src="assets/data-tables/jquery.dataTables.js"></script>
+   <script type="text/javascript" src="assets/data-tables/DT_bootstrap.js"></script>
+   <script type="text/javascript" src="assets/chosen-bootstrap/chosen/chosen.jquery.min.js"></script>
+   <script type="text/javascript" src="assets/jquery-tags-input/jquery.tagsinput.min.js"></script>
+   <script type="text/javascript" src="assets/bootstrap-wysihtml5/wysihtml5-0.3.0.js"></script> 
+   <script type="text/javascript" src="assets/bootstrap-wysihtml5/bootstrap-wysihtml5.js"></script>
+   <script type="text/javascript" src="assets/bootstrap-toggle-buttons/static/js/jquery.toggle.buttons.js"></script>
+   <script type="text/javascript" src="assets/bootstrap-datepicker/js/bootstrap-datepicker.js"></script> 
+	<script type="text/javascript" src="assets/bootstrap-daterangepicker/date.js"></script> 
+    <script type="text/javascript" src="assets/bootstrap-daterangepicker/daterangepicker.js"></script> 
+    <script type="text/javascript" src="assets/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script> 
+    <script type="text/javascript" src="assets/bootstrap-timepicker/js/bootstrap-timepicker.js"></script> 
+   <script src="js/scripts.js"></script>
+      <script src="js/table-editable.js"></script>
          <script>
       jQuery(document).ready(function() {       
          // initiate layout and plugins
