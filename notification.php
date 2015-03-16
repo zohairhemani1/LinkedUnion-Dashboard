@@ -1,6 +1,7 @@
 <?php
-include 'headers/_user-details.php';
+
 include 'headers/connect_to_mysql.php';
+include 'headers/_user-details.php';
 
 ?>
 
@@ -138,27 +139,49 @@ include 'headers/menu-top-navigation.php';
 
 				
 					<?php
-					$query_app = "SELECT * FROM notification limit 50";
-					$result_app = mysqli_query($con,$query_app);
+					$query = "select pm.*,pb.*,ap.* from `pushmessage` pm,`pushbridge`pb,`app` ap where pm.authorAppID = {$appID} and pm.pushID = pb.pushID AND pb.appID = ap.app_id order by pm.pushID";
+					$result = mysqli_query($con,$query);
+					$count=1;
+					$row = mysqli_fetch_array($result);
+					$tempID=$row['pushID'];
+					$tempStr = $row['app_name'];
+					$notification = $row['pushMessage'];
+					$timeStamp = $row['timeStamp'];
 					
-					while($row = mysqli_fetch_array($result_app))
-					{
-						$id = $row['id'];
-						$platform = $row['platform'];
-						$app_name = $row['app_name'];
-						$notification = $row['notification'];
-						$timr = $row['timr'];
-					echo"
-					<tr class=''> 
-								  <td id='table_width' style='width:30%'>{$id}</a></td>
-								<td style='width:35%'>{notification}</a></td>
-								<td style='width:35%'>{$app_name}</a></td>
-								<td style='width:35%'>{$platform}</a></td>
-								<td style='width:17%'>Time</a>
-									  <td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
-								 <td style='display:none'><a class='' href='javascript:;'>Delete</a></td>
-								  </tr>";
-					}
+					while($row = mysqli_fetch_array($result))
+					{	
+						$count++;
+						if($tempID==$row['pushID']){
+							
+						$tempStr=$tempStr.",".$row['app_name'];
+						$notification = $row['pushMessage'];
+						$timeStamp = $row['timeStamp'];
+							
+						}
+						
+						if($tempID!=$row['pushID'] || $count==mysqli_num_rows($result)){
+							
+							echo"
+								<tr class=''> 
+											<td id='table_width' style='width:10%'>{$tempID}</a></td>
+											<td style='width:25%'>{$notification}</a></td>
+											<td style='width:25%'>{$tempStr}</a></td>
+											<td style='width:25%'>iOS/Android</a></td>
+											<td style='width:24%'>{$timeStamp}</a>
+											<td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
+											<td style='display:none'><a class='' href='javascript:;'>Delete</a></td>
+											  </tr>";
+							
+							$tempStr=$row['app_name'];
+							$tempID= $row['pushID'];
+							$notification = $row['pushMessage'];
+							$timeStamp = $row['timeStamp'];
+							
+						}
+
+						
+					}	
+
 					?>	
                                     </tbody>
                                 </table>

@@ -3,11 +3,10 @@
 	include 'headers/checkloginstatus.php'; 
 	include 'headers/_user-details.php';
 
-/*$query = "SELECT id,name FROM `categories` WHERE `app_id` = '{$appID}'";
-$sth = $dbh->prepare("SELECT name, colour FROM fruit");
-$sth->execute();
-*/
-
+$query = "select (SELECT `pushCount` from app where app_id = '{$appID}') - (select count(*) from `pushmessage` pm where pm.authorAppID = '{$appID}') as pushRemaining";
+$result = mysqli_query($con,$query);
+$row = mysqli_fetch_assoc($result);
+$pushRemaining = $row['pushRemaining'];
 
 
 echo "<!-- BEGIN HEADER -->
@@ -41,20 +40,28 @@ echo "<!-- BEGIN HEADER -->
                            </a>
                            <ul class='dropdown-menu extended notification'>
                                <li>
-                                   <p>You have 1 new notifications</p>
-                               </li>
-                               <li>
-                                   <a href='#'>
-                                       <span class='label label-important'><i class='icon-bolt'></i></span>
-                                       Welcome To {$username_allcaps} Portal              
-                                   </a>
-                               </li>
+                                   <p>You have {$pushRemaining} notifications remaining.</p>
+                               </li>";
+		
+		$query = "select * from `pushmessage` pm where pm.authorAppID = {$appID}";
+		$result = mysqli_query($con,$query);
+		while($row = mysqli_fetch_assoc($result))
+		{
+			echo"<li>
+			   <a href='#'>
+				   <span class='label label-important'><i class='icon-bolt'></i></span>
+				   {$row['pushMessage']}
+			   </a>
+             </li>";
+		}
+		
                                
-                               <li>
-                                   <a href='notification'>See all notifications</a>
-                               </li>
-                           </ul>
-                       </li>
+                               
+           echo "<li>
+						   <a href='notification.php'>See all notifications</a>
+					   </li>
+				   </ul>
+                  </li>
                        <!-- END NOTIFICATION DROPDOWN -->
 
                    </ul>
