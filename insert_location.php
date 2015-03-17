@@ -9,20 +9,20 @@
 	$formAction = "";
 	
 	if(isset($_GET['office_id']))
-{
-		$office_id = $_GET['office_id'];
-		$formAction = "?office_id=$office_id";
-		$select_location = "SELECT * FROM location where office_id = $office_id";
-		$fetch_result = mysqli_query($con,$select_location);
-		$row = mysqli_fetch_array($fetch_result)
-		or die('error');
-		$office_title = $row['office_title'];
-		$address = $row['address'];
-		$file = $row['file'];
-		$phone_no = $row['phone_no'];
-		$website = $row['website'];
-		$order = $row['order'];
-}
+	{
+			$office_id = $_GET['office_id'];
+			$formAction = "?office_id=$office_id";
+			$select_location = "SELECT * FROM location where office_id = $office_id";
+			$fetch_result = mysqli_query($con,$select_location);
+			$row = mysqli_fetch_array($fetch_result)
+			or die('error');
+			$office_title = $row['office_title'];
+			$address = $row['address'];
+			$file = $row['file'];
+			$phone_no = $row['phone_no'];
+			$website = $row['website'];
+			$order = $row['order'];
+	}
 if($_POST)
 {
 	if(isset($_GET['office_id']))

@@ -143,9 +143,9 @@ include 'headers/menu-top-navigation.php';
 							<td>${website}</td>
 	               
 					<td style='width:19%;'><a href='insert_location.php?office_id=$office_id' id='update_button' class='btn btn-success' >
-                    <i class='icon-trash'></i> Update</a>
+                    <i class='icon-trash'></i> </a>
 					<a href='delete.php?categoryID=$categoryID&office_id=$office_id' id='delete_button'  class='btn btn-danger'>
-                    <i class='icon-edit'></i> Delete</a>
+                    <i class='icon-edit'></i></a>
 					<td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
 					<td style='display:none'><a class='' href='javascript:;'>Delete</a></td>
 				</tr>";
