@@ -11,7 +11,10 @@ if($_POST)
 	$notificationMsg = $_POST['notification'];
 	$time = $_POST['time'];
 	$date = $_POST['date'];
+	$parseArray = $_POST['parseArray'];
 	
+	$parseArray = unserialize($parseArray);
+	//var_dump($parseArray);
 	$query = "INSERT INTO pushmessage(pushMessage,timeStamp,authorAppID) VALUES ('$notificationMsg',now(),'$appID')";
 	$result = mysqli_query($con,$query);
 	
@@ -19,12 +22,17 @@ if($_POST)
 	$result = mysqli_query($con,$query);
 	$row = mysqli_fetch_assoc($result);
 	$maxID = $row['maxPushID'];
-	
+	$i=0;
 	for($i=0; $i<count($app_name); $i++)
 	{
 		$query = "INSERT INTO pushbridge(pushID,appID) VALUES ('$maxID','$app_name[$i]')";
 		$result = mysqli_query($con,$query);
+		
+		include 'parse.php';
+		
 	}
+	
+	
 	
 }
 
