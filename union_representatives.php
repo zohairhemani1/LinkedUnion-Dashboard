@@ -157,7 +157,7 @@ include 'headers/menu-top-navigation.php';
                     <td>{$email}</td>
 					<td style='width:19%;'><a href='insert_contact.php?contact_id=$contact_id' id='update_button' class='btn btn-success' >
                     <i class='icon-trash'></i> Update</a>
-					<a href='delete_contact.php?contact_id=$contact_id' id='delete_button'  class='btn btn-danger'>
+					<a href='delete.php?categoryID=$categoryID&contact_id=$contact_id' id='delete_button'  class='btn btn-danger'>
                     <i class='icon-edit'></i> Delete</a>
 					<td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
 					<td style='display:none'><a class='' href='javascript:;'>Delete</a></td>

@@ -74,24 +74,9 @@ if($_POST)
 			$order = $_POST['order'];
 			$query_update = "UPDATE news SET time_cone = now(), title = '$title',file = '$file', description = '$description',
 			facebook = '$facebook', twitter = '$twitter', google = '$google', pinterest = '$pinterest', social = '$social',
-			 `order` = '$order' WHERE news_id = '$news_id'";
+			  WHERE news_id = '$news_id'";
 			$result_update = mysqli_query($con,$query_update)
 			or die('update error');		
-				$order_select = "SELECT `order`,`news_id` from news WHERE app_id = '$appID' and category = '$categoryID' ";
-			$result_Select = mysqli_query($con,$order_select)
-				or die('error');	
-			while($row = mysqli_fetch_array($result_Select))
-				{
-				$order_other = $row['order'];
-				$news_id_all = $row['news_id'];
-				if($order == $order_other && $news_id != $news_id_all )
-					{
-					$order_update = "UPDATE `news` SET `order` = '$order_other'  WHERE `news_id` = '$news_id_all' "
-					or die ('error');
-					$order_result = mysqli_query($con,$order_update);
-
-					}
-				}
 		  			$url = "news.php?categoryID=$categoryID&update=true";
 					$redirect = 1;
 			
@@ -113,10 +98,8 @@ else
 		$notification = $_POST['notification'];
 		$pinterest = $_POST['pinterest'];
 		$social = $_POST['social'];
-		$order = $_POST['order'];
-		$query = "INSERT INTO news(title,description,file,time_cone,category,app_id,facebook,twitter,google,pinterest,social,`order`)
-				  VALUES ('$title','$description','$file',now(),'$categoryID','$appID','$facebook','$twitter','$google','$pinterest','$social',
-			     (SELECT max(n.order)+1 FROM news n WHERE n.category = '$categoryID' AND n.app_id= '$appID' GROUP BY n.category, n.app_id))"
+		$query = "INSERT INTO news(title,description,file,time_cone,category,app_id,facebook,twitter,google,pinterest,social)
+				  VALUES ('$title','$description','$file',now(),'$categoryID','$appID','$facebook','$twitter','$google','$pinterest','$social')"
 				 or die ('error');
 		$result = mysqli_query($con,$query)
 	or die('error1');
@@ -241,14 +224,6 @@ include 'headers/menu-top-navigation.php';
                                         <textarea name="description" class="span12 ckeditor" name="editor1" rows="6"><?php echo $description; ?></textarea>
                                     </div>
                                 </div>
- 
-                            <div style=" <?php if(!isset($_GET['news_id']))
-						{echo "display:none;";} ?>" class="control-group">
-                              <label class="control-label">Order</label>
-                              <div class="controls">
-                                 <input name="order" class="span12" value="<?php echo $order; ?>" />
-                              </div>
-                           </div>
                               <div class="control-group">
                                   <label class="control-label">Social</label>
                                   <div class="controls">

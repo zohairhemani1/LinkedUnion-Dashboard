@@ -89,18 +89,18 @@ ul.faq-list li a:hover, ul.faq-list li a.active{
 /* Landscape phone to portrait tablet */
 @media (max-width:979px) {
     #sidebar {
-        background-color: #29a3ac !important;
+     /*background-color: #29a3ac !important;*/
         -webkit-border-radius: 4px !important;
         -moz-border-radius: 4px !important;
         border-radius: 4px !important;
     }
 
     #sidebar > ul > li > a {
-        border-bottom: 1px solid #30c1cb !important;
+        /*border-bottom: 1px none #30c1cb !important;*/
     }
 
     #sidebar > ul > li.active > a, #sidebar > ul > li:hover > a, #sidebar > ul > li > a:hover {
-        border-bottom: 1px solid #30c1cb !important;
+       /* border-bottom: 1px solid #30c1cb !important;*/
     }
 }
 

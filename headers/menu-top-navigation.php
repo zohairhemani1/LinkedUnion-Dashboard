@@ -109,7 +109,7 @@ echo "<!-- BEGIN HEADER -->
 		 
 		
 		 
-		$query = "SELECT id,SUBSTRING(`name`, 1, 14) as name,(select count(*) from `subcategories` sc where sc.menu_id = c.id) as count FROM `categories` c WHERE `app_id` = '{$appID}'";
+		$query = "SELECT id,name,(select count(*) from `subcategories` sc where sc.menu_id = c.id) as count FROM `categories` c WHERE `app_id` = '{$appID}'";
 		$sth = $dbh->prepare($query);
 		$sth->execute();
 		if("SUBSTRING(`name`, 1, 14) as name " == true)
