@@ -35,6 +35,13 @@
    <link rel="stylesheet" type="text/css" href="assets/bootstrap-daterangepicker/daterangepicker.css" />
    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
    <link rel="stylesheet" type="text/css" href="css/main.css" />
+
+   <script>
+   if(<?php echo $redirect;?> == 1){
+			//alert('redirecting');
+			window.location.href = '<?php echo $url; ?>';
+   }
+	</script>
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->

@@ -12,6 +12,8 @@
 	$time_cone = "";
 	$formAction = "";
 	$order = "";
+	$url = "";
+	$redirect = "";
 	if(isset($_GET['contact_id']))
 	{
 			$conatct_id = $_GET['contact_id'];
@@ -46,7 +48,10 @@ if($_POST)
 		phone_no2 = '$phone_no2', fax_no = '$fax_no', email = '$email', time_cone = now(), `order` = $order where contact_id = '$conatct_id' "
 		or die ('error while Updating contact');
 		$contact_update = mysqli_query($con,$update_contact);
-		header ('Location:union_representatives.php?update=true'); 
+		$url = "union_representatives.php?update=true";
+		$redirect = 1;
+
+		//header ('Location:union_representatives.php?update=true'); 
 		}
 	else
 	  {
@@ -63,7 +68,9 @@ if($_POST)
 		(SELECT max(c.order)+1 FROM contact c WHERE c.app_id= '$appID' GROUP BY c.app_id)) "
 		or die('error while inserting Contact');
 		$result = mysqli_query($con,$insert_contatct);
-		header ('Location:union_representatives.php?insert=true');
+		$url = "union_representatives.php?insert=true";
+		$redirect = 1;
+		//header ('Location:union_representatives.php?insert=true');
 	 }
 	
 }
@@ -102,6 +109,13 @@ if($_POST)
    <link rel="stylesheet" type="text/css" href="assets/bootstrap-daterangepicker/daterangepicker.css" />
    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
    <link rel="stylesheet" type="text/css" href="css/main.css" />
+
+   <script>
+   if(<?php echo $redirect;?> == 1){
+			//alert('redirecting');
+			window.location.href = '<?php echo $url; ?>';
+   }
+	</script>
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->

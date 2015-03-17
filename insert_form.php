@@ -126,7 +126,7 @@ else
 		}
 			$url = "news.php?categoryID=$categoryID&insert=true";
 			$redirect = 1;
-			header ("Location:news.php?categoryID=$categoryID&insert=true");
+			//header ("Location:news.php?categoryID=$categoryID&insert=true");
 	  }
 
 }

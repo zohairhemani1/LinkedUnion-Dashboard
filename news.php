@@ -52,8 +52,7 @@ if(isset($fileName))
 			window.location.href = '<?php echo $url; ?>';
    }
 	</script>
-   
-</head>
+ </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
 <body class="fixed-top">

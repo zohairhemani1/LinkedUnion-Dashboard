@@ -35,7 +35,7 @@
     content: "ON";
     padding-left: 10px;
 	background: -moz-linear-gradient(center bottom , #08C, #05C) repeat scroll 0% 0% #08C;
-    background: -webkit-linear-gradien(center bottom , #08C, #05C) repeat scroll 0% 0% #08C;
+	background: -webkit-linear-gradient(bottom ,#08c 0% ,#08c 70%, #05c); 
 	}
     .onoffswitch-inner:after {
     content: "OFF";
@@ -43,8 +43,8 @@
 	border-top-right-radius: 4px;
 	border-bottom-right-radius: 4px;
 	color: #000;
-	background-image: -moz-linear-gradient(center bottom , #FEFEFE, #E6E6E6);
-    background-image: -webkit-linear-gradien(center bottom , #FEFEFE, #E6E6E6);
+	background-image: -moz-linear-gradient(center bottom , #FEFEFE, #FEFEFE);
+	background: -webkit-linear-gradient(bottom ,#FEFEFE 0% ,#FEFEFE 70%, #FEFEFE);
 	text-align: right;
     }
     .onoffswitch-switch {

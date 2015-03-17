@@ -1,3 +1,4 @@
+
 <?php 
 	include 'headers/connect_to_mysql.php';
 	include 'headers/_user-details.php';
@@ -7,7 +8,8 @@
 	$id="";
 	$formAction = "";
 	$order = "";
-	
+	$url = "";
+	$redirect = "";
 	if(isset($_GET['id']))
 	{
 		$id = $_GET['id'];
@@ -30,7 +32,9 @@ if($_POST)
 		$update_stayconected = "UPDATE `stayconected` SET `name` = '$name', `link` = '$link',`order` = $order  where id = '{$id}' "
 		or die ('error while Updating stayconected');
 		$stayconected_update = mysqli_query($con,$update_stayconected);
-		header ('Location: stay_connected.php?update=true'); 
+		$url = "stay_connected.php?update=true";
+		$redirect = 1;
+		//header ('Location: stay_connected.php?update=true'); 
 		}
 	else
 	  {
@@ -38,7 +42,9 @@ if($_POST)
 		VALUES ('$name','$link','$appID',(SELECT max(s.order)+1 FROM stayconected s WHERE s.app_id= '$appID' GROUP BY s.app_id))"
 		or die('error while inserting Stay Connected');
 		$result = mysqli_query($con,$insert_contact);
-		header ('Location: stay_connected.php?insert=true');
+		$url = "stay_connected.php?insert=true";
+		$redirect = 1;
+		//header ('Location: stay_connected.php?insert=true');
 	 }
 	
 }
@@ -78,6 +84,13 @@ if($_POST)
    <link rel="stylesheet" type="text/css" href="assets/bootstrap-daterangepicker/daterangepicker.css" />
    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
    <link rel="stylesheet" type="text/css" href="css/main.css" />
+   <script>
+   if(<?php echo $redirect;?> == 1){
+			//alert('redirecting');
+			window.location.href = '<?php echo $url; ?>';
+   }
+	</script>
+ 
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
