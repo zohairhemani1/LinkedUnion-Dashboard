@@ -3,18 +3,20 @@
 include 'headers/connect_to_mysql.php';
 include 'headers/_user-details.php';
 
+$notificationMsg = "";
+
 if($_POST)
 {
-	$app_name = $_POST['app_id'];
+	$app_id = $_POST['app_id'];
 	$android = $_POST['android'];
 	$ios = $_POST['ios'];
 	$notificationMsg = $_POST['notification'];
 	$time = $_POST['time'];
 	$date = $_POST['date'];
 	$parseArray = $_POST['parseArray'];
-	
 	$parseArray = unserialize($parseArray);
-	//var_dump($parseArray);
+	
+	
 	$query = "INSERT INTO pushmessage(pushMessage,timeStamp,authorAppID) VALUES ('$notificationMsg',now(),'$appID')";
 	$result = mysqli_query($con,$query);
 	
@@ -23,16 +25,29 @@ if($_POST)
 	$row = mysqli_fetch_assoc($result);
 	$maxID = $row['maxPushID'];
 	$i=0;
-	for($i=0; $i<count($app_name); $i++)
+		
+	
+	
+	for($i=0; $i<count($app_id); $i++)
+
 	{
-		$query = "INSERT INTO pushbridge(pushID,appID) VALUES ('$maxID','$app_name[$i]')";
+		$query = "INSERT INTO pushbridge(pushID,appID) VALUES ('$maxID','$app_id[$i]')";
 		$result = mysqli_query($con,$query);
 		
-		include 'parse.php';
+		for($j=0; $j<count($parseArray); $j++)
+		{
+			
+			$tempArray = array();
+			$tempArray = $parseArray[$j];
+			
+			if($tempArray['appID'] == $app_id[$i])
+			{	
+				echo "match found <br/>";
+				include 'parse.php';
+			}
+		}
 		
 	}
-	
-	
 	
 }
 
