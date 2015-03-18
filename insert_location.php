@@ -46,7 +46,7 @@ if($_POST)
 		$website = $_POST['website'];
 		$query_location = "INSERT INTO location(office_title,address,phone_no,website,time_cone,app_id,`order`)
 		VALUES ('$office_title','$address','$phone_no','$website',now(),'$appID',
-		(SELECT max(l.order)+1 FROM location l WHERE l.app_id= '$appID' GROUP BY l.app_id))";
+		(SELECT ifnull(max(l.order)+1,1) FROM location l WHERE l.app_id= '$appID'))";
 		mysqli_query($con,$query_location)
 		or die('error1');
 		header ("Location: office_location.php?insert=true");

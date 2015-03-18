@@ -39,7 +39,7 @@ if($_POST)
 	else
 	  {
 		$insert_contact = "INSERT INTO `stayconected` (name,link,app_id,`order`)
-		VALUES ('$name','$link','$appID',(SELECT max(s.order)+1 FROM stayconected s WHERE s.app_id= '$appID' GROUP BY s.app_id))"
+		VALUES ('$name','$link','$appID',(SELECT ifnull(max(s.order)+1,'1') FROM `stayconected` s WHERE s.app_id= '6'))"
 		or die('error while inserting Stay Connected');
 		$result = mysqli_query($con,$insert_contact);
 		$url = "stay_connected.php?insert=true";
@@ -142,32 +142,32 @@ include 'headers/menu-top-navigation.php';
                               <div class="controls">
                                  <select required name="name" class="span6 chosen" data-placeholder="Choose a Category" tabindex="1">
                                     <option value="<?php echo $name; ?>"><?php echo $name; ?></option>
-                                  <option value="twitter">Twitter</option>
-								  <option value="facebook">Facebook</option>
-                                  <option value="youtube">Youtube</option>
-                                  <option value="linkedIn">LinkedIn</option>
-                                  <option value="behance">Behance</option>
-                                  <option value="blogger">Blogger</option>
-                                  <option value="deviantArt">DeviantArt</option>
-                                  <option value="digg">Digg</option>
-                                  <option value="dribbble">Dribbble</option>
-                                  <option value="feed">Feed</option>
-                                  <option value="flicker">Flickr</option>
-                                  <option value="forrst">Forrst</option>
-                                  <option value="google++">Google+</option>
-                                  <option value="gowalla">Gowalla</option>
-                                  <option value="lastfm">Lastfm</option>
-                                  <option value="mtspace">Myspace</option>
-                                  <option value="paypal">PayPal</option>
-                                  <option value="picasa">Picasa</option>
-                                  <option value="pinterest">Pinterest</option>
-                                  <option value="sharethis">Share-This</option>
-                                  <option value="skype">Skype</option>
-                                  <option value="stumbleupon">Stumbleupon</option>
-                                  <option value="tumblr">Tumblr</option>
-                                  <option value="viddlr">Viddlr</option>
-                                  <option value="vimeo">Vimeo</option>
-                                  <option value="wordpress">Wordpress</option>
+                                  <option value="Twitter">Twitter</option>
+								  <option value="Facebook">Facebook</option>
+                                  <option value="Youtube">Youtube</option>
+                                  <option value="LinkedIn">LinkedIn</option>
+                                  <option value="Behance">Behance</option>
+                                  <option value="Blogger">Blogger</option>
+                                  <option value="DeviantArt">DeviantArt</option>
+                                  <option value="Digg">Digg</option>
+                                  <option value="Dribbble">Dribbble</option>
+                                  <option value="Feed">Feed</option>
+                                  <option value="Flicker">Flickr</option>
+                                  <option value="Forrst">Forrst</option>
+                                  <option value="Google++">Google+</option>
+                                  <option value="Gowalla">Gowalla</option>
+                                  <option value="Lastfm">Lastfm</option>
+                                  <option value="MySpace">Myspace</option>
+                                  <option value="Paypal">PayPal</option>
+                                  <option value="Picasa">Picasa</option>
+                                  <option value="Pinterest">Pinterest</option>
+                                  <option value="Sharethis">Share-This</option>
+                                  <option value="Skype">Skype</option>
+                                  <option value="Stumbleupon">Stumbleupon</option>
+                                  <option value="Tumblr">Tumblr</option>
+                                  <option value="Viddlr">Viddlr</option>
+                                  <option value="Vimeo">Vimeo</option>
+                                  <option value="Wordpress">Wordpress</option>
                                  </select>
                               </div>
                            </div>                         
