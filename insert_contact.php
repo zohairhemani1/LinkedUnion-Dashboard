@@ -65,7 +65,7 @@ if($_POST)
 		$time_cone = $_POST['time_cone'];
 		$insert_contatct = "INSERT INTO contact (name,designation,address,phone_no1,phone_no2,fax_no,email,time_cone,app_id,`order`)
 		VALUES ('$name','$designation','$address','$phone_no1','$phone_no2','$fax_no','$email',now(),'$appID',
-		(SELECT max(c.order)+1 FROM contact c WHERE c.app_id= '$appID' GROUP BY c.app_id)) "
+		(SELECT ifnull(max(c.order)+1,1) FROM contact c WHERE c.app_id= '$appID')) "
 		or die('error while inserting Contact');
 		$result = mysqli_query($con,$insert_contatct);
 		$url = "union_representatives.php?insert=true";
