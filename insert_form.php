@@ -73,12 +73,12 @@ if($_POST)
 			$notification= $_POST['notification'];
 			$order = $_POST['order'];
 			$query_update = "UPDATE news SET time_cone = now(), title = '$title',file = '$file', description = '$description',
-			facebook = '$facebook', twitter = '$twitter', google = '$google', pinterest = '$pinterest', social = '$social',
+			facebook = '$facebook', twitter = '$twitter', google = '$google', pinterest = '$pinterest', social = '$social'
 			  WHERE news_id = '$news_id'";
 			$result_update = mysqli_query($con,$query_update)
 			or die('update error');		
-		  			$url = "news.php?categoryID=$categoryID&update=true";
-					$redirect = 1;
+			$url = "news.php?categoryID=$categoryID&update=true";
+			$redirect = 1;
 			
 		  
 			//header ("Location:news.php?categoryID=$categoryID&update=true");
@@ -87,7 +87,7 @@ if($_POST)
 }
 else
 	  {
-		include 'parse.php';
+		//include 'parse.php';
 		$title = $_POST['title'];
 		$title = str_replace("'","\'",$title); 	
 		$description = $_POST['description'];

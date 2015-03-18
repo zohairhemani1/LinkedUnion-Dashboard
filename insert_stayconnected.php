@@ -143,6 +143,7 @@ include 'headers/menu-top-navigation.php';
                                  <select required name="name" class="span6 chosen" data-placeholder="Choose a Category" tabindex="1">
                                     <option value="<?php echo $name; ?>"><?php echo $name; ?></option>
                                   <option value="twitter">Twitter</option>
+								  <option value="facebook">Facebook</option>
                                   <option value="youtube">Youtube</option>
                                   <option value="linkedIn">LinkedIn</option>
                                   <option value="behance">Behance</option>
