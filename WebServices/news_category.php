@@ -1,6 +1,7 @@
 <?php
 	
 	include 'headers/connect_to_mysql.php';
+	include 'headers/simple_html_dom/simple_html_dom.php';
 	
 	$category = $categoryID;
 
@@ -15,9 +16,9 @@
 		$description = $row['description'];
 		
 		if(strlen($description) > 200)
-			$description_toclean = clean(substr($description,0,200));
+			$description_toclean = 	str_get_html(substr($description,0,200))->plaintext;
 		else
-			$description_toclean = clean($description);
+			$description_toclean = str_get_html($description)->plaintext; 
 		
 		
 		
@@ -36,10 +37,10 @@
 	
 	echo json_encode($returnArray);
 	
-function clean($string) {
-   $string = str_replace(array("<p>","</p>","<b>","</b>","<b>","</b>","<em>","</em>","<i>","</i>","<u>","</u>","<h1>","</h1>","<h2>","</h2>","<h3>","</h3>","<li>","</li>","<ul>","</ul>","<a>","</a>","<strong>","</strong>"), "", $string);	
+/*function clean($string) {
+   $string = str_replace(array("<p>","</p>","<b>","</b>","<b>","</b>","<em>","</em>","<i>","</i>","<u>","</u>","<h1>","</h1>","<h2>","</h2>","<h3>","</h3>","<li>","</li>","<ul>","</ul>","<a>","</a>","<strong>","</strong>","<h4>","</h4>","<style>","</style>","<ol>","</ol>","<ul>","</ul>"), "", $string);	
    $string = preg_replace('/[^A-Za-z0-9\-:],.; /', ' ', $string); // Removes special chars.
    return preg_replace('/-+/', '-', $string); // Replaces multiple hyphens with single one.
 }
-	
+	*/
 ?>
