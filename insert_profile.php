@@ -34,10 +34,11 @@ if($_POST)
 		$fetch_result = mysqli_query($con,$select_user);
 		$row = mysqli_fetch_array($fetch_result);
 		$user_name = $row['user_name'];
-		$password = $row['password'];
 		$email = $row['email'];
 		$time_cone = $row['time_cone'];
 		$profile = $row['profile'];
+		$password = $row['password'];
+		echo "password".$password;
 	}
 	
 
@@ -128,7 +129,7 @@ include 'headers/menu-top-navigation.php';
                      </div>
                      <div class="widget-body form">
                         <!-- BEGIN FORM-->
-                        <form action="insert_profile.php?user_id=<?php echo $user_id; ?>" enctype="multipart/form-data" onsubmit="return isValidForm()" method="post" class="form-horizontal">
+                        <form action="insert_profile.php?user_id=<?php echo $user_id; ?>" enctype="multipart/form-data" method="post" class="form-horizontal">
                            <div class="control-group">
                               <label class="control-label">Name</label>
                               <div class="controls">
@@ -138,19 +139,21 @@ include 'headers/menu-top-navigation.php';
                            <div class="control-group">
                               <label class="control-label">Old Password</label>
                               <div class="controls">
-                                 <input placeholder="******" id="old_password" type="password" class="span6 " />
+                                 <input type="text" style="display:none;" id="pass" value="<?php echo $password; ?>" />
+                                 <input placeholder="Enter your old password" id="password" onKeyUp="validation();" type="text" class="span6 " />
+                              	<span id="solution" class="solution"></span>
                               </div>
                            </div>
                            <div class="control-group">
                               <label class="control-label">New Password</label>
                               <div class="controls">
-                                 <input id="pass1" placeholder="Enter Your New Password" name="password" type="password" class="span6 " />
+                                 <input id="pass1" placeholder="Enter Your New Password" disabled="disabled" name="password" type="password" class="span6 " />
                               </div>
                            </div>
                            <div class="control-group">
                               <label class="control-label">Confirmed Password</label>
                               <div class="controls">
-                                 <input id="pass2" placeholder="Confirme Your New Password" onKeyPress="checkPass(); return false;" type="password" class="span6 " />
+                                 <input id="pass2" placeholder="Confirme Your New Password" disabled="disabled" onKeyUp="checkPass(); return true;" type="password" class="span6 " />
                               <span id="confirmMessage" class="confirmMessage"></span>
                               </div>
                            </div>
@@ -179,9 +182,10 @@ include 'headers/menu-top-navigation.php';
                                     </div>
                                 </div>
    				<div class="form-actions clearfix">
-				<input type="submit" onclick='btnClick();'  class="btn btn-success " />
+				<input type="submit" onclick='btnClick();' id="buttonActivate" class="btn btn-success " />
                    </div>
                               </form>
+
                             <!-- END FORM-->
                         </div>
                     </div>
@@ -234,8 +238,26 @@ include 'headers/menu-top-navigation.php';
          App.init();
       });
    </script>
-        <script>
-  function checkPass()
+ <script type="text/javascript">
+
+function validation(){
+    var password = document.getElementById('password');
+    var pass = document.getElementById('pass');
+    var solution = document.getElementById('solution');
+
+    if(password.value ==  pass.value)
+   {
+	 $("#pass1").prop("disabled", false);
+	 $("#pass2").prop("disabled", false);
+     message.innerHTML = "Passwords Do Not Match!"
+   }
+  else
+   {
+       $("#pass1").prop("disabled", true);
+	   $("#pass2").prop("disabled", true);
+   }
+}
+function checkPass()
 {
     //Store the password field objects into variables ...
     var pass1 = document.getElementById('pass1');
@@ -245,9 +267,11 @@ include 'headers/menu-top-navigation.php';
     //Set the colors we will be using ...
     var goodColor = "#66cc66";
     var badColor = "#ff6666";
+
     //Compare the values in the password field
     //and the confirmation field
-    if(pass1.value == pass2.value)
+
+	if(pass1.value == pass2.value)
 	{
         //The passwords match.
         //Set the color to the good color and inform
@@ -255,29 +279,25 @@ include 'headers/menu-top-navigation.php';
         pass2.style.backgroundColor = goodColor;
         message.style.color = goodColor;
         message.innerHTML = "Passwords Match!"
+		$("#buttonActivate").prop("disabled", false);
+  
     }
 	else
-		{
+	 {
         //The passwords do not match.
         //Set the color to the bad color and
         //notify the user.
         pass2.style.backgroundColor = badColor;
         message.style.color = badColor;
         message.innerHTML = "Passwords Do Not Match!"
-		document.getElementById('my-form').onsubmit = function() {
-   		 return false;
-			}
+       $("#buttonActivate").prop("disabled", true);
 
-    
-	}
-}  
+	 }
+
+}
 
 </script>
-<script>
-
-	</script>
-
-   <!-- END JAVASCRIPTS -->   
+  <!-- END JAVASCRIPTS -->   
 </body>
 <!-- END BODY -->
 
