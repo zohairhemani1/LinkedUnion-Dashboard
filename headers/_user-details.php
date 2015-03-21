@@ -16,6 +16,10 @@
 	$appID = $row['app_id'];
 	$username = $row['user_name'];
 	$about_us = $row['about_us'];
+	$password = $row['password'];
+	$email = $row['email'];
+	$time_cone = $row['time_cone'];
+	$profile = $row['profile'];
 	$username_allcaps = strtoupper($username);
 ?>
 	

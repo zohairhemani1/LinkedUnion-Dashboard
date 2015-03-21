@@ -139,7 +139,7 @@ include 'headers/menu-top-navigation.php';
 								<tr class=''>
 									 <td>{$order}</td>
 									<td>{$name}</td>
-									<td>{$link}</td>
+									<td id='location'>{$link}</td>
 							   
 									<td style='width:19%;'><a href='insert_stayconnected.php?id=$id' id='update_button' class='btn btn-success' >
 									<i class='icon-trash'></i> </a>

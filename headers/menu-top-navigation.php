@@ -15,7 +15,7 @@ echo "<!-- BEGIN HEADER -->
        <div class='navbar-inner'>
            <div class='container-fluid'>
                <!-- BEGIN LOGO -->
-               <a id='logo_image' class='brand' href='index.php'>
+               <a id='logo_profile' class='brand' href='index.php'>
                    <img src='img/logo/{$logo}' width='140' alt='Admin Lab' style='margin-left:-5px; margin-top:-12px;' />
                </a>
                <!-- END LOGO -->
@@ -80,7 +80,7 @@ echo "<!-- BEGIN HEADER -->
                        <!-- BEGIN USER LOGIN DROPDOWN -->
                        <li class='dropdown'>
                            <a href='#' class='dropdown-toggle' data-toggle='dropdown'>
-                               <img src='img/image/{$image}' width='30' alt='' id='profilePic'>
+                               <img src='img/image/{$profile}' width='30' alt='' id='profilePic'>
                                              
                                <span class='username'>{$username_allcaps}</span>
                                <b class='caret'></b>
@@ -133,14 +133,14 @@ echo "<!-- BEGIN HEADER -->
 						if(($row['count'])>0)
 						{
 							echo "<a {$hover}  class='' href='javascript:;'>
-							<span class='icon-box'><i class='icon-cogs'></i>
+							<span class='icon-box'><i class='icon-random'></i>
 							</span> {$category}
 							<span class='arrow'>";
 						}
 						else
 						{
 							echo "<a {$hover}  class='' href='news.php?categoryID={$id}'>
-							<span class='icon-box'><i class='icon-cogs'></i>
+							<span class='icon-box'><i class='icon-random'></i>
 							</span> {$category}
 							<span class=''>
 							";

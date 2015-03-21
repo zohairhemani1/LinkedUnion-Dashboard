@@ -314,7 +314,7 @@ include 'headers/menu-top-navigation.php';
 						<div class="control-group">
                       <label class="control-label">Message</label>
                       <div class="controls">
-                                 <input placeholder="Type your message" type="text" class="span11 " />
+                                 <input placeholder="Type your message" type="text" class="span12 " />
                                 </div></div>
                                 </div>
                              </div> 

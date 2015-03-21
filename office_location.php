@@ -48,8 +48,7 @@ include 'headers/menu-top-navigation.php';
 
                    <!-- END THEME CUSTOMIZER-->
                   <!-- BEGIN PAGE TITLE & BREADCRUMB-->     
-                  <h3 class="page-title">
-                     Office Location  
+                    Office Location  
                      <small>View All Office Location</small>
                   </h3>
                    <ul class="breadcrumb">
@@ -90,42 +89,41 @@ include 'headers/menu-top-navigation.php';
             </div>";
 		}
 ?>
+
             <div class="row-fluid">
                 <div class="span12">
                     <!-- BEGIN EXAMPLE TABLE widget-->
                     <div class="widget">
                         <div class="widget-title">
-                            <h4><i class="icon-reorder"></i>Office Location Table</h4>
+                            <h4><i class="icon-reorder"></i>Stay Connected Table</h4>
                             <span class="tools">
                                 <a href="javascript:;" class="icon-chevron-down"></a>
                             </span>
                         </div>
 <div class="widget-body">
 			<div class="btn-group">
-               <a href="insert_location.php"><button type="button" class="btn btn-primary"> Add New <i class="icon-plus"></i> </button></a>
+               <a href="insert_stayconnected.php"><button type="button" class="btn btn-primary"> Add New <i class="icon-plus"></i> </button></a>
                               </div>
 
                             <div class="portlet-body">
+                                
                                 <div id="width" class="space15"></div>
                          <table class='table table-striped table-hover table-bordered' id='sample_editable_1'>
                                     <thead>
                                     <tr>
-								 <th style='width:8px;'>S.No</th>
                                     <th>Title</th>
                                     <th>Address</th>
                                     <th>Phone No</th>
-                                    <th>Website</th>
                                     <th>Status</th>
                                         <div class='widths'>
                                         <th style='display:none'>Edit</th>
                                         <th style='display:none'>Delete</th>
-                                    	</div>
+                                    </div>
                                     </tr>
                      
                                            </thead>
                                     <tbody>
-
-							<?php			
+            				<?php			
 							while($row = mysqli_fetch_array($result_location))
 							{
 							$office_id = $row['office_id'];
@@ -134,23 +132,22 @@ include 'headers/menu-top-navigation.php';
 							$address = $row['address'];
 							$phone_no = $row['phone_no'];
 							$website = $row['website'];    
-							 echo"<tr>
-							
-							<td>${order}</td>;
-							<td >${office_title}</td>
-							<td>${address}</td>
-							<td>${phone_no}</td>
-							<td>${website}</td>
-	               
-					<td style='width:19%;'><a href='insert_location.php?office_id=$office_id' id='update_button' class='btn btn-success' >
-                    <i class='icon-trash'></i> </a>
-					<a href='delete.php?categoryID=$categoryID&office_id=$office_id' id='delete_button'  class='btn btn-danger'>
-                    <i class='icon-edit'></i></a>
-					<td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
-					<td style='display:none'><a class='' href='javascript:;'>Delete</a></td>
-				</tr>";
-				}
-												?>
+							 echo
+							 "<tr class=''>
+									<td   width='10%'>{$office_title}</td>
+									<td>{$address}</td>
+									<td>{$phone_no}</td>
+							   
+									<td style='width:19%;'><a href='insert_location.php?office_id=$office_id' id='update_button' class='btn btn-success' >
+									<i class='icon-trash'></i> </a>
+									<a href='delete.php?categoryID=$categoryID&id=$id' id='delete_button'  class='btn btn-danger'>
+									<i class='icon-edit'></i> </a>
+									<td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
+									<td style='display:none'><a class='' href='javascript:;'>Delete</a></td>
+								</tr>";
+	
+						}
+						?>
                                     </tbody>
                                 </table>
                             </div>

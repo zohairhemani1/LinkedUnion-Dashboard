@@ -1,6 +1,48 @@
 <?php 
 	include 'headers/connect_to_mysql.php';
-?>
+	include 'headers/_user-details.php';
+	include 'headers/image_upload.php';
+
+	$user_name = "";
+	$password = "";
+	$email ="";
+	$formAction = "";
+	$time_cone = "";
+	$url = "";
+	$redirect = "";
+	
+if($_POST)
+{
+		$user_name = $_POST['user_name'];
+		$password = $_POST['password'];
+		$email = $_POST['email'];
+		$time_cone = $_POST['time_cone'];
+		$update_user = "UPDATE `user` SET user_name = '$user_name',profile = '$profile', password = '$password',email ='$email' where user_id = '{$user_id}' "
+		or die ('error while Updating user');
+		$stayconected_user = mysqli_query($con,$update_user);
+		echo $profile."samae";
+		$url = "profile.php?update=true";
+		$redirect = 1;
+		//header ('Location: stay_connected.php?update=true'); 
+	
+}
+	else
+	{
+		$user_id = $_GET['user_id'];
+		$formAction = "?user_id={$user_id}";
+		$select_user = "SELECT * FROM user where user_id = '$user_id'";
+		$fetch_result = mysqli_query($con,$select_user);
+		$row = mysqli_fetch_array($fetch_result);
+		$user_name = $row['user_name'];
+		$password = $row['password'];
+		$email = $row['email'];
+		$time_cone = $row['time_cone'];
+		$profile = $row['profile'];
+	}
+	
+
+	?>
+
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
@@ -37,11 +79,7 @@
    <link rel="stylesheet" type="text/css" href="css/main.css" />
 
    <script>
-   if(<?php echo $redirect;?> == 1){
-			//alert('redirecting');
-			window.location.href = '<?php echo $url; ?>';
-   }
-	</script>
+ 	</script>
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
@@ -62,7 +100,7 @@ include 'headers/menu-top-navigation.php';
                    <!-- END THEME CUSTOMIZER-->
                   <h3 class="page-title">
                      User Profile
-                     <small>Insert your Profile </small>
+                     <small>Update your Profile </small>
                   </h3>
                    <ul class="breadcrumb">
 
@@ -70,7 +108,7 @@ include 'headers/menu-top-navigation.php';
                    <li>
                            <a href="index.php"><i class="icon-home"></i></a> <span class="divider">&nbsp;</span>
                        </li>
-                       <li><a href="#">Insert Profile </a><span class="divider-last">&nbsp;</span>
+                       <li><a href="#">Update Profile </a><span class="divider-last">&nbsp;</span>
                        </li>
                        
                    </ul> 
@@ -83,47 +121,65 @@ include 'headers/menu-top-navigation.php';
                   <!-- BEGIN SAMPLE FORM widget-->   
                   <div class="widget">
                      <div class="widget-title">
-                        <h4><i class="icon-reorder"></i>Insert Form</h4>
+                        <h4><i class="icon-reorder"></i>Update Profile</h4>
                         <span class="tools">
                            <a href="javascript:;" class="icon-chevron-down"></a>
                         </span>
                      </div>
                      <div class="widget-body form">
                         <!-- BEGIN FORM-->
-                        <form action="insert_form.php" class="form-horizontal">
+                        <form action="insert_profile.php?user_id=<?php echo $user_id; ?>" enctype="multipart/form-data" onsubmit="return isValidForm()" method="post" class="form-horizontal">
                            <div class="control-group">
                               <label class="control-label">Name</label>
                               <div class="controls">
-                                 <input placeholder="Enter Your Name" type="text" class="span6 " />
+                                 <input placeholder="Enter Your Name" value="<?php echo $user_name; ?>" name="user_name" type="text" class="span6 " />
                               </div>
                            </div>
                            <div class="control-group">
                               <label class="control-label">Old Password</label>
                               <div class="controls">
-                                 <input placeholder="******"  type="text" class="span6 " />
+                                 <input placeholder="******" id="old_password" type="password" class="span6 " />
                               </div>
                            </div>
                            <div class="control-group">
                               <label class="control-label">New Password</label>
                               <div class="controls">
-                                 <input id="pass1" placeholder="Enter Your New Password" type="text" class="span6 " />
+                                 <input id="pass1" placeholder="Enter Your New Password" name="password" type="password" class="span6 " />
                               </div>
                            </div>
                            <div class="control-group">
                               <label class="control-label">Confirmed Password</label>
                               <div class="controls">
-                                 <input id="pass2" placeholder="Confirme Your New Password" onkeyup="checkPass(); return false;" type="text" class="span6 " />
+                                 <input id="pass2" placeholder="Confirme Your New Password" onKeyPress="checkPass(); return false;" type="password" class="span6 " />
                               <span id="confirmMessage" class="confirmMessage"></span>
                               </div>
                            </div>
                            <div class="control-group">
                               <label class="control-label">Email</label>
                               <div class="controls">
-                                 <input placeholder="Enter Your Email" type="email" class="span6 " />
+                                 <input placeholder="Enter Your Email" value="<?php echo $email; ?>" name="email" type="email" class="span6 " />
                               </div>
                            </div>
-   			<div class="form-actions clearfix">
-				<input type="submit"  class="btn btn-success " />
+                           <div class="control-group">
+                            <label class="control-label">Profile Pic</label>
+                            <div class="controls">
+                                <div class="fileupload fileupload-new" data-provides="fileupload">
+                                    <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+                                        <img src="<?php if($profile == null) {echo "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+profile";}
+                                        else{echo "img/image/".$profile; }?>" alt="" />
+                                    </div>
+                                    <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                                    <div>
+                               <span class="btn btn-file"><span class="fileupload-new">Select profile</span>
+                               <span class="fileupload-exists">Change</span>
+                               <input type="file" name="profile" class="default" /></span>
+                                        <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+                                    </div>
+                                </div>
+                                    </div>
+                                </div>
+   				<div class="form-actions clearfix">
+				<input type="submit" onclick='btnClick();'  class="btn btn-success " />
                    </div>
                               </form>
                             <!-- END FORM-->
@@ -191,24 +247,35 @@ include 'headers/menu-top-navigation.php';
     var badColor = "#ff6666";
     //Compare the values in the password field
     //and the confirmation field
-    if(pass1.value == pass2.value){
+    if(pass1.value == pass2.value)
+	{
         //The passwords match.
         //Set the color to the good color and inform
         //the user that they have entered the correct password
         pass2.style.backgroundColor = goodColor;
         message.style.color = goodColor;
         message.innerHTML = "Passwords Match!"
-    }else{
+    }
+	else
+		{
         //The passwords do not match.
         //Set the color to the bad color and
         //notify the user.
         pass2.style.backgroundColor = badColor;
         message.style.color = badColor;
         message.innerHTML = "Passwords Do Not Match!"
-    }
-}  
-</script>
+		document.getElementById('my-form').onsubmit = function() {
+   		 return false;
+			}
 
+    
+	}
+}  
+
+</script>
+<script>
+
+	</script>
 
    <!-- END JAVASCRIPTS -->   
 </body>

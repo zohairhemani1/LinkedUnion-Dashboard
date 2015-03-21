@@ -1,5 +1,6 @@
 <?php 
-	include 'headers/connect_to_mysql.php'; 
+	include 'headers/connect_to_mysql.php';
+	include 'headers/_user-details.php'; 
 
 ?>
 <!DOCTYPE html>
@@ -72,7 +73,7 @@ include 'headers/menu-top-navigation.php';
                         <div class="widget-body">
                             <div class="span3">
                                 <div class="text-center profile-pic">
-                                    <img src="img/image/<?php echo $image; ?>" alt="">
+                                    <img src="img/image/<?php echo $profile; ?>" alt="">
                                 </div>
                             </div>
                             <div class="span6">
@@ -88,19 +89,19 @@ include 'headers/menu-top-navigation.php';
                                     <tr>
                                         <td class="span2">Password :</td>
                                         <td>
-                                            torpedo1
+                                           <?php echo $password; ?> 
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="span2">Email :</td>
                                         <td>
-                                            arbishpalla@yahoo.com
+                                            <?php echo $email; ?>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="span2">Joined :</td>
                                         <td>
-                                            13 july 2015
+                                            <?php echo $time_cone; ?>
                                         </td>
                                     </tr>
                                     <tr>
@@ -120,7 +121,7 @@ include 'headers/menu-top-navigation.php';
        
                                               <div  class="form-actions clearfix">
                                               <div id="profile_button">
-			<a href="insert_profile.php"><button  type="button"  class="btn btn-success " />Update</button></a>
+			<a href="insert_profile.php?user_id=<?Php echo $user_id ?>"><button  type="button"  class="btn btn-success " />Update</button></a>
             <div>
                    </div>                  
 
