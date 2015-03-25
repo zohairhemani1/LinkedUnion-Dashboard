@@ -1,4 +1,5 @@
 <?php
+session_start();
 include '../headers/_user-details.php';
 include '../headers/connect_to_mysql.php';
 
@@ -152,9 +153,9 @@ include 'headers/menu-top-navigation.php';
 								<td style='width:35%'><a href='#'>{$parent}</a></td>
 								<td style='width:35%'><a href='#'>{$child}</a></td>
 								  <td style='width:17%'><a href='insert_parent.php?id={$id}' 
-								  id='update_button' class='btn btn-success'> <i class='icon-edit'></i> Update</a>																					 							 	 
+								  id='update_button' class='btn btn-success'> <i class='icon-edit'></i> </a>																					 							 	 
 								  <a href='delete_parent.php?id={$id}' id='delete_button'  class='btn btn-danger'>
-								  <i class='icon-trash'></i> Delete</a>
+								  <i class='icon-trash'></i> </a>
 									  <td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
 								 <td style='display:none'><a class='' href='javascript:;'>Delete</a></td>
 								  </tr>";

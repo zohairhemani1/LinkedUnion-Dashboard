@@ -4,20 +4,19 @@
 	
 	if($_POST)
 	{
-		$user_name = $_POST['user_name'];
+		$name = $_POST['name'];
 		$password = $_POST['password'];
-		$query = "SELECT * from `super_admin` where user_name like '{$user_name}' AND password like '{$password}'"
+		$query = "SELECT * from `super_admin` where name like '$name' AND password like '$password'"
 		or die('error2');
 		$result = mysqli_query($con,$query);
-		$row = mysqli_fetch_array($result);
-		$count = mysqli_num_rows($result);
-
-		if($count == 1)
+		$row =  mysqli_fetch_assoc($result);
+			if(mysqli_num_rows($result) == 1)
 		{
 			$_SESSION['user_id'] = $row['user_id'];
-			
-			header("Location:app.php");		
+			header('Location:app.php');		
 		}
+		else{
+			}
 	}
 	
 ?>
@@ -54,7 +53,7 @@ Website: http://thevectorlab.net/
   <div style="height:90px" class="login-header">
       <!-- BEGIN LOGO -->
       <div id="logo" class="center">
-          <img src="../img/avialdo.png" class="Logo" alt="Avialdo" class="center" />
+          <img src="../img/linkedunion.png" class="Logo" alt="Avialdo" class="center" />
       </div>
       <!-- END LOGO -->
   </div>
@@ -88,7 +87,7 @@ else if(isset($_GET['forget']) && $_GET['forget']=="true"){
           <div class="control-group">
               <div class="controls">
                   <div class="input-prepend">
-                      <span class="add-on"><i class="icon-user"></i></span><input id="input-username" type="text" name="user_name" placeholder="Username" />
+                      <span class="add-on"><i class="icon-user"></i></span><input id="input-username" type="text" name="name" placeholder="Username" />
                   </div>
               </div>
           </div>

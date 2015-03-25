@@ -1,10 +1,8 @@
-<?php
-include '../headers/_user-details.php';
+<?php	
+session_start();
 include '../headers/connect_to_mysql.php';
-
+include 'headers/_user-details.php';
 ?>
-
-
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
@@ -46,7 +44,6 @@ include '../headers/connect_to_mysql.php';
 <body class="fixed-top">
    <!-- BEGIN HEADER -->
 <?php
-include '../headers/_user-details.php';
 include 'headers/menu-top-navigation.php'; 
 ?>      <!-- BEGIN PAGE -->
       <div id="main-content">
@@ -149,9 +146,9 @@ include 'headers/menu-top-navigation.php';
 								  <td style='width:3%'><a href='#'>{$app_id}</a></td>
 								  <td style='width:40%'><a href='institutionDetail.php'>{$row['app_name']}</a></td>
 								  <td width='10%' ><a href='insert_app.php?app_id={$app_id}' 
-								  id='update_button' class='btn btn-success'> <i class='icon-edit'></i> Update</a>																					 							 	 
+								  id='update_button' class='btn btn-success'> <i class='icon-edit'></i></a>																					 							 	 
 								  <a href='delete_app.php?app_id={$app_id}' id='delete_button'  class='btn btn-danger'>
-								  <i class='icon-trash'></i> Delete</a>
+								  <i class='icon-trash'></i></a>
 									  <td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
 								 <td style='display:none'><a class='' href='javascript:;'>Delete</a></td>
 								  </tr>";

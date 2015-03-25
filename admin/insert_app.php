@@ -1,9 +1,7 @@
 <?php
 	include '../headers/connect_to_mysql.php';
-	include '../headers/logo.php';
-	include '../headers/cover.php';
-	$logo_image = "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image";		
-	$cover_image = "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image";
+	include 'headers/image_logo.php';
+	include 'headers/image_cover.php';
 if(isset($_GET['app_id']))
 {
 		$app_id=  $_GET['app_id'];
@@ -16,10 +14,10 @@ if(isset($_GET['app_id']))
 		$logo = $row['logo'];
 		$cover = $row['cover'];
 		$about_us = $row['about_us'];
-	if($logo != null || $cover != null )
+		if($logo != null || $cover != null )
 		{
-			$logo_image = "../img/logo/{$logo}";		
-			$cover_image = "../img/cover/{$cover}";
+			$logo_image = $logo;		
+			$cover_image = $cover;
 		}
 		else
 		{
@@ -155,7 +153,7 @@ include 'headers/menu-top-navigation.php';
                             <div class="controls">
                                 <div class="fileupload fileupload-new" data-provides="fileupload">
                                     <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
-                                        <img src="<?php echo $logo_image; ?>" alt="" />
+                                        <img src="../img/logo/<?php echo $logo_image; ?>" alt="" />
                                     </div>
                                     <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
                                     <div>
@@ -172,7 +170,7 @@ include 'headers/menu-top-navigation.php';
                             <div class="controls">
                                 <div class="fileupload fileupload-new" data-provides="fileupload">
                                     <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
-                                        <img src="<?php echo $cover_image; ?>" alt="" />
+                                        <img src="../img/cover/<?php echo $cover_image; ?>" alt="" />
                                     </div>
                                     <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
                                     <div>

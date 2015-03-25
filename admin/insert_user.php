@@ -1,4 +1,5 @@
 <?php
+session_start();
 	include '../headers/connect_to_mysql.php';
 	$user_img = "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image";
 

@@ -1,8 +1,12 @@
 <?php
+session_start();
 include '../headers/_user-details.php';
 include '../headers/connect_to_mysql.php';
-
-?>
+					$query_app = "SELECT distinct app_name FROM categories c, app a where c.app_id = a.app_id limit 50";
+					$result_app = mysqli_query($con,$query_app);
+					$query_app1 = "SELECT * FROM categories c, app a where c.app_id = a.app_id limit 50";
+					$result_app1 = mysqli_query($con,$query_app1);
+					?>
 
 
 <!DOCTYPE html>
@@ -40,6 +44,36 @@ include '../headers/connect_to_mysql.php';
 		}
 	}
 	</script>
+                <script src="media/js/jquery-1.4.4.min.js" type="text/javascript"></script>
+
+       <script src="media/js/jquery.dataTables.columnFilter.js" type="text/javascript"></script>
+
+<?php 
+$returnArray = array();
+					while($row = mysqli_fetch_assoc($result_app))
+					{
+						$app_name = $row['app_name'];
+						$returnArray[] = $app_name;
+					}
+						print_r($returnArray);
+					
+						 ?>
+
+		<script type="text/javascript">
+$(document).ready(function(){
+     $('#sample_editable_1').dataTable()
+		  .columnFilter({
+			aoColumns: [ { type: "select", values:<?php echo json_encode($returnArray); ?>},
+				     { type: "text" },
+				     null,
+				     { type: "number" }
+				]
+		  				
+		});
+});
+
+		</script>
+
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
@@ -120,10 +154,10 @@ include 'headers/menu-top-navigation.php';
                             <div class="portlet-body">
                                 
                                 <div id="width" class="space15"></div>
-                                <table class="table table-striped table-hover table-bordered" id="sample_editable_1">
+                                <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-hover table-bordered" id="sample_editable_1">
                                     <thead>
                                     <tr>
-								 <th style="width:30px;">S No</th>
+                                    <th>app_name</th>
                                     <th>Name</th>
                                     <th>App Id</th>
                                     <th>Action</th>
@@ -132,35 +166,42 @@ include 'headers/menu-top-navigation.php';
                                         <th style="display:none">Delete</th>
                                     </div>
                                     </tr>
-                     
-                                           </thead>
+                                    </thead>
                                     <tbody>
 
 				
 					<?php
-					$query_app = "SELECT * FROM categories limit 50";
-					$result_app = mysqli_query($con,$query_app);
-					
-					while($row = mysqli_fetch_array($result_app))
+
+					while($row = mysqli_fetch_array($result_app1))
 					{
+						
 						$app_id = $row['app_id'];
+						$app_name = $row['app_name'];
 						$name = $row['name'];							
 						$id = $row['id'];
 					echo"
 					<tr class=''> 
-								  <td style='width:3%'><a href='#'>{$id}</a></td>
+								  <td style='width:3%'><a href='#'>{$app_name}</a></td>
 								<td style='width:35%'><a href='#'>{$name}</a></td>
 								<td style='width:3%'><a href='#'>{$app_id}</a></td>
-								  <td width='10%' ><a href='insert_category.php?id={$id}' 
-								  id='update_button' class='btn btn-success'> <i class='icon-edit'></i> Update</a>																					 							 	 
+								  <td style='width:5%'><a href='insert_category.php?id={$id}' 
+								  id='update_button' class='btn btn-success'> <i class='icon-edit'></i> </a>																					 							 	 
 								  <a href='delete_category.php?id={$id}' id='delete_button'  class='btn btn-danger'>
-								  <i class='icon-trash'></i> Delete</a>
+								  <i class='icon-trash'></i></a>
 									  <td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
 								 <td style='display:none'><a class='' href='javascript:;'>Delete</a></td>
 								  </tr>";
 					}
+
 					?>	
                                     </tbody>
+                                    <tfoot> 
+                                	    <tr>	
+											<th>All</th>
+									</tr>
+									</tfoot>
+
+                     
                                 </table>
                             </div>
                         </div>
@@ -185,7 +226,6 @@ include 'headers/menu-top-navigation.php';
    <!-- END FOOTER -->
    <!-- BEGIN JAVASCRIPTS -->
    <!-- Load javascripts at bottom, this will reduce page load time -->
-   <script src="../js/jquery-1.8.3.min.js"></script>
    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>   
    <script src="../js/jquery.blockui.js"></script>
    <!-- ie8 fixes -->
@@ -196,9 +236,7 @@ include 'headers/menu-top-navigation.php';
    <script type="text/javascript" src="../assets/uniform/jquery.uniform.min.js"></script>
    <script type="text/javascript" src="../assets/data-tables/jquery.dataTables.js"></script>
    <script type="text/javascript" src="../assets/data-tables/DT_bootstrap.js"></script>
-   <script src="../js/scripts.js"></script>
 
-   <script src="../js/table-editable.js"></script>
 
    <script>
        jQuery(document).ready(function() {

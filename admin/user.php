@@ -1,4 +1,5 @@
 <?php
+session_start();
 include '../headers/_user-details.php';
 include '../headers/connect_to_mysql.php';
 

@@ -11654,45 +11654,6 @@
 			 *           node:nPaging - the DIV which contains this pagination control
 			 *           function:fnCallbackDraw - draw function which must be called on update
 			 */
-			"fnInit": function ( oSettings, nPaging, fnCallbackDraw )
-			{
-				var oLang = oSettings.oLanguage.oPaginate;
-				var oClasses = oSettings.oClasses;
-				var fnClickHandler = function ( e ) {
-					if ( oSettings.oApi._fnPageChange( oSettings, e.data.action ) )
-					{
-						fnCallbackDraw( oSettings );
-					}
-				};
-	
-				$(nPaging).append(
-					'<a  tabindex="'+oSettings.iTabIndex+'" class="'+oClasses.sPageButton+" "+oClasses.sPageFirst+'">'+oLang.sFirst+'</a>'+
-					'<a  tabindex="'+oSettings.iTabIndex+'" class="'+oClasses.sPageButton+" "+oClasses.sPagePrevious+'">'+oLang.sPrevious+'</a>'+
-					'<span></span>'+
-					'<a tabindex="'+oSettings.iTabIndex+'" class="'+oClasses.sPageButton+" "+oClasses.sPageNext+'">'+oLang.sNext+'</a>'+
-					'<a tabindex="'+oSettings.iTabIndex+'" class="'+oClasses.sPageButton+" "+oClasses.sPageLast+'">'+oLang.sLast+'</a>'
-				);
-				var els = $('a', nPaging);
-				var nFirst = els[0],
-					nPrev = els[1],
-					nNext = els[2],
-					nLast = els[3];
-				
-				oSettings.oApi._fnBindAction( nFirst, {action: "first"},    fnClickHandler );
-				oSettings.oApi._fnBindAction( nPrev,  {action: "previous"}, fnClickHandler );
-				oSettings.oApi._fnBindAction( nNext,  {action: "next"},     fnClickHandler );
-				oSettings.oApi._fnBindAction( nLast,  {action: "last"},     fnClickHandler );
-				
-				/* ID the first elements only */
-				if ( !oSettings.aanFeatures.p )
-				{
-					nPaging.id = oSettings.sTableId+'_paginate';
-					nFirst.id =oSettings.sTableId+'_first';
-					nPrev.id =oSettings.sTableId+'_previous';
-					nNext.id =oSettings.sTableId+'_next';
-					nLast.id =oSettings.sTableId+'_last';
-				}
-			},
 			
 			/*
 			 * Function: oPagination.full_numbers.fnUpdate
@@ -11979,6 +11940,82 @@
 	$.fn.dataTable = DataTable;
 	$.fn.dataTableSettings = DataTable.settings;
 	$.fn.dataTableExt = DataTable.ext;
+
+$.extend( $.fn.dataTableExt.oPagination, {
+	"bootstrap": {
+		"fnInit": function( oSettings, nPaging, fnDraw ) {
+			var oLang = oSettings.oLanguage.oPaginate;
+			var fnClickHandler = function ( e ) {
+				e.preventDefault();
+				if ( oSettings.oApi._fnPageChange(oSettings, e.data.action) ) {
+					fnDraw( oSettings );
+				}
+			};
+
+			$(nPaging).addClass('pagination').append(
+				'<ul>'+
+					'<li class="prev disabled"><a href="#">&larr; '+oLang.sPrevious+'</a></li>'+
+					'<li class="next disabled"><a href="#">'+oLang.sNext+' &rarr; </a></li>'+
+				'</ul>'
+			);
+			var els = $('a', nPaging);
+			$(els[0]).bind( 'click.DT', { action: "previous" }, fnClickHandler );
+			$(els[1]).bind( 'click.DT', { action: "next" }, fnClickHandler );
+		},
+
+		"fnUpdate": function ( oSettings, fnDraw ) {
+			var iListLength = 5;
+			var oPaging = oSettings.oInstance.fnPagingInfo();
+			var an = oSettings.aanFeatures.p;
+			var i, j, sClass, iStart, iEnd, iHalf=Math.floor(iListLength/2);
+
+			if ( oPaging.iTotalPages < iListLength) {
+				iStart = 1;
+				iEnd = oPaging.iTotalPages;
+			}
+			else if ( oPaging.iPage <= iHalf ) {
+				iStart = 1;
+				iEnd = iListLength;
+			} else if ( oPaging.iPage >= (oPaging.iTotalPages-iHalf) ) {
+				iStart = oPaging.iTotalPages - iListLength + 1;
+				iEnd = oPaging.iTotalPages;
+			} else {
+				iStart = oPaging.iPage - iHalf + 1;
+				iEnd = iStart + iListLength - 1;
+			}
+
+			for ( i=0, iLen=an.length ; i<iLen ; i++ ) {
+				// Remove the middle elements
+				$('li:gt(0)', an[i]).filter(':not(:last)').remove();
+
+				// Add the new list items and their event handlers
+				for ( j=iStart ; j<=iEnd ; j++ ) {
+					sClass = (j==oPaging.iPage+1) ? 'class="active"' : '';
+					$('<li '+sClass+'><a href="#">'+j+'</a></li>')
+						.insertBefore( $('li:last', an[i])[0] )
+						.bind('click', function (e) {
+							e.preventDefault();
+							oSettings._iDisplayStart = (parseInt($('a', this).text(),10)-1) * oPaging.iLength;
+							fnDraw( oSettings );
+						} );
+				}
+
+				// Add / remove disabled classes from the static elements
+				if ( oPaging.iPage === 0 ) {
+					$('li:first', an[i]).addClass('disabled');
+				} else {
+					$('li:first', an[i]).removeClass('disabled');
+				}
+
+				if ( oPaging.iPage === oPaging.iTotalPages-1 || oPaging.iTotalPages === 0 ) {
+					$('li:last', an[i]).addClass('disabled');
+				} else {
+					$('li:last', an[i]).removeClass('disabled');
+				}
+			}
+		}
+	}
+} );
 
 
 	// Information about events fired by DataTables - for documentation.

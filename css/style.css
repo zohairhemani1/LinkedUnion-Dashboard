@@ -3495,3 +3495,7 @@ ul.amounts li {
 .sorting_disabled {
     width: 32px !important;
 }
+.change{
+	margin-top:1px !important;
+	position:absolute;
+	}

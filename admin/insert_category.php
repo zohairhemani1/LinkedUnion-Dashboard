@@ -1,5 +1,7 @@
 <?php
 	include '../headers/connect_to_mysql.php';
+	include 'headers/_user-details.php';
+
 if(isset($_GET['id']))
 {
 		$id = $_GET['id'];
