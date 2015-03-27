@@ -2,13 +2,10 @@
 
 	include 'headers/checkloginstatus.php'; 
 	include 'headers/_user-details.php';
-
-$query = "select (SELECT `pushCount` from app where app_id = '{$appID}') - (select count(*) from `pushmessage` pm where pm.authorAppID = '{$appID}') as pushRemaining";
-$result = mysqli_query($con,$query);
-$row = mysqli_fetch_assoc($result);
+	$query = "select (SELECT `pushCount` from app where app_id = '{$appID}') - (select count(*) from `pushmessage` pm where pm.authorAppID = '{$appID}') as pushRemaining";
+	$result = mysqli_query($con,$query);
+$row = mysqli_fetch_array($result);
 $pushRemaining = $row['pushRemaining'];
-
-
 echo "<!-- BEGIN HEADER -->
    <div id='header' class='navbar navbar-inverse navbar-fixed-top'>
        <!-- BEGIN TOP NAVIGATION BAR -->
@@ -16,7 +13,7 @@ echo "<!-- BEGIN HEADER -->
            <div class='container-fluid'>
                <!-- BEGIN LOGO -->
                <a id='logo_profile' class='brand' href='index.php'>
-                   <img src='img/logo/{$logo}' width='140' alt='Admin Lab' style='margin-left:-5px; margin-top:-12px;' />
+                   <img src='img/logo/$logo' width='140' alt='Admin Lab' style='margin-left:-5px; margin-top:-12px;' />
                </a>
                <!-- END LOGO -->
                <!-- BEGIN RESPONSIVE MENU TOGGLER -->
@@ -80,7 +77,7 @@ echo "<!-- BEGIN HEADER -->
                        <!-- BEGIN USER LOGIN DROPDOWN -->
                        <li class='dropdown'>
                            <a href='#' class='dropdown-toggle' data-toggle='dropdown'>
-                               <img src='img/image/{$profile}' width='30' alt='' id='profilePic'>
+                               <img src='img/image/{$image}' width='30' alt='' id='profilePic'>
                                              
                                <span class='username'>{$username_allcaps}</span>
                                <b class='caret'></b>

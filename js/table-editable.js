@@ -1,31 +1,3 @@
-	$('#sample_editable_1').DataTable( {
-		initComplete: function () {
-			var api = this.api();
-
-			api.columns().indexes().flatten().each( function ( i ) {
-				var column = api.column( i );
-				var select = $('<select><option value="">All</option></select>')
-					.appendTo( $(column.footer()).empty() )
-					.on( 'change', function () {
-						var val = $.fn.dataTable.util.escapeRegex(
-							$(this).val()
-						);
-
-						column
-							.search( val ? '^'+val+'$' : '', true, false )
-							.draw();
-					} );
-
-				column.data().unique().sort().each( function ( d, j ) {
-					select.append( '<option value="'+d+'">'+d+'</option>' )
-				} );
-			} );
-		}
-	} );
-
-
-
-
 var TableEditable = function () {
 
     return {
@@ -46,10 +18,9 @@ var TableEditable = function () {
             function editRow(oTable, nRow) {
                 var aData = oTable.fnGetData(nRow);
                 var jqTds = $('>td', nRow);
-                jqTds[0].innerHTML = '<input type="text" class="m-wrap small" value="' + aData[0] + '">';
+                jqTds[0].innerHTML = '    <input required name="user_name" id="inputUser" type="text" class="span6" value="' + aData[0] + '">';
                 jqTds[1].innerHTML = '<input type="text" class="m-wrap small" value="' + aData[1] + '">';
                 jqTds[2].innerHTML = '<input type="text" class="m-wrap small" value="' + aData[2] + '">';
-                jqTds[3].innerHTML = '<input type="text" class="m-wrap small" value="' + aData[3] + '">';
                 jqTds[4].innerHTML = '<a class="edit" href="">Save</a>';
                 jqTds[5].innerHTML = '<a class="cancel" href="">Cancel</a>';
             }

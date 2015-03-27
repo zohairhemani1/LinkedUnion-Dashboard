@@ -1,12 +1,20 @@
 <?php
 session_start();
 	include '../headers/connect_to_mysql.php';
+	$user_id = "";
+	$user_name = "";
+	$app_id = "";
+	$password = "";
+	$image ="";
+	$formAction = "";
+	$name = "";
+	
 	$user_img = "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image";
 
 if(isset($_GET['user_id']))
 {
 		$user_id = $_GET['user_id'];
-		$formAction = "?ANDuser_id=$user_id";
+		$formAction = "?user_id=$user_id";
 		$query = "SELECT * FROM user where user_id = $user_id ";
 		$result = mysqli_query($con,$query);	
 		$row = mysqli_fetch_array($result)
@@ -155,14 +163,16 @@ include 'headers/menu-top-navigation.php';
                              <div class="control-group">
                               <label class="control-label">App Id</label>
                               <div class="controls">
-                                 <select class="span6" name="app_id" data-placeholder="Choose a Category" tabindex="1">
+                                 <select class="span6 chosen" name="app_id" data-placeholder="Choose a Category" tabindex="1">
                                     <?php $query_select = "SELECT * FROM app";
 									$result_select = mysqli_query($con,$query_select)
 									or die ('error'); 
 									while($row = mysqli_fetch_array($result_select)){
 										$app_id = $row['app_id'];
-                                    echo"
-                                    <option value=''>{$app_id}</option>
+                                    	$app_name = $row['app_name'];
+									echo"
+									
+                                    <option value='$app_id'>{$app_name}</option>
  										";                                
 									}?>
                                  </select>

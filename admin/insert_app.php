@@ -1,12 +1,25 @@
 <?php
+
+	$isPosted = 0;
+	
 	include '../headers/connect_to_mysql.php';
 	include 'headers/image_logo.php';
 	include 'headers/image_cover.php';
+
+	$app_name = "";
+	$about_us = "";
+	$formAction = "";
+	$logo = "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image";		
+	$cover = "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image";
+
+	
 if(isset($_GET['app_id']))
+
 {
-		$app_id=  $_GET['app_id'];
-		$formAction = "?&app_id=$app_id";
-		$query = "SELECT * FROM app where app_id = $app_id ";
+		$app_id =  $_GET['app_id'];
+		$formAction = "?app_id=$app_id";
+		$query = "SELECT * FROM app where app_id = '$app_id'"
+		or die('error');
 		$result = mysqli_query($con,$query);	
 		$row = mysqli_fetch_array($result)
 		or die ('error3');
@@ -14,32 +27,34 @@ if(isset($_GET['app_id']))
 		$logo = $row['logo'];
 		$cover = $row['cover'];
 		$about_us = $row['about_us'];
-		if($logo != null || $cover != null )
+		if($cover == null && $logo == null ) 
 		{
-			$logo_image = $logo;		
-			$cover_image = $cover;
-		}
-		else
-		{
-			$logo_image = "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image";		
-			$cover_image = "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image";
-			
-		}
+		$logo = "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image"; 
+		$cover = "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image"; 
+		} 
+		else { 
+		 $logo = "../img/logo/$logo";
+		 $cover = "../img/cover/$cover"; 
+		 }
+
 
 	if($_POST)
 	{
+
 		$app_id=  $_GET['app_id'];
 		$app_name = $_POST['app_name'];
 		$about_us = $_POST['about_us'];
 		$query = "UPDATE app SET  app_name = '$app_name',about_us = '$about_us', logo = '$logo', cover = '$cover' WHERE app_id = '$app_id'";
 		$result = mysqli_query($con,$query);
-		header("Location: app.php?update=true");
+		$isPosted = 1;
+		header("Location: app.php?update=true");		
 	}
 }	
 else 
 {
 	if($_POST)
 	{
+		
 		$app_name = $_POST['app_name'];
 		$about_us = $_POST['about_us'];
 		$query_inserting = "INSERT INTO app(app_name,about_us,logo,cover)
@@ -153,7 +168,7 @@ include 'headers/menu-top-navigation.php';
                             <div class="controls">
                                 <div class="fileupload fileupload-new" data-provides="fileupload">
                                     <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
-                                        <img src="../img/logo/<?php echo $logo_image; ?>" alt="" />
+                                        <img src="<?php echo $logo ; ?>" alt="logo" />
                                     </div>
                                     <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
                                     <div>
@@ -170,7 +185,7 @@ include 'headers/menu-top-navigation.php';
                             <div class="controls">
                                 <div class="fileupload fileupload-new" data-provides="fileupload">
                                     <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
-                                        <img src="../img/cover/<?php echo $cover_image; ?>" alt="" />
+                                        <img src="<?php echo $cover; ?>" alt="cover" />
                                     </div>
                                     <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
                                     <div>

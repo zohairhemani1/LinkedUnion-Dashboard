@@ -30,7 +30,7 @@ include 'headers/_user-details.php';
 	$social = "";
 	$url = "";
 	$redirect="";
-
+    $checked = "";
 			
 if(isset($_GET['news_id']))
 {
@@ -250,7 +250,7 @@ include 'headers/menu-top-navigation.php';
                       <label class="control-label">Facebook</label>
                               <div class="controls">
                           <div class="input-icon left"> <i class="icon-facebook"></i>
-                          <input <?php echo $required; ?> name="facebook" placeholder="www.Facebook.com" type="text" 
+                          <input name="facebook" placeholder="www.Facebook.com" type="text" 
                           class="span12" value="<?php echo $facebook; ?>" />
                       </div>
                       </div>
@@ -259,7 +259,7 @@ include 'headers/menu-top-navigation.php';
                       <label class="control-label">Twitter</label>
                               <div class="controls">
                           <div class="input-icon left"> <i class="icon-twitter"></i>
-                          <input <?php echo $required; ?> name="twitter" placeholder="www.Twitter.com" type="text" 
+                          <input name="twitter" placeholder="www.Twitter.com" type="text" 
                           class="span12" value="<?php echo $twitter; ?>" />
                       </div>
                       </div>
@@ -268,7 +268,7 @@ include 'headers/menu-top-navigation.php';
                       <label class="control-label">Pinterest</label>
                               <div class="controls">
                           <div class="input-icon left"> <i class="icon-pinterest"></i>
-                          <input <?php echo $required; ?> name="pinterest" placeholder="www.Pinterest.com" type="text" 
+                          <input  name="pinterest" placeholder="www.Pinterest.com" type="text" 
                           class="span12" value="<?php echo $pinterest; ?>" />
                       </div>
                       </div>
@@ -278,7 +278,7 @@ include 'headers/menu-top-navigation.php';
                       <label class="control-label">Google</label>
                               <div class="controls">
                           <div class="input-icon left"> <i class="icon-google-plus"></i>
-                          <input <?php echo $required; ?> name="google" placeholder="www.Google++.com" type="text" 
+                          <input  name="google" placeholder="www.Google++.com" type="text" 
                           class="span12" value="<?php echo $google; ?>" />
                       </div>
                       </div>

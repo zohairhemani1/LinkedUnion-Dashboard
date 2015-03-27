@@ -1,10 +1,12 @@
 <?php
 session_start();
+$name = "";
+$formAction = "";
 	include '../headers/connect_to_mysql.php';
 if(isset($_GET['id']))
 {
 		$id = $_GET['id'];
-		$formAction = "?ANDid=$id";
+		$formAction = "?id=$id";
 		$query = "SELECT * FROM webservices where id = $id ";
 		$result = mysqli_query($con,$query);	
 		$row = mysqli_fetch_array($result)

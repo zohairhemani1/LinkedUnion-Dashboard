@@ -153,9 +153,9 @@ include 'headers/menu-top-navigation.php';
 								<td style='width:35%'><a href='#'>{$user_name}</a></td>
 								<td style='width:3%'><a href='#'>{$app_id}</a></td>
 								  <td width='10%' ><a href='insert_user.php?user_id={$user_id}' 
-								  id='update_button' class='btn btn-success'> <i class='icon-edit'></i> Update</a>																					 							 	 
+								  id='update_button' class='btn btn-success'> <i class='icon-edit'></i> </a>																					 							 	 
 								  <a href='delete_user.php?user_id={$user_id}' id='delete_button'  class='btn btn-danger'>
-								  <i class='icon-trash'></i> Delete</a>
+								  <i class='icon-trash'></i> </a>
 									  <td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
 								 <td style='display:none'><a class='' href='javascript:;'>Delete</a></td>
 								  </tr>";

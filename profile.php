@@ -1,4 +1,5 @@
 <?php 
+	session_start();
 	include 'headers/connect_to_mysql.php';
 	include 'headers/_user-details.php'; 
 
@@ -9,10 +10,10 @@
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
 <!-- BEGIN HEAD -->
 
-<!-- Mirrored from thevectorlab.net/adminlab/profile.html by HTTrack Website Copier/3.x [XR&CO'2013], Tue, 04 Nov 2014 08:01:42 GMT -->
+<!-- Mirrored from thevectorlab.net/adminlab/image.html by HTTrack Website Copier/3.x [XR&CO'2013], Tue, 04 Nov 2014 08:01:42 GMT -->
 <head>
    <meta charset="utf-8" />
-   <title>Profile</title>
+   <title>image</title>
    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
    <meta content="" name="description" />
    <meta content="" name="author" />
@@ -45,14 +46,14 @@ include 'headers/menu-top-navigation.php';
 
                   <!-- BEGIN PAGE TITLE & BREADCRUMB-->
                    <h3 class="page-title">
-                       Profile
-                     <small>View profile page</small>
+                       image
+                     <small>View image page</small>
                   </h3>
                    <ul class="breadcrumb">
  						<li>
                            <a href="index.php"><i class="icon-home"></i></a> <span class="divider">&nbsp;</span>
                        </li>
-                       <li><a href="#">Profile</a><span class="divider-last">&nbsp;</span>
+                       <li><a href="#">image</a><span class="divider-last">&nbsp;</span>
                        </li>
                        
                    </ul>
@@ -65,15 +66,15 @@ include 'headers/menu-top-navigation.php';
                <div class="span12">
                   <div class="widget">
                         <div class="widget-title">
-                           <h4><i class="icon-user"></i>Profile</h4>
+                           <h4><i class="icon-user"></i>image</h4>
                            <span class="tools">
                            <a href="javascript:;" class="icon-chevron-down"></a>
                            </span>                    
                         </div>
                         <div class="widget-body">
                             <div class="span3">
-                                <div class="text-center profile-pic">
-                                    <img src="img/image/<?php echo $profile; ?>" alt="">
+                                <div class="text-center image-pic">
+                                    <img src="img/image/<?php echo $image; ?>" alt="">
                                 </div>
                             </div>
                             <div class="span6">
@@ -120,8 +121,8 @@ include 'headers/menu-top-navigation.php';
                         </div>
        
                                               <div  class="form-actions clearfix">
-                                              <div id="profile_button">
-			<a href="insert_profile.php?user_id=<?Php echo $user_id ?>"><button  type="button"  class="btn btn-success " />Update</button></a>
+                                              <div id="image_button">
+			<a href="insert_image.php?user_id=<?Php echo $user_id ?>"><button  type="button"  class="btn btn-success " />Update</button></a>
             <div>
                    </div>                  
 
@@ -165,5 +166,5 @@ include 'headers/menu-top-navigation.php';
 </body>
 <!-- END BODY -->
 
-<!-- Mirrored from thevectorlab.net/adminlab/profile.html by HTTrack Website Copier/3.x [XR&CO'2013], Tue, 04 Nov 2014 08:01:44 GMT -->
+<!-- Mirrored from thevectorlab.net/adminlab/image.html by HTTrack Website Copier/3.x [XR&CO'2013], Tue, 04 Nov 2014 08:01:44 GMT -->
 </html>

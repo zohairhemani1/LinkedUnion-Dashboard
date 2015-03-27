@@ -1269,6 +1269,11 @@ var App = function () {
             jQuery('#loginform').hide();
             jQuery('#forgotform').show(200);
         });
+		
+ jQuery('#register').click(function () {
+            jQuery('#loginform').hide();
+            jQuery('#registerform').show(200);
+        });   
 
         jQuery('#forget-btn').click(function () {
 
@@ -1276,6 +1281,8 @@ var App = function () {
             jQuery('#forgotform').slideUp(200);
         });
     }
+	
+
 
     var handleFixInputPlaceholderForIE = function () {
         //fix html5 placeholder attribute for ie7 & ie8
@@ -2214,7 +2221,7 @@ var App = function () {
             handleSidebarToggler();
 
             if (isMainPage) { // this is for demo purpose. you may remove handleIntro function for your project
-                handleIntro();
+//                handleIntro();
             }
         },
 
@@ -2307,7 +2314,8 @@ try{
         var mins = ( value - hours*60 );
         return (hours < 10 ? "0"+hours : hours) + ":" + ( mins == 0 ? "00" : mins );
     }});
-} catch (e){
+}
+    catch (e){
     errorMessage(e);
 }
 

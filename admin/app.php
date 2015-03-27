@@ -1,7 +1,7 @@
 <?php	
 session_start();
 include '../headers/connect_to_mysql.php';
-include 'headers/_user-details.php';
+include '../headers/_user-details.php';
 ?>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -24,8 +24,10 @@ include 'headers/_user-details.php';
    <link href="../css/style_responsive.css" rel="stylesheet" />
    <link href="../css/style_default.css" rel="stylesheet" id="style_color" />
    <link href="../assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
-   <link rel="../stylesheet" type="text/css" href="assets/uniform/css/uniform.default.css" />
-   <link rel="../stylesheet" href="assets/data-tables/DT_bootstrap.css" />
+   <link rel="stylesheet" type="text/css" href="../assets/uniform/css/uniform.default.css" />
+   <link rel="stylesheet" href="../assets/data-tables/DT_bootstrap.css" />
+
+
 <script type="text/javascript">
 	function deleteConfirm(id)
 	{
@@ -37,7 +39,7 @@ include 'headers/_user-details.php';
 			return false;
 		}
 	}
-	</script>
+</script>
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
@@ -136,14 +138,15 @@ include 'headers/menu-top-navigation.php';
 					<?php
 					$query_app = "SELECT * FROM app limit 50";
 					$result_app = mysqli_query($con,$query_app);
-					
-					while($row = mysqli_fetch_array($result_app))
+					$count = 0;
+					while($row = mysqli_fetch_assoc($result_app))
 					{
+						$count++;
 						$app_id = $row['app_id'];
 						$app_name = $row['app_name'];							
 					echo"
 					<tr class=''> 
-								  <td style='width:3%'><a href='#'>{$app_id}</a></td>
+								  <td style='width:3%'><a href='#'>{$count}</a></td>
 								  <td style='width:40%'><a href='institutionDetail.php'>{$row['app_name']}</a></td>
 								  <td width='10%' ><a href='insert_app.php?app_id={$app_id}' 
 								  id='update_button' class='btn btn-success'> <i class='icon-edit'></i></a>																					 							 	 

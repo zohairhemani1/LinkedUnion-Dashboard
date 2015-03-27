@@ -7,7 +7,7 @@ echo"
            <div class='container-fluid'>
                <!-- BEGIN LOGO -->
                <a class='brand' href='index.php'>
-                   <img src='img/logo.png' alt='Admin Lab' />
+                   <img src='../img/avialdo.png' alt='Admin Lab' />
                </a>
                <!-- END LOGO -->
                <!-- BEGIN RESPONSIVE MENU TOGGLER -->
@@ -63,7 +63,7 @@ echo"
                        <!-- BEGIN USER LOGIN DROPDOWN -->
                        <li class='dropdown'>
                            <a href='#' class='dropdown-toggle' data-toggle='dropdown'>
-                               <img src='img/avatar1_small.jpg' alt=''>
+                               <img style='height:20px;' src='../img/avialdo.png' alt=''>
                                              
                                <span class='username'>  ".strtoupper("admin")." </span>
                                <b class='caret'></b>

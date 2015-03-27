@@ -1,8 +1,8 @@
 <?php
 	include '../headers/connect_to_mysql.php';
 	include 'headers/_user-details.php';
-
-if(isset($_GET['id']))
+	$name = "";
+	if(isset($_GET['id']))
 {
 		$id = $_GET['id'];
 		$formAction = "?ANDid=$id";
@@ -72,6 +72,28 @@ else
 	<link rel="stylesheet" href="../assets/data-tables/DT_bootstrap.css" />
    <link rel="stylesheet" type="text/css" href="../assets/chosen-bootstrap/chosen/chosen.css" />
 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+   <script>
+$(document).ready(function(){
+    $("#hide").click(function(){
+        $("#hide").hide();
+	 $("#form1").hide(); 
+      $("#form2").show();        
+     $("#show").show();
+    
+});
+    $("#show").click(function(){
+       $("#hide").show();
+       $("#form1").show(); 
+       $("#form2").hide();        
+       $("#show").hide();
+    });
+
+	 $('#Delete').click(function(){
+		$("#remove").remove();
+    });
+});
+</script>
 <title>Avialdo -Dashboard </title>
 
 </head>
@@ -123,14 +145,11 @@ include 'headers/menu-top-navigation.php';
                          </span>
                      </div>
                      <div class="widget-body form">
-                                     <div class="clearfix">
-                
-                    <button name="button" onclick="addInput()" type="button" class="btn btn-primary"> Add New <i class="icon-plus"></i> </button>
-							</div>
-                        <!-- BEGIN FORM-->
-                        <form action="insert_category.php<?php echo $formAction; ?>" method="post" class="form-horizontal">
+                        <!-- BEGIN FORM 1-->
+                        <form action="insert_category.php<?php echo $formAction; ?>" method="post" id="form1"
+                         class="form-horizontal">
                              <div class="control-group">
-                              <label class="control-label">App Id</label>
+                              <label class="control-label">App Name</label>
                               <div class="controls">
                                  <select class="span6 chosen" name="app_id" data-placeholder="Choose a Category" tabindex="1">
 									<?php echo include 'headers/app_detail.php'; ?>
@@ -144,20 +163,58 @@ include 'headers/menu-top-navigation.php';
                                  placeholder="Enter Your Category Name" type="text" class="span6 " />
                               </div>
                           </div>
-                         <div class="control-group">
-                              <label class="control-label">Sub Category</label>
-                              <div class="controls">
-                                <input required name="subcategories" value="<?php echo $subcategories; ?>" 
-                                 placeholder="Enter Your Category Sub category" type="text" class="span6 " />
-                              </div>
-                          </div>
-
                       <span id="responce"></span>
     			<div class="form-actions clearfix">
 				<input type="submit"  class="btn btn-success " />
+	  <button name="button" id="hide" type="button" class="btn btn-primary"> Sub Cateogory  </button>
+             <button name="button" onclick="addInput()" type="button" class="btn btn-warning"> Add New <i class="icon-plus"></i> </button>
                    </div>
                               </form>
-                            <!-- END FORM-->
+                            <!-- END FORM 1-->
+                            <!--BRGIN FORM 2-->
+                 <form action="insert_category.php<?php echo $formAction; ?>" id="form2" 
+                 style="display:none" method="post" class="form-horizontal">
+                             <div class="control-group">
+                              <label class="control-label">App Name</label>
+                              <div class="controls">
+                                 <select class="span6 chosen" style="width: 428px;" 
+                                 name="app_id" data-placeholder="Choose a Category" tabindex="1">
+									<?php echo include 'headers/app_detail.php'; ?>
+                                 </select>
+                              </div>
+                           </div>
+                           <div class="control-group">
+                              <label class="control-label">Category Name</label>
+                              <div class="controls">
+                                 <select class="span6 chosen" style="width: 428px;" name="category" 
+                                 data-placeholder="Choose a Category" tabindex="1">
+									<?php echo include 'headers/category_detail.php'; ?>
+                                 </select>
+                              </div>
+                           </div>
+                         <div class="control-group">
+                              <label class="control-label">Subcategory Name</label>
+                              <div class="controls">
+                                 <input required name="name" value="" 
+                                 placeholder="Enter Your Category Name" type="text" class="span6 " />
+                                 
+                              </div>
+                          </div>
+
+                      			 <span id="responce1"></span>
+    			<div class="form-actions clearfix">
+				<input type="submit"  class="btn btn-success " />
+ 		     <button name="button" id="show" style="display:none" type="button" class="btn btn-primary"> Add Cateogory </button>
+             <button name="button" onclick="addinput()" type="button" class="btn btn-warning"> Add New <i class="icon-plus"></i> </button>
+
+                   </div>
+                              </form>
+
+                            
+                            <!--END FORM 2-->
+                        
+                        
+                        
                         </div>
                     </div>
                     <!-- END EXTRAS widget-->
@@ -212,26 +269,35 @@ include 'headers/menu-top-navigation.php';
 		 UIJQueryUI.init();
       });
    </script>
+
 <script>
 
 var countBox =1;
 function addInput()
 {
      var boxName="textBox"+countBox; 
-document.getElementById('responce').innerHTML+='<div><div id="deletes"><br /><label class="control-label">Sub Category</label>\
-<input  style="margin-left:19px" placeholder style= = "Enter your Sub Category" required name="id['+countBox+']" id="'+boxName+'" type="text" class="span5"/>&nbsp;<button type = "button" class="btn btn-danger" id="Delete">&nbsp<i class="icon-remove icon-white"></i> Delete</button></div><br/>';
+document.getElementById('responce').innerHTML+='<div id="remove"></div><br /><label class="control-label">Sub Category</label>\
+<input  style="margin-left:19px" placeholder = "Enter your Sub Category" required name="id['+countBox+']" id="'+boxName+'" type="text" class="span5"/>&nbsp;<button type ="button"  class="btn btn-danger" onclick="removeDummy()"  id="Delete">&nbsp<i class="icon-remove icon-white"></i> Delete</button></div><br/>';
      countBox += 1;
-
 }
 </script>
 <script>
-$(function(){
+var countBox =1;
+function addinput()
+{
+     var boxName="textBox"+countBox; 
+document.getElementById('responce1').innerHTML+='<div><div id=""><br /><label class="control-label">Sub Category</label>\
+<input  style="margin-left:19px" placeholder style= = "Enter your Sub Category" required name="id['+countBox+']" id="'+boxName+'" type="text" class="span5"/>&nbsp;<button type = "button" class="btn btn-danger" id="">&nbsp<i class="icon-remove icon-white"></i> Delete</button></div><br/>';
+     countBox += 1;
+}
+</script>
+<script>
+function removeDummy() {
+    var elem = document.getElementById('input');
+    elem.parentNode.removeChild(elem);
+    return false;
+}
 
-    $('#Delete').live('click',function(e){
-   $(this).parent.remove();
-    });
- 
-});
 </script>
 </body>
 </html>

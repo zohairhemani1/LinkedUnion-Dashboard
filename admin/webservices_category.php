@@ -19,7 +19,7 @@ include '../headers/connect_to_mysql.php';
    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
    <meta content="" name="description" />
    <meta content="" name="author" />
-   <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
    <link href="../assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
    <link href="../assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
    <link href="../css/style.css" rel="stylesheet" />
@@ -27,8 +27,10 @@ include '../headers/connect_to_mysql.php';
    <link href="../css/style_responsive.css" rel="stylesheet" />
    <link href="../css/style_default.css" rel="stylesheet" id="style_color" />
    <link href="../assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
-   <link rel="../stylesheet" type="text/css" href="assets/uniform/css/uniform.default.css" />
-   <link rel="../stylesheet" href="assets/data-tables/DT_bootstrap.css" />
+   <link rel="stylesheet" type="text/css" href="../assets/uniform/css/uniform.default.css" />
+   <link rel="stylesheet" href="../assets/data-tables/DT_bootstrap.css" />
+
+
 <script type="text/javascript">
 	function deleteConfirm(id)
 	{
@@ -41,6 +43,9 @@ include '../headers/connect_to_mysql.php';
 		}
 	}
 	</script>
+
+
+
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
@@ -141,21 +146,22 @@ include 'headers/menu-top-navigation.php';
 					<?php
 					$query_app = "SELECT * FROM webservice_category limit 50";
 					$result_app = mysqli_query($con,$query_app);
-					
+					$count = 0;
 					while($row = mysqli_fetch_array($result_app))
 					{
+						$count++;
 						$id = $row['id'];
 						$webservice = $row['webservice'];
 						$category = $row['category'];
 					echo"
 					<tr class=''> 
-								  <td style='width:3%'><a href='#'>{$id}</a></td>
-								<td style='width:35%'><a href='#'>{$webservice}</a></td>
-								<td style='width:35%'><a href='#'>{$category}</a></td>
-								  <td style='width:17%'><a href='insert_webservice_category.php?id={$id}' 
-								  id='update_button' class='btn btn-success'> <i class='icon-edit'></i> Update</a>																					 							 	 
+								  <td style='width:7%'><a href='#'>{$count}</a></td>
+								<td style='width:37%'><a href='#'>{$webservice}</a></td>
+								<td style='width:37%'><a href='#'>{$category}</a></td>
+								  <td style='width:30%'><a href='insert_webservice_category.php?id={$id}' 
+								  id='update_button' class='btn btn-success'> <i class='icon-edit'></i></a>																					 							 	 
 								  <a href='delete_webservice_category.php?id={$id}' id='delete_button'  class='btn btn-danger'>
-								  <i class='icon-trash'></i> Delete</a>
+								  <i class='icon-trash'></i></a>
 									  <td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
 								 <td style='display:none'><a class='' href='javascript:;'>Delete</a></td>
 								  </tr>";
@@ -206,8 +212,7 @@ include 'headers/menu-top-navigation.php';
            App.init();
            TableEditable.init();
        });
-   </script>
-</body>
+   </script></body>
 <!-- END BODY -->
 
 <!-- Mirrored from thevectorlab.net/adminlab/editable_table.html by HTTrack Website Copier/3.x [XR&CO'2013], Tue, 04 Nov 2014 07:58:55 GMT -->

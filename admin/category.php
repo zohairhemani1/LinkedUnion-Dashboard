@@ -1,12 +1,18 @@
 <?php
 session_start();
-include '../headers/_user-details.php';
-include '../headers/connect_to_mysql.php';
-					$query_app = "SELECT distinct app_name FROM categories c, app a where c.app_id = a.app_id limit 50";
-					$result_app = mysqli_query($con,$query_app);
-					$query_app1 = "SELECT * FROM categories c, app a where c.app_id = a.app_id limit 50";
-					$result_app1 = mysqli_query($con,$query_app1);
-					?>
+
+	include '../headers/_user-details.php';
+	include '../headers/connect_to_mysql.php';
+	$query_app = "SELECT distinct app_name FROM categories c, app a where c.app_id = a.app_id limit 50";
+	$result_app = mysqli_query($con,$query_app);
+	$query_app1 = "SELECT c.id, c.name as category_name, sc.submenu_id, sc.name as subCategory_name, app.app_id, app.app_name FROM `categories` c
+					LEFT JOIN `subcategories` sc
+					ON c.id=sc.menu_id
+					LEFT JOIN `app` app
+					ON c.app_id=app.app_id";
+	$result_app1 = mysqli_query($con,$query_app1);
+	
+?>
 
 
 <!DOCTYPE html>
@@ -55,7 +61,6 @@ $returnArray = array();
 						$app_name = $row['app_name'];
 						$returnArray[] = $app_name;
 					}
-						print_r($returnArray);
 					
 						 ?>
 
@@ -154,12 +159,14 @@ include 'headers/menu-top-navigation.php';
                             <div class="portlet-body">
                                 
                                 <div id="width" class="space15"></div>
-                                <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-hover table-bordered" id="sample_editable_1">
+                                <table class="table table-striped table-hover table-bordered" id="sample_editable_1">
                                     <thead>
                                     <tr>
-                                    <th>app_name</th>
-                                    <th>Name</th>
-                                    <th>App Id</th>
+                                    <th>App Name</th>
+                                    <th>Category Id</th>
+                                    <th>Category Name</th>
+                                    <th>Sub Category Id</th>
+                                    <th>Sub Category Name</th>
                                     <th>Action</th>
                                         <div class="widths">
                                         <th style="display:none">Edit</th>
@@ -171,19 +178,20 @@ include 'headers/menu-top-navigation.php';
 
 				
 					<?php
-
 					while($row = mysqli_fetch_array($result_app1))
 					{
-						
-						$app_id = $row['app_id'];
-						$app_name = $row['app_name'];
-						$name = $row['name'];							
 						$id = $row['id'];
+						$app_name = $row['app_name'];
+						$subCategory_name = $row['subCategory_name'];
+						$submenu_id = $row['submenu_id'];
+						$category_name = $row['category_name'];
 					echo"
 					<tr class=''> 
-								  <td style='width:3%'><a href='#'>{$app_name}</a></td>
-								<td style='width:35%'><a href='#'>{$name}</a></td>
-								<td style='width:3%'><a href='#'>{$app_id}</a></td>
+								  <td style='width:2%'><a href='#'>{$app_name}</a></td>
+								  <td style='width:2%'><a href='#'>{$id}</a></td>
+								<td style='width:2%'><a href='#'>{$category_name}</a></td>
+								<td style='width:2%'><a href='#'>{$submenu_id}</a></td>
+								<td style='width:2%'><a href='#'>{$subCategory_name}</a></td>
 								  <td style='width:5%'><a href='insert_category.php?id={$id}' 
 								  id='update_button' class='btn btn-success'> <i class='icon-edit'></i> </a>																					 							 	 
 								  <a href='delete_category.php?id={$id}' id='delete_button'  class='btn btn-danger'>
@@ -197,8 +205,9 @@ include 'headers/menu-top-navigation.php';
                                     </tbody>
                                     <tfoot> 
                                 	    <tr>	
-											<th>All</th>
-									</tr>
+
+                                            <th>All</th>
+                                         	</tr>
 									</tfoot>
 
                      
