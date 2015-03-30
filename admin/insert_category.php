@@ -2,6 +2,8 @@
 	include '../headers/connect_to_mysql.php';
 	include 'headers/_user-details.php';
 	$name = "";
+	$formAction = "";
+	
 	if(isset($_GET['id']))
 {
 		$id = $_GET['id'];
@@ -73,27 +75,7 @@ else
    <link rel="stylesheet" type="text/css" href="../assets/chosen-bootstrap/chosen/chosen.css" />
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-   <script>
-$(document).ready(function(){
-    $("#hide").click(function(){
-        $("#hide").hide();
-	 $("#form1").hide(); 
-      $("#form2").show();        
-     $("#show").show();
-    
-});
-    $("#show").click(function(){
-       $("#hide").show();
-       $("#form1").show(); 
-       $("#form2").hide();        
-       $("#show").hide();
-    });
-
-	 $('#Delete').click(function(){
-		$("#remove").remove();
-    });
-});
-</script>
+ /script>
 <title>Avialdo -Dashboard </title>
 
 </head>
@@ -146,7 +128,19 @@ include 'headers/menu-top-navigation.php';
                      </div>
                      <div class="widget-body form">
                         <!-- BEGIN FORM 1-->
-                        <form action="insert_category.php<?php echo $formAction; ?>" method="post" id="form1"
+						  <div class="control-group">
+                               <div class="controls">
+                                 <label class="radio">
+                                 <input onClick="myFunction()" id="hide" type="radio" name="optionsRadios1" value="option1" checked  />
+                                 Category
+                                 </label>
+                                 <label class="radio">
+                                 <input onClick="myFunction()" id="show" type="radio" name="optionsRadios1" value="option2"   />
+                               Sub Category
+                                 </label> 
+</div>
+</div>								 
+                        <form style="display:block;" action="insert_category.php<?php echo $formAction; ?>" method="post" id="form1"
                          class="form-horizontal">
                              <div class="control-group">
                               <label class="control-label">App Name</label>
@@ -166,8 +160,7 @@ include 'headers/menu-top-navigation.php';
                       <span id="responce"></span>
     			<div class="form-actions clearfix">
 				<input type="submit"  class="btn btn-success " />
-	  <button name="button" id="hide" type="button" class="btn btn-primary"> Sub Cateogory  </button>
-             <button name="button" onclick="addInput()" type="button" class="btn btn-warning"> Add New <i class="icon-plus"></i> </button>
+             <button name="button" onClick="addInput()" type="button" class="btn btn-warning"> Add New <i class="icon-plus"></i> </button>
                    </div>
                               </form>
                             <!-- END FORM 1-->
@@ -204,8 +197,7 @@ include 'headers/menu-top-navigation.php';
                       			 <span id="responce1"></span>
     			<div class="form-actions clearfix">
 				<input type="submit"  class="btn btn-success " />
- 		     <button name="button" id="show" style="display:none" type="button" class="btn btn-primary"> Add Cateogory </button>
-             <button name="button" onclick="addinput()" type="button" class="btn btn-warning"> Add New <i class="icon-plus"></i> </button>
+             <button name="button" onClick="addinput()" type="button" class="btn btn-warning"> Add New <i class="icon-plus"></i> </button>
 
                    </div>
                               </form>
@@ -269,15 +261,35 @@ include 'headers/menu-top-navigation.php';
 		 UIJQueryUI.init();
       });
    </script>
-
+ <script>
+function myFunction() {
+	var ele1 = document.getElementById("form1");
+	var ele2 = document.getElementById("form2");
+	if(ele1.style.display == "block")
+	{
+		ele1.style.display = "none";
+		ele2.style.display = "block";
+  	}
+	else if (ele1.style.display == "none"){
+	ele1.style.display = "block";
+		ele2.style.display = "none";
+	
+	}
+}
+</script>
+ <script>
+function deletefunction(element) {
+	element.style.display = "none";
+}
+</scrip>
 <script>
 
 var countBox =1;
 function addInput()
 {
      var boxName="textBox"+countBox; 
-document.getElementById('responce').innerHTML+='<div id="remove"></div><br /><label class="control-label">Sub Category</label>\
-<input  style="margin-left:19px" placeholder = "Enter your Sub Category" required name="id['+countBox+']" id="'+boxName+'" type="text" class="span5"/>&nbsp;<button type ="button"  class="btn btn-danger" onclick="removeDummy()"  id="Delete">&nbsp<i class="icon-remove icon-white"></i> Delete</button></div><br/>';
+document.getElementById('responce').innerHTML+='<div id=""><br /><label id="remove" class="control-label">Sub Category</label>\
+<input  style="margin-left:19px" placeholder = "Enter your Sub Category" required name="id['+countBox+']" id="'+boxName+'" type="text" class="span5"/>&nbsp;<button type ="button"  class="btn btn-danger" id="Delete">&nbsp<i class="icon-remove icon-white"></i> Delete</button></div></div><br/>';
      countBox += 1;
 }
 </script>
@@ -286,19 +298,12 @@ var countBox =1;
 function addinput()
 {
      var boxName="textBox"+countBox; 
-document.getElementById('responce1').innerHTML+='<div><div id=""><br /><label class="control-label">Sub Category</label>\
-<input  style="margin-left:19px" placeholder style= = "Enter your Sub Category" required name="id['+countBox+']" id="'+boxName+'" type="text" class="span5"/>&nbsp;<button type = "button" class="btn btn-danger" id="">&nbsp<i class="icon-remove icon-white"></i> Delete</button></div><br/>';
+document.getElementById('responce1').innerHTML+='<div><div id="remove"><br /><label class="control-label">Sub Category</label>\
+<input  style="margin-left:19px" placeholder style= = "Enter your Sub Category" required name="id['+countBox+']" id="'+boxName+'" type="text" class="span5"/>&nbsp;<button type = "button" class="btn btn-danger">&nbsp<i class="icon-remove icon-white"></i> Delete</button></div><br/>';
      countBox += 1;
 }
 </script>
-<script>
-function removeDummy() {
-    var elem = document.getElementById('input');
-    elem.parentNode.removeChild(elem);
-    return false;
-}
 
-</script>
 </body>
 </html>
 
