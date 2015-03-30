@@ -13,11 +13,13 @@
 	$tempArray['masterKey'] = $_masterKey;
 	$tempArray['appID'] = $appID;
 	$tempArray['name'] = $appName;
+	$parseArray[] = $tempArray;
 	
 	echo"<option value='{$appID}'>{$appName}</option>";
 	
     while($row = mysqli_fetch_array($result_select))
 	{
+		$tempArray = array();
 		$app_id = $row['app_id'];
 		$app_name = $row['app_name'];
 		
