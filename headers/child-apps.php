@@ -6,6 +6,16 @@
 	
     $result_select = mysqli_query($con,$query_select)
     or die ('error'); 
+	
+	$tempArray = array();
+	$tempArray['restKey'] = $_restKey;
+	$tempArray['applicationID'] = $_applicationID;
+	$tempArray['masterKey'] = $_masterKey;
+	$tempArray['appID'] = $appID;
+	$tempArray['name'] = $appName;
+	
+	echo"<option value='{$appID}'>{$appName}</option>";
+	
     while($row = mysqli_fetch_array($result_select))
 	{
 		$app_id = $row['app_id'];
@@ -15,7 +25,6 @@
 		$masterKey = $row['masterKey'];
 		$applicationID = $row['applicationID'];
 		
-		$tempArray = array();
 		$tempArray['restKey'] = $restKey;
 		$tempArray['applicationID'] = $applicationID;
 		$tempArray['masterKey'] = $masterKey;
@@ -32,7 +41,7 @@
 	 $data=serialize($parseArray); 
 	 $encoded=htmlentities($data);
 	 
-	echo "<input type='text' value='$encoded' name = 'parseArray' />";
+	echo "<input type='text' value='$encoded' name = 'parseArray' style = 'display:none;'/>";
 	 
 	 //print_r($parseArray);
 ?>

@@ -43,7 +43,7 @@ if($_POST)
 			if($tempArray['appID'] == $app_id[$i])
 			{	
 				echo "match found <br/>";
-				include 'parse.php';
+				//include 'parse.php';
 			}
 		}
 		
@@ -148,7 +148,7 @@ include 'headers/menu-top-navigation.php';
                                       </select>
                                </div>
                              </div>
-                           <div class="control-group">
+                           <!-- <div class="control-group">
                               <label class="control-label">Platform</label>
                               <div class="controls">
                                  <label class="checkbox">
@@ -158,14 +158,14 @@ include 'headers/menu-top-navigation.php';
                                  <input name="ios" type="checkbox" value="ios" /> Ios
                                  </label>
                               </div>
-                           </div>
+                           </div> -->
                             <div class="control-group">
                               <label class="control-label">Notification</label>
                               <div class="controls">
                                  <textarea name="notification" placeholder="Write your Notification" class="span6 " rows="3"></textarea>
                               </div>
                            </div>
-                             <div class="control-group">
+                             <!-- <div class="control-group">
                                     <label class="control-label">Time</label>
                                     <div class="controls">
                                         <div class="input-append bootstrap-timepicker-component">
@@ -181,7 +181,7 @@ include 'headers/menu-top-navigation.php';
                                 <input class=" m-ctrl-medium date-picker" size="16" type="text" value="12-02-2012" name="date" /><span class="add-on"><i class="icon-calendar"></i></span>
                             </div>
                         </div>
-                                </div>
+                                </div> -->
     			<div class="form-actions clearfix">
 				<input type="submit"  class="btn btn-success " />
                    </div>

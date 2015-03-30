@@ -8,13 +8,20 @@
 	$cover = $row_query['cover'];
 	$image = $row_query['image'];
 	$appID = $row_query['app_id'];
+
 	$username = $row_query['user_name'];
 	$about_us = $row_query['about_us'];
 	$password = $row_query['password'];
 	$email = $row_query['email'];
 	$image = $row_query['image'];
 	$time_cone = $row_query['time_cone'];
+	$appName = $row_query['app_name'];
 	$username_allcaps = strtoupper($username);
+	$_restKey = $row_query['restKey'];
+	$_applicationID = $row_query['applicationID'];
+	$_masterKey = $row['masterKey'];
+	
+	
 
 ?>
 	
