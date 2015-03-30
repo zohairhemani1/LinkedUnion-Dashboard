@@ -27,6 +27,7 @@
 		
 		$queryIOS = ParseInstallation::query();
 		$queryIOS->equalTo('deviceType', 'android');
+		$queryIOS->equalTo('deviceType', 'ios');
 		 
 		ParsePush::send(array(
 		  "where" => $queryIOS,
