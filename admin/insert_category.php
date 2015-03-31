@@ -75,9 +75,50 @@ else
    <link rel="stylesheet" type="text/css" href="../assets/chosen-bootstrap/chosen/chosen.css" />
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
- /script>
+ 
 <title>Avialdo -Dashboard </title>
+   <script>
+$(function () {
+    var scntDiv = $('#addcategory');
+    var i = $('#addCategory input').size() + 1;
 
+    $('#addCategory').live('click', function () {
+        $('<p><br /><label for="p_scnts"><span class="controls">\
+		<input type="text" class="span5" id="p_scnt" size="20" name="p_scnt_' + i + '" value="" placeholder="Enter Category" /></label>\
+		<button class="btn-danger" href="#" id="remScnt">Remove</button></span></p>').appendTo(scntDiv);
+        i++;
+        return false;
+    });
+
+    $('#remScnt').live('click', function () {
+        $(this).parents('p').remove();
+
+
+        return false;
+    });
+});
+</script>
+  <script>
+$(function () {
+    var scntDiv = $('#addSubcategory');
+    var i = $('#addsubCategory input').size() + 1;
+
+    $('#addsubCategory').live('click', function () {
+        $('<p><br /><label for="p_scnts"><span class="controls">\
+		<input type="text" class="span5" id="p_scnt" size="20" name="Sub_category_' + i + '" value="" placeholder="Enter Sub category" /></label>\
+		<button class="btn-danger" href="#" id="remScnt">Remove</button></span></p>').appendTo(scntDiv);
+        i++;
+        return false;
+    });
+
+    $('#remScnt').live('click', function () {
+        $(this).parents('p').remove();
+
+
+        return false;
+    });
+});
+</script>
 </head>
 
 <body>
@@ -138,8 +179,8 @@ include 'headers/menu-top-navigation.php';
                                  <input onClick="myFunction()" id="show" type="radio" name="optionsRadios1" value="option2"   />
                                Sub Category
                                  </label> 
-</div>
-</div>								 
+								</div>
+							</div>								 
                         <form style="display:block;" action="insert_category.php<?php echo $formAction; ?>" method="post" id="form1"
                          class="form-horizontal">
                              <div class="control-group">
@@ -152,15 +193,17 @@ include 'headers/menu-top-navigation.php';
                            </div>
                          <div class="control-group">
                               <label class="control-label">Category Name</label>
-                              <div class="controls">
+                              <div id="addcategory">
+							  <div class="controls">
                                  <input required name="name" value="<?php echo $name; ?>" 
                                  placeholder="Enter Your Category Name" type="text" class="span6 " />
                               </div>
+							  </div>
                           </div>
                       <span id="responce"></span>
     			<div class="form-actions clearfix">
 				<input type="submit"  class="btn btn-success " />
-             <button name="button" onClick="addInput()" type="button" class="btn btn-warning"> Add New <i class="icon-plus"></i> </button>
+             <button name="button" id="addCategory" type="button" class="btn btn-warning"> Add New <i class="icon-plus"></i> </button>
                    </div>
                               </form>
                             <!-- END FORM 1-->
@@ -185,19 +228,20 @@ include 'headers/menu-top-navigation.php';
                                  </select>
                               </div>
                            </div>
+						    <div id="addSubcategory">
                          <div class="control-group">
                               <label class="control-label">Subcategory Name</label>
                               <div class="controls">
                                  <input required name="name" value="" 
                                  placeholder="Enter Your Category Name" type="text" class="span6 " />
-                                 
+                                 </div>
                               </div>
                           </div>
 
                       			 <span id="responce1"></span>
     			<div class="form-actions clearfix">
 				<input type="submit"  class="btn btn-success " />
-             <button name="button" onClick="addinput()" type="button" class="btn btn-warning"> Add New <i class="icon-plus"></i> </button>
+             <button name="button" id="addsubCategory" type="button" class="btn btn-warning"> Add New <i class="icon-plus"></i> </button>
 
                    </div>
                               </form>
@@ -230,7 +274,8 @@ include 'headers/menu-top-navigation.php';
  
    <!-- BEGIN JAVASCRIPTS -->
    <!-- Load javascripts at bottom, this will reduce page load time -->
-   <script src="../js/jquery-1.8.3.min.js"></script>
+<script src="../js/jquery-1.4.4.min.js"></script>  
+  <script src="../js/jquery-1.8.3.min.js"></script>
    <script src="../assets/jquery-ui/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
 <script src="../assets/bootstrap/js/bootstrap.min.js"></script>   
    <script src="../js/jquery.blockui.js"></script>
@@ -261,6 +306,7 @@ include 'headers/menu-top-navigation.php';
 		 UIJQueryUI.init();
       });
    </script>
+
  <script>
 function myFunction() {
 	var ele1 = document.getElementById("form1");
@@ -277,32 +323,8 @@ function myFunction() {
 	}
 }
 </script>
- <script>
-function deletefunction(element) {
-	element.style.display = "none";
-}
-</scrip>
-<script>
 
-var countBox =1;
-function addInput()
-{
-     var boxName="textBox"+countBox; 
-document.getElementById('responce').innerHTML+='<div id=""><br /><label id="remove" class="control-label">Sub Category</label>\
-<input  style="margin-left:19px" placeholder = "Enter your Sub Category" required name="id['+countBox+']" id="'+boxName+'" type="text" class="span5"/>&nbsp;<button type ="button"  class="btn btn-danger" id="Delete">&nbsp<i class="icon-remove icon-white"></i> Delete</button></div></div><br/>';
-     countBox += 1;
-}
-</script>
-<script>
-var countBox =1;
-function addinput()
-{
-     var boxName="textBox"+countBox; 
-document.getElementById('responce1').innerHTML+='<div><div id="remove"><br /><label class="control-label">Sub Category</label>\
-<input  style="margin-left:19px" placeholder style= = "Enter your Sub Category" required name="id['+countBox+']" id="'+boxName+'" type="text" class="span5"/>&nbsp;<button type = "button" class="btn btn-danger">&nbsp<i class="icon-remove icon-white"></i> Delete</button></div><br/>';
-     countBox += 1;
-}
-</script>
+
 
 </body>
 </html>

@@ -3499,3 +3499,9 @@ ul.amounts li {
 	margin-top:1px !important;
 	position:absolute;
 	}
+#remScnt {
+  /* position: relative; */
+  margin-left: 57%;
+  margin-top: -63px;
+  height: 29px !important;
+}

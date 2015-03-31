@@ -152,7 +152,7 @@ include 'headers/menu-top-navigation.php';
 								<td style='width:35%'><a href='#'>{$name}</a></td>
 								  <td width='10%' ><a href='insert_webservice.php?id={$id}' 
 								  id='update_button' class='btn btn-success'> <i class='icon-edit'></i></a>																					 							 	 
-								  <a href='delete_webservice.php?id={$id}' id='delete_button'  class='btn btn-danger'>
+								  <a href='delete.php?id={$id}' id='delete_button'  class='btn btn-danger'>
 								  <i class='icon-trash'></i> </a>
 									  <td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
 								 <td style='display:none'><a class='' href='javascript:;'>Delete</a></td>

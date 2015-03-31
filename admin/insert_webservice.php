@@ -28,8 +28,7 @@ else
 	if($_POST)
 	{
 		$name = $_POST['name'];
-		$query_inserting = "INSERT INTO webservices(name)
-		VALUES ('$name')";
+		$query_inserting = "INSERT INTO webservices(name) VALUES ('$name')";
 		mysqli_query($con,$query_inserting)
 		or die('error while inserting Webservices');
 		header("Location: webservices.php?insert=true");	

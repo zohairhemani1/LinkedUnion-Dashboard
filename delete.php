@@ -1,5 +1,5 @@
 <?php 
-	include 'headers/connect_to_mysql.php';
+	include '../headers/connect_to_mysql.php';
 	
 	if(isset($_GET['id']))
 	{
