@@ -2,13 +2,9 @@
 
 include 'headers/connect_to_mysql.php';
 include 'headers/_user-details.php';
-
-$notificationMsg = "";
-
-if($_POST)
 {
 	$app_id = $_POST['app_id'];
-	print_r($app_id);
+	//print_r($app_id);
 	$android = $_POST['android'];
 	$ios = $_POST['ios'];
 	$notificationMsg = $_POST['notification'];
@@ -16,7 +12,7 @@ if($_POST)
 	$date = $_POST['date'];
 	$parseArray = $_POST['parseArray'];
 	$parseArray = unserialize($parseArray);
-	print_r($parseArray);
+	//print_r($parseArray);
 	
 	
 	$query = "INSERT INTO pushmessage(pushMessage,timeStamp,authorAppID) VALUES ('$notificationMsg',now(),'$appID')";

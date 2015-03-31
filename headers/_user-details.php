@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	include 'connect_to_mysql.php';
 	$user_id = $_SESSION['user_id'];
 	$query_detail = "SELECT * FROM `user` u, `app` a WHERE u.app_id = a.app_id and u.user_id = '{$user_id}'";

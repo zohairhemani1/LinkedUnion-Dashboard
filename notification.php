@@ -126,7 +126,6 @@ include 'headers/menu-top-navigation.php';
 								 <th style="width:25px;">S No</th>
                                     <th>Notification</th>
                                    	<th>App Name</th>
-                                    <th>Platform</th>
                                     <th>Time</th>
                                        <div class="widths">
                                         <th style="display:none">Edit</th>
@@ -141,23 +140,14 @@ include 'headers/menu-top-navigation.php';
 					<?php
 					$query = "select pm.*,pb.*,ap.* from `pushmessage` pm,`pushbridge`pb,`app` ap where pm.authorAppID = {$appID} and pm.pushID = pb.pushID AND pb.appID = ap.app_id order by pm.pushID";
 					$result = mysqli_query($con,$query);
-					$count=1;
+					$count = 1;
 					$s_no = 1;
 					$row = mysqli_fetch_array($result);
-					$tempID=$row['pushID'];
+					$tempID = $row['pushID'];
 					$tempStr = $row['app_name'];
 					$notification = $row['pushMessage'];
 					$timeStamp = $row['timeStamp'];
 					
-					echo"<tr class=''> 
-											<td id='table_width' style='width:10%'>{$s_no}</a></td>
-											<td style='width:25%'>{$notification}</a></td>
-											<td style='width:25%'>{$tempStr}</a></td>
-											<td style='width:25%'>iOS/Android</a></td>
-											<td style='width:24%'>{$timeStamp}</a>
-											<td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
-											<td style='display:none'><a class='' href='javascript:;'>Delete</a></td>
-											  </tr>";
 					
 					while($row = mysqli_fetch_array($result))
 					{	
@@ -178,7 +168,6 @@ include 'headers/menu-top-navigation.php';
 											<td id='table_width' style='width:10%'>{$s_no}</a></td>
 											<td style='width:25%'>{$notification}</a></td>
 											<td style='width:25%'>{$tempStr}</a></td>
-											<td style='width:25%'>iOS/Android</a></td>
 											<td style='width:24%'>{$timeStamp}</a>
 											<td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
 											<td style='display:none'><a class='' href='javascript:;'>Delete</a></td>
@@ -190,12 +179,7 @@ include 'headers/menu-top-navigation.php';
 							$timeStamp = $row['timeStamp'];
 							
 						}
-						else
-						{
-							echo "else condition";
-						}
 
-						
 					}	
 
 					?>	
