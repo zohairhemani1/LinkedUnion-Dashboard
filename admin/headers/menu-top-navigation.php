@@ -63,9 +63,9 @@ echo"
                        <!-- BEGIN USER LOGIN DROPDOWN -->
                        <li class='dropdown'>
                            <a href='#' class='dropdown-toggle' data-toggle='dropdown'>
-                               <img style='height:20px;' src='../img/avialdo.png' alt=''>
+                               <img style='height:20px;' src='../img/user.png' alt=''>
                                              
-                               <span class='username'>  ".strtoupper("admin")." </span>
+                               <span class='username' >  " .strtoupper("avialdo")." </span>
                                <b class='caret'></b>
                            </a>
                            <ul class='dropdown-menu'>

@@ -2,6 +2,8 @@
 session_start();
 include '../headers/_user-details.php';
 include '../headers/connect_to_mysql.php';
+	$query_app = "SELECT distinct app_name FROM categories c, app a where c.app_id = a.app_id limit 50";
+		$result_app = mysqli_query($con,$query_app);
 
 ?>
 
@@ -43,7 +45,34 @@ include '../headers/connect_to_mysql.php';
 		}
 	}
 	</script>
+                <script src="media/js/jquery-1.4.4.min.js" type="text/javascript"></script>
 
+       <script src="media/js/jquery.dataTables.columnFilter.js" type="text/javascript"></script>
+
+<?php 
+$returnArray = array();
+					while($row = mysqli_fetch_assoc($result_app))
+					{
+						$app_name = $row['app_name'];
+						$returnArray[] = $app_name;
+					}
+					
+						 ?>
+
+		<script type="text/javascript">
+$(document).ready(function(){
+     $('#sample_editable_1').dataTable()
+		  .columnFilter({
+			aoColumns: [ { type: "select", values:<?php echo json_encode($returnArray); ?>},
+				     { type: "text" },
+				     null,
+				     { type: "number" }
+				]
+		  				
+		});
+});
+
+		</script>
 
 
 </head>
@@ -129,7 +158,7 @@ include 'headers/menu-top-navigation.php';
                                 <table class="table table-striped table-hover table-bordered" id="sample_editable_1">
                                     <thead>
                                     <tr>
-								 <th style="width:25px;">S No</th>
+								 <th style="">App Name</th>
                                     <th>Webservice</th>
                                     <th>Category</th>
                                      <th>Action</th>
@@ -151,11 +180,12 @@ include 'headers/menu-top-navigation.php';
 					{
 						$count++;
 						$id = $row['id'];
-						$webservice = $row['webservice'];
+					$app_name = $row['app_name'];
+					$webservice = $row['webservice'];
 						$category = $row['category'];
 					echo"
 					<tr class=''> 
-								  <td style='width:7%'><a href='#'>{$count}</a></td>
+								<td style='width:37%'><a href='#'>{$app_name}</a></td>						
 								<td style='width:37%'><a href='#'>{$webservice}</a></td>
 								<td style='width:37%'><a href='#'>{$category}</a></td>
 								  <td style='width:30%'><a href='insert_webservice_category.php?id={$id}' 
@@ -168,6 +198,14 @@ include 'headers/menu-top-navigation.php';
 					}
 					?>	
                                     </tbody>
+									  <tfoot> 
+                                	    <tr>	
+
+                                            <th>All</th>
+                                         	</tr>
+									</tfoot>
+
+                     
                                 </table>
                             </div>
                         </div>
@@ -192,8 +230,7 @@ include 'headers/menu-top-navigation.php';
    <!-- END FOOTER -->
    <!-- BEGIN JAVASCRIPTS -->
    <!-- Load javascripts at bottom, this will reduce page load time -->
-   <script src="../js/jquery-1.8.3.min.js"></script>
-   <script src="../assets/bootstrap/js/bootstrap.min.js"></script>   
+    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>   
    <script src="../js/jquery.blockui.js"></script>
    <!-- ie8 fixes -->
    <!--[if lt IE 9]>
@@ -203,9 +240,7 @@ include 'headers/menu-top-navigation.php';
    <script type="text/javascript" src="../assets/uniform/jquery.uniform.min.js"></script>
    <script type="text/javascript" src="../assets/data-tables/jquery.dataTables.js"></script>
    <script type="text/javascript" src="../assets/data-tables/DT_bootstrap.js"></script>
-   <script src="../js/scripts.js"></script>
 
-   <script src="../js/table-editable.js"></script>
 
    <script>
        jQuery(document).ready(function() {
