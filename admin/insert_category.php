@@ -78,6 +78,17 @@ else
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
  
 <title>Avialdo -Dashboard </title>
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $("select#category").change(function(){
+        var selectCategory = $("#category option:selected").val();
+		$("#subcategory").prop("disabled", false);
+		alert( + selectCategory);
+    });
+});
+</script>
+
    <script>
 $(function () {
     var scntDiv = $('#addcategory');
@@ -187,7 +198,7 @@ include 'headers/menu-top-navigation.php';
                              <div class="control-group">
                               <label class="control-label">App Name</label>
                               <div class="controls">
-                                 <select class="span6 chosen" name="app_id" data-placeholder="Choose a Category" tabindex="1">
+                                 <select class="span6 chosen" name="app_id" data-placeholder="Choose a Category"  tabindex="1">
 									<?php echo include 'headers/app_detail.php'; ?>
                                  </select>
                               </div>
@@ -214,17 +225,29 @@ include 'headers/menu-top-navigation.php';
                              <div class="control-group">
                               <label class="control-label">App Name</label>
                               <div class="controls">
-                                 <select class="span6 chosen" style="width: 428px;" 
+                                 <select class="span6 chosen" id="category" style="width: 428px;" 
                                  name="app_id" data-placeholder="Choose a Category" tabindex="1">
-									<?php echo include 'headers/app_detail.php'; ?>
+									<?php $query_select = "SELECT * FROM app";
+									$result_select = mysqli_query($con,$query_select)
+									or die ('error'); 
+									while($row = mysqli_fetch_array($result_select))
+									{
+									$app_id = $row['app_id'];
+									$app_name = $row['app_name'];
+									echo"
+									<option value=''></option>
+									<option value='$app_id'>{$app_name}</option>
+									";                                
+									 } 
+									 ?>
                                  </select>
                               </div>
                            </div>
                            <div class="control-group">
                               <label class="control-label">Category Name</label>
                               <div class="controls">
-                                 <select class="span6 chosen" style="width: 428px;" name="category" 
-                                 data-placeholder="Choose a Category" tabindex="1">
+                                 <select id="subcategory" class="span6 chosen" style="width: 428px; display:block !important;" name="category" 
+                                 data-placeholder="Choose a Category" disabled tabindex="1">
 									<?php echo include 'headers/category_detail.php'; ?>
                                  </select>
                               </div>
@@ -233,7 +256,7 @@ include 'headers/menu-top-navigation.php';
                          <div class="control-group">
                               <label class="control-label">Subcategory Name</label>
                               <div class="controls">
-                                 <input required name="name" value="" 
+                                 <input  required name="name" value="" 
                                  placeholder="Enter Your Category Name" type="text" class="span6 " />
                                  </div>
                               </div>

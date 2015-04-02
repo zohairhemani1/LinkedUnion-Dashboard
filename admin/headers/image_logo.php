@@ -1,6 +1,5 @@
 <?php
 
-
 if (mysql_error()) {
     //echo "<h2>Failure:</h2><em>" . mysql_error() . "</em>";
 } else {

@@ -126,7 +126,7 @@ include 'headers/menu-top-navigation.php';
                                     <tr>
 								 <th style="width:30px;">S No</th>
                                     <th>User Name</th>
-                                    <th>App Id</th>
+                                    <th>App Name</th>
                                     <th>Action</th>
                                         <div class="widths">
                                         <th style="display:none">Edit</th>
@@ -139,22 +139,22 @@ include 'headers/menu-top-navigation.php';
 
 				
 					<?php
-					$query_app = "SELECT * FROM user limit 50";
+					$query_app = "SELECT u.*, apps.app_name FROM `user` u , `app` apps where u.app_id = apps.app_id limit 50";
 					$result_app = mysqli_query($con,$query_app);
 					
 					while($row = mysqli_fetch_array($result_app))
 					{
 						$user_name = $row['user_name'];
 						$user_id = $row['user_id'];
-						$app_id = $row['app_id'];
+						$app_name = $row['app_name'];
 					echo"
 					<tr class=''> 
 								  <td style='width:3%'><a href='#'>{$user_id}</a></td>
 								<td style='width:35%'><a href='#'>{$user_name}</a></td>
-								<td style='width:3%'><a href='#'>{$app_id}</a></td>
+								<td style='width:3%'><a href='#'>{$app_name}</a></td>
 								  <td width='10%' ><a href='insert_user.php?user_id={$user_id}' 
 								  id='update_button' class='btn btn-success'> <i class='icon-edit'></i> </a>																					 							 	 
-								  <a href='delete_user.php?user_id={$user_id}' id='delete_button'  class='btn btn-danger'>
+								  <a href='delete.php?user_id={$user_id}' id='delete_button'  class='btn btn-danger'>
 								  <i class='icon-trash'></i> </a>
 									  <td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
 								 <td style='display:none'><a class='' href='javascript:;'>Delete</a></td>

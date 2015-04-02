@@ -159,8 +159,11 @@ include 'headers/menu-top-navigation.php';
                                     <thead>
                                     <tr>
 								 <th style="">App Name</th>
-                                    <th>Webservice</th>
                                     <th>Category</th>
+                                    <th>catID</th>
+									<th>subcategory</th>
+									<th>subcatID</th>
+									<th>webservice</th>
                                      <th>Action</th>
                                         <div class="widths">
                                         <th style="display:none">Edit</th>
@@ -171,23 +174,41 @@ include 'headers/menu-top-navigation.php';
                                            </thead>
                                     <tbody>
 
+ 
+ 
+ 
+ 
 				
 					<?php
-					$query_app = "SELECT * FROM webservice_category limit 50";
+					$query_app = "SELECT wc.*,c.id as catID,c.name as catName, sc.name as subcatName, 
+									sc.submenu_id as subcatID,w.name as wsName, a.app_id,a.app_name
+									FROM `webservice_category` wc LEFT OUTER JOIN `categories` c
+									ON wc.category=c.id LEFT OUTER JOIN `subcategories` sc
+									ON wc.category=sc.submenu_id LEFT OUTER JOIN `webservices` w
+									ON w.id = wc.webservice left outer join app a on a.app_id in 
+									( select c1.app_id from categories c1 where c1.id = c.id union select c2.app_id 
+									from subcategories, categories c2 where subcategories.menu_id = c2.id 
+									and sc.id = subcategories.id )";
 					$result_app = mysqli_query($con,$query_app);
 					$count = 0;
 					while($row = mysqli_fetch_array($result_app))
 					{
-						$count++;
-						$id = $row['id'];
+					$count++;
+					$id = $row['id'];
 					$app_name = $row['app_name'];
+					$catName = $row['catName'];
+					$catID = $row['catID'];
+					$subcatName = $row['subcatName'];
+					$subcatID = $row['subcatID'];
 					$webservice = $row['webservice'];
-						$category = $row['category'];
 					echo"
 					<tr class=''> 
-								<td style='width:37%'><a href='#'>{$app_name}</a></td>						
+								<td style='width:37%'><a href='#'>{$app_name}</a></td>			
+								<td style='width:37%'><a href='#'>{$catName}</a></td>
+								<td style='width:37%'><a href='#'>{$catID}</a></td>
+								<td style='width:37%'><a href='#'>{$subcatName}</a></td>								
+								<td style='width:37%'><a href='#'>{$subcatID}</a></td>
 								<td style='width:37%'><a href='#'>{$webservice}</a></td>
-								<td style='width:37%'><a href='#'>{$category}</a></td>
 								  <td style='width:30%'><a href='insert_webservice_category.php?id={$id}' 
 								  id='update_button' class='btn btn-success'> <i class='icon-edit'></i></a>																					 							 	 
 								  <a href='delete_webservice_category.php?id={$id}' id='delete_button'  class='btn btn-danger'>

@@ -6,8 +6,15 @@ $child = "";
 
 include '../headers/_user-details.php';
 include '../headers/connect_to_mysql.php';
-	$query_app = "SELECT distinct app_name FROM categories c, app a where c.app_id = a.app_id limit 50";
+	$query_app = "SELECT distinct app_name FROM categories c, app a where c.app_id = a.app_id 
+	limit 50";
 		$result_app = mysqli_query($con,$query_app);
+	$query_app1 = "SELECT ar.id as uniqueID,ar.parentID, app.app_name as parentName,
+	c.app_id as childID, c.childName,  c.name as catName, c.id as catID 
+	from `app_relation` ar, (SELECT c.*,app.app_name as ChildName from
+	`categories` c, `app` app where c.app_id = app.app_id) c, `app` app 
+	where ar.catID = c.id AND app.app_id = ar.parentID order by ar.parentID";
+	  $result_app1 = mysqli_query($con,$query_app1);
 
 ?>
 
@@ -159,9 +166,9 @@ include 'headers/menu-top-navigation.php';
                                 <table class="table table-striped table-hover table-bordered" id="sample_editable_1">
                                     <thead>
                                     <tr>
-								 <th style="">App Name</th>
-                                    <th>Parent</th>
-                                    <th>Child</th>
+								 <th style="">Parent Name</th>
+                                    <th>Child Name</th>
+                                    <th>Cat Name</th>
                                      <th>Action</th>
                                         <div class="widths">
                                         <th style="display:none">Edit</th>
@@ -174,23 +181,21 @@ include 'headers/menu-top-navigation.php';
 
 				
 					<?php
-					$query_app = "SELECT * FROM webservice_category limit 50";
-					$result_app = mysqli_query($con,$query_app);
 					
-					while($row = mysqli_fetch_array($result_app))
+					while($row = mysqli_fetch_array($result_app1))
 					{
-						$app_name = $row['app_name']; 
-						$id = $row['id'];
-						$parent = $row['parent'];
-						$child = $row['child'];
+						$parentName = $row['parentName']; 
+						$childName = $row['childName'];
+						$uniqueID = $row['uniqueID'];
+						$catName = $row['catName'];
 					echo"
 					<tr class=''> 
-								  <td style='width:3%'><a href='#'>{$id}</a></td>
-								<td style='width:35%'><a href='#'>{$parent}</a></td>
-								<td style='width:35%'><a href='#'>{$child}</a></td>
-								  <td style='width:17%'><a href='insert_parent.php?id={$id}' 
+								  <td style='width:3%'><a href='#'>{$parentName}</a></td>
+								<td style='width:35%'><a href='#'>{$childName}</a></td>
+								<td style='width:35%'><a href='#'>{$catName}</a></td>
+								  <td style='width:17%'><a href='insert_parent.php?uniqueID={$uniqueID}' 
 								  id='update_button' class='btn btn-success'> <i class='icon-edit'></i> </a>																					 							 	 
-								  <a href='delete_parent.php?id={$id}' id='delete_button'  class='btn btn-danger'>
+								  <a href='delete_parent.php?uniqueID={$uniqueID}' id='delete_button'  class='btn btn-danger'>
 								  <i class='icon-trash'></i> </a>
 									  <td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
 								 <td style='display:none'><a class='' href='javascript:;'>Delete</a></td>

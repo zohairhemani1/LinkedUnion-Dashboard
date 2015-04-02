@@ -17,5 +17,12 @@
 	$result = mysqli_query($con,$query_delete);
 	header ("Location: webservices.php?delete=true");
 	}
+	if(isset($_GET['user_id'])){
+	$user_id = $_GET['user_id'];
+	$query_delete = "DELETE from user where user_id = '$user_id'"
+	or die ('error while User');
+	$result = mysqli_query($con,$query_delete);
+	header ("Location: user.php?delete=true");
+	}
 
 ?>
