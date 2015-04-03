@@ -155,6 +155,7 @@ else
    if(<?php echo $redirect;?> == 1){
 			//alert('redirecting');
 			window.location.href = '<?php echo $url; ?>';
+   
    }
 	</script>
    

@@ -190,10 +190,10 @@ include 'headers/menu-top-navigation.php';
 						$catName = $row['catName'];
 					echo"
 					<tr class=''> 
-								  <td style='width:3%'><a href='#'>{$parentName}</a></td>
-								<td style='width:35%'><a href='#'>{$childName}</a></td>
-								<td style='width:35%'><a href='#'>{$catName}</a></td>
-								  <td style='width:17%'><a href='insert_parent.php?uniqueID={$uniqueID}' 
+								  <td style='width:4% !important'><a href='#'>{$parentName}</a></td>
+								<td style='width:14% !important'><a href='#'>{$childName}</a></td>
+								<td style='width:14% !important'><a href='#'>{$catName}</a></td>
+								  <td style='width:13% !important'><a href='insert_parent.php?uniqueID={$uniqueID}' 
 								  id='update_button' class='btn btn-success'> <i class='icon-edit'></i> </a>																					 							 	 
 								  <a href='delete_parent.php?uniqueID={$uniqueID}' id='delete_button'  class='btn btn-danger'>
 								  <i class='icon-trash'></i> </a>

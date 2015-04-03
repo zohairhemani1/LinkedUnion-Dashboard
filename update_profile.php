@@ -80,8 +80,13 @@ if($_POST)
    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
    <link rel="stylesheet" type="text/css" href="css/main.css" />
 
-   <script>
- 	</script>
+  <script>
+   if(<?php echo $redirect;?> == 1){
+			//alert('redirecting');
+			window.location.href = '<?php echo $url; ?>';
+   }
+	</script>
+   
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->

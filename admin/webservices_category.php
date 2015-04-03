@@ -158,7 +158,7 @@ include 'headers/menu-top-navigation.php';
                                 <table class="table table-striped table-hover table-bordered" id="sample_editable_1">
                                     <thead>
                                     <tr>
-								 <th style="">App Name</th>
+								 <th>App Name</th>
                                     <th>Category</th>
                                     <th>catID</th>
 									<th>subcategory</th>
@@ -203,13 +203,13 @@ include 'headers/menu-top-navigation.php';
 					$webservice = $row['webservice'];
 					echo"
 					<tr class=''> 
-								<td style='width:37%'><a href='#'>{$app_name}</a></td>			
-								<td style='width:37%'><a href='#'>{$catName}</a></td>
-								<td style='width:37%'><a href='#'>{$catID}</a></td>
-								<td style='width:37%'><a href='#'>{$subcatName}</a></td>								
-								<td style='width:37%'><a href='#'>{$subcatID}</a></td>
-								<td style='width:37%'><a href='#'>{$webservice}</a></td>
-								  <td style='width:30%'><a href='insert_webservice_category.php?id={$id}' 
+								<td style='width:1% !important'><a href='#'>{$app_name}</a></td>			
+								<td style='width:21% !important'><a href='#'>{$catName}</a></td>
+								<td style='width:5% !important'><a href='#'>{$catID}</a></td>
+								<td style='width:16% !important'><a href='#'>{$subcatName}</a></td>								
+								<td style='width:4% !important'><a href='#'>{$subcatID}</a></td>
+								<td style='width:4% !important'><a href='#'>{$webservice}</a></td>
+								  <td style='width:29% !important'><a href='insert_webservice_category.php?id={$id}' 
 								  id='update_button' class='btn btn-success'> <i class='icon-edit'></i></a>																					 							 	 
 								  <a href='delete_webservice_category.php?id={$id}' id='delete_button'  class='btn btn-danger'>
 								  <i class='icon-trash'></i></a>

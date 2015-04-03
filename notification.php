@@ -78,28 +78,22 @@ include 'headers/menu-top-navigation.php';
 
             <!-- BEGIN ADVANCED TABLE widget-->
                       <?php
-			if(isset($_GET['insert']) == 'true')
+			if(isset($_GET['sent']) == 'true')
 			{
 				echo"
 			<div class='alert alert-success'>
 					<button class='close' data-dismiss='alert'>×</button>
-					<strong>Success!</strong> The Notification has been added.
+					<strong>Success!</strong> The Notification has been Send.
 				</div>";
 			}
-	 	else if(isset($_GET['update']) == 'true'){
+	 	else if(isset($_GET['sent']) == 'false'){
       echo"
-	    <div class='alert alert-success'>
+	    <div class='alert alert-danger'>
                 <button class='close' data-dismiss='alert'>×</button>
-                <strong>Success!</strong> The Notification has been updated.
+                <strong>Sorry!</strong> Failed to Send Notification .
             </div>";
 		}
-		else if(isset($_GET['delete']) == 'true'){
-      echo"
-	    <div class='alert alert-success'>
-                <button class='close' data-dismiss='alert'>×</button>
-                <strong>Success!</strong> The Notification has been Deleted.
-            </div>";
-		}
+
 ?>
             <div class="row-fluid">
                 <div class="span12">

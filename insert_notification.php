@@ -42,11 +42,16 @@ include 'headers/_user-details.php';
 			{	
 				//echo "match found";
 				include 'parse.php';
+   		$url = "news.php?categoryID=$categoryID&update=true";
+			$redirect = 1;
+
+			  
 			}
 		}
 		
 	}
-	
+		$url = "notification.php?sent=true";
+		$redirect = 1;
 }
 
 ?>
@@ -85,6 +90,12 @@ include 'headers/_user-details.php';
    <link rel="stylesheet" type="text/css" href="assets/chosen-bootstrap/chosen/chosen.css" />
 
 <title>LinkedUnion -Dashboard </title>
+<script>
+			 if(<?php echo $redirect;?> == 1){
+			//alert('redirecting');
+			window.location.href = '<?php echo $url; ?>';
+	}
+	</script>
 
 </head>
 

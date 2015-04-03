@@ -9,7 +9,7 @@
 	$app_name = $row['app_name'];
     echo"
     <option value=''></option>
-    <option value='app_id'>{$app_name}</option>
+    <option value='$app_id'>{$app_name}</option>
     ";                                
      }
 	 ?>

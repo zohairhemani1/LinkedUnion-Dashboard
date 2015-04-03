@@ -19,7 +19,7 @@
 	$username_allcaps = strtoupper($username);
 	$_restKey = $row_query['restKey'];
 	$_applicationID = $row_query['applicationID'];
-	$_masterKey = $row['masterKey'];
+	$_masterKey = $row_query['masterKey'];
 	
 	}
 

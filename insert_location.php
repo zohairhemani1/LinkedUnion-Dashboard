@@ -36,7 +36,9 @@ if($_POST)
 		$query = "UPDATE location SET time_cone = now(),  office_title = '$office_title', address = '$address',
 		 phone_no = '$phone_no',website = '$website',`order` = $order  WHERE office_id = '$office_id'";
 		$result = mysqli_query($con,$query);
-		header ('Location: office_location.php?update=true');
+		$url = "office_location.php?update=true";
+		$redirect = 1;
+
 		}
 	else
 	  {
@@ -49,7 +51,9 @@ if($_POST)
 		(SELECT ifnull(max(l.order)+1,1) FROM location l WHERE l.app_id= '$appID'))";
 		mysqli_query($con,$query_location)
 		or die('error1');
-		header ("Location: office_location.php?insert=true");
+		$url = "office_location.php?insert=true";
+		$redirect = 1;
+
 	 }
 	
 }
@@ -88,7 +92,13 @@ if($_POST)
    <link rel="stylesheet" type="text/css" href="assets/bootstrap-daterangepicker/daterangepicker.css" />
    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
    <link rel="stylesheet" type="text/css" href="css/main.css" />
-</head>
+   <script>
+   if(<?php echo $redirect;?> == 1){
+		window.location.href = '<?php echo $url; ?>';
+   
+   }
+	</script>
+   </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
 <body class="fixed-top">
