@@ -1,5 +1,16 @@
 <?php 
-
+	include 'headers/connect_to_mysql.php';
+	
+	if(isset($_GET['id']))
+	{
+	$categoryID = $_GET['categoryID'];
+	$id = $_GET['id'];
+	$query_delete = "DELETE FROM stayconected WHERE id = $id"
+	or die('error while deleting stayconected');
+	$result = mysqli_query($con,$query_delete);
+	header ('Location: stay_connected.php?delete=true');		
+	}
+	
 	if(isset($_GET['contact_id']))
 	{
 	$contact_id = $_GET['contact_id'];
