@@ -2,7 +2,8 @@
 	session_start();
 	include 'headers/connect_to_mysql.php';
 	
-	if($_POST['login'])
+	
+	if(!empty($_POST['login']))
 	{
 		$user_name = $_POST['user_name'];
 		$password = $_POST['password'];
@@ -15,32 +16,49 @@
 		if($count == 1)
 		{
 			$_SESSION['user_id'] = $row['user_id'];
-			header("Location: index.php");		
+			header("Location: index.php?uniqueID=1");		
 		}
 	}
-	if($_POST['forget'])
+
+	if(!empty($_POST['forget']))
 	{
+
 		$email = $_POST['email'];
-		$query = "SELECT user_name from user WHERE email like '$email'";
+		$query = "SELECT user_name from user WHERE email like 'arbishpalla@gmail.com'";
 		$result = mysqli_query($con,$query);
+		$row = mysqli_fetch_array($result);
 		$count = mysqli_num_rows($result);
-				if($count >= 1 )
-		{		
-		$str = "Hello";
-		$forgot_password =  md5($str);	
+		if($count == 1 )
+		{
+			echo "count-->".$count;			
+			$str = "Hello";
+			$user_name = $row['user_name'];
+			$forgot_password =  md5($str);	
 			$query_forget =  "UPDATE user set forgot_password = '$forgot_password' where email like '$email'"
-			or die('error in');
+			or die('errosr in');
 			$result_query = mysqli_query($con,$query_forget);
 			echo "md5-->{$forgot_password}";
 			$to      = $email;
 			$subject = 'Forget Password';
-			$message = 'Now you can Reset your Password By click this link\n <a href="http://linkedunion.php?forget_password.php/{$forgot_password}" > </a>  ';
+			$message = "Now you can Reset your Password By click this link\n <http://myunionapp.com/forget_password.php?uniqueID=$forgot_password>";
 			$headers = 'From: linkedunion.com' . "\r\n" .
 			'Reply-To: Linked Union' . "\r\n" .
 			'X-Mailer: PHP/' . phpversion();
 			mail($to, $subject, $message, $headers);
-		}			
-			
+			if(mail($to, $subject, $message, $headers))
+			{
+				echo "to-->{$message}";
+			}
+			else
+			{
+				echo "error";	
+			}
+		
+		}	
+		else 
+		{
+			$error =  "The email address u provide is not valid";	
+		}
 
 	}
 	
@@ -101,6 +119,15 @@ else if(isset($_GET['forget']) && $_GET['forget']=="true"){
       echo"<div class='alert alert-danger' role='alert'>
 <center> Kindly Check your email for the credentials</center></div>";
 }
+else if(!empty($_GET['invalid-link'])){
+      echo"<div class='alert alert-danger' role='alert'>
+<center> Sorry! The requested Link is not valid </center></div>";
+}
+else if(!empty($_GET['reset']) =="true"){
+
+      echo"<div class='alert alert-success' role='alert'>
+<center> Success! Now you can login with your new password </center></div>";
+}
 ?>
       <div class="lock">
           <i class="icon-lock"></i>
@@ -155,14 +182,14 @@ else if(isset($_GET['forget']) && $_GET['forget']=="true"){
         </div>
         <div class="space20"></div>
       </div>
-      <input type="submit" name="forget" id="forget-btn" class="btn btn-block login-btn" value="Submit" />
+      <input type="submit" name="forget" id="" class="btn btn-block login-btn" value="Submit" />
     </form>
     <!-- END FORGOT PASSWORD FORM -->
   </div>
   <!-- END LOGIN -->
   <!-- BEGIN COPYRIGHT -->
   <div id="login-copyright">
-      2013 &copy; Admin Lab Dashboard.
+      2015 &copy; <a href="http://linkedunion.com">Linked Union</a>.
   </div>
   <!-- END COPYRIGHT -->
   <!-- BEGIN JAVASCRIPTS -->

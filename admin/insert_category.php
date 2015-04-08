@@ -76,17 +76,36 @@ else
    <link rel="stylesheet" type="text/css" href="../assets/chosen-bootstrap/chosen/chosen.css" />
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
- 
+   <script src="../js/jquery-1.8.3.min.js"></script>
+<script>
+function showUser(str) {
+    if (str == "") {
+        document.getElementById("txtHint").innerHTML = "";
+        return;
+    } else { 
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("GET","category_detail.php?q="+str,true);
+        xmlhttp.send();
+	}
+}
+</script> 
 <title>Avialdo -Dashboard </title>
-<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){
-    $("select#category").change(function(){
-        var selectCategory = $("#category option:selected").val();
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script><script type="text/javascript">
+//$(document).ready(function(){
 		$("#subcategory").prop("disabled", false);
-		alert( + selectCategory);
-    });
-});
+
+//});
 </script>
 
    <script>
@@ -225,7 +244,7 @@ include 'headers/menu-top-navigation.php';
                              <div class="control-group">
                               <label class="control-label">App Name</label>
                               <div class="controls">
-                                 <select class="span6 chosen" id="category" style="width: 428px;" 
+                                 <select onchange="showUser(this.value)" class="span6 chosen" id="category" style="width: 428px;" 
                                  name="app_id" data-placeholder="Choose a Category" tabindex="1">
 									<?php $query_select = "SELECT * FROM app";
 									$result_select = mysqli_query($con,$query_select)
@@ -236,21 +255,19 @@ include 'headers/menu-top-navigation.php';
 									$app_name = $row['app_name'];
 									echo"
 									<option value=''></option>
-									<option value='$app_id'>{$app_name}</option>
+									<option value='$app_id'>$app_name</option>
 									";                                
 									 } 
 									 ?>
                                  </select>
                               </div>
-                           </div>
+							   </div>
                            <div class="control-group">
                               <label class="control-label">Category Name</label>
                               <div class="controls">
-                                 <select id="subcategory" class="span6 chosen" style="width: 428px; display:block !important;" name="category" 
-                                 data-placeholder="Choose a Category" disabled tabindex="1">
-									<?php echo include 'headers/category_detail.php'; ?>
-                                 </select>
-                              </div>
+							  <div id="txtHint"><b>Person info will be listed here...</b></div>
+                                 <?php echo include 'headers/category_detail.php'; ?>
+                                  </div>
                            </div>
 						    <div id="addSubcategory">
                          <div class="control-group">

@@ -1,6 +1,9 @@
 <?php
+	$categoryID = $_GET['categoryID'];
 	include 'headers/connect_to_mysql.php';
 	include 'headers/_user-details.php';
+	$query_shop = "SELECT * FROM shopUnion where app_id = '$appID' ";
+	$result_location = mysqli_query($con,$query_shop);
 ?>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -11,7 +14,7 @@
 <!-- Mirrored from thevectorlab.net/adminlab/editable_table.html by HTTrack Website Copier/3.x [XR&CO'2013], Tue, 04 Nov 2014 07:58:54 GMT -->
 <head>
    <meta charset="utf-8" />
-   <title>Stay Connected</title>
+   <title>Shop union</title>
    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
    <meta content="" name="description" />
    <meta content="" name="author" />
@@ -30,6 +33,18 @@
    <link rel="stylesheet" href="assets/data-tables/DT_bootstrap.css" />
 
 </head>
+<script>
+  function confirmDelete(){
+var agree = confirm("Are you sure you want to delete this file?");
+  if(agree == true){
+    return true
+}
+else{
+return false;
+}
+}
+</script>
+
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
 <body class="fixed-top">
@@ -46,15 +61,16 @@ include 'headers/menu-top-navigation.php';
 
                    <!-- END THEME CUSTOMIZER-->
                   <!-- BEGIN PAGE TITLE & BREADCRUMB-->     
-                  <h3 class="page-title">
-                     Stay Connected  
-                     <small>View All Stay Conected</small>
-                  </h3>
-                   <ul class="breadcrumb">
+                     <h3 class="page-title">
+                    Shop union
+                     <small>View All Shop union</small>
+                   </h3>
+				   
+				   <ul class="breadcrumb">
                        <li>
                <a href="index.php"><i class="icon-home"></i></a> <span class="divider">&nbsp;</span>
                        </li>
-                       <li><a href="#">Stay Connected</a><span class="divider-last">&nbsp;</span>
+                       <li><a href="#">Shop union</a><span class="divider-last">&nbsp;</span>
                        </li>
                        
                    </ul>
@@ -65,42 +81,43 @@ include 'headers/menu-top-navigation.php';
 
             <!-- BEGIN ADVANCED TABLE widget-->
                                   <?php
-			if(isset($_GET['insert']) == true)
+			if(isset($_GET['insert']) == 'true')
 			{
 				echo"
 			<div class='alert alert-success'>
 					<button class='close' data-dismiss='alert'>×</button>
-					<strong>Success!</strong> The Stay Conected has been added.
+					<strong>Success!</strong> The Shop union has been added.
 				</div>";
 			}
-	 	else if(isset($_GET['update']) == true){
+	 	else if(isset($_GET['update']) == 'true'){
       echo"
 	    <div class='alert alert-success'>
                 <button class='close' data-dismiss='alert'>×</button>
-                <strong>Success!</strong> The Stay Conected has been updated.
+                <strong>Success!</strong> The Shop union has been updated.
             </div>";
 		}
-		else if(isset($_GET['delete']) == true){
+		else if(isset($_GET['delete']) == 'true'){
       echo"
 	    <div class='alert alert-success'>
                 <button class='close' data-dismiss='alert'>×</button>
-                <strong>Success!</strong> The Stay Conected has been Deleted.
+                <strong>Success!</strong> The Shop union has been Deleted.
             </div>";
 		}
 ?>
+
             <div class="row-fluid">
                 <div class="span12">
                     <!-- BEGIN EXAMPLE TABLE widget-->
                     <div class="widget">
                         <div class="widget-title">
-                            <h4><i class="icon-reorder"></i>Stay Connected Table</h4>
+                            <h4><i class="icon-reorder"></i>Shop union Table</h4>
                             <span class="tools">
                                 <a href="javascript:;" class="icon-chevron-down"></a>
                             </span>
                         </div>
 <div class="widget-body">
 			<div class="btn-group">
-               <a href="insert_stayconnected.php"><button type="button" class="btn btn-primary"> Add New <i class="icon-plus"></i> </button></a>
+               <a href="insert_shopUnion.php"><button type="button" class="btn btn-primary"> Add New <i class="icon-plus"></i> </button></a>
                               </div>
 
                             <div class="portlet-body">
@@ -109,10 +126,15 @@ include 'headers/menu-top-navigation.php';
                          <table class='table table-striped table-hover table-bordered' id='sample_editable_1'>
                                     <thead>
                                     <tr>
-								 <th style='width:8px;'>S.No</th>
-                                    <th>Name</th>
-                                    <th>Link</th>
-                                    <th>Status</th>
+                                    <th>Employee Name</th>
+                                    <th>Area</th>
+                                    <th>Store Number</th>
+                                    <th>Address</th>
+									<th>City</th>
+                                    <th>State</th>
+                                    <th>Zip</th>
+                                    <th>Phone</th>
+									<th>Action</th>
                                         <div class='widths'>
                                         <th style='display:none'>Edit</th>
                                         <th style='display:none'>Delete</th>
@@ -121,33 +143,37 @@ include 'headers/menu-top-navigation.php';
                      
                                            </thead>
                                     <tbody>
+            				<?php			
+							while($row = mysqli_fetch_array($result_location))
+							{
+									$shop_id = $row['shop_id'];
+									$employe_name = $row['employe_name'];
+									$area = $row['area'];
+									$state = $row['state'];
+									$store_number = $row['store_number'];
+									$zip = $row['zip'];
+									$phone = $row['phone'];
+									$address = $row['address'];
+									$city = $row['city'];
 
-				        <?php
-						
-						
-						$query_stay = "SELECT * FROM stayconected WHERE app_id = '$appID' ";
-						$result_stay = mysqli_query($con,$query_stay);
-						
-						while($row = mysqli_fetch_array($result_stay))
-						{
-							$id = $row['Order'];
-							$order = $row['order'];
-							$name = $row['name'];
-							$link = $row['link'];
-							
-						  echo" 
-								<tr class=''>
-									 <td>{$order}</td>
-									<td>{$name}</td>
-									<td id='location'>{$link}</td>
-							   
-									<td style='width:19%;'><a href='insert_stayconnected.php?id=$id' id='update_button' class='btn btn-success' >
+							 echo
+							 "<tr class=''>
+									<td>{$employe_name}</td>
+									<td>{$area}</td>
+									<td>{$state}</td>
+									<td>{$address}</td>
+									<td>{$store_number}</td>
+									<td>{$zip}</td>
+									<td>{$city}</td>
+									<td>{$phone}</td>
+									<td style='width:19%;'><a href='insert_shopUnion.php?shop_id=$shop_id' id='update_button' class='btn btn-success' >
 									<i class='icon-trash'></i> </a>
-									<a href='delete.php?categoryID=$categoryID&id=$id' id='delete_button'  class='btn btn-danger'>
-									<i class='icon-edit'></i> </a>
+									<a href='delete.php?shop_id=$shop_id'><button class='btn btn-danger' id='delete_button' onClick ='return confirmDelete();' ?>
+									<i class='icon-edit'></i></button> </a>
 									<td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
 									<td style='display:none'><a class='' href='javascript:;'>Delete</a></td>
 								</tr>";
+	
 						}
 						?>
                                     </tbody>

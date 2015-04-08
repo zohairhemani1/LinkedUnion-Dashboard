@@ -1,49 +1,24 @@
 <?php
-	session_start();
+
 	include 'headers/connect_to_mysql.php';
 	
-	if($_POST['login'])
-	{
-		$user_name = $_POST['user_name'];
+	$uniqeID =  $_GET['forgot_password'];
+	if(!isset($_GET['forgot_password']))
+		{
+		$url = "login.php?invalid-link";
+		$redirect = 1;
+		}
+		else{
+
+if($_POST){
 		$password = $_POST['password'];
-		$query = "SELECT * from `user` where user_name like '{$user_name}' AND password like '{$password}'"
+		$query = "UPDATE user set password = '$forgot_password' WHERE forgot_password = '$forgot_password' "
 		or die('error2');
 		$result = mysqli_query($con,$query);
-		$row = mysqli_fetch_array($result);
-		$count = mysqli_num_rows($result);
-
-		if($count == 1)
-		{
-			$_SESSION['user_id'] = $row['user_id'];
-			header("Location: index.php");		
+		$url = "login.php?reset=true";
+		$redirect = 1;
 		}
 	}
-	if($_POST['forget'])
-	{
-		$email = $_POST['email'];
-		$query = "SELECT user_name from user WHERE email like '$email'";
-		$result = mysqli_query($con,$query);
-		$count = mysqli_num_rows($result);
-				if($count >= 1 )
-		{		
-		$str = "Hello";
-		$forgot_password =  md5($str);	
-			$query_forget =  "UPDATE user set forgot_password = '$forgot_password' where email like '$email'"
-			or die('error in');
-			$result_query = mysqli_query($con,$query_forget);
-			echo "md5-->{$forgot_password}";
-			$to      = $email;
-			$subject = 'Forget Password';
-			$message = 'Now you can Reset your Password By click this link\n <a href="http://linkedunion.php?forget_password.php/{$forgot_password}" > </a>  ';
-			$headers = 'From: linkedunion.com' . "\r\n" .
-			'Reply-To: Linked Union' . "\r\n" .
-			'X-Mailer: PHP/' . phpversion();
-			mail($to, $subject, $message, $headers);
-		}			
-			
-
-	}
-	
 ?>
 
 <!DOCTYPE html>
@@ -60,7 +35,7 @@ Website: http://thevectorlab.net/
 <!-- BEGIN HEAD -->
 <head>
   <meta charset="utf-8" />
-  <title>Login page</title>
+  <title>Forget Password</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <meta content="" name="description" />
   <meta content="" name="author" />
@@ -69,10 +44,16 @@ Website: http://thevectorlab.net/
   <link href="css/style.css" rel="stylesheet" />
   <link href="css/style_responsive.css" rel="stylesheet" />
   <link href="css/style_default.css" rel="stylesheet" id="style_color" />
-</head>
+<script>
+       if(<?php echo $redirect;?> == 1){
+			//alert('redirecting');
+			window.location.href = '<?php echo $url; ?>';
+}
+</script>
+  </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
-<body id="login-body">
+<body onload="myFunction()" id="login-body">
   <div class="login-header">
       <!-- BEGIN LOGO -->
       <div id="logo" class="center">
@@ -85,23 +66,6 @@ Website: http://thevectorlab.net/
   <div id="login">
     <!-- BEGIN LOGIN FORM -->
        <form id="loginform" class="form-vertical no-padding no-margin" action="login.php" method="post">
-        <?php 
-	if(isset($_GET['fail']) && $_GET['fail']=="true"){
-      echo"<div class='alert alert-danger' role='alert'>
-  <strong>Oh dear!</strong> Something went awry!
-It seems that the Delegation ID/Password you entered were not found in our database, please try again
-</div>";
-} else if(isset($_GET['register']) && $_GET['register']=="true"){
-
-      echo"<div class='alert alert-danger' role='alert'>
-  <center>Kindly Check your email for the credentials</center></div>";
-}
-else if(isset($_GET['forget']) && $_GET['forget']=="true"){
-
-      echo"<div class='alert alert-danger' role='alert'>
-<center> Kindly Check your email for the credentials</center></div>";
-}
-?>
       <div class="lock">
           <i class="icon-lock"></i>
       </div>
@@ -110,24 +74,16 @@ else if(isset($_GET['forget']) && $_GET['forget']=="true"){
           <div class="control-group">
               <div class="controls">
                   <div class="input-prepend">
-           <span class="add-on"><i class="icon-user"></i></span><input id="input-username" type="text" name="user_name" placeholder="Username" />                  </div>
+           <span class="add-on"><i class="icon-user"></i></span><input required id="pass1" type="text" name="password" placeholder="Username" />
+		   </div>
               </div>
           </div>
           <div class="control-group">
               <div class="controls">
                   <div class="input-prepend">
-              <span class="add-on"><i class="icon-key"></i></span><input id="input-password" name="password" type="password" placeholder="Password" />
+              <span class="add-on"><i class="icon-key"></i></span><input required id="pass2" type="password" placeholder="Password" />
        
                   </div>
-                  <div class="mtop10">
-                      <div class="block-hint pull-left small">
-                          <input type="checkbox" id=""> Remember Me
-                      </div>
-                      <div class="block-hint pull-right">
-                          <a href="javascript:;" class="" id="forget-password">Forgot Password?</a>
-                      </div>
-                  </div>
-
                   <div class="clearfix space5"></div>
               </div>
 
@@ -138,31 +94,12 @@ else if(isset($_GET['forget']) && $_GET['forget']=="true"){
     </form>
     <!-- END LOGIN FORM -->        
     <!-- BEGIN FORGOT PASSWORD FORM -->
-    <form id="forgotform" method="post" class="form-vertical no-padding no-margin hide" action="login.php">
-      <p class="center">Enter your e-mail address below to reset your password.</p>
-	     <?php 
-	if(isset($_GET['forget']) && $_GET['forget']=="false"){
-
-      echo"<div class='alert alert-danger' role='alert'>
-  Email Doesnt Exist In Our Database</div>";
-}
-?>
-      <div class="control-group">
-        <div class="controls">
-          <div class="input-prepend">
-            <span class="add-on"><i class="icon-envelope"></i></span><input id="input-email" name="email" type="text" placeholder="Email"  />
-          </div>
-        </div>
-        <div class="space20"></div>
-      </div>
-      <input type="submit" name="forget" id="forget-btn" class="btn btn-block login-btn" value="Submit" />
-    </form>
-    <!-- END FORGOT PASSWORD FORM -->
+     <!-- END FORGOT PASSWORD FORM -->
   </div>
   <!-- END LOGIN -->
   <!-- BEGIN COPYRIGHT -->
   <div id="login-copyright">
-      2013 &copy; Admin Lab Dashboard.
+      2015 &copy; <a href="http://linkedunion.com">Linked Union</a>.
   </div>
   <!-- END COPYRIGHT -->
   <!-- BEGIN JAVASCRIPTS -->
@@ -174,26 +111,7 @@ else if(isset($_GET['forget']) && $_GET['forget']=="true"){
     jQuery(document).ready(function() {     
       App.initLogin();
     });
-    	<?php 
-	if(isset($_GET['register']) && $_GET['register']=="false"){
-	
-	echo "
-	
-	$('#register').click();
-	
-	";
-	}
-	?>
-	
-	<?php 
-	if(isset($_GET['forget']) && $_GET['forget']=="false"){
-	
-	echo "
-	
-	$('#forget-password').click();
-	
-	";
-	}
+  
 	?>
 	
   </script>

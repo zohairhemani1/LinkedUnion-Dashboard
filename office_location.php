@@ -1,4 +1,5 @@
 <?php
+	$categoryID = $_GET['categoryID'];
 	include 'headers/connect_to_mysql.php';
 	include 'headers/_user-details.php';
 	$query_location = "SELECT * FROM location where app_id = '{$appID}' ";
@@ -48,10 +49,12 @@ include 'headers/menu-top-navigation.php';
 
                    <!-- END THEME CUSTOMIZER-->
                   <!-- BEGIN PAGE TITLE & BREADCRUMB-->     
-                    Office Location  
+                     <h3 class="page-title">
+                    Office Location
                      <small>View All Office Location</small>
-                  </h3>
-                   <ul class="breadcrumb">
+                   </h3>
+				   
+				   <ul class="breadcrumb">
                        <li>
                <a href="index.php"><i class="icon-home"></i></a> <span class="divider">&nbsp;</span>
                        </li>
@@ -140,8 +143,8 @@ include 'headers/menu-top-navigation.php';
 							   
 									<td style='width:19%;'><a href='insert_location.php?office_id=$office_id' id='update_button' class='btn btn-success' >
 									<i class='icon-trash'></i> </a>
-									<a href='delete.php?categoryID=$categoryID&id=$id' id='delete_button'  class='btn btn-danger'>
-									<i class='icon-edit'></i> </a>
+									<a href='#'><button class='btn btn-danger'> id='delete_button' onClick ='return confirmDelete();' ?>
+									<i class='icon-edit'></i></button> </a>
 									<td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
 									<td style='display:none'><a class='' href='javascript:;'>Delete</a></td>
 								</tr>";

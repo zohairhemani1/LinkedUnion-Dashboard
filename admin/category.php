@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 	include '../headers/_user-details.php';
 	include '../headers/connect_to_mysql.php';
 	$query_app = "SELECT distinct app_name FROM categories c, app a where c.app_id = a.app_id limit 50";
@@ -187,12 +186,12 @@ include 'headers/menu-top-navigation.php';
 						$category_name = $row['category_name'];
 					echo"
 					<tr class=''> 
-								  <td style='width:2%'><a href='#'>{$app_name}</a></td>
+								  <td style='width:1% !important'><a href='#'>{$app_name}</a></td>
 								  <td style='width:2%'><a href='#'>{$id}</a></td>
-								<td style='width:2%'><a href='#'>{$category_name}</a></td>
-								<td style='width:2%'><a href='#'>{$submenu_id}</a></td>
-								<td style='width:2%'><a href='#'>{$subCategory_name}</a></td>
-								  <td style='width:5%'><a href='insert_category.php?id={$id}' 
+								<td style='width:3%'><a href='#'>{$category_name}</a></td>
+								<td style='width:3%'><a href='#'>{$submenu_id}</a></td>
+								<td style='width:3%'><a href='#'>{$subCategory_name}</a></td>
+								  <td style='width:6%'><a href='insert_category.php?id={$id}' 
 								  id='update_button' class='btn btn-success'> <i class='icon-edit'></i> </a>																					 							 	 
 								  <a href='delete_category.php?id={$id}' id='delete_button'  class='btn btn-danger'>
 								  <i class='icon-trash'></i></a>

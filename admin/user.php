@@ -84,21 +84,21 @@ include 'headers/menu-top-navigation.php';
 				echo"
 			<div class='alert alert-success'>
 					<button class='close' data-dismiss='alert'>×</button>
-					<strong>Success!</strong> The Webservices has been added.
+					<strong>Success!</strong> The Notification has been added.
 				</div>";
 			}
 	 	else if(isset($_GET['update']) == 'true'){
       echo"
 	    <div class='alert alert-success'>
                 <button class='close' data-dismiss='alert'>×</button>
-                <strong>Success!</strong> The Webservices has been updated.
+                <strong>Success!</strong> The Notification has been updated.
             </div>";
 		}
 		else if(isset($_GET['delete']) == 'true'){
       echo"
 	    <div class='alert alert-success'>
                 <button class='close' data-dismiss='alert'>×</button>
-                <strong>Success!</strong> The Webservices has been Deleted.
+                <strong>Success!</strong> The Notification has been Deleted.
             </div>";
 		}
 ?>
@@ -149,10 +149,10 @@ include 'headers/menu-top-navigation.php';
 						$app_name = $row['app_name'];
 					echo"
 					<tr class=''> 
-								  <td style='width:3%'><a href='#'>{$user_id}</a></td>
-								<td style='width:35%'><a href='#'>{$user_name}</a></td>
-								<td style='width:3%'><a href='#'>{$app_name}</a></td>
-								  <td width='10%' ><a href='insert_user.php?user_id={$user_id}' 
+								  <td style='width:2% !important'><a href='#'>{$user_id}</a></td>
+								<td style='width:8% !important'><a href='#'>{$user_name}</a></td>
+								<td style='width:8% !important'><a href='#'>{$app_name}</a></td>
+								  <td style='width:4% !important'><a href='insert_user.php?user_id={$user_id}' 
 								  id='update_button' class='btn btn-success'> <i class='icon-edit'></i> </a>																					 							 	 
 								  <a href='delete.php?user_id={$user_id}' id='delete_button'  class='btn btn-danger'>
 								  <i class='icon-trash'></i> </a>

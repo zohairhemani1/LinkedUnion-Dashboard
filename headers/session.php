@@ -5,5 +5,15 @@
 	}
 	else
 	{
-		header('Location: login.php');	
+		$url = "login.php";
+		$redirect = 1;
+		//header('Location: login.php');	
 	}
+?>	
+	<script>
+   if(<?php echo $redirect;?> == 1){
+			//alert('redirecting');
+			window.location.href = '<?php echo $url; ?>';
+   
+   }
+	</script>

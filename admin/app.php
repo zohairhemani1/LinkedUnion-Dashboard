@@ -146,8 +146,8 @@ include 'headers/menu-top-navigation.php';
 						$app_name = $row['app_name'];							
 					echo"
 					<tr class=''> 
-								  <td style='width:3%'><a href='#'>{$count}</a></td>
-								  <td style='width:40%'><a href='institutionDetail.php'>{$row['app_name']}</a></td>
+								  <td style='width:1.5%'><a href='#'>{$count}</a></td>
+								  <td style='width:34%%'><a href='institutionDetail.php'>{$row['app_name']}</a></td>
 								  <td width='10%' ><a href='insert_app.php?app_id={$app_id}' 
 								  id='update_button' class='btn btn-success'> <i class='icon-edit'></i></a>																					 							 	 
 								  <a href='delete.php?app_id={$app_id}' id='delete_button'  class='btn btn-danger'>

@@ -1,5 +1,16 @@
 <?php 
-
+	include 'headers/connect_to_mysql.php';
+	
+	if(isset($_GET['id']))
+	{
+	$categoryID = $_GET['categoryID'];
+	$id = $_GET['id'];
+	$query_delete = "DELETE FROM stayconected WHERE id = $id"
+	or die('error while deleting stayconected');
+	$result = mysqli_query($con,$query_delete);
+	header ('Location: stay_connected.php?delete=true');		
+	}
+	
 	if(isset($_GET['contact_id']))
 	{
 	$contact_id = $_GET['contact_id'];
@@ -27,6 +38,15 @@
 	or die('error while deleting news');
 	$result = mysqli_query($con,$query_delete);
 	header ("Location:news.php?categoryID=$categoryID&delete=true");		
+	}	
+	if(isset($_GET['shop_id']))
+	{
+	$shop_id = $_GET['shop_id'];	
+	$categoryID = $_GET['categoryID'];
+	$query_delete = "DELETE FROM shopUnion WHERE shop_id = $shop_id"
+	or die('error while deleting Shop union');
+	$result = mysqli_query($con,$query_delete);
+	header ("Location:shopUnion.php?delete=true");		
 	}
 
 ?>
