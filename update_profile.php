@@ -130,7 +130,7 @@ include 'headers/menu-top-navigation.php';
                      </div>
                      <div class="widget-body form">
                         <!-- BEGIN FORM-->
-                        <form action="insert_image.php?user_id=<?php echo $user_id; ?>" enctype="multipart/form-data" method="post" class="form-horizontal">
+                        <form action="update_profile.php?user_id=<?php echo $user_id; ?>" enctype="multipart/form-data" method="post" class="form-horizontal">
                            <div class="control-group">
                               <label class="control-label">Name</label>
                               <div class="controls">

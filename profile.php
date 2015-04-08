@@ -122,7 +122,7 @@ include 'headers/menu-top-navigation.php';
        
                                               <div  class="form-actions clearfix">
                                               <div id="image_button">
-			<a href="insert_image.php?user_id=<?Php echo $user_id ?>"><button  type="button"  class="btn btn-success " />Update</button></a>
+			<a href="update_profile.php?user_id=<?Php echo $user_id ?>"><button  type="button"  class="btn btn-success " />Update</button></a>
             <div>
                    </div>                  
 

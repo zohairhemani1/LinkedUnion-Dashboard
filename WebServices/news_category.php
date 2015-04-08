@@ -7,7 +7,7 @@
 
 	$returnArray = array();
 	$vowels = array("a", "e", "i", "o", "u", "A", "E", "I", "O", "U");
-	$query = "SELECT * from news WHERE category like '$category' and app_id = '$appID' order by `time_cone` desc";
+	$query = "SELECT * from news WHERE category like '$category' and app_id = '$appID' and published = 1 order by `time_cone` desc";
 	$result = mysqli_query($con,$query);
 	while($row = mysqli_fetch_assoc($result))
 	{

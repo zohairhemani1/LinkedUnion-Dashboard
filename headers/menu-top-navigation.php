@@ -2,18 +2,21 @@
 
 	include 'headers/checkloginstatus.php'; 
 	include 'headers/_user-details.php';
-	$query = "select (SELECT `pushCount` from app where app_id = '{$appID}') - (select count(*) from `pushmessage` pm where pm.authorAppID = '{$appID}') as pushRemaining";
-	$result = mysqli_query($con,$query);
-$row = mysqli_fetch_array($result);
+
+$query = "select (SELECT `pushCount` from app where app_id = '{$appID}') - (select count(*) from `pushmessage` pm where pm.authorAppID = '{$appID}') as pushRemaining";
+$result = mysqli_query($con,$query);
+$row = mysqli_fetch_assoc($result);
 $pushRemaining = $row['pushRemaining'];
+
+
 echo "<!-- BEGIN HEADER -->
    <div id='header' class='navbar navbar-inverse navbar-fixed-top'>
        <!-- BEGIN TOP NAVIGATION BAR -->
        <div class='navbar-inner'>
            <div class='container-fluid'>
                <!-- BEGIN LOGO -->
-               <a id='logo_profile' class='brand' href='index.php'>
-                   <img src='img/logo/$logo' width='140' alt='Admin Lab' style='margin-left:-5px; margin-top:-12px;' />
+               <a id='logo_image' class='brand' href='index.php'>
+                   <img src='img/logo/{$logo}' width='140' alt='Admin Lab' style='margin-left:-5px; margin-top:-12px;' />
                </a>
                <!-- END LOGO -->
                <!-- BEGIN RESPONSIVE MENU TOGGLER -->
@@ -109,10 +112,7 @@ echo "<!-- BEGIN HEADER -->
 		$query = "SELECT id,name,(select count(*) from `subcategories` sc where sc.menu_id = c.id) as count FROM `categories` c WHERE `app_id` = '{$appID}'";
 		$sth = $dbh->prepare($query);
 		$sth->execute();
-		if("SUBSTRING(`name`, 1, 14) as name " == true)
-		{
-			$hover =  "data-placement='bottom' data-original-title='Webservices Category'";	
-		}
+		
 		echo "<div id='container' class='row-fluid'>
 				  <!-- BEGIN SIDEBAR -->
 				  <div id='sidebar' class='nav-collapse collapse'>
@@ -129,15 +129,15 @@ echo "<!-- BEGIN HEADER -->
 						
 						if(($row['count'])>0)
 						{
-							echo "<a {$hover}  class='' href='javascript:;'>
-							<span class='icon-box'><i class='icon-random'></i>
+							echo "<a class='' href='javascript:;'>
+							<span class='icon-box'><i class='icon-cogs'></i>
 							</span> {$category}
 							<span class='arrow'>";
 						}
 						else
 						{
-							echo "<a {$hover}  class='' href='news.php?categoryID={$id}'>
-							<span class='icon-box'><i class='icon-random'></i>
+							echo "<a class='' href='news.php?categoryID={$id}'>
+							<span class='icon-box'><i class='icon-cogs'></i>
 							</span> {$category}
 							<span class=''>
 							";
@@ -160,6 +160,12 @@ echo "<!-- BEGIN HEADER -->
 				echo "</ul></li>";
 		}
 
-		 echo "</ul></div>";
+		 echo "
+		 <li class='has-sub'>
+			<a class='' href='stripe/'>
+				<span class='icon-box'><i class='icon-cogs'></i>
+				</span> Credit Card
+				<span class=''></span></a>
+		 </ul></div>";
 	  
 ?>

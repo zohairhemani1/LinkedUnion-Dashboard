@@ -1,7 +1,7 @@
 <?php
 	include 'headers/connect_to_mysql.php';
 	include 'headers/_user-details.php';
-	$query_location = "SELECT * FROM location where app_id = $appID ";
+	$query_location = "SELECT * FROM location where app_id = '{$appID}' ";
 	$result_location = mysqli_query($con,$query_location);
 ?>
 <!DOCTYPE html>
@@ -102,7 +102,7 @@ include 'headers/menu-top-navigation.php';
                         </div>
 <div class="widget-body">
 			<div class="btn-group">
-               <a href="insert_stayconnected.php"><button type="button" class="btn btn-primary"> Add New <i class="icon-plus"></i> </button></a>
+               <a href="insert_location.php"><button type="button" class="btn btn-primary"> Add New <i class="icon-plus"></i> </button></a>
                               </div>
 
                             <div class="portlet-body">

@@ -6,6 +6,7 @@ include 'headers/_user-details.php';
 $categoryID = $_GET['categoryID'];
 $url = "";
 $redirect="";
+$name = "";
 $query = "SELECT w.name FROM `webservice_category` wc, `webservices` w WHERE wc.`category` like '{$categoryID}' AND wc.webservice = w.id";
 $result = mysqli_query($con,$query);
 $row = mysqli_fetch_array($result);
@@ -67,11 +68,19 @@ include 'headers/menu-top-navigation.php';
             <div class="row-fluid">
                <div class="span12">
                    <!-- BEGIN THEME CUSTOMIZER-->
-
+				
+				<?php 
+		  		  $query = "select name from (select c.name ,c.id from `categories` c union select sc.name,sc.submenu_id from `subcategories` sc) `dd` where id ={$categoryID}";
+				  $sth = $dbh->prepare($query);
+				  $sth->execute();
+				  $row = $sth->fetch(PDO::FETCH_ASSOC);
+				  $name = $row['name'];
+				?>
+				
                    <!-- END THEME CUSTOMIZER-->
                   <!-- BEGIN PAGE TITLE & BREADCRUMB-->     
                   <h3 class="page-title">
-                     Dashboard
+                     <?php echo $name; ?>
                      <small>view All </small>
                   </h3>
                    <ul class="breadcrumb">
@@ -117,15 +126,7 @@ include 'headers/menu-top-navigation.php';
                     <!-- BEGIN EXAMPLE TABLE widget-->
                     <div class="widget">
                         <div class="widget-title">
-             <?php 
-		  		  $query = "select name from (select c.name ,c.id from `categories` c union select sc.name,sc.submenu_id from `subcategories` sc) `dd` where id ={$categoryID}";
-		  $sth = $dbh->prepare($query);
-		  $sth->execute();
-		  $row = $sth->fetch(PDO::FETCH_ASSOC);
-		  $name = $row['name'];
-		  
-		  
-		  ?>
+             
 
                             <h4><i class="icon-tags"></i> <?php echo $name; ?> Articles</h4>
                             <span class="tools">

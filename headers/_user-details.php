@@ -1,4 +1,6 @@
 <?php
+	if(!isset($_SESSION)){session_start();}
+	
 	include 'connect_to_mysql.php';
 	if(isset($_SESSION['user_id'])){$user_id = $_SESSION['user_id'];
 	$query_detail = "SELECT * FROM `user` u, `app` a WHERE u.app_id = a.app_id and u.user_id = '{$user_id}'";
@@ -19,7 +21,8 @@
 	$username_allcaps = strtoupper($username);
 	$_restKey = $row_query['restKey'];
 	$_applicationID = $row_query['applicationID'];
-	$_masterKey = $row['masterKey'];
+	$_masterKey = $row_query['masterKey'];
+	$_app_publish_date = $row_query['publish_date'];
 	
 	}
 

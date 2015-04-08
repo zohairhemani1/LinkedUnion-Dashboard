@@ -44,7 +44,7 @@
 	{
 		// this is called from the sub menu which directly opens webview
 		
-		$query = "SELECT * from `news` WHERE `category` = '{$category}' LIMIT 1";
+		$query = "SELECT * from `news` WHERE `category` = '{$category}' and published = 1 LIMIT 1";
 		$result = mysqli_query($con,$query);
 		$row=mysqli_fetch_assoc($result);
 		$title = $row['title'];
