@@ -41,12 +41,11 @@ if($_POST)
 			$phone = $_POST['phone'];
 			$address = $_POST['address'];
 			$city = $_POST['city'];
-		$query = "UPDATE `shopunion` SET `area`='$area',`employe_name`='$employe_name',`store_number`='$store_number'
-		,`address`='$address',`city`='$city',`state`='$state',`zip`='$zip',`phone`='$phone' WHERE shop_id = $shop_id";
-		$result = mysqli_query($con,$query);
-		$url = "shop_union.php?update=true";
-		$redirect = 1;
-
+			$query = "UPDATE `shopunion` SET `area`='$area',`employe_name`='$employe_name',`store_number`='$store_number'
+			,`address`='$address',`city`='$city',`state`='$state',`zip`='$zip',`phone`='$phone' WHERE shop_id = $shop_id";
+			$result = mysqli_query($con,$query);
+			$url = "shop_union.php?update=true";
+			$redirect = 1;
 		}
 	else
 	  {
@@ -58,13 +57,12 @@ if($_POST)
 			$phone = $_POST['phone'];
 			$address = $_POST['address'];
 			$city = $_POST['city'];
-		$query_location = "INSERT INTO `shopunion`(`area`, `employe_name`, `store_number`, `address`, `city`, `state`, `zip`, `phone`,app_id) 
-		VALUES ('$area','$employe_name','$store_number','$address','$city','$state','$zip','$phone','$appID')";
-		mysqli_query($con,$query_location)
-		or die('error1');
-		$url = "shop_union.php?insert=true";
-		$redirect = 1;
-
+			$query_location = "INSERT INTO `shopunion`(`area`, `employe_name`, `store_number`, `address`, `city`, `state`, `zip`, `phone`,app_id) 
+			VALUES ('$area','$employe_name','$store_number','$address','$city','$state','$zip','$phone','$appID')";
+			mysqli_query($con,$query_location)
+			or die('error1');
+			$url = "shop_union.php?insert=true";
+			$redirect = 1;
 	 }
 	
 }
@@ -106,7 +104,6 @@ if($_POST)
    <script>
    if(<?php echo $redirect;?> == 1){
 		window.location.href = '<?php echo $url; ?>';
-   
    }
 	</script>
 
