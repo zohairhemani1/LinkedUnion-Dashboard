@@ -16,7 +16,7 @@
 		if($count == 1)
 		{
 			$_SESSION['user_id'] = $row['user_id'];
-			header("Location: index.php");		
+			header("Location: index.php?uniqueID=1");		
 		}
 	}
 
@@ -40,7 +40,7 @@
 			echo "md5-->{$forgot_password}";
 			$to      = $email;
 			$subject = 'Forget Password';
-			$message = "Now you can Reset your Password By click this link\n <a href='http://linkedunion.php?forget_password.php?uniqueID={$forgot_password}'> </a>  ";
+			$message = "Now you can Reset your Password By click this link\n <http://myunionapp.com/forget_password.php?uniqueID=$forgot_password>";
 			$headers = 'From: linkedunion.com' . "\r\n" .
 			'Reply-To: Linked Union' . "\r\n" .
 			'X-Mailer: PHP/' . phpversion();
@@ -118,6 +118,15 @@ else if(isset($_GET['forget']) && $_GET['forget']=="true"){
 
       echo"<div class='alert alert-danger' role='alert'>
 <center> Kindly Check your email for the credentials</center></div>";
+}
+else if(!empty($_GET['invalid-link'])){
+      echo"<div class='alert alert-danger' role='alert'>
+<center> Sorry! The requested Link is not valid </center></div>";
+}
+else if(!empty($_GET['reset']) =="true"){
+
+      echo"<div class='alert alert-success' role='alert'>
+<center> Success! Now you can login with your new password </center></div>";
 }
 ?>
       <div class="lock">

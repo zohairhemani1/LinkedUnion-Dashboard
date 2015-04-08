@@ -2,7 +2,6 @@
 	session_start();
 	include 'headers/connect_to_mysql.php';
 	include 'headers/_user-details.php';
-	include 'headers/image_upload.php';
 
 	$user_name = "";
 	$password = "";
@@ -11,19 +10,21 @@
 	$time_cone = "";
 	$url = "";
 	$redirect = "";
+	$image = "";
+	$time_cone = "";
 	
 if($_POST)
 {
+	include 'headers/image_upload.php';
 		$user_name = $_POST['user_name'];
 		$password = $_POST['password'];
 		$email = $_POST['email'];
 		$time_cone = $_POST['time_cone'];
-		$update_user = "UPDATE `user` SET user_name = '$user_name',image = '$image', password = '$password',email ='$email' where user_id = '{$user_id}' "
+		$update_user = "UPDATE `user` SET user_name = '$user_name',image = '$image', password = '$password',email ='$email' WHERE user_id = '$user_id' "
 		or die ('error while Updating user');
-		$stayconected_user = mysqli_query($con,$update_user);
-		echo $image."samae";
-		$url = "image.php?update=true";
-		$redirect = 1;
+		$result_user = mysqli_query($con,$update_user);
+		//$url = "profile.php?update=true";
+		//$redirect = 1;
 		//header ('Location: stay_connected.php?update=true'); 
 	
 }
@@ -39,7 +40,6 @@ if($_POST)
 		$time_cone = $row['time_cone'];
 		$image = $row['image'];
 		$password = $row['password'];
-		echo "password".$password;
 	}
 	
 
@@ -53,7 +53,7 @@ if($_POST)
 
 <!-- Mirrored from thevectorlab.net/adminlab/form_component.html by HTTrack Website Copier/3.x [XR&CO'2013], Tue, 04 Nov 2014 07:57:43 GMT -->
 <head>   <meta charset="utf-8" />
-   <title>User image</title>
+   <title>Profile</title>
    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
    <meta content="" name="description" />
    <meta content="" name="author" />
@@ -79,10 +79,67 @@ if($_POST)
    <link rel="stylesheet" type="text/css" href="assets/bootstrap-daterangepicker/daterangepicker.css" />
    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
    <link rel="stylesheet" type="text/css" href="css/main.css" />
+ <script type="text/javascript">
 
+function validation(){
+    var password = document.getElementById('password');
+    var pass = document.getElementById('pass');
+    var solution = document.getElementById('solution');
+
+    if(password.value ==  pass.value)
+   {
+	 $("#pass1").prop("disabled", false);
+	 $("#pass2").prop("disabled", false);
+     message.innerHTML = "Passwords Do Not Match!"
+   }
+  else
+   {
+       $("#pass1").prop("disabled", true);
+	   $("#pass2").prop("disabled", true);
+   }
+}
+function checkPass()
+{
+    //Store the password field objects into variables ...
+    var pass1 = document.getElementById('pass1');
+    var pass2 = document.getElementById('pass2');
+    //Store the Confimation Message Object ...
+    var message = document.getElementById('confirmMessage');
+    //Set the colors we will be using ...
+    var goodColor = "#66cc66";
+    var badColor = "#ff6666";
+
+    //Compare the values in the password field
+    //and the confirmation field
+
+	if(pass1.value == pass2.value)
+	{
+        //The passwords match.
+        //Set the color to the good color and inform
+        //the user that they have entered the correct password
+        pass2.style.backgroundColor = goodColor;
+        message.style.color = goodColor;
+        message.innerHTML = "Passwords Match!"
+		$("#buttonActivate").prop("disabled", false);
+  
+    }
+	else
+	 {
+        //The passwords do not match.
+        //Set the color to the bad color and
+        //notify the user.
+        pass2.style.backgroundColor = badColor;
+        message.style.color = badColor;
+        message.innerHTML = "Passwords Do Not Match!"
+       $("#buttonActivate").prop("disabled", true);
+
+	 }
+
+}
+
+</script>
   <script>
    if(<?php echo $redirect;?> == 1){
-			//alert('redirecting');
 			window.location.href = '<?php echo $url; ?>';
    }
 	</script>
@@ -106,8 +163,8 @@ include 'headers/menu-top-navigation.php';
                  
                    <!-- END THEME CUSTOMIZER-->
                   <h3 class="page-title">
-                     User image
-                     <small>Update your image </small>
+                     User Profile
+                     <small>Update your Profile </small>
                   </h3>
                    <ul class="breadcrumb">
 
@@ -115,7 +172,7 @@ include 'headers/menu-top-navigation.php';
                    <li>
                            <a href="index.php"><i class="icon-home"></i></a> <span class="divider">&nbsp;</span>
                        </li>
-                       <li><a href="#">Update image </a><span class="divider-last">&nbsp;</span>
+                       <li><a href="#">Update Profile </a><span class="divider-last">&nbsp;</span>
                        </li>
                        
                    </ul> 
@@ -135,7 +192,7 @@ include 'headers/menu-top-navigation.php';
                      </div>
                      <div class="widget-body form">
                         <!-- BEGIN FORM-->
-                        <form action="insert_image.php?user_id=<?php echo $user_id; ?>" enctype="multipart/form-data" method="post" class="form-horizontal">
+                        <form action="update_profile.php?user_id=<?php echo $user_id; ?>" enctype="multipart/form-data" method="post" class="form-horizontal">
                            <div class="control-group">
                               <label class="control-label">Name</label>
                               <div class="controls">
@@ -146,7 +203,7 @@ include 'headers/menu-top-navigation.php';
                               <label class="control-label">Old Password</label>
                               <div class="controls">
                                  <input type="text" style="display:none;" id="pass" value="<?php echo $password; ?>" />
-                                 <input placeholder="Enter your old password" id="password" onKeyUp="validation();" type="text" class="span6 " />
+                                 <input placeholder="Enter your old password" id="password" onKeyUp="validation();" type="password" class="span6 " />
                               	<span id="solution" class="solution"></span>
                               </div>
                            </div>
@@ -175,7 +232,7 @@ include 'headers/menu-top-navigation.php';
                                 <div class="fileupload fileupload-new" data-provides="fileupload">
                                     <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
                                         <img src="<?php if($image == null) {echo "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image";}
-                                        else{echo "img/image/".$image; }?>" alt="" />
+                                        else{echo "img/image/{$image}" ;}?>" alt="" />
                                     </div>
                                     <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
                                     <div>
@@ -244,65 +301,7 @@ include 'headers/menu-top-navigation.php';
          App.init();
       });
    </script>
- <script type="text/javascript">
 
-function validation(){
-    var password = document.getElementById('password');
-    var pass = document.getElementById('pass');
-    var solution = document.getElementById('solution');
-
-    if(password.value ==  pass.value)
-   {
-	 $("#pass1").prop("disabled", false);
-	 $("#pass2").prop("disabled", false);
-     message.innerHTML = "Passwords Do Not Match!"
-   }
-  else
-   {
-       $("#pass1").prop("disabled", true);
-	   $("#pass2").prop("disabled", true);
-   }
-}
-function checkPass()
-{
-    //Store the password field objects into variables ...
-    var pass1 = document.getElementById('pass1');
-    var pass2 = document.getElementById('pass2');
-    //Store the Confimation Message Object ...
-    var message = document.getElementById('confirmMessage');
-    //Set the colors we will be using ...
-    var goodColor = "#66cc66";
-    var badColor = "#ff6666";
-
-    //Compare the values in the password field
-    //and the confirmation field
-
-	if(pass1.value == pass2.value)
-	{
-        //The passwords match.
-        //Set the color to the good color and inform
-        //the user that they have entered the correct password
-        pass2.style.backgroundColor = goodColor;
-        message.style.color = goodColor;
-        message.innerHTML = "Passwords Match!"
-		$("#buttonActivate").prop("disabled", false);
-  
-    }
-	else
-	 {
-        //The passwords do not match.
-        //Set the color to the bad color and
-        //notify the user.
-        pass2.style.backgroundColor = badColor;
-        message.style.color = badColor;
-        message.innerHTML = "Passwords Do Not Match!"
-       $("#buttonActivate").prop("disabled", true);
-
-	 }
-
-}
-
-</script>
   <!-- END JAVASCRIPTS -->   
 </body>
 <!-- END BODY -->

@@ -6,6 +6,7 @@ include 'headers/_user-details.php';
 $categoryID = $_GET['categoryID'];
 $url = "";
 $redirect="";
+$name = "";
 $query = "SELECT w.name FROM `webservice_category` wc, `webservices` w WHERE wc.`category` like '{$categoryID}' AND wc.webservice = w.id";
 $result = mysqli_query($con,$query);
 $row = mysqli_fetch_array($result);
@@ -52,7 +53,18 @@ if(isset($fileName))
 			window.location.href = '<?php echo $url; ?>';
    }
 	</script>
- </head>
+<script>
+  function confirmDelete(){
+var agree = confirm("Are you sure you want to delete this file?");
+  if(agree == true){
+    return true
+}
+else{
+return false;
+}
+}
+</script>
+	</head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
 <body class="fixed-top">
@@ -71,7 +83,7 @@ include 'headers/menu-top-navigation.php';
                    <!-- END THEME CUSTOMIZER-->
                   <!-- BEGIN PAGE TITLE & BREADCRUMB-->     
                   <h3 class="page-title">
-                     Dashboard
+                     <?php echo $name; ?>
                      <small>view All </small>
                   </h3>
                    <ul class="breadcrumb">
@@ -112,11 +124,7 @@ include 'headers/menu-top-navigation.php';
             </div>";
 		}
 ?>
-            <div class="row-fluid">
-                <div class="span12">
-                    <!-- BEGIN EXAMPLE TABLE widget-->
-                    <div class="widget">
-                        <div class="widget-title">
+
              <?php 
 		  		  $query = "select name from (select c.name ,c.id from `categories` c union select sc.name,sc.submenu_id from `subcategories` sc) `dd` where id ={$categoryID}";
 		  $sth = $dbh->prepare($query);
@@ -126,53 +134,92 @@ include 'headers/menu-top-navigation.php';
 		  
 		  
 		  ?>
-
-                            <h4><i class="icon-tags"></i> <?php echo $name; ?> Articles</h4>
-                            <span class="tools">
-                                <a href="javascript:;" class="icon-chevron-down"></a>
-                            </span>
-                        </div>
-<div class="widget-body">
-			<div class="btn-group" id="addButton">
-               <a href="insert_form.php?categoryID=<?php echo $categoryID; ?>"><button type="button" class="btn btn-primary"> Add New <i class="icon-plus"></i> </button></a>
-             </div>
-
-                            <div class="portlet-body">
-                                
-                                <div id="width" class="space15"></div>
-                                <table class="table table-striped table-hover table-bordered" id="sample_editable_1">
-                                    <thead>
-                                    <tr>
-								 <th style="width:30px;">S No</th>
-                                    <th>Task</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                        <div class="widths">
-                                        <th style="display:none">Edit</th>
-                                        <th style="display:none">Delete</th>
-                                    </div>
-                                    </tr>
-                     
-                                           </thead>
-                                    <tbody>
-
-				
-					<?php
+		  <?php
 
 				$categoryID = $_GET['categoryID'];
 				//if ((int) $category_id == $category_id) 
 				//{
 					
 					$query = "SELECT n.* from `news` n where category = {$categoryID}";
+					$result_query = mysqli_query($con,$query);
 					$sth = $dbh->prepare($query);
 					$sth->execute();
 					$count = 0;
+					$num_rows = mysqli_num_rows($result_query);
+					if($num_rows == 0)
+					{
+						echo "
+				 <div class='row-fluid'>
+                <div class='span12'>
+			       <!-- BEGIN EXAMPLE TABLE widget-->
+                    <div class='widget'>
+                        <div class='widget-title'>
+							<h4><i class='icon-tags'></i>$name Articles</h4>
+                            <span class='tools'>
+                                <a href='javascript:;' class='icon-chevron-down'></a>
+                            </span>
+                        </div>
+					<div class='widget-body'>
+                       <div class='error-page' style='min-height: 447px'>
+                   <div class='space20'></div>
+                   <div class='space20'></div>
+                   <div class='space20'></div>
+                   <div class='space20'></div>				   
+                   <div class='space20'></div>				   
+                           <h1>
+                        
+						<img width='55px' style='margin-top:-12px;' src='img/nothing.png' alt='404 error'>Nothing Found
+                           </h1>
+                           <p>We're sorry, the page you were looking for is empty
+						   <a href='insert_form.php?categoryID={$categoryID}'>Add Some </a></p>
+                       </div>
+                   </div>
+				   </div>
+				   </div>
+				   </div></div>
+					</div>
+					</div>
+					";
+						
+					}
+					else
+					{
+					echo"
+				 <div class='row-fluid'>
+                <div class='span12'>
+                    <!-- BEGIN EXAMPLE TABLE widget-->
+                    <div class='widget'>
+                        <div class='widget-title'>
+					<div class='widget-body'>
+			<div class='btn-group' id='addButton' style='display:block !important;'>
+               <a href='insert_form.php?categoryID={$categoryID}'><button type='button' class='btn btn-primary'> Add News <i class='icon-plus'></i> </button></a>
+             </div>
+
+                            <div class='portlet-body'>
+                                
+                                <div id='width' class='space15'></div>
+                                <table class='table table-striped table-hover table-bordered' id='sample_editable_1'>
+                                    <thead>
+                                    <tr>
+								 <th style='width:30px;'>S No</th>
+                                    <th>Task</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                        <div class='widths'>
+                                        <th style='display:none'>Edit</th>
+                                        <th style='display:none'>Delete</th>
+                                    </div>
+                                    </tr>
+                     
+                                           </thead>
+                                    <tbody>
+								";
+					
 					while($row = $sth->fetch(PDO::FETCH_ASSOC))
 					{
 						$news_id = $row['news_id'];
 						$count++;
 						$published = "Unpublished";
-						
 						
 						if($row['published']==1)
 							$published = "Published";
@@ -184,12 +231,13 @@ include 'headers/menu-top-navigation.php';
 								  <td style='width:3%'><span id='published' class='label label-warning label-mini'>{$published}</span></td>
 								  <td><a href='insert_form.php?categoryID=$categoryID&news_id={$news_id}' 
 								  id='update_button' class='btn btn-success'> <i class='icon-edit'></i></a>																					 							 	 
-								  <a href='delete.php?categoryID=$categoryID&news_id={$news_id}' id='delete_button'  class='btn btn-danger'>
-								  <i class='icon-trash'></i> </a>
+						          <a href='delete.php?categoryID=$categoryID&news_id={$news_id}'><button class='btn btn-danger' id='delete_button' onClick ='return confirmDelete();' />
+									<i class='icon-edit'></i></button> </a>
 								  <a href='view.php?news_id={$news_id}' id='view_button' class='btn btn-info'><i class='icon-eye-open'></i></a></td>
 								  <td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
 								 <td style='display:none'><a class='' href='javascript:;'>Delete</a></td>
 								  </tr>";
+					}
 					}
 					?>	
                                     </tbody>

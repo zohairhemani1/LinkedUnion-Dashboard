@@ -98,6 +98,7 @@ if($_POST)
    
    }
 	</script>
+
    </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->

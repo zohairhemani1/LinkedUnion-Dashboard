@@ -1,7 +1,24 @@
 <?php
-	session_start();
+
 	include 'headers/connect_to_mysql.php';
 	
+	$uniqeID =  $_GET['forgot_password'];
+	if(!isset($_GET['forgot_password']))
+		{
+		$url = "login.php?invalid-link";
+		$redirect = 1;
+		}
+		else{
+
+if($_POST){
+		$password = $_POST['password'];
+		$query = "UPDATE user set password = '$forgot_password' WHERE forgot_password = '$forgot_password' "
+		or die('error2');
+		$result = mysqli_query($con,$query);
+		$url = "login.php?reset=true";
+		$redirect = 1;
+		}
+	}
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +35,7 @@ Website: http://thevectorlab.net/
 <!-- BEGIN HEAD -->
 <head>
   <meta charset="utf-8" />
-  <title>Reset Password page</title>
+  <title>Forget Password</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <meta content="" name="description" />
   <meta content="" name="author" />
@@ -27,10 +44,16 @@ Website: http://thevectorlab.net/
   <link href="css/style.css" rel="stylesheet" />
   <link href="css/style_responsive.css" rel="stylesheet" />
   <link href="css/style_default.css" rel="stylesheet" id="style_color" />
-</head>
+<script>
+       if(<?php echo $redirect;?> == 1){
+			//alert('redirecting');
+			window.location.href = '<?php echo $url; ?>';
+}
+</script>
+  </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
-<body id="login-body">
+<body onload="myFunction()" id="login-body">
   <div class="login-header">
       <!-- BEGIN LOGO -->
       <div id="logo" class="center">
@@ -42,8 +65,7 @@ Website: http://thevectorlab.net/
   <!-- BEGIN LOGIN -->
   <div id="login">
     <!-- BEGIN LOGIN FORM -->
-       <form id="loginform" class="form-vertical no-padding no-margin" action="forget_password.php.php" method="post">
- 
+       <form id="loginform" class="form-vertical no-padding no-margin" action="login.php" method="post">
       <div class="lock">
           <i class="icon-lock"></i>
       </div>
@@ -52,16 +74,16 @@ Website: http://thevectorlab.net/
           <div class="control-group">
               <div class="controls">
                   <div class="input-prepend">
-           <span class="add-on"><i class="icon-user"></i></span><input id="input-username" type="text" name="user_name" placeholder="Username" />                  </div>
+           <span class="add-on"><i class="icon-user"></i></span><input required id="pass1" type="text" name="password" placeholder="Username" />
+		   </div>
               </div>
           </div>
           <div class="control-group">
               <div class="controls">
                   <div class="input-prepend">
-              <span class="add-on"><i class="icon-key"></i></span><input id="input-password" name="password" type="password" placeholder="Password" />
+              <span class="add-on"><i class="icon-key"></i></span><input required id="pass2" type="password" placeholder="Password" />
        
                   </div>
-
                   <div class="clearfix space5"></div>
               </div>
 
@@ -69,13 +91,15 @@ Website: http://thevectorlab.net/
       </div>
 
       <input type="submit" id="login-btn" name="login" class="btn btn-block login-btn" value="Login" />
- 
-    <!-- END FORGOT PASSWORD FORM -->
+    </form>
+    <!-- END LOGIN FORM -->        
+    <!-- BEGIN FORGOT PASSWORD FORM -->
+     <!-- END FORGOT PASSWORD FORM -->
   </div>
   <!-- END LOGIN -->
   <!-- BEGIN COPYRIGHT -->
   <div id="login-copyright">
-      2015 &copy; Linked Union.
+      2015 &copy; <a href="http://linkedunion.com">Linked Union</a>.
   </div>
   <!-- END COPYRIGHT -->
   <!-- BEGIN JAVASCRIPTS -->
@@ -87,26 +111,7 @@ Website: http://thevectorlab.net/
     jQuery(document).ready(function() {     
       App.initLogin();
     });
-    	<?php 
-	if(isset($_GET['register']) && $_GET['register']=="false"){
-	
-	echo "
-	
-	$('#register').click();
-	
-	";
-	}
-	?>
-	
-	<?php 
-	if(isset($_GET['forget']) && $_GET['forget']=="false"){
-	
-	echo "
-	
-	$('#forget-password').click();
-	
-	";
-	}
+  
 	?>
 	
   </script>

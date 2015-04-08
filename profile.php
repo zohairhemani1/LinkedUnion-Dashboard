@@ -13,7 +13,7 @@
 <!-- Mirrored from thevectorlab.net/adminlab/image.html by HTTrack Website Copier/3.x [XR&CO'2013], Tue, 04 Nov 2014 08:01:42 GMT -->
 <head>
    <meta charset="utf-8" />
-   <title>image</title>
+   <title>Profile</title>
    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
    <meta content="" name="description" />
    <meta content="" name="author" />
@@ -46,14 +46,14 @@ include 'headers/menu-top-navigation.php';
 
                   <!-- BEGIN PAGE TITLE & BREADCRUMB-->
                    <h3 class="page-title">
-                       image
-                     <small>View image page</small>
+                       Profile
+                     <small>View your profile</small>
                   </h3>
                    <ul class="breadcrumb">
  						<li>
                            <a href="index.php"><i class="icon-home"></i></a> <span class="divider">&nbsp;</span>
                        </li>
-                       <li><a href="#">image</a><span class="divider-last">&nbsp;</span>
+                       <li><a href="#">Profile</a><span class="divider-last">&nbsp;</span>
                        </li>
                        
                    </ul>
@@ -66,7 +66,7 @@ include 'headers/menu-top-navigation.php';
                <div class="span12">
                   <div class="widget">
                         <div class="widget-title">
-                           <h4><i class="icon-user"></i>image</h4>
+                           <h4><i class="icon-user"></i>Profile</h4>
                            <span class="tools">
                            <a href="javascript:;" class="icon-chevron-down"></a>
                            </span>                    
@@ -78,7 +78,7 @@ include 'headers/menu-top-navigation.php';
                                 </div>
                             </div>
                             <div class="span6">
-                                <h4> <?php echo  $username_allcaps; ?> <br/><small>Web Developer</small></h4>
+                                <h4> <?php echo  $username_allcaps; ?> <br/><small></small></h4>
                                 <table class="table table-borderless">
                                     <tbody>
                                     <tr>
@@ -122,7 +122,7 @@ include 'headers/menu-top-navigation.php';
        
                                               <div  class="form-actions clearfix">
                                               <div id="image_button">
-			<a href="insert_image.php?user_id=<?Php echo $user_id ?>"><button  type="button"  class="btn btn-success " />Update</button></a>
+			<a href="update_profile.php?user_id=<?Php echo $user_id ?>"><button  type="button"  class="btn btn-success " />Update</button></a>
             <div>
                    </div>                  
 

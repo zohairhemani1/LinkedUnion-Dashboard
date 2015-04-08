@@ -30,7 +30,12 @@ include 'headers/_user-details.php';
 	$social = "";
 	$url = "";
 	$redirect="";
-    $checked = "";
+	$publishInt = 0;
+	$facebook = "";
+	$required ="";
+	$checked = "";
+	$publish_toggleButton = "checked";
+
 			
 if(isset($_GET['news_id']))
 {
@@ -47,13 +52,19 @@ if(isset($_GET['news_id']))
 			$pinterest = $row['pinterest']; 	
 			$social = $row['social'];
 			$order = $row['order'];
-			if ($social == "on")
+			$publish = $row['published'];
+			if($publish == 0)
 			{
-			$social = "block";
-			$checked = "checked";
+				$publish_toggleButton =  "";
 			}
-			else{
-			$social = "none";
+		if(!empty($social) == "on")
+			{
+				$social = "block";
+				$checked = "checked";
+			}
+			else
+			{
+				$social = "none";
 			}
 
 }
@@ -72,8 +83,14 @@ if($_POST)
 			$social = $_POST['social'];
 			$notification= $_POST['notification'];
 			$order = $_POST['order'];
+			$publish = $_POST['publish'];
+			if($publish == "on")
+			{
+				$publishInt = 1;
+			}
+			
 			$query_update = "UPDATE news SET time_cone = now(), title = '$title',file = '$file', description = '$description',
-			facebook = '$facebook', twitter = '$twitter', google = '$google', pinterest = '$pinterest', social = '$social'
+			facebook = '$facebook', twitter = '$twitter', google = '$google', pinterest = '$pinterest', social = '$social', published = '$publishInt'
 			  WHERE news_id = '$news_id'";
 			$result_update = mysqli_query($con,$query_update)
 			or die('update error');		
@@ -98,12 +115,19 @@ else
 		$notification = $_POST['notification'];
 		$pinterest = $_POST['pinterest'];
 		$social = $_POST['social'];
-		$query = "INSERT INTO news(title,description,file,time_cone,category,app_id,facebook,twitter,google,pinterest,social)
-				  VALUES ('$title','$description','$file',now(),'$categoryID','$appID','$facebook','$twitter','$google','$pinterest','$social')"
+		$publish = $_POST['publish'];
+		
+		if($publish == "on")
+		{
+			$publishInt = 1;
+		}
+		
+		$query = "INSERT INTO news(title,description,file,time_cone,category,app_id,facebook,twitter,google,pinterest,social,published)
+				  VALUES ('$title','$description','$file',now(),'$categoryID','$appID','$facebook','$twitter','$google','$pinterest','$social','$publishInt')"
 				 or die ('error');
 		$result = mysqli_query($con,$query)
 	or die('error1');
-		if($social = "on")
+		if(!empty($social) == "on")
 		{
 			$required = "required";
 		}
@@ -151,11 +175,11 @@ else
    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
    <link rel="stylesheet" type="text/css" href="css/main.css" />
    <link rel="stylesheet" type="text/css" href="css/custom.css"/>
+   <script type="text/javascript" src="assets/ckeditor/ckeditor.js"></script>
    <script>
    if(<?php echo $redirect;?> == 1){
 			//alert('redirecting');
 			window.location.href = '<?php echo $url; ?>';
-   
    }
 	</script>
    
@@ -251,7 +275,7 @@ include 'headers/menu-top-navigation.php';
                       <label class="control-label">Facebook</label>
                               <div class="controls">
                           <div class="input-icon left"> <i class="icon-facebook"></i>
-                          <input name="facebook" placeholder="www.Facebook.com" type="text" 
+                          <input <?php echo $required; ?> name="facebook" placeholder="www.Facebook.com" type="text" 
                           class="span12" value="<?php echo $facebook; ?>" />
                       </div>
                       </div>
@@ -260,7 +284,7 @@ include 'headers/menu-top-navigation.php';
                       <label class="control-label">Twitter</label>
                               <div class="controls">
                           <div class="input-icon left"> <i class="icon-twitter"></i>
-                          <input name="twitter" placeholder="www.Twitter.com" type="text" 
+                          <input <?php echo $required; ?> name="twitter" placeholder="www.Twitter.com" type="text" 
                           class="span12" value="<?php echo $twitter; ?>" />
                       </div>
                       </div>
@@ -269,7 +293,7 @@ include 'headers/menu-top-navigation.php';
                       <label class="control-label">Pinterest</label>
                               <div class="controls">
                           <div class="input-icon left"> <i class="icon-pinterest"></i>
-                          <input  name="pinterest" placeholder="www.Pinterest.com" type="text" 
+                          <input <?php echo $required; ?> name="pinterest" placeholder="www.Pinterest.com" type="text" 
                           class="span12" value="<?php echo $pinterest; ?>" />
                       </div>
                       </div>
@@ -279,7 +303,7 @@ include 'headers/menu-top-navigation.php';
                       <label class="control-label">Google</label>
                               <div class="controls">
                           <div class="input-icon left"> <i class="icon-google-plus"></i>
-                          <input  name="google" placeholder="www.Google++.com" type="text" 
+                          <input <?php echo $required; ?> name="google" placeholder="www.Google++.com" type="text" 
                           class="span12" value="<?php echo $google; ?>" />
                       </div>
                       </div>
@@ -315,8 +339,26 @@ include 'headers/menu-top-navigation.php';
 						<div class="control-group">
                       <label class="control-label">Message</label>
                       <div class="controls">
-                                 <input placeholder="Type your message" type="text" class="span12 " />
-                                </div></div>
+                                 <input placeholder="Type your message" type="text" class="span11 " />
+                                </div>
+								</div>
+					<div style="margin-left: 0% !important;" class="controls">
+                              <label style="width: 340px !important;position: absolute;" class="control-label"><i><b><font size="4px">Check the group to push notify</font></b></i></label><br/><br/></div>
+                              <div style="margin-left: 4% !important;" class="controls">
+                                 <label class="checkbox line">
+                                 <input type="checkbox" value="" />All UFCW 99 Members
+                                 </label>
+                                 <label class="checkbox line">
+                                 <input type="checkbox" value="" />By Employer 
+                                 </label>
+								 <label class="checkbox line">
+                                 <input type="checkbox" value="" />By Employer and store # 
+                                 </label>
+								 <label class="checkbox line">
+                                 <input type="checkbox" value="" />By Zip Code 
+                                 </label>
+                              </div>
+                           
                                 </div>
                              </div> 
                             </div>
@@ -328,7 +370,7 @@ include 'headers/menu-top-navigation.php';
                       <label class="control-label">Publish</label>
                     <div class="controls">            
                         <div class="publish">
-                        <input type="checkbox" name="" class="publish-checkbox" id="mypublish" >
+                        <input <?php echo $publish_toggleButton; ?> type="checkbox" name="publish" class="publish-checkbox" id="mypublish" >
                         <label class="publish-label" for="mypublish">
                         <span class="publish-inner"></span>
                         <span class="publish-switch"></span> 
@@ -365,7 +407,7 @@ include 'headers/menu-top-navigation.php';
 
    </script>
    <script src="js/jquery-1.8.2.min.js"></script>    
-   <script type="text/javascript" src="assets/ckeditor/ckeditor.js"></script>
+
    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
    <script type="text/javascript" src="assets/bootstrap/js/bootstrap-fileupload.js"></script>
    <script src="js/jquery.blockui.js"></script>
