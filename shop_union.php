@@ -2,7 +2,7 @@
 	$categoryID = $_GET['categoryID'];
 	include 'headers/connect_to_mysql.php';
 	include 'headers/_user-details.php';
-	$query_shop = "SELECT * FROM shopUnion where app_id = '$appID' ";
+	$query_shop = "SELECT * FROM shopunion where app_id = '$appID' ";
 	$result_location = mysqli_query($con,$query_shop);
 ?>
 <!DOCTYPE html>
