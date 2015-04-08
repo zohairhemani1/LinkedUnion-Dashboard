@@ -31,9 +31,6 @@ include 'headers/_user-details.php';
 	$url = "";
 	$redirect="";
 	$publishInt = 0;
-	$facebook = "";
-	$required ="";
-	$checked = "";
 	$publish_toggleButton = "checked";
 
 			
@@ -57,9 +54,7 @@ if(isset($_GET['news_id']))
 			{
 				$publish_toggleButton =  "";
 			}
-			
-			
-			if(!empty($social) == "on")
+			if ($social == "on")
 			{
 				$social = "block";
 				$checked = "checked";
@@ -129,7 +124,7 @@ else
 				 or die ('error');
 		$result = mysqli_query($con,$query)
 	or die('error1');
-		if(!empty($social) == "on")
+		if($social = "on")
 		{
 			$required = "required";
 		}
@@ -342,29 +337,7 @@ include 'headers/menu-top-navigation.php';
                       <label class="control-label">Message</label>
                       <div class="controls">
                                  <input placeholder="Type your message" type="text" class="span11 " />
-<<<<<<< HEAD
                                 </div></div>
-=======
-                                </div>
-								</div>
-					<div style="margin-left: 0% !important;" class="controls">
-                              <label style="width: 340px !important;position: absolute;" class="control-label"><i><b><font size="4px">Check the group to push notify</font></b></i></label><br/><br/></div>
-                              <div style="margin-left: 4% !important;" class="controls">
-                                 <label class="checkbox line">
-                                 <input type="checkbox" value="" />All UFCW 99 Members
-                                 </label>
-                                 <label class="checkbox line">
-                                 <input type="checkbox" value="" />By Employer 
-                                 </label>
-								 <label class="checkbox line">
-                                 <input type="checkbox" value="" />By Employer and store # 
-                                 </label>
-								 <label class="checkbox line">
-                                 <input type="checkbox" value="" />By Zip Code 
-                                 </label>
-                              </div>
-                           
->>>>>>> origin/master
                                 </div>
                              </div> 
                             </div>
