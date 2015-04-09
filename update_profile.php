@@ -15,7 +15,7 @@
 	
 if($_POST)
 {
-	include 'headers/image_upload.php';
+		include 'headers/image_upload.php';
 		$user_name = $_POST['user_name'];
 		$password = $_POST['password'];
 		$email = $_POST['email'];

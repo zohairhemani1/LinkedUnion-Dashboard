@@ -13,7 +13,7 @@ include '../headers/_user-details.php';
 <!-- Mirrored from thevectorlab.net/adminlab/editable_table.html by HTTrack Website Copier/3.x [XR&CO'2013], Tue, 04 Nov 2014 07:58:54 GMT -->
 <head>
    <meta charset="utf-8" />
-   <title>Avialdo</title>
+   <title>Maintainence Log</title>
    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
    <meta content="" name="description" />
    <meta content="" name="author" />
@@ -60,14 +60,14 @@ include 'headers/menu-top-navigation.php';
                    <!-- END THEME CUSTOMIZER-->
                   <!-- BEGIN PAGE TITLE & BREADCRUMB-->     
                   <h3 class="page-title">
-                     App
+                     Maintainence Log
                      <small>view All </small>
                   </h3>
                    <ul class="breadcrumb">
                         <li>
                            <a href="index.php"><i class="icon-home"></i></a> <span class="divider">&nbsp;</span>
                        </li>
-                       <li><a href="#">App</a><span class="divider-last">&nbsp;</span>
+                       <li><a href="#">Maintainence Log</a><span class="divider-last">&nbsp;</span>
                        </li>
                        
                        </ul>
@@ -77,45 +77,20 @@ include 'headers/menu-top-navigation.php';
             <!-- END PAGE HEADER-->
 
             <!-- BEGIN ADVANCED TABLE widget-->
-                      <?php
-			if(isset($_GET['insert']) == 'true')
-			{
-				echo"
-			<div class='alert alert-success'>
-					<button class='close' data-dismiss='alert'>×</button>
-					<strong>Success!</strong> The App has been added.
-				</div>";
-			}
-	 	else if(isset($_GET['update']) == 'true'){
-      echo"
-	    <div class='alert alert-success'>
-                <button class='close' data-dismiss='alert'>×</button>
-                <strong>Success!</strong> The App has been updated.
-            </div>";
-		}
-		else if(isset($_GET['delete']) == 'true'){
-      echo"
-	    <div class='alert alert-success'>
-                <button class='close' data-dismiss='alert'>×</button>
-                <strong>Success!</strong> The App has been Deleted.
-            </div>";
-		}
-?>
+        
             <div class="row-fluid">
                 <div class="span12">
                     <!-- BEGIN EXAMPLE TABLE widget-->
                     <div class="widget">
                         <div class="widget-title">
 
-                            <h4><i class="icon-tags"></i>App Name</h4>
+                            <h4><i class="icon-tags"></i>Maintainence Log</h4>
                             <span class="tools">
                                 <a href="javascript:;" class="icon-chevron-down"></a>
                             </span>
                         </div>
 <div class="widget-body">
-			<div class="btn-group">
-               <a href="insert_app.php"><button type="button" class="btn btn-primary"> Add New <i class="icon-plus"></i> </button></a>
-                              </div>
+
 
                             <div class="portlet-body">
                                 
@@ -123,10 +98,20 @@ include 'headers/menu-top-navigation.php';
                                 <table class="table table-striped table-hover table-bordered" id="sample_editable_1">
                                     <thead>
                                     <tr>
-								 <th style="width:30px;">S No</th>
-                                    <th>App Name</th>
-                                    <th>Action</th>
-                                        <div class="widths">
+                     				<th>App Id</th>
+                                    <th>Payment Date</th>
+                                    <th>Valid Upto</th>
+                                    <th>Transaction Id</th>
+                                    <th>Last Four</th>
+                                    <th>Name</th>
+                                    <th>Status</th>
+                                    <th>Brand</th>
+                                    <th>Country</th>
+									<th>User Id</th>
+                                    <th>Amount</th>
+                                    <th>Exp Month</th>
+                                    <th>Exp Year</th>
+									<div class="widths">
                                         <th style="display:none">Edit</th>
                                         <th style="display:none">Delete</th>
                                     </div>
@@ -137,23 +122,39 @@ include 'headers/menu-top-navigation.php';
 
 				
 					<?php
-					$query_app = "SELECT * FROM app limit 50";
+					$query_app = "SELECT * FROM  maintainence_log limit 50";
 					$result_app = mysqli_query($con,$query_app);
-					$count = 0;
 					while($row = mysqli_fetch_assoc($result_app))
 					{
-						$count++;
 						$app_id = $row['app_id'];
-						$app_name = $row['app_name'];							
+						$paymentDate = $row['paymentDate'];
+						$validUpto = $row['validUpto'];
+						$transactionID = $row['transactionID'];
+						$lastFour = $row['lastFour'];
+						$name = $row['name'];
+						$status = $row['status'];
+						$brand = $row['brand'];
+						$country = $row['country'];
+						$user_id = $row['user_id'];
+						$amount = $row['amount'];
+						$exp_month = $row['exp_month'];
+						$exp_year = $row['exp_year'];								
 					echo"
-					<tr class=''> 
-								  <td style='width:1.5%'><a href='#'>{$count}</a></td>
-								  <td style='width:34%%'><a href='institutionDetail.php'>{$row['app_name']}</a></td>
-								  <td width='10%' ><a href='insert_app.php?app_id={$app_id}' 
-								  id='update_button' class='btn btn-success'> <i class='icon-edit'></i></a>																					 							 	 
-								  <a href='delete.php?app_id={$app_id}' id='delete_button'  class='btn btn-danger'>
-								  <i class='icon-trash'></i></a>
-									  <td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
+										<tr class=''> 
+								  <td style='width:1.5%'><a href='#'>{$app_id}</a></td>
+								  <td style='width:1.5%'><a href='#'>{$paymentDate}</a></td>
+								  <td style='width:1.5%'><a href='#'>{$validUpto}</a></td>
+								  <td style='width:1.5%'><a href='#'>{$transactionID}</a></td>
+								  <td style='width:1.5%'><a href='#'>{$lastFour}</a></td>
+								  <td style='width:1.5%'><a href='#'>{$name}</a></td>
+								  <td style='width:1.5%'><a href='#'>{$status}</a></td>
+								  <td style='width:1.5%'><a href='#'>{$brand}</a></td>
+								  <td style='width:1.5%'><a href='#'>{$country}</a></td>
+								  <td style='width:1.5%'><a href='#'>{$user_id}</a></td>
+								  <td style='width:1.5%'><a href='#'>{$amount}</a></td>
+								  <td style='width:1.5%'><a href='#'>{$exp_month}</a></td>
+								  <td style='width:1.5%'><a href='#'>{$exp_year}</a></td>
+								  <td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
 								 <td style='display:none'><a class='' href='javascript:;'>Delete</a></td>
 								  </tr>";
 					}
@@ -183,6 +184,38 @@ include 'headers/menu-top-navigation.php';
    <!-- END FOOTER -->
    <!-- BEGIN JAVASCRIPTS -->
    <!-- Load javascripts at bottom, this will reduce page load time -->
+   <script>
+$(document).ready(function () {
+    $('button.popupOpen').click(function () {
+
+        var popup = $(this).attr('data-href');
+
+        $(popup).fadeIn(300);
+
+        //Set the center alignment padding + border
+    
+
+        $(popup).css({
+            'margin-top': '20px',
+                'margin-left': '40px'
+        });
+
+        // Add the mask to body
+        $('div.container').append('<div id="mask"></div>');
+        $('#mask').fadeIn(300);
+
+        return false;
+    });
+
+    $('a.close, #mask').live('click', function () {
+        $('#mask , .largWin').fadeOut(300, function () {
+            $('#mask').remove();
+        });
+        return false;
+    });
+});  
+  </script>
+   
    <script src="../js/jquery-1.8.3.min.js"></script>
    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>   
    <script src="../js/jquery.blockui.js"></script>

@@ -1,14 +1,14 @@
-<?php 
-	$query_select = "SELECT * FROM app";
+	<?php 
+	$query_select = "SELECT * FROM webservices";
     $result_select = mysqli_query($con,$query_select)
     or die ('error'); 
     while($row = mysqli_fetch_array($result_select))
 	{
-    $app_id = $row['app_id'];
-	$app_name = $row['app_name'];
+    $id = $row['id'];
+	$name = $row['name'];
     echo"
     <option value=''></option>
-    <option value='$app_id'>{$app_name}</option>
+    <option value='$id'>{$name}</option>
     ";                                
      }
 	 ?>

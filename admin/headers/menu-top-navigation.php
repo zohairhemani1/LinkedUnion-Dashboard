@@ -7,7 +7,7 @@ echo"
            <div class='container-fluid'>
                <!-- BEGIN LOGO -->
                <a class='brand' href='index.php'>
-                   <img src='../img/avialdo.png' alt='Admin Lab' />
+                   <img src='../img/linkedunion.png' alt='Admin Lab' />
                </a>
                <!-- END LOGO -->
                <!-- BEGIN RESPONSIVE MENU TOGGLER -->
@@ -63,7 +63,7 @@ echo"
                        <!-- BEGIN USER LOGIN DROPDOWN -->
                        <li class='dropdown'>
                            <a href='#' class='dropdown-toggle' data-toggle='dropdown'>
-                               <img style='height:20px;' src='../img/user.png' alt=''>
+                               <img style='height:28px;' src='../img/image/steve.png' alt=''>
                                              
                                <span class='username' >  " .strtoupper("avialdo")." </span>
                                <b class='caret'></b>
@@ -95,13 +95,13 @@ echo"
 
          <!-- BEGIN SIDEBAR MENU -->
           <ul class='sidebar-menu'>
-	                  <li><a class='' href='app.php'><span class='icon-box'><i class='icon-user'></i></span>All App</a></li>
-                      <li><a class='' href='category.php'><span class='icon-box'><i class='icon-user'></i></span>Category</a></li>
-					  <li><a class='' href='webservices.php'><span class='icon-box'><i class='icon-user'></i></span>Webservices</a></li>
-					  <li><a data-placement='bottom' data-original-title='Webservices Category' class='tooltips' href='webservices_category.php'><span class='icon-box'><i class='icon-user'></i></span>Webservices Cate...</a></li>
-                      <li><a class='' href='user.php'><span class='icon-box'><i class='icon-user'></i></span>User</a></li>
 					  <li><a class='' href='parent.php'><span class='icon-box'><i class='icon-user'></i></span>Parent Child</a></li>
+					  <li><a class='' href='webservices.php'><span class='icon-box'><i class='icon-user'></i></span>Webservices</a></li>
     				  <li><a class='' href='notification.php'><span class='icon-box'><i class='icon-user'></i></span>Notification</a></li>	
+					  <li><a href='webservices_category.php'><span class='icon-box'><i class='icon-user'></i></span>WC Bridge</a></li>
+                      <li><a class='' href='category.php'><span class='icon-box'><i class='icon-user'></i></span>Category</a></li>
+	                  <li><a class='' href='app.php'><span class='icon-box'><i class='icon-user'></i></span>All App</a></li>
+                      <li><a class='' href='user.php'><span class='icon-box'><i class='icon-user'></i></span>User</a></li>
 	</ul>
 	   <!-- END SIDEBAR MENU -->
       </div>

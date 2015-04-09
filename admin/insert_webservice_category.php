@@ -123,12 +123,33 @@ include 'headers/menu-top-navigation.php';
                      </div>
                      <div class="widget-body form">
                         <!-- BEGIN FORM-->
-                        <form action="insert_webservice.php<?php echo $formAction; ?>" method="post" class="form-horizontal">
-                           <div class="control-group">
-                              <label class="control-label">Webservice</label>
+                    <div class="control-group">
+                               <div class="controls">
+                                 <label class="radio">
+                                 <input onClick="myFunction()" id="hide" type="radio" name="optionsRadios1" value="option1" checked  />
+                                 Category
+                                 </label>
+                                 <label class="radio">
+                                 <input onClick="myFunction()" id="show" type="radio" name="optionsRadios1" value="option2"   />
+                               Sub Category
+                                 </label> 
+								</div>
+							</div>								
+						<form style="display:block;" id="form1" action="insert_webservice.php<?php echo $formAction; ?>" method="post" class="form-horizontal">
+                         <div class="control-group">
+                   	<div class="control-group">
+                              <label class="control-label">App Name</label>
                               <div class="controls">
                                  <select class="span6 chosen" name="webservice" data-placeholder="Choose a Webservice" tabindex="1">
 									<?php echo include 'headers/app_detail.php'; ?>
+                                 </select>
+                              </div>
+                           </div>              
+						   <div class="control-group">
+                              <label class="control-label">Webservice</label>
+                              <div class="controls">
+                                 <select class="span6 chosen" name="webservice" data-placeholder="Choose a Webservice" tabindex="1">
+									<?php echo include 'headers/webservices_detail.php'; ?>
                                  </select>
                               </div>
                            </div>
@@ -136,15 +157,51 @@ include 'headers/menu-top-navigation.php';
                               <label class="control-label">Categories</label>
                               <div class="controls">
                                  <select class="span6 chosen" name="category" data-placeholder="Choose a Category" tabindex="1">
-									<?php echo include 'headers/app_detail.php'; ?>
+									<?php echo include 'headers/category.php'; ?>
                                  </select>
                               </div>
                            </div>
+						   </div>
     			<div class="form-actions clearfix">
 				<input type="submit"  class="btn btn-success " />
                    </div>
                               </form>
-                            <!-- END FORM-->
+                                <form action="insert_category.php<?php echo $formAction; ?>" id="form2" 
+                 style="display:none" method="post" class="form-horizontal">
+                         	<div class="control-group">
+                              <label class="control-label">App Name</label>
+                              <div class="controls">
+                                 <select class="span6 chosen" style="width: 545px;" name="webservice" data-placeholder="Choose a Webservice" tabindex="1">
+									<?php echo include 'headers/app_detail.php'; ?>
+                                 </select>
+                              </div>  
+					</div>						   
+						<div class="control-group">
+                              <label class="control-label">Webservice</label>
+                              <div class="controls">
+                                 <select class="span6 chosen" style="width: 545px;" name="webservice" data-placeholder="Choose a Webservice" tabindex="1">
+									<?php echo include 'headers/webservices_detail.php'; ?>
+                                 </select>
+                              </div>
+                           </div>
+						    <div id="addSubcategory">
+                         <div class="control-group">
+                              <label class="control-label">Subcategory Name</label>
+                              <div class="controls">
+                                 <select class="span6 chosen" name="webservice" style="width: 545px;" data-placeholder="Choose a Webservice" tabindex="1">
+									<?php echo include 'headers/subcategories_detail.php'; ?>
+                                 </select>
+                              </div>
+                           </div>  </div>
+                      			 <span id="responce1"></span>
+    			<div class="form-actions clearfix">
+				<input type="submit"  class="btn btn-success " />
+             <button name="button" id="addsubCategory" type="button" class="btn btn-warning"> Add New <i class="icon-plus"></i> </button>
+
+                   </div>
+                              </form>
+
+							<!-- END FORM-->
                         </div>
                     </div>
                     <!-- END EXTRAS widget-->
@@ -199,6 +256,22 @@ include 'headers/menu-top-navigation.php';
 		 UIJQueryUI.init();
       });
    </script>
+ <script>
+function myFunction() {
+	var ele1 = document.getElementById("form1");
+	var ele2 = document.getElementById("form2");
+	if(ele1.style.display == "block")
+	{
+		ele1.style.display = "none";
+		ele2.style.display = "block";
+  	}
+	else if (ele1.style.display == "none"){
+	ele1.style.display = "block";
+		ele2.style.display = "none";
+	
+	}
+}
+</script>
 
 </body>
 </html>

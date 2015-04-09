@@ -1,17 +1,10 @@
 <?php
-
-	$isPosted = 0;
-	
 	include '../headers/connect_to_mysql.php';
-	include 'headers/image_logo.php';
-	include 'headers/image_cover.php';
-
 	$app_name = "";
 	$about_us = "";
 	$formAction = "";
-	$logo = "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image";		
-	$cover = "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image";
-
+	$logo = "";
+	$cover = "";
 	
 if(isset($_GET['app_id']))
 
@@ -27,41 +20,36 @@ if(isset($_GET['app_id']))
 		$logo = $row['logo'];
 		$cover = $row['cover'];
 		$about_us = $row['about_us'];
-		if($cover == null && $logo == null ) 
-		{
-		$logo = "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image"; 
-		$cover = "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image"; 
-		} 
-		else { 
-		 $logo = "../img/logo/$logo";
-		 $cover = "../img/cover/$cover"; 
-		 }
 
 
 	if($_POST)
 	{
-
+		include 'headers/image_logo.php';
+		include 'headers/image_cover.php';
 		$app_id=  $_GET['app_id'];
 		$app_name = $_POST['app_name'];
 		$about_us = $_POST['about_us'];
 		$query = "UPDATE app SET  app_name = '$app_name',about_us = '$about_us', logo = '$logo', cover = '$cover' WHERE app_id = '$app_id'";
 		$result = mysqli_query($con,$query);
-		$isPosted = 1;
-		header("Location: app.php?update=true");		
+		$url = "app.php?update=true";
+		$redirect = 1;
 	}
 }	
 else 
 {
 	if($_POST)
 	{
-		
+		include 'headers/image_logo.php';
+		include 'headers/image_cover.php';
 		$app_name = $_POST['app_name'];
 		$about_us = $_POST['about_us'];
 		$query_inserting = "INSERT INTO app(app_name,about_us,logo,cover)
 		VALUES ('$app_name','$about_us','$logo','$cover')";
-		mysqli_query($con,$query_inserting)
+		$result =  mysqli_query($con,$query_inserting)
 		or die('error while inserting app');
-		header("Location: app.php?insert=true");	
+		$url = "app.php?insert=true";
+		$redirect = 1;
+		
 	}	
 }
 
@@ -96,7 +84,14 @@ else
    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
    <link rel="stylesheet" type="text/css" href="../css/main.css" />
 
-<title>Avialdo -Dashboard </title>
+<title>LinkedUnion -Dashboard </title>
+
+   <script>
+   if(<?php echo $redirect;?> == 1){
+			//alert('redirecting');
+			window.location.href = '<?php echo $url; ?>';
+   }
+	</script>
 
 </head>
 
@@ -163,12 +158,14 @@ include 'headers/menu-top-navigation.php';
                       class="span6 "><?php echo $about_us; ?></textarea>
                               </div>
                            </div>
-                            <div class="control-group">
+					<div class="control-group">
+                        <div class="control-group">
                             <label class="control-label">Logo</label>
                             <div class="controls">
                                 <div class="fileupload fileupload-new" data-provides="fileupload">
                                     <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
-                                        <img src="<?php echo $logo ; ?>" alt="logo" />
+                                        <img src="<?php if($logo == null){echo "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image";}
+										else {echo "image/logo/".$logo;} ?>" alt="" />
                                     </div>
                                     <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
                                     <div>
@@ -178,14 +175,16 @@ include 'headers/menu-top-navigation.php';
                                         <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
                                     </div>
                                 </div>
-                                    </div>
+								 </div>
                                 </div>
+                         <div class="control-group">
                         <div class="control-group">
                             <label class="control-label">Cover</label>
                             <div class="controls">
                                 <div class="fileupload fileupload-new" data-provides="fileupload">
                                     <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
-                                        <img src="<?php echo $cover; ?>" alt="cover" />
+                                        <img src="<?php if($cover == null){echo "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image";}
+										else {echo "image/cover/".$cover;} ?>" alt="" />
                                     </div>
                                     <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
                                     <div>

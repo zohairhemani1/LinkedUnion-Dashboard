@@ -1,7 +1,7 @@
 <?php
 session_start();
 	include '../headers/connect_to_mysql.php';
-	include 'headers/user_image.php';
+	
 	$user_id = "";
 	$user_name = "";
 	$app_id = "";
@@ -14,6 +14,7 @@ session_start();
 	
 if(isset($_GET['user_id']))
 {
+		include 'headers/user_image.php';
 		$user_id = $_GET['user_id'];
 		$formAction = "?user_id=$user_id";
 		$query = "SELECT * FROM user where user_id = $user_id ";
@@ -28,6 +29,7 @@ if(isset($_GET['user_id']))
 		
 	if($_POST)
 	{
+		include 'headers/user_image.php';
 		$user_id = $_GET['user_id'];
 		$user_name = $_POST['user_name'];
 		$app_id = $_POST['app_id'];
@@ -45,13 +47,14 @@ else
 {
 	if($_POST)
 	{
+		include 'headers/user_image.php';
 		$user_name = $_POST['user_name'];
 		$app_id = $_POST['app_id'];
 		$password = $_POST['password'];
 		$email = $_POST['email'];
-	$query_inserting = "INSERT INTO user(user_name,password,image,app_id,email,time_cone)
+		$query_inserting = "INSERT INTO user(user_name,password,image,app_id,email,time_cone)
 		VALUES ('$user_name','$password','$image','$app_id','$email',now())";
-		mysqli_query($con,$query_inserting)
+		$result = mysqli_query($con,$query_inserting)
 		or die('error while inserting Webservices');
 		echo "image-->{$image}";
 			//header("Location: user.php?insert=true");	
@@ -181,16 +184,13 @@ include 'headers/menu-top-navigation.php';
                                  </select>
                               </div>
                            </div>
-                            <div class="control-group">
+                           <div class="control-group">
                             <label class="control-label">Profile</label>
                             <div class="controls">
                                 <div class="fileupload fileupload-new" data-provides="fileupload">
                                     <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
-                                        <img src="<?php	if ($image != null){echo "../img/image/{$image}";}
-										else
-										{
-										echo "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image";
-										}?>" alt="Profile" />
+                                        <img src="<?php if($image == null) {echo "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image";}
+                                        else{echo "img/image/{$image}" ;}?>" alt="" />
                                     </div>
                                     <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
                                     <div>

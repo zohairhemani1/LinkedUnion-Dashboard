@@ -157,12 +157,15 @@ include 'headers/menu-top-navigation.php';
 				//if ((int) $category_id == $category_id) 
 				//{
 					
+				$categoryID = $_GET['categoryID'];
+				//if ((int) $category_id == $category_id) 
+				//{
+					
 					$query = "SELECT n.* from `news` n where category = {$categoryID}";
-					$result_query = mysqli_query($con,$query);
 					$sth = $dbh->prepare($query);
 					$sth->execute();
 					$count = 0;
-					$num_rows = mysqli_num_rows($result_query);
+					$num_rows = mysqli_num_rows($query);
 					if($num_rows == 0)
 					{
 						echo "
@@ -231,12 +234,12 @@ include 'headers/menu-top-navigation.php';
                                            </thead>
                                     <tbody>
 								";
-					
-					while($row = $sth->fetch(PDO::FETCH_ASSOC))
+		while($row = $sth->fetch(PDO::FETCH_ASSOC))
 					{
 						$news_id = $row['news_id'];
 						$count++;
 						$published = "Unpublished";
+						
 						
 						if($row['published']==1)
 							$published = "Published";
@@ -248,8 +251,8 @@ include 'headers/menu-top-navigation.php';
 								  <td style='width:3%'><span id='published' class='label label-warning label-mini'>{$published}</span></td>
 								  <td><a href='insert_form.php?categoryID=$categoryID&news_id={$news_id}' 
 								  id='update_button' class='btn btn-success'> <i class='icon-edit'></i></a>																					 							 	 
-						          <a href='delete.php?categoryID=$categoryID&news_id={$news_id}'><button class='btn btn-danger' id='delete_button' onClick ='return confirmDelete();' />
-									<i class='icon-edit'></i></button> </a>
+								  <a href='delete.php?categoryID=$categoryID&news_id={$news_id}' id='delete_button' class='btn btn-danger'>
+								  <i class='icon-trash'></i> </a>
 								  <a href='view.php?news_id={$news_id}' id='view_button' class='btn btn-info'><i class='icon-eye-open'></i></a></td>
 								  <td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
 								 <td style='display:none'><a class='' href='javascript:;'>Delete</a></td>

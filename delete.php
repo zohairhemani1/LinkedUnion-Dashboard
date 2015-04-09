@@ -46,7 +46,7 @@
 	$query_delete = "DELETE FROM shopUnion WHERE shop_id = $shop_id"
 	or die('error while deleting Shop union');
 	$result = mysqli_query($con,$query_delete);
-	header ("Location:shopUnion.php?delete=true");		
+	header ("Location:shop_union.php?delete=true");		
 	}
 
 ?>

@@ -53,6 +53,7 @@ if(isset($fileName))
 			window.location.href = '<?php echo $url; ?>';
    }
 	</script>
+
  </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
@@ -185,7 +186,7 @@ include 'headers/menu-top-navigation.php';
 								  <td style='width:3%'><span id='published' class='label label-warning label-mini'>{$published}</span></td>
 								  <td><a href='insert_form.php?categoryID=$categoryID&news_id={$news_id}' 
 								  id='update_button' class='btn btn-success'> <i class='icon-edit'></i></a>																					 							 	 
-								  <a href='delete.php?categoryID=$categoryID&news_id={$news_id}' id='delete_button'  class='btn btn-danger'>
+								  <a href='delete.php?categoryID=$categoryID&news_id={$news_id}' id='delete_button' class='btn btn-danger'>
 								  <i class='icon-trash'></i> </a>
 								  <a href='view.php?news_id={$news_id}' id='view_button' class='btn btn-info'><i class='icon-eye-open'></i></a></td>
 								  <td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
