@@ -1,7 +1,7 @@
 <?php
 
-	include 'headers/checkloginstatus.php'; 
-	include 'headers/_user-details.php';
+	include 'checkloginstatus.php'; 
+	include '_user-details.php';
 
 $query = "select (SELECT `pushCount` from app where app_id = '{$appID}') - (select count(*) from `pushmessage` pm where pm.authorAppID = '{$appID}') as pushRemaining";
 $result = mysqli_query($con,$query);
@@ -16,7 +16,7 @@ echo "<!-- BEGIN HEADER -->
            <div class='container-fluid'>
                <!-- BEGIN LOGO -->
                <a id='logo_image' class='brand' href='index.php'>
-                   <img src='img/logo/{$logo}' width='140' alt='Admin Lab' style='margin-left:-5px; margin-top:-12px;' />
+                   <img id='image_logo' src='img/logo/{$logo}' width='140' alt='logo' style='margin-left:-5px; margin-top:-12px;' />
                </a>
                <!-- END LOGO -->
                <!-- BEGIN RESPONSIVE MENU TOGGLER -->
@@ -54,8 +54,7 @@ echo "<!-- BEGIN HEADER -->
 			   </a>
              </li>";
 		}
-		
-                               
+		 
                                
            echo "<li>
 						   <a href='notification.php'>See all notifications</a>
@@ -80,7 +79,7 @@ echo "<!-- BEGIN HEADER -->
                        <!-- BEGIN USER LOGIN DROPDOWN -->
                        <li class='dropdown'>
                            <a href='#' class='dropdown-toggle' data-toggle='dropdown'>
-                               <img src='img/image/{$image}' width='30' alt='' id='profilePic'>
+                               <img id='image_cover' src='img/image/{$image}' width='30' alt='profile' id='profilePic'>
                                              
                                <span class='username'>{$username_allcaps}</span>
                                <b class='caret'></b>
