@@ -48,5 +48,13 @@
 	$result = mysqli_query($con,$query_delete);
 	header ("Location:shop_union.php?delete=true");		
 	}
+	if(isset($_GET['member_id']))
+	{
+	$member_id = $_GET['member_id'];	
+	$query_delete = "DELETE FROM petition_people WHERE member_id = $member_id"
+	or die('error while deleting Shop union');
+	$result = mysqli_query($con,$query_delete);
+	header ("Location:petition_members.php?delete=true");		
+	}
 
 ?>
