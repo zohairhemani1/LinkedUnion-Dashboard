@@ -37,7 +37,9 @@
 <link href="css/custom.css" rel="stylesheet" />
    <link href="assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
    <link rel="stylesheet" type="text/css" href="assets/uniform/css/uniform.default.css" />
-</head>
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+   </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
 <body class="fixed-top">
@@ -80,7 +82,12 @@ include 'headers/menu-top-navigation.php';
                            </span>                    
                         </div>
                         <div class="widget-body">
-                            <div class="row-fluid blog">
+					<div class="btn-group" >
+				<a href="emulator.html"><button type="button" class="btn btn-primary"> Enable Mobile Mode <i class="icon-plus"></i> </button></a>
+				</div>
+
+
+							<div class="row-fluid blog">
 
                                 <div class="span12">
                                     <h2>
@@ -121,9 +128,9 @@ include 'headers/menu-top-navigation.php';
             <!-- END PAGE CONTENT-->         
          </div>
          <!-- END PAGE CONTAINER-->
-      </div>
+      
       <!-- END PAGE -->  
-   </div>
+  
    <!-- END CONTAINER -->
    <!-- BEGIN FOOTER -->
  <?php  
@@ -150,7 +157,9 @@ include 'headers/menu-top-navigation.php';
       });
    </script>
    <!-- END JAVASCRIPTS -->   
-</body>
+</div>
+   </body>
+
 <!-- END BODY -->
 
 <!-- Mirrored from thevectorlab.net/adminlab/news_details.html by HTTrack Website Copier/3.x [XR&CO'2013], Tue, 04 Nov 2014 08:04:58 GMT -->

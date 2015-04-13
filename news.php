@@ -53,11 +53,17 @@ if(isset($fileName))
 			window.location.href = '<?php echo $url; ?>';
    }
 	</script>
-
+<script>
+window.addEventListener("load", function(){
+	var load_screen = document.getElementById("load_screen");
+	document.body.removeChild(load_screen);
+});
+</script>
  </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
 <body class="fixed-top">
+<div id="load_screen"><div id="loading">loading document</div></div>
    <!-- BEGIN HEADER -->
 <?php
 include 'headers/menu-top-navigation.php'; 
@@ -188,7 +194,8 @@ include 'headers/menu-top-navigation.php';
 								  id='update_button' class='btn btn-success'> <i class='icon-edit'></i></a>																					 							 	 
 								  <a href='delete.php?categoryID=$categoryID&news_id={$news_id}' id='delete_button' class='btn btn-danger'>
 								  <i class='icon-trash'></i> </a>
-								  <a href='view.php?news_id={$news_id}' id='view_button' class='btn btn-info'><i class='icon-eye-open'></i></a></td>
+								  <a href='view.php?news_id={$news_id}' id='view_button' class='btn btn-info'> 
+								  <i class='icon-eye-open'></i> </a></td>
 								  <td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
 								 <td style='display:none'><a class='' href='javascript:;'>Delete</a></td>
 								  </tr>";
