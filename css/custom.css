@@ -424,3 +424,8 @@ div#load_screen > div#loading{
 	height:24px;
 	margin: 300px auto;
 }
+#loader-icon{
+	margin-left:13.5%;
+	margin-top:5px;
+	margin-bottom:5px;
+}

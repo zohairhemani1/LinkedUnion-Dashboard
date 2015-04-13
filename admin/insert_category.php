@@ -95,7 +95,7 @@ function showUser(str) {
                 document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
             }
         }
-        xmlhttp.open("GET","category_detail.php?q="+str,true);
+        xmlhttp.open("GET","insert_category.php?q="+str,true);
         xmlhttp.send();
 	}
 }
@@ -265,7 +265,7 @@ include 'headers/menu-top-navigation.php';
                            <div class="control-group">
                               <label class="control-label">Category Name</label>
                               <div class="controls">
-							  <div id="txtHint"><b>Person info will be listed here...</b></div>
+							  <div id="txtHint"><b>First info will be listed here...</b></div>
                                  <?php echo include 'headers/category_detail.php'; ?>
                                   </div>
                            </div>

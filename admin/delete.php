@@ -24,5 +24,12 @@
 	$result = mysqli_query($con,$query_delete);
 	header ("Location: user.php?delete=true");
 	}
+	if(isset($_GET['uniqueID'])){
+	$uniqueID = $_GET['uniqueID'];
+	$query_delete = "DELETE from app_relation where id = '$uniqueID'"
+	or die ('error while dleteing parent');
+	$result = mysqli_query($con,$query_delete);
+	header ("Location: parent.php?delete=true");
+		}
 
 ?>

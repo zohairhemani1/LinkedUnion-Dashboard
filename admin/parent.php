@@ -195,7 +195,7 @@ include 'headers/menu-top-navigation.php';
 								<td style='width:14% !important'><a href='#'>{$catName}</a></td>
 								  <td style='width:13% !important'><a href='insert_parent.php?uniqueID={$uniqueID}' 
 								  id='update_button' class='btn btn-success'> <i class='icon-edit'></i> </a>																					 							 	 
-								  <a href='delete_parent.php?uniqueID={$uniqueID}' id='delete_button'  class='btn btn-danger'>
+								  <a href='delete.php?uniqueID={$uniqueID}' id='delete_button'  class='btn btn-danger'>
 								  <i class='icon-trash'></i> </a>
 									  <td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
 								 <td style='display:none'><a class='' href='javascript:;'>Delete</a></td>

@@ -1,4 +1,4 @@
- <select id="" class="span6 chosen" name="category" data-placeholder="Choose a Category" tabindex="1">
+ <select id="" class="span6 chosen" name="category" data-placeholder="Choose a Category" >
 <?php
 $q = intval($_GET['q']);
 

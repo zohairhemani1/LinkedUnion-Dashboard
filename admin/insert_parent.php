@@ -1,38 +1,38 @@
 <?php
-session_start();
 	include '../headers/connect_to_mysql.php';
-if(isset($_GET['id']))
-{
-		$id = $_GET['id'];
-		$formAction = "?ANDid=$id";
-		$query = "SELECT * FROM webservice_category where id = $id ";
+	$formAction = "";
+if(isset($_GET['uniqueID']))
+{	
+		$uniqueID = $_GET['uniqueID'];
+	$formAction = "?uniqueID=$uniqueID";
+		$query = "SELECT * FROM app_relation where id = {$uniqueID}";
 		$result = mysqli_query($con,$query);	
 		$row = mysqli_fetch_array($result)
 		or die ('error3');
-		$webservice = $row['webservice'];
-		$category = $row['category'];
+		$catID = $row['catID'];
+		$parentID = $row['parentID'];
 		
-
-	if($_POST)
+if($_POST)
 	{
-		$id=  $_GET['id'];
-		$webservice = $_POST['webservice'];
-		$category = $_POST['category'];
-		$query = "UPDATE webservice_category SET  webservice = '$webservice', category = '$category' WHERE id = '$id'";
+		$uniqueID = $_GET['uniqueID'];
+		$catID = $_POST['catID'];
+		$parentID = $_POST['parentID'];
+		$query = "UPDATE app_relation SET  catID = '$catID', parentID = '$parentID' WHERE id = '$uniqueID'";
 		$result = mysqli_query($con,$query);
-		header("Location: webservice_category.php?update=true");
+		header("Location: parent.php?update=true");
 	}
 }	
 else 
 {
 	if($_POST)
 	{
-		$webservice = $_POST['webservice'];
-		$query_inserting = "INSERT INTO webservice_category(webservice,category)
-		VALUES ('$webservice','$category')";
+		$catID = $_POST['catID'];
+		$parentID = $_POST['parentID'];
+		$query_inserting = "INSERT INTO app_relation(catID,parentID)
+		VALUES ('$catID','$parentID')";
 		mysqli_query($con,$query_inserting)
-		or die('error while inserting Webservices');
-		header("Location: webservice_category.php?insert=true");	
+		or die('error while inserting Parrent');
+		header("Location: parent.php?insert=true");	
 	}	
 }
 
@@ -67,9 +67,54 @@ else
 	<link href="../assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
 	<link href="../css/style.css" rel="stylesheet" />
 	<link href="../css/style_responsive.css" rel="stylesheet" />
+	<link href="../css/custom.css" rel="stylesheet" />
 	<link href="../css/style_default.css" rel="stylesheet" id="style_color" />
 	<link rel="stylesheet" href="../assets/data-tables/DT_bootstrap.css" />
    <link rel="stylesheet" type="text/css" href="../assets/chosen-bootstrap/chosen/chosen.css" />
+      <script src="../js/jquery-1.8.3.min.js"></script>
+<script>
+function showUser(str) {
+    if (str == "") {
+        document.getElementById("txtHint").innerHTML = "";
+        return;
+    } 
+	else { 
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+            $('#loader-icon').show();
+				$("#catID").prop("disabled", true);
+		} else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+				$('#loader-icon').hide();
+				$("#catID").prop("disabled", false);
+                document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
+			}
+        }
+        xmlhttp.open("GET","getuser.php?q="+str,true);
+        xmlhttp.send();
+	}
+
+	var selectBox = document.getElementById("change");
+    var selectedValue = selectBox.options[change.selectedIndex].value;
+	var selectBox1 = document.getElementById("child");
+    var selectedValue1 = selectBox.options[child.selectedIndex].value;
+    if(selectedValue == selectedValue1){
+		alert('Sorry parrent name and child name can not be same  ');
+				$("#buttonActivate").prop("disabled", true);
+	}
+	else
+	{
+				$("#buttonActivate").prop("disabled", false);
+	}
+	
+	}
+
+</script>
 
 <title>LinkedUnion -Dashboard </title>
 
@@ -123,11 +168,11 @@ include 'headers/menu-top-navigation.php';
                      </div>
                      <div class="widget-body form">
                         <!-- BEGIN FORM-->
-                        <form action="insert_webservice.php<?php echo $formAction; ?>" method="post" class="form-horizontal">
+                        <form action="insert_parent.php<?php echo $formAction; ?>" method="post" class="form-horizontal">
                            <div class="control-group">
                               <label class="control-label">Parent</label>
                               <div class="controls">
-                                 <select class="span6 chosen" name="Parent" data-placeholder="Choose your parent" tabindex="1">
+                                 <select id="change" class="span6 chosen" name="parentID" data-placeholder="Choose your parent" tabindex="1">
 									<?php echo include 'headers/app_detail.php'; ?>
                                  </select>
                               </div>
@@ -135,13 +180,17 @@ include 'headers/menu-top-navigation.php';
                             <div class="control-group">
                               <label class="control-label">Child</label>
                               <div class="controls">
-                                 <select class="span6 chosen" name="child" data-placeholder="Choose your Child" tabindex="1">
+                                 <select id="child" onchange="showUser(this.value)" class="span6 chosen" name="child" data-placeholder="Choose your Child" tabindex="1">
 									<?php echo include 'headers/app_detail.php'; ?>
                                  </select>
                               </div>
+							  <img id="loader-icon" style = "display:none;" width="70px" src="../assets/pre-loader/LoaderIcon.gif" alt="Triangles indicator" />
+							  
+							<br>
+							<div id="txtHint"><b></b></div>
                            </div>
     			<div class="form-actions clearfix">
-				<input type="submit"  class="btn btn-success " />
+				<input id="buttonActivate" type="submit" class="btn btn-success " />
                    </div>
                               </form>
                             <!-- END FORM-->

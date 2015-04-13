@@ -63,7 +63,6 @@ window.addEventListener("load", function(){
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
 <body class="fixed-top">
-<div id="load_screen"><div id="loading">loading document</div></div>
    <!-- BEGIN HEADER -->
 <?php
 include 'headers/menu-top-navigation.php'; 
