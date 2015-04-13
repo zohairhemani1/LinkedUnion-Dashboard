@@ -1,10 +1,29 @@
 <?php 
-	include '../headers/connect_to_mysql.php';
-	include '../headers/_user-details.php';
+	include 'headers/connect_to_mysql.php';
+	include 'headers/_user-details.php';
 	
 	$first_name = "";
 	$last_name = "";
 	$email = "";
+	$email = $_GET['email'];
+	if($_POST)
+	{
+	$query_select = "SELECT * FROM petition_people WHERE email like $email";
+	$result_query = mysqli_query($con,$query_select)
+	or die ('error while selection email');
+	$row = mysqli_fetch_array($result_query);
+	$first_name = $row['first_name'];
+	$last_name = $row['last_name'];
+	}
+	if($_POST['zip'])
+	{
+	$zipcode = $_POST['zipcode'];
+	$query_update = "UPDATE petition_people set zipcode  = $zipcode WHERE email LIKE $email";
+	$result_update = mysqli_query($con,$query_update)
+	or die('error while updating Zip Coe');	
+	}
+	
+	
 	
 	?>
 <!DOCTYPE html>
@@ -19,32 +38,32 @@
    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
    <meta content="" name="description" />
    <meta content="" name="author" />
-   <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-   <link href="../assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
-   <link href="../assets/bootstrap/css/bootstrap-fileupload.css" rel="stylesheet" />
-   <link href="../assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-   <link href="../css/style.css" rel="stylesheet" />
-   <link href="../css/style_responsive.css" rel="stylesheet" />
-   <link href="../css/style_default.css" rel="stylesheet" id="style_color" />
-   <link href="../assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
-   <link rel="stylesheet" type="text/css" href="../assets/gritter/css/jquery.gritter.css" />
-   <link rel="stylesheet" type="text/css" href="../assets/chosen-bootstrap/chosen/chosen.css" />
-   <link rel="stylesheet" type="text/css" href="../assets/jquery-tags-input/jquery.tagsinput.css" />    
-   <link rel="stylesheet" type="text/css" href="../assets/clockface/css/clockface.css" />
-   <link rel="stylesheet" type="text/css" href="../assets/bootstrap-wysihtml5/bootstrap-wysihtml5.css" />
-   <link rel="stylesheet" type="text/css" href="../assets/bootstrap-datepicker/css/datepicker.css" />   
+   <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+   <link href="assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
+   <link href="assets/bootstrap/css/bootstrap-fileupload.css" rel="stylesheet" />
+   <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+   <link href="css/style.css" rel="stylesheet" />
+   <link href="css/style_responsive.css" rel="stylesheet" />
+   <link href="css/style_default.css" rel="stylesheet" id="style_color" />
+   <link href="assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
+   <link rel="stylesheet" type="text/css" href="assets/gritter/css/jquery.gritter.css" />
+   <link rel="stylesheet" type="text/css" href="assets/chosen-bootstrap/chosen/chosen.css" />
+   <link rel="stylesheet" type="text/css" href="assets/jquery-tags-input/jquery.tagsinput.css" />    
+   <link rel="stylesheet" type="text/css" href="assets/clockface/css/clockface.css" />
+   <link rel="stylesheet" type="text/css" href="assets/bootstrap-wysihtml5/bootstrap-wysihtml5.css" />
+   <link rel="stylesheet" type="text/css" href="assets/bootstrap-datepicker/css/datepicker.css" />   
    <link rel="stylesheet" type="text/css" href="css/custom.css" />
-   <link rel="stylesheet" type="text/css" href="../assets/bootstrap-timepicker/compiled/timepicker.css" />
-   <link rel="stylesheet" type="text/css" href="../assets/bootstrap-colorpicker/css/colorpicker.css" />
-   <link rel="stylesheet" href="../assets/bootstrap-toggle-buttons/static/stylesheets/bootstrap-toggle-buttons.css" />
-   <link rel="stylesheet" href="../assets/data-tables/DT_bootstrap.css" />
-   <link rel="stylesheet" type="text/css" href="../assets/bootstrap-daterangepicker/daterangepicker.css" />
-   <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
-   <link rel="stylesheet" type="text/css" href="../css/main.css" />
+   <link rel="stylesheet" type="text/css" href="assets/bootstrap-timepicker/compiled/timepicker.css" />
+   <link rel="stylesheet" type="text/css" href="assets/bootstrap-colorpicker/css/colorpicker.css" />
+   <link rel="stylesheet" href="assets/bootstrap-toggle-buttons/static/stylesheets/bootstrap-toggle-buttons.css" />
+   <link rel="stylesheet" href="assets/data-tables/DT_bootstrap.css" />
+   <link rel="stylesheet" type="text/css" href="assets/bootstrap-daterangepicker/daterangepicker.css" />
+   <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+   <link rel="stylesheet" type="text/css" href="css/main.css" />
+      <script src="js/jquery-1.8.2.min.js"></script>    
    <script>
    if(<?php echo $redirect;?> == 1){
 		window.location.href = '<?php echo $url; ?>';
-   
    }
 	</script>
 	<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
@@ -54,7 +73,7 @@
 <!-- BEGIN BODY -->
 <body class="fixed-top">
 <?php
-include '../headers/menu-top-navigation.php'; 
+include 'headers/menu-top-navigation.php'; 
 ?>
       <!-- END SIDEBAR -->
       <!-- BEGIN PAGE -->  
@@ -100,30 +119,58 @@ include '../headers/menu-top-navigation.php';
                         <!-- BEGIN FORM-->
 						<div ng-app="">
                         <form action="send_petition.php<?php echo $formAction ?>" method="post" class="form-horizontal">
+                           <div id="form-left">
                            <div class="control-group">
                               <label class="control-label">first Name</label>
                               <div class="controls">
                                  <input required placeholder="Enter Your First Name" name="first_name" 
-                                 value="<?php echo $first_name; ?>" type="text" class="span6 " readonly />
+                                 value="<?php echo $first_name; ?>" type="text" class="" readonly />
                               </div>
                            </div>
                            <div class="control-group">
                               <label class="control-label">Last Name</label>
                               <div class="controls">
                                  <input required placeholder="Enter Your Last Name" name="last_name" 
-                                 value="<?php echo $last_name; ?>" type="text" class="span6 " readonly />
+                                 value="<?php echo $last_name; ?>" type="text" class="" readonly />
                               </div>
                            </div>
                            <div class="control-group">
                               <label class="control-label">Zip</label>
                               <div class="controls">
-										<input ng-model="zip" class="span6 " placeholder="Enter Your Zip" type="text" name="zipCode">
+							<input onclick="$('#zip')[0].focus()" onKeyPress="appent();" id="foo" name="zipcode" ng-model="zip" value="<?php echo  $zipcode; ?>"
+                             class="" placeholder="Enter Your Zip" type="text" name="zipCode">
                               </div>
 								</div>
-
-							<div class="form-actions clearfix">
-							<input type="submit"  class="btn btn-success " />
-                   		</div>
+							</div>
+                           <img src="img/ufcw480.PNG" alt="ufcw480"/>
+							<div id="logo_text">
+                            <p>
+							United Food & Comercial Workers Union, Local 480                            
+                            </p>
+                            <p>
+                            808 Factory Street Honolulu Hawaii 96819
+                            </p>
+                            <p>
+                            Phone: 808924.778
+                            </p>
+							</div>
+                            <div id="myDIV">
+                            <p>
+                            <b>Patrick K.Loo</b>
+                            </p>
+                            <p>
+                            President
+                            </p>
+                            <div id="left">
+                            <p>
+                             <b>Gwen K.Rulona</b>
+                            </p>
+                            <p>
+                            Secretary Treasurer
+                            </p>
+                            </div>
+                            <img src="img/thumbnail.PNG"/>
+							</div>
                            <p>{{firstname + " " + lastname}}<p>
 
 							   <p>
@@ -156,11 +203,15 @@ include '../headers/menu-top-navigation.php';
     </p>    
     Signed: <?php echo $first_name." ".$last_name?>
     <br>
-    <p>
+    <p id="zip">
     {{zip}}
     </p>
 </div>
 </div>
+
+							<div class="form-actions clearfix">
+							<input type="submit" name="zip"  class="btn btn-success " />
+                                              		</div>
 </div>
  </div>
 
@@ -180,37 +231,41 @@ include '../headers/menu-top-navigation.php';
    <!-- END CONTAINER -->
    <!-- BEGIN FOOTER -->
   <?php  
-	include '../headers/footer.php';
+	include 'headers/footer.php';
 	?>
    <!-- END FOOTER -->
    <!-- BEGIN JAVASCRIPTS -->    
    <!-- Load javascripts at bottom, this will reduce page load time -->
 
-   </script>
-   <script src="../js/jquery-1.8.2.min.js"></script>    
-   <script type="text/javascript" src="../assets/ckeditor/ckeditor.js"></script>
-   <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
-   <script type="text/javascript" src="../assets/bootstrap/js/bootstrap-fileupload.js"></script>
-   <script src="../js/jquery.blockui.js"></script>
+  <script>
+  function appent(){ 
+$( "#foo" ).appendTo( "#zip" );
+    document.getElementById("foo").focus();
+  }
+</script>
+   <script type="text/javascript" src="assets/ckeditor/ckeditor.js"></script>
+   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+   <script type="text/javascript" src="assets/bootstrap/js/bootstrap-fileupload.js"></script>
+   <script src="js/jquery.blockui.js"></script>
    <!-- ie8 fixes -->
    <!--[if lt IE 9]>
    <script src="js/excanvas.js"></script>
    <script src="js/respond.js"></script>
    <![endif]-->
-   <script type="text/javascript" src="../assets/chosen-bootstrap/chosen/chosen.jquery.min.js"></script>
-   <script type="text/javascript" src="../assets/bootstrap-wysihtml5/wysihtml5-0.3.0.js"></script> 
-   <script type="text/javascript" src="../assets/bootstrap-wysihtml5/bootstrap-wysihtml5.js"></script>
-   <script type="text/javascript" src="../assets/clockface/js/clockface.js"></script>
-   <script type="text/javascript" src="../assets/jquery-tags-input/jquery.tagsinput.min.js"></script>
-   <script type="text/javascript" src="../assets/bootstrap-toggle-buttons/static/js/jquery.toggle.buttons.js"></script>
-   <script type="text/javascript" src="../assets/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>   
-   <script type="text/javascript" src="../assets/bootstrap-daterangepicker/date.js"></script>
-   <script type="text/javascript" src="../assets/bootstrap-daterangepicker/daterangepicker.js"></script> 
-   <script type="text/javascript" src="../assets/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>  
-   <script type="text/javascript" src="../assets/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
-   <script type="text/javascript" src="../assets/bootstrap-inputmask/bootstrap-inputmask.min.js"></script>
-   <script src="../assets/fancybox/source/jquery.fancybox.pack.js"></script>
-   <script src="../js/scripts.js"></script>
+   <script type="text/javascript" src="assets/chosen-bootstrap/chosen/chosen.jquery.min.js"></script>
+   <script type="text/javascript" src="assets/bootstrap-wysihtml5/wysihtml5-0.3.0.js"></script> 
+   <script type="text/javascript" src="assets/bootstrap-wysihtml5/bootstrap-wysihtml5.js"></script>
+   <script type="text/javascript" src="assets/clockface/js/clockface.js"></script>
+   <script type="text/javascript" src="assets/jquery-tags-input/jquery.tagsinput.min.js"></script>
+   <script type="text/javascript" src="assets/bootstrap-toggle-buttons/static/js/jquery.toggle.buttons.js"></script>
+   <script type="text/javascript" src="assets/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>   
+   <script type="text/javascript" src="assets/bootstrap-daterangepicker/date.js"></script>
+   <script type="text/javascript" src="assets/bootstrap-daterangepicker/daterangepicker.js"></script> 
+   <script type="text/javascript" src="assets/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>  
+   <script type="text/javascript" src="assets/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+   <script type="text/javascript" src="assets/bootstrap-inputmask/bootstrap-inputmask.min.js"></script>
+   <script src="assets/fancybox/source/jquery.fancybox.pack.js"></script>
+   <script src="js/scripts.js"></script>
    <script>
       jQuery(document).ready(function() {       
          // initiate layout and plugins

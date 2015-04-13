@@ -3506,3 +3506,25 @@ ul.amounts li {
   margin-top: -35px;
   height: 29px !important;
 }
+#myDIV {
+    background: url('../img/line.PNG') repeat-x;
+	height:10px;
+	padding-top: 19px;
+	font-size: 16px;
+	margin-bottom: 56px !important;
+	line-height: 8px !important;
+}
+#logo_text
+{
+	line-height: 10px !important;
+	margin-top: 8px;
+}
+#left
+{
+	float:right;
+	margin-top: -36px;
+}
+#form-left
+{
+	float:right;	
+}

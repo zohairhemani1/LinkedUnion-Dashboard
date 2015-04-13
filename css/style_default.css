@@ -1,6 +1,6 @@
 body {
 	/* [disabled]color: #868686; */
-	background: #32C2CD url(../img/blue.png) !important;
+	background: #32C2CD url(../img/blue.png) ;
 }
 #main-content {
     box-shadow: 0 0 10px #757575;
