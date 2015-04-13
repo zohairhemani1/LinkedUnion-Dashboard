@@ -83,10 +83,8 @@ include 'headers/menu-top-navigation.php';
                         </div>
                         <div class="widget-body">
 					<div class="btn-group" >
-				<a href="emulator.html"><button type="button" class="btn btn-primary"> Enable Mobile Mode <i class="icon-plus"></i> </button></a>
-				</div>
-
-
+				<a href="emulator.php?news_id=<?php echo $news_id;?>"><button type="button" class="btn btn-primary"> Enable Mobile Mode <i class="icon-plus"></i> </button></a>
+				</div><br><br>
 							<div class="row-fluid blog">
 
                                 <div class="span12">

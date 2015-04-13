@@ -1,10 +1,15 @@
-</div><!DOCTYPE html>
+<?php 
+		include 'headers/connect_to_mysql.php';
+	    $news_id = $_GET['news_id'];
+?>
+
+<!DOCTYPE html>
 <html>
 <head>
 <style>
 div#load_screen{
 	background: #fff;
-	opacity: 1;
+	opacity: 0.5;
 	position: fixed;
     z-index:10;
 	top: 0px;
@@ -42,7 +47,7 @@ a
 
 	}
 a:hover {
-    background-color: grey;
+    background-color: rgba(0,0,0,0.05);;
 	hieght:50px !important;
 	width: 53px !important;
 	padding-left:12px !important;	
@@ -98,13 +103,13 @@ window.addEventListener("load", function(){
 </script>
 </head>
 <body>
-					<div id="load_screen"><div id="loading"><img width="100px" src="assets/pre-loader/loadig.gif" alt="Triangles indicator" />
+					<div id="load_screen"><div id="loading"><img width="100px" src="assets/pre-loader/LoaderIcon.gif" alt="Triangles indicator" />
 						<br>Please Wait</div></div>
 					<!-- Your normal document content lives here -->
 			<ul class="toolbar-group">
 						<li class="share small-screen-optional">
-				<a id="share" class="requires-visible-frame" href="http://quirktools.com/screenfly/#u=http%3A//myunionapp.com&amp;w=1024&amp;h=600&amp;s=1">
-<img width="40px" src="img/exit.png">
+				<a id="" class="" href="view.php?news_id=<?php echo $news_id?>">
+				<img width="40px" src="img/exit.png">
 				<span class="icon" data-icon=""></span>
 					<span class="label">Share</span>
 				</a>
@@ -113,9 +118,9 @@ window.addEventListener("load", function(){
 
 					<div id="content">
 					<div style="height:0px;">
-					<iframe id="optomaFeed" src="http://quirktools.com/screenfly/#u=http%3A//myunionapp.com&w=1024&h=600&s=1" scroll="no"
+					<iframe id="optomaFeed" src="http://quirktools.com/screenfly/#u=http%3A//myunionapp.com/view.php?news_id=<?php echo $news_id?>&w=1024&h=600&s=1" scroll="no"
 						frameborder="" height="100%" width="100%" style="height: 816px; clip:rect(-19px,1599px,879px,4px);
-						margin-top:-58px; left:-0px;"></iframe>
+						  margin-top: -66px; margin-left: -13px;"></iframe>
 					</div>
 </body>
 </html>
