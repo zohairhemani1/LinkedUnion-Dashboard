@@ -31,15 +31,16 @@ Signed: $first_name $last_name,
 $zipcode";
 
     
-$headers = 'From: '. $_POST['email'] . "\r\n" .
-			'Reply-To: Linked Union' . "\r\n" .
-			'X-Mailer: PHP/' . phpversion();
+$headers = 'From: '. $_POST['email']  . "\r\n" .
+			'Reply-To: Linked Union' . "\r\n" . 
+			"Content-Type: text/html; charset=ISO-8859-1\r\n". 
+			'X-Mailer: PHP/' . phpversion(); 
 		/*	$addresses = explode(',', $emailto);
 		foreach ($addresses as $recipient) 
 		{
 	$retval = mail($recipient,$sub,$msg,$headers);
 		}*/
-$retval = mail("taqi457@gmail.com",$sub,$msg,$headers);
+$retval = mail("arbishpall@yahoo.com",$sub,$msg,$headers);
 
 
 if($retval) {

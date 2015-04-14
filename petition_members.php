@@ -53,6 +53,24 @@ window.addEventListener("load", function(){
 	document.body.removeChild(load_screen);
 });
 </script>
+   <script>
+   setTimeout(function(){
+  if ($('#closed').length > 0) {
+    $('#closed').remove();
+  }
+  else if($('#added').length > 0) {
+    $('#added').remove();
+  }
+  else if($('#removed').length > 0) {
+    $('#removed').remove();
+  }
+}, 8000)
+   </script>
+<script type="text/javascript">
+function ConfirmDelete() {
+  return confirm('Do you really want to delete?');
+}
+</script>
  </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
@@ -93,21 +111,21 @@ include 'headers/menu-top-navigation.php';
 			if(isset($_GET['insert']) == 'true')
 			{
 				echo"
-			<div class='alert alert-success'>
+			<div id='added' class='alert alert-success'>
 					<button class='close' data-dismiss='alert'>×</button>
 					<strong>Success!</strong> The Petition People has been added.
 				</div>";
 			}
 	 	else if(isset($_GET['update']) == 'true'){
       echo"
-	    <div class='alert alert-success'>
+	    <div id='closed' class='alert alert-success'>
                 <button class='close' data-dismiss='alert'>×</button>
                 <strong>Success!</strong> The Petition People has been updated.
             </div>";
 		}
 		else if(isset($_GET['delete']) == 'true'){
       echo"
-	    <div class='alert alert-success'>
+	    <div id='removed' class='alert alert-success'>
                 <button class='close' data-dismiss='alert'>×</button>
                 <strong>Success!</strong> The Petition People has been Deleted.
             </div>";
@@ -169,7 +187,7 @@ include 'headers/menu-top-navigation.php';
 								 <td style='width:3%'>{$email}</span></td>
 								  <td><a href='insert_petition.php?member_id=$member_id' 
 								  id='update_button' class='btn btn-success'> <i class='icon-edit'></i></a>																					 							 	 
-								  <a href='delete.php?member_id={$member_id}' id='delete_button' class='btn btn-danger'>
+								  <a href='delete.php?member_id={$member_id}' onclick='return ConfirmDelete()' id='delete_button' class='btn btn-danger'>
 								  <i class='icon-trash'></i> </a></td>
 								  <td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
 								 <td style='display:none'><a class='' href='javascript:;'>Delete</a></td>
@@ -222,15 +240,15 @@ include 'headers/menu-top-navigation.php';
            TableEditable.init();
        });
    </script>
+
    <script>
-   
 		<!-- determining if the current categoryID is a cat or a subcat. If subcat and count is 1, then hide the add new button  -->
-		var count = '<?php echo $count;?>';
-		var category = '<?php echo $categoryID; ?>';
-		if(count == 1 && (!(category % 1 === 0)))
-		{
-			$("#addButton").hide();
-		}
+		//var count = '<?php echo $count;?>';
+		//var category = '<?php echo $categoryID; ?>';
+		//if(count == 1 && (!(category % 1 === 0)))
+	//	{
+	//		$("#addButton").hide();
+	//	}
    </script>
 </body>
 <!-- END BODY -->

@@ -3507,7 +3507,7 @@ ul.amounts li {
   height: 29px !important;
 }
 #myDIV {
-    background: url('../img/line.PNG') repeat-x;
+    background: url('../img/line.png') repeat-x;
 	height:10px;
 	padding-top: 19px;
 	font-size: 16px;
@@ -3524,7 +3524,16 @@ ul.amounts li {
 	float:right;
 	margin-top: -36px;
 }
-#form-left
+#float-right
 {
-	float:right;	
+	float:right;
+}
+#a4size{
+  width: 620px;
+  margin-right: auto;
+  margin-left: auto;
+  border: 1px solid;
+  padding: 4px;
+  padding-right:15px;
+  padding-left:15px;
 }
