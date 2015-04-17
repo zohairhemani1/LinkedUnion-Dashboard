@@ -2,6 +2,18 @@
 	include 'headers/connect_to_mysql.php';
 	include 'headers/_user-details.php';
 	
+	if ($_GET['email'] == "no")
+	{
+	$readonly = "";	
+	echo "success";
+	}
+	else
+	{
+			$readonly = "readonly";	
+	}
+
+	
+	
 	$first_name = "";
 	$last_name = "";
 	$email = "";
@@ -20,8 +32,8 @@
 	if($_POST)
 	{
 	$zipcode = $_POST['zipcode'];
-	$query_update = "UPDATE petition_people set zipcode = '$zipcode' WHERE email = '$email'";
-	$result_update = mysqli_query($con,$query_update)
+	$result_update = mysqli_query($con,$query_update);
+	$query_update = "UPDATE petition_people set zipcode = '$zipcode' WHERE email = '$email'"
 	or die('error while updating Zip Coe');	
 	//update zip code ned here //
 	
@@ -29,8 +41,7 @@
 
 $sub = "Union Jobs = Good Jobs";
 $msg =  "<div id='a4size' style='width: 560px;margin-right: auto;margin-left: auto;padding: 4px;'>
-                           <img src='http://myunionapp.com/img/ufcw480.PNG' alt='ufcw Logo'/>
-							<div style='line-height: 15px ;margin-top: 8px;' id='logo_text'>
+                           <div style='line-height: 15px ;margin-top: 8px;' id='logo_text'>
                             <p>
 							United Food & Comercial Workers Union, Local 480                            
                             </p>
@@ -42,26 +53,28 @@ $msg =  "<div id='a4size' style='width: 560px;margin-right: auto;margin-left: au
                             </p>
 							</div>
 							<div id='myDIV' style='background: url(http://myunionapp.com/img/line.png) repeat-x;
-                            height: 10px;padding-top: 6px;font-size: 16px;margin-bottom: 56px ;line-height:2px ;'>
+                            height: 10px;padding-top: 10px;font-size: 16px;line-height:15px ;dispay:block;'>
                             <p>
+							<div style='float:right;'>
+							<p>
+							<b>Gwen K.Rulona</b>
+                            </p>
+							<p>
+							Secretary Treasurer
+							</p>
+							</div>
+							<div style='padding-top: 1px;'>
                             <b>Patrick K.Loo</b>
                             </p>
                             <p>
                             President
                             </p>
-                            <div id='left' style='float: right;margin-top: -51px;'>
-                            <p>
-                             <b>Gwen K.Rulona</b>
-                            </p>
-                            <p>
-                            Secretary Treasurer
-                            </p>
 							</div>
-														</div>
-							<p style=''>
-                            <img src='http://myunionapp.com/img/thumbnail.PNG'/>
-							</p>
-                           <p>{$firstname} {$lastname}<p>
+							</div>
+							
+							<img style='marginbottom:5px;margin-top:5px;' src='http://myunionapp.com/img/thumbnail.PNG'/>
+									  
+						  <p>{$firstname} {$lastname}<p>
 
 							   <p>
         Dear Hawaii State Legislature,
@@ -95,29 +108,27 @@ $msg =  "<div id='a4size' style='width: 560px;margin-right: auto;margin-left: au
     <br>
     <p id='zip'>
 	{$zipcode}	
-    </p>";
-
+    </p>
+	</div>";
 $headers = "From: " . "info@myunionapp.com" . "\r\n";
 $headers .= "Reply-To: ". "info@myunionapp.com" . "\r\n";
 $headers .= "BCC: zohairhemani1@gmail.com\r\n";
 $headers .= "MIME-Version: 1.0\r\n";
 $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-		/*	$addresses = explode(',', $emailto);
-		foreach ($addresses as $recipient) 
-		{
-	$retval = mail($recipient,$sub,$msg,$headers);
-		}*/
-$retval = mail("arbishpalla@yahoo.com",$sub,$msg,$headers);
 
-
-if($retval) {
- echo "Done";   
-} else {
-  var_dump($retval);   
-}
-	//send mail end here//
 	
-	}
+     $retval = mail("zohairhemani1@gmail.com",$sub,$msg,$headers);
+	if($retval) 
+	{
+	echo "Done";
+	} 
+	else 
+	{
+	var_dump($retval);   
+	}		
+
+
+ }
 
 	
 	?>
@@ -215,11 +226,11 @@ include 'headers/menu-top-navigation.php';
 						<div ng-app="">
                         <form action="petition.php?email=<?php echo $email;?>" method="post" class="form-horizontal">
                            <div class="control-group ">
-                            <input style="width:29.717949% !important;" class="span6 one-half" placeholder="Enter Your First Name" name="first_name" 
-                                 value="<?php echo $first_name; ?>" type="text" class="" readonly />
-                            <input style="width:29.717949% !important;margin-right:16px;" class="span6" required 
+                            <input required style="width:29.717949% !important;" class="span6 one-half" placeholder="Enter Your First Name" name="first_name" 
+                                 value="<?php echo $first_name; ?>" type="text" class="" <?php echo $readonly;?> />
+                            <input required style="width:29.717949% !important;margin-right:16px;" class="span6" required 
 							placeholder="Enter Your Last Name" name="last_name" 
-                                 value="<?php echo $last_name; ?>" type="text" class="" readonly />
+                                 value="<?php echo $last_name; ?>" type="text" class="" <?php echo $readonly;?> />
 							<input required style="width:29.717949% !important;" class="span6 one-half" name="zipcode" ng-model="zip" value="<?php echo $zipcode; ?>"
                              placeholder="Enter Your Zip" type="text" >
                             </div>

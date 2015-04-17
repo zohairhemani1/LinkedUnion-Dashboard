@@ -1,53 +1,204 @@
 <?php
-
 include 'headers/connect_to_mysql.php';
 include 'headers/_user-details.php';
-
-if($_POST)
-{
-var_dump($_POST);
-$first_name = $_POST['first_name'];
-$last_name = $_POST['last_name'];
-$zipcode = $_POST['zipCode'];
-
+/*	var_dump($_POST);
+	if($_POST['email'] == "all")
+	{
+	echo"successfully send email to all";
+	var_dump($_POST);
+	$query_mail = "SELECT email FROM petition_people";
+	$result_mail = mysqli_query($con,$query_mail);
+	$row = mysqli_fetch_array($result_mail);
+	$mailall = $row['email'];
 $sub = "Union Jobs = Good Jobs";
-$msg =  "Dear Hawaii State Legislature,
- 
-We, $first_name $last_name,  are in support of the intent of HB321, the creation of a Medical Marijuana Dispensary system in Hawaii
+$msg =  "<img style='marginbottom:5px;margin-top:5px;' src='http://myunionapp.com/img/ufcw480.PNG'/>
+<div id='a4size' style='width: 560px;margin-right: auto;margin-left: auto;padding: 4px;'>
+                           <div style='line-height: 15px ;margin-top: 8px;' id='logo_text'>
+                            <p>
+							United Food & Comercial Workers Union, Local 480                            
+                            </p>
+                            <p>
+                            808 Factory Street Honolulu Hawaii 96819
+                            </p>
+                            <p>
+                            Phone: 808924.778
+                            </p>
+							</div>
+							<div id='myDIV' style='background: url(http://myunionapp.com/img/line.png) repeat-x;
+                            height: 10px;padding-top: 10px;font-size: 16px;line-height:15px ;dispay:block;'>
+                            <p>
+							<div style='float:right;'>
+							<p>
+							<b>Gwen K.Rulona</b>
+                            </p>
+							<p>
+							Secretary Treasurer
+							</p>
+							</div>
+							<div style='padding-top: 1px;'>
+                            <b>Patrick K.Loo</b>
+                            </p>
+                            <p>
+                            President
+                            </p>
+							</div>
 
-    85% of people in Hawaii favor medical marijuana for patients who are seriously ill with cancer or other such diseases.
-
-    Our fifteen year old medical marijuana law (our legislators trumpet it as 'The First in The Nation') does not work.  Of the thousands of Kaiser cancer patients who may be able to benefit from these treatments, none of them are being prescribed Medical Marijuana, and very few HMSA patients are able to get prescriptions either. 
-
-    Why not? Because the law mandates that patients have to either grow their own medicine, or get it from an illegal drug dealer. What kind of cruel hoax is that?  
-
-    We need safe, secure, doctor and pharmacist supervised Medical Marijuana dispensaries. And they should all be manned by unionized workers. Why unionized?  Because in this situation we all want a trained, safe and stable work force with roots in the community that offers decent pay and good benefits. We all want workers in these dispensaries who will be backed up by a solid employee organization that is bound by laws, work rules and are proven that it can be trusted.  
-
-    Unions are the key to creating a successful dispensary system, and making sure the new Medical Marijuana laws are enforced. They will serve as a solid partner in preventing this industry from being run by fly-by-night operations, and those more interested in profit than worker protection, patient health and consistent levels of production and integrity.
-
-     As a Hawaii voter, I ask you to take seriously the advantages of including Labor Peace language in  Bill 321, and set up a system that is safe, secure and protect patients, doctors and workers.
-
+							
+							<img style='marginbottom:5px;margin-top:5px;' src='http://myunionapp.com/img/thumbnail.PNG'/>
+							<p>
+							Aloha Brothers & Sisters,
+							</p>
+							<p>
+							This is your President Pat Loo with a message of RIGHTS, RESPONSIBILITY OF YOUR UNION TO REPRESENT WORKERS.  There is a new emerging industry that is requiring our HELP and a call to action by you now.  
+							</p>
+							<p>
+							Your Union has initiated the program UFCW 480 CANNABIS WORKERS RAISING.
+							</p>
+							<p>
+							In 2000, Hawaii’s legislature was the first in the nation to pass medical marijuana legislation to provide medical relief for the state’s seriously ill.  While the existing law recognizes the benefits of marijuana for alleviating pain and other symptoms associated with certain debilitating illnesses, patients until now have to buy marijuana on the “black market” or grow it themselves.
+							We are engaged in protecting workers in the legal Medical Marijuana dispensary industry House Bill 321 and SB 682.
+							I urge our member to support HB 321 and SB 682 “UFCW 480 CANNABIS WORKERS RAISING”, by selecting completing the information below on this e-mail.  Once you click 'Submit' your legislator will be contacted by email of your support.
+							</p>
+							<p>
+							Your Union will continue to communicate with you to keep you up to date on information we believe that benefits our membership.  
+							Stay informed, get involved and help keep our contracts and Union strong.
+							</p>
+							<p>
+							Thanks for your participation and your ongoing support of your Union!
+							</p>
+							<p>
+							In 2000, Hawaii’s legislature was the first in the nation to pass medical marijuana legislation to provide medical relief for the state’s seriously ill.  While the existing law recognizes the benefits of marijuana for alleviating pain and other symptoms associated with certain debilitating illnesses, patients until now have to buy marijuana on the “black market” or grow it themselves.
+							We are engaged in protecting workers in the legal Medical Marijuana dispensary industry House Bill 321 and SB 682
+							</p>
+			</div>
 Signed: $first_name $last_name,
 $zipcode";
 
-    
-$headers = 'From: '. $_POST['email']  . "\r\n" .
-			'Reply-To: Linked Union' . "\r\n" . 
-			"Content-Type: text/html; charset=ISO-8859-1\r\n". 
-			'X-Mailer: PHP/' . phpversion(); 
-		/*	$addresses = explode(',', $emailto);
-		foreach ($addresses as $recipient) 
-		{
-	$retval = mail($recipient,$sub,$msg,$headers);
-		}*/
-$retval = mail("arbishpall@yahoo.com",$sub,$msg,$headers);
+$headers = "From: " . "info@myunionapp.com" . "\r\n";
+$headers .= "Reply-To: ". "info@myunionapp.com" . "\r\n";
+$headers .= "BCC: zohairhemani1@gmail.com\r\n";
+$headers .= "MIME-Version: 1.0\r\n";
+$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+
+foreach($mailall AS $Add=>$ToEmail){
+     $retval = mail($ToEmail,$sub,$msg,$headers);
+	if($retval) 
+	{	
+	echo $to;
+	echo "Done";
+	} 
+	else 
+	{
+	echo $to;
+var_dump($retval);   
+	//send mail end here//
+	}		
+	}
+	}
+	else*/ 
+	if ($_POST)
+{
+	var_dump($_POST);
+$email = $_POST['email'];
+$headers = "From: " . "info@myunionapp.com" . "\r\n";
+$headers .= "Reply-To: ". "info@myunionapp.com" . "\r\n";
+$headers .= "BCC: zohairhemani1@gmail.com\r\n";
+$headers .= "MIME-Version: 1.0\r\n";
+$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+$sub = "Union Jobs = Good Jobs";
 
 
-if($retval) {
- echo "Done";   
-} else {
-  var_dump($retval);   
+
+foreach($email AS $Add=>$ToEmail){
+	$ToEmail = preg_replace("/&#?[a-z0-9]{2,8};/i","",$ToEmail);
+$msg ="
+<div id='a4size' style='width: 560px;margin-right: auto;margin-left: auto;padding: 4px;'>
+<img style='marginbottom:5px;margin-top:5px;' src='http://myunionapp.com/img/ufcw480.PNG'/>         
+		 <div style='line-height: 15px ;margin-top: 8px;' id='logo_text'>
+                            <p>
+							United Food & Comercial Workers Union, Local 480                            
+                            </p>
+                            <p>
+                            808 Factory Street Honolulu Hawaii 96819
+                            </p>
+                            <p>
+                            Phone: 808924.778
+                            </p>
+							</div>
+							<div id='myDIV' style='background: url(http://myunionapp.com/img/line.png) repeat-x;
+                            height: 10px;font-size: 16px;line-height:15px ;dispay:block;'>
+                            <p>
+							<div style='float:right;  padding-top:2px !important'>
+							<p>
+							<b>Gwen K.Rulona</b>
+                            </p>
+							<p>
+							Secretary Treasurer
+							</p>
+							</div>
+							<div style='padding-top: 19px;'>
+                            <b>Patrick K.Loo</b>
+                            </p>
+                            <p>
+                            President
+                            </p>
+							</div>
+
+							
+							<img style='marginbottom:5px;margin-top:5px;' src='http://myunionapp.com/img/thumbnail.PNG'/>
+							<p>
+							Aloha Brothers & Sisters,
+							</p>
+							<p>
+							This is your President Pat Loo with a message of RIGHTS, RESPONSIBILITY OF YOUR UNION TO REPRESENT WORKERS.  There is a new emerging industry that is requiring our HELP and a call to action by you now.  
+							</p>
+							<p>
+							Your Union has initiated the program UFCW 480 CANNABIS WORKERS RAISING.
+							</p>
+							<p>
+							In 2000, Hawaii’s legislature was the first in the nation to pass medical marijuana legislation to provide medical relief for the state’s seriously ill.  While the existing law recognizes the benefits of marijuana for alleviating pain and other symptoms associated with certain debilitating illnesses, patients until now have to buy marijuana on the “black market” or grow it themselves.
+							We are engaged in protecting workers in the legal Medical Marijuana dispensary industry House Bill 321 and SB 682.
+							I urge our member to support HB 321 and SB 682 “UFCW 480 CANNABIS WORKERS RAISING”, by selecting completing the information below on this e-mail.  Once you click 'Submit' your legislator will be contacted by email of your support.
+							</p>
+							<p>
+							Your Union will continue to communicate with you to keep you up to date on information we believe that benefits our membership.  
+							Stay informed, get involved and help keep our contracts and Union strong.
+							</p>
+							<p>
+							Thanks for your participation and your ongoing support of your Union!
+							</p>
+							<p>
+							In 2000, Hawaii’s legislature was the first in the nation to pass medical marijuana legislation to provide medical relief for the state’s seriously ill.  While the existing law recognizes the benefits of marijuana for alleviating pain and other symptoms associated with certain debilitating illnesses, patients until now have to buy marijuana on the “black market” or grow it themselves.
+							We are engaged in protecting workers in the legal Medical Marijuana dispensary industry House Bill 321 and SB 682
+							</p>
+							<p>
+<a href='http://myunionapp.com/petition.php?email={$ToEmail}'>Click here</a>
+							</p>	
+							</div>";	
+	
+	
+     $retval = mail($ToEmail,$sub,$msg,$headers);
 }
+
+if($retval) 
+	{
+		$success = "<div class='alert alert-success'>
+                <button class='close' data-dismiss='alert'>x</button>
+                <strong>Success!</strong> The Mail has Send.
+            </div>";
+	} 
+	else 
+	{
+	var_dump($retval);   
+	//send mail end here//
+	}
+	
+
+			
+
+
+
+
 }
 
 ?>
@@ -87,6 +238,7 @@ if($retval) {
 			window.location.href = '<?php echo $url; ?>';
 	}
 	</script>
+
 
 </head>
 
@@ -138,18 +290,21 @@ include 'headers/menu-top-navigation.php';
                      </div>
                      <div class="widget-body form">
                         <!-- BEGIN FORM-->
-                        <form action="insert_notification.php" method="post" class="form-horizontal">
+                        <?php echo $success;?>
+						<form action="send_petition.php" method="post" class="form-horizontal">
                              <div class="control-group">
                               <label class="control-label">Eamil</label>
                               <div class="controls">
-                                 <select data-placeholder="Select Your email" name="email" class="span6 chosen" multiple="multiple" tabindex="6">
+                                 <select data-placeholder="Select Your email" name="email[]" class="span6 chosen" multiple="multiple" tabindex="2"
+								 onChange="changeSelection(this.value);"  id="ch">
+										<!--<option value='all'>all</option>-->
                                 	    <option value=''></option>
-										<option selected>Select your Name </option>
 							<?php echo include 'headers/petition_people.php'; ?> 
-                                      </select><br>
-									  <span class="help-inline">Select Name to send email</span>
-                               </div>
-                             </div>
+                               </select>
+							<br>
+							<span class="help-inline">Select Name to send email</span>
+                              </div>
+                           </div>
     			<div class="form-actions clearfix">
 				<input type="submit"  class="btn btn-success " />
                    </div>
