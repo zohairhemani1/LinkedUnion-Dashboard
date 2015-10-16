@@ -1,7 +1,12 @@
 <?php 
 include 'headers/connect_to_mysql.php';
 include 'headers/_user-details.php';
+$app_id_parse = $_applicationID;
+$rest_key = $_restKey;
+$master_key = $_masterKey;
 
+$channels = ["unregistered_users"];
+$notificationMsg = "New news added. Check out!";
 
 	if($_GET['news_id']){
 		$categoryID = $_GET['categoryID'];
@@ -25,7 +30,6 @@ include 'headers/_user-details.php';
 	$google = "";
 	$pinterest = "";
 	$social = "";
-	$notification= "";
 	$order = "";
 	$social = "";
 	$url = "";
@@ -82,7 +86,7 @@ if($_POST)
 			$google = $_POST['google'];
 			$pinterest = $_POST['pinterest'];
 			$social = $_POST['social'];
-			$notification= $_POST['notification'];
+			$notificationMsg= $_POST['notification'];
 			$order = $_POST['order'];
 			$publish = $_POST['publish'];
 			if($publish == "on")
@@ -103,15 +107,16 @@ if($_POST)
 			$url = "news.php?categoryID=$categoryID&update=true";
 			$redirect = 1;
 			
+			include 'parse.php';
 		  
 			//header ("Location:news.php?categoryID=$categoryID&update=true");
 			
 			//header ("Location:news.php?category_id={$category_id}&&update=true");
-}
+		}
 else
 	  {
         include 'headers/news_image.php';
-		//include 'parse.php';
+		
 		$title = $_POST['title'];
 		$title = str_replace("'","\'",$title); 	
         $news_table = $_POST['news_table'];
@@ -120,10 +125,12 @@ else
 		$facebook = $_POST['facebook'];
 		$twitter = $_POST['twitter'];
 		$google = $_POST['google'];
-		$notification = $_POST['notification'];
+		$notificationMsg = $_POST['notification'];
 		$pinterest = $_POST['pinterest'];
 		$social = $_POST['social'];
 		$publish = $_POST['publish'];
+		
+		include 'parse.php';
 		
 		if($publish == "on")
 		{
@@ -141,10 +148,10 @@ VALUES('$title','$news_table','$description','$file',now(),'$categoryID','$appID
 			$url = "news.php?categoryID=$categoryID&insert=true";
 			$redirect = 1;
 			//header ("Location:news.php?categoryID=$categoryID&insert=true");
-    }
-
-
 }
+
+
+} // ending post 
 
 	?>
 	
@@ -358,7 +365,7 @@ include 'headers/menu-top-navigation.php';
                       <label class="control-label">Notification</label>
                    <div class="controls">            
                         <div class="pushNotification">
-                        <input type="checkbox" name="social" class="pushNotification-checkbox" id="mypushNotification" >
+                        <input type="checkbox" name="notificationToggle" class="pushNotification-checkbox" id="mypushNotification" >
                         <label class="pushNotification-label" for="mypushNotification">
                         <span onClick="toggle();" id="DisplayText" class="pushNotification-inner"></span>
                         <span onClick="toggle();" id="DisplayText" class="pushNotification-switch"></span> 
@@ -377,7 +384,7 @@ include 'headers/menu-top-navigation.php';
 						<div class="control-group">
                       <label class="control-label">Message</label>
                       <div class="controls">
-                                 <input placeholder="Type your message" type="text" class="span11 " />
+                                 <input placeholder="Type your message" type="text" class="span11" name = "notification" />
                                 </div></div>
                                 </div>
                              </div> 

@@ -3,6 +3,11 @@
 include 'headers/connect_to_mysql.php';
 include 'headers/_user-details.php';
 
+
+$app_id_parse = "";
+$rest_key = "";
+$master_key = "";
+
 $notificationMsg = "";
 $channels = array();
 
@@ -47,6 +52,10 @@ if($_POST)
 			
 			if($tempArray['appID'] == $app_id[$i])
 			{	
+			
+				$app_id_parse = $tempArray['applicationID'];
+				$rest_key = $tempArray['restKey'];
+				$master_key = $tempArray['masterKey'];
 				include 'parse.php';
 
 			}

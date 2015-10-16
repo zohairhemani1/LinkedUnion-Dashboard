@@ -1,13 +1,6 @@
 <?php
 	include 'parse-php-sdk/autoload.php';
 	
-	/*$app_id = "Lr8VBQHTUyzw4RoFpcyHQnCcHJAQb1PPhBVzDtqK";
-	$rest_key = "BfhbRn0mcXST0vxbSmLDgacHejVexmdBtnThCboZ";
-	$master_key = "sOmMyLBOBSStGbiGL5EEAptl5G1H5fqQG7Os7NyF";*/
-	
-	$app_id_parse = $tempArray['applicationID'];
-	$rest_key = $tempArray['restKey'];
-	$master_key = $tempArray['masterKey'];
 	
 	use Parse\ParseClient;
 	use Parse\ParseInstallation;
