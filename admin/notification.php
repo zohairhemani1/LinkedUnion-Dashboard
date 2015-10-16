@@ -152,10 +152,11 @@ include 'headers/menu-top-navigation.php';
 								  <td style='width:3%'><a href='#'>{$id}</a></td>
 								<td style='width:35%'><a href='#'>{$platform}</a></td>
 								<td style='width:35%'><a href='#'>{$app_name}</a></td>
-								  <td style='width:17%'><a href='insert_notification.php?id={$id}' 
-								  id='update_button' class='btn btn-success'> <i class='icon-edit'></i> Update</a>																					 							 	 
-								  <a href='delete_notification.php?id={$id}' id='delete_button'  class='btn btn-danger'>
-								  <i class='icon-trash'></i> Delete</a>
+								  <td style='width:17%;text-align:center;'><a href='insert_notification.php?id={$id}'>
+								 <button style='width:40% !important' type='button' id='update_button' class='btn btn-success'> <i class='icon-edit'></i></button> </a>																					 							 	 
+								  <a href='delete_notification.php?id={$id}'>
+								 <button style='width:40% !important' type='button' id='delete_button'  class='btn btn-danger'>
+								  <i class='icon-trash'></i></button> </a>
 									  <td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
 								 <td style='display:none'><a class='' href='javascript:;'>Delete</a></td>
 								  </tr>";

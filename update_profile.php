@@ -15,17 +15,23 @@
 	
 if($_POST)
 {
-		include 'headers/image_upload.php';
 		$user_name = $_POST['user_name'];
 		$password = $_POST['password'];
 		$email = $_POST['email'];
 		$time_cone = $_POST['time_cone'];
-		$update_user = "UPDATE `user` SET user_name = '$user_name',image = '$image', password = '$password',email ='$email' WHERE user_id = '$user_id' "
+        if(!empty($_FILES["image"]["name"])){
+		include 'headers/image_upload.php';
+        $update_user = "UPDATE `user` SET user_name = '$user_name',image = '$image', password = '$password',email ='$email' WHERE user_id = '$user_id' "
 		or die ('error while Updating user');
-		$result_user = mysqli_query($con,$update_user);
-		//$url = "profile.php?update=true";
-		//$redirect = 1;
-		//header ('Location: stay_connected.php?update=true'); 
+        }
+        else{
+        $update_user = "UPDATE `user` SET user_name = '$user_name', password = '$password',email ='$email' WHERE user_id = '$user_id' "
+		or die ('error while Updating user');
+        }
+        $result_user = mysqli_query($con,$update_user);
+		$url = "profile.php?update=true";
+		$redirect = 1;
+		header ('Location: stay_connected.php?update=true'); 
 	
 }
 	else
@@ -136,9 +142,20 @@ function checkPass()
 	 }
 
 }
-
 </script>
-  <script>
+ <script>
+     $('#buttonActivate').click(function() {
+    	if(pass1.value != pass2.value){
+        alert('wrong password');
+            return false;
+        }
+       else{
+       alert('hell');
+       }                         
+    });
+     
+ </script>
+    <script>
    if(<?php echo $redirect;?> == 1){
 			window.location.href = '<?php echo $url; ?>';
    }
@@ -202,7 +219,7 @@ include 'headers/menu-top-navigation.php';
                            <div class="control-group">
                               <label class="control-label">Old Password</label>
                               <div class="controls">
-                                 <input type="text" style="display:none;" id="pass" value="<?php echo $password; ?>" />
+                                 <input type="text" style="display:none;" id="pass" name="password" value="<?php echo $password; ?>" />
                                  <input placeholder="Enter your old password" id="password" onKeyUp="validation();" type="password" class="span6 " />
                               	<span id="solution" class="solution"></span>
                               </div>
@@ -226,8 +243,8 @@ include 'headers/menu-top-navigation.php';
                                  <input placeholder="Enter Your Email" value="<?php echo $email; ?>" name="email" type="email" class="span6 " />
                               </div>
                            </div>
-                           <div class="control-group">
-                            <label class="control-label">image Pic</label>
+                         <div class="control-group">
+                            <label class="control-label">Profile Image</label>
                             <div class="controls">
                                 <div class="fileupload fileupload-new" data-provides="fileupload">
                                     <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
@@ -238,12 +255,13 @@ include 'headers/menu-top-navigation.php';
                                     <div>
                                <span class="btn btn-file"><span class="fileupload-new">Select image</span>
                                <span class="fileupload-exists">Change</span>
-                               <input type="file" name="image" class="default" /></span>
+                               <input type="file" name="image" <?php if(!isset($_GET['user_id'])){echo "required";}  ?> class="default" /></span>
                                         <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
                                     </div>
                                 </div>
                                     </div>
                                 </div>
+ 
    				<div class="form-actions clearfix">
 				<input type="submit" onclick='btnClick();' id="buttonActivate" class="btn btn-success " />
                    </div>

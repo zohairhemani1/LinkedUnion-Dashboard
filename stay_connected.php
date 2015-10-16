@@ -130,7 +130,7 @@ include 'headers/menu-top-navigation.php';
 						
 						while($row = mysqli_fetch_array($result_stay))
 						{
-							$id = $row['Order'];
+							$id = $row['id'];
 							$order = $row['order'];
 							$name = $row['name'];
 							$link = $row['link'];
@@ -139,7 +139,7 @@ include 'headers/menu-top-navigation.php';
 								<tr class=''>
 									 <td>{$order}</td>
 									<td>{$name}</td>
-									<td id='location'>{$link}</td>
+									<td>{$link}</td>
 							   
 									<td style='width:19%;'><a href='insert_stayconnected.php?id=$id' id='update_button' class='btn btn-success' >
 									<i class='icon-trash'></i> </a>

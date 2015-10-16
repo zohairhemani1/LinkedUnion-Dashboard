@@ -6,31 +6,34 @@
 	$master_key = "sOmMyLBOBSStGbiGL5EEAptl5G1H5fqQG7Os7NyF";*/
 	
 	$app_id_parse = $tempArray['applicationID'];
-	//echo "<br/>";
 	$rest_key = $tempArray['restKey'];
-	//echo "<br/>";
 	$master_key = $tempArray['masterKey'];
 	
 	use Parse\ParseClient;
 	use Parse\ParseInstallation;
 	use Parse\ParseException;
 	use Parse\ParsePush;
+	use Parse\ParseQuery;
+	
 
 	ParseClient::initialize( $app_id_parse, $rest_key, $master_key );
 
-	pushNotification($notificationMsg);
+	pushNotification($notificationMsg,$channels);
+	
 	
 	// Notification for iOS users
 	
-	function pushNotification($notificationMessage)
+	
+	function pushNotification($notificationMessage,$channelsArray)
 	{
-		
+	
 		$queryIOS = ParseInstallation::query();
-		$queryIOS->equalTo('deviceType', 'android');
+		//$queryIOS->equalTo('deviceType', 'android');
 		//$queryIOS->equalTo('deviceType', 'ios');
 		 
 		ParsePush::send(array(
-		  "where" => $queryIOS,
+		  //"where" => $queryIOS,
+		  "channels" => $channelsArray,
 		  "data" => array(
 			"alert" => $notificationMessage,
 			"sound" => "cheering.caf"

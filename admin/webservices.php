@@ -150,10 +150,10 @@ include 'headers/menu-top-navigation.php';
 					<tr class=''> 
 								  <td style='width:3%'><a href='#'>{$count}</a></td>
 								<td style='width:35%'><a href='#'>{$name}</a></td>
-								  <td width='10%' ><a href='insert_webservice.php?id={$id}' 
-								  id='update_button' class='btn btn-success'> <i class='icon-edit'></i></a>																					 							 	 
-								  <a href='delete.php?id={$id}' id='delete_button'  class='btn btn-danger'>
-								  <i class='icon-trash'></i> </a>
+								  <td width='10%' style='text-align:center' ><a href='insert_webservice.php?id={$id}'> 
+								  <button style='width:36% !important' type='button' id='update_button' class='btn btn-success'> <i class='icon-edit'></i></button></a>																					 							 	 
+								  <a href='delete.php?id={$id}'><button style='width:36% !important' type='button' id='delete_button'  class='btn btn-danger'>
+								  <i class='icon-trash'></i></button> </a>
 									  <td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
 								 <td style='display:none'><a class='' href='javascript:;'>Delete</a></td>
 								  </tr>";

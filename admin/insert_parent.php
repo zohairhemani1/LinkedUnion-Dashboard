@@ -4,7 +4,7 @@
 if(isset($_GET['uniqueID']))
 {	
 		$uniqueID = $_GET['uniqueID'];
-	$formAction = "?uniqueID=$uniqueID";
+		$formAction = "?uniqueID=$uniqueID";
 		$query = "SELECT * FROM app_relation where id = {$uniqueID}";
 		$result = mysqli_query($con,$query);	
 		$row = mysqli_fetch_array($result)
@@ -72,6 +72,7 @@ else
 	<link rel="stylesheet" href="../assets/data-tables/DT_bootstrap.css" />
    <link rel="stylesheet" type="text/css" href="../assets/chosen-bootstrap/chosen/chosen.css" />
       <script src="../js/jquery-1.8.3.min.js"></script>
+
 <script>
 function showUser(str) {
     if (str == "") {
@@ -98,7 +99,6 @@ function showUser(str) {
         xmlhttp.open("GET","getuser.php?q="+str,true);
         xmlhttp.send();
 	}
-
 	var selectBox = document.getElementById("change");
     var selectedValue = selectBox.options[change.selectedIndex].value;
 	var selectBox1 = document.getElementById("child");
@@ -172,7 +172,7 @@ include 'headers/menu-top-navigation.php';
                            <div class="control-group">
                               <label class="control-label">Parent</label>
                               <div class="controls">
-                                 <select id="change" class="span6 chosen" name="parentID" data-placeholder="Choose your parent" tabindex="1">
+                                 <select required id="change" class="span6 chosen" name="parentID" data-placeholder="Choose your parent" tabindex="1">
 									<?php echo include 'headers/app_detail.php'; ?>
                                  </select>
                               </div>
@@ -180,7 +180,7 @@ include 'headers/menu-top-navigation.php';
                             <div class="control-group">
                               <label class="control-label">Child</label>
                               <div class="controls">
-                                 <select id="child" onchange="showUser(this.value)" class="span6 chosen" name="child" data-placeholder="Choose your Child" tabindex="1">
+                                 <select required id="child" onchange="showUser(this.value)" class="span6 chosen" name="child" data-placeholder="Choose your Child" tabindex="1">
 									<?php echo include 'headers/app_detail.php'; ?>
                                  </select>
                               </div>

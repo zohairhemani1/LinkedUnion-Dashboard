@@ -3716,8 +3716,8 @@ filter:progid:DXImageTransform.Microsoft.gradient(enabled=false)
 	top: 10%;
 	left: 50%;
 	z-index: 1050;
-	width: 100%;
-	margin-left: -793px;
+	width: 560px;
+	margin-left: -280px;
 	background-color: #fff;
 	border: 1px solid #999;
 	border: 1px solid rgba(0,0,0,0.3);
@@ -4508,9 +4508,4 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffbb450', end
 }
 .affix {
 	position: fixed
-}
-#modal-widget
-{
-  margin-left: 12px !important;
-  margin-right: 12px !important;
 }

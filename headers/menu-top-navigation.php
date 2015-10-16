@@ -1,7 +1,7 @@
 <?php
 
-	include 'checkloginstatus.php'; 
-	include '_user-details.php';
+	include 'headers/checkloginstatus.php'; 
+	include 'headers/_user-details.php';
 
 $query = "select (SELECT `pushCount` from app where app_id = '{$appID}') - (select count(*) from `pushmessage` pm where pm.authorAppID = '{$appID}') as pushRemaining";
 $result = mysqli_query($con,$query);
@@ -16,7 +16,7 @@ echo "<!-- BEGIN HEADER -->
            <div class='container-fluid'>
                <!-- BEGIN LOGO -->
                <a id='logo_image' class='brand' href='index.php'>
-                   <img id='image_logo' src='img/logo/{$logo}' width='140' alt='logo' style='margin-left:-5px; margin-top:-12px;' />
+                   <img src='img/logo/{$logo}' width='140' alt='Admin Lab' style='margin-left:-5px; margin-top:-12px;' />
                </a>
                <!-- END LOGO -->
                <!-- BEGIN RESPONSIVE MENU TOGGLER -->
@@ -43,7 +43,7 @@ echo "<!-- BEGIN HEADER -->
                                    <p>You have {$pushRemaining} notifications remaining.</p>
                                </li>";
 		
-		$query = "select * from `pushmessage` pm where pm.authorAppID = {$appID}";
+		$query = "select * from `pushmessage` pm where pm.authorAppID = {$appID} limit 5";
 		$result = mysqli_query($con,$query);
 		while($row = mysqli_fetch_assoc($result))
 		{
@@ -54,13 +54,17 @@ echo "<!-- BEGIN HEADER -->
 			   </a>
              </li>";
 		}
-		 
+		
+                               
                                
            echo "<li>
 						   <a href='notification.php'>See all notifications</a>
 					   </li>
+					   <li>
+						   <a href='insert_notification.php'>Send Notification</a>
+					   </li>
 				   </ul>
-                  </li>
+                 </li>
                        <!-- END NOTIFICATION DROPDOWN -->
 
                    </ul>
@@ -70,7 +74,7 @@ echo "<!-- BEGIN HEADER -->
                    <ul class='nav pull-right top-menu' >
                        <!-- BEGIN SUPPORT -->
                      
-                       <li class='dropdown mtop5'>
+                       <li style='display:none;' class='dropdown mtop5'>
                            <a class='dropdown-toggle element' data-placement='bottom' data-toggle='tooltip' href='#' data-original-title='Help'>
                                <i class='icon-headphones'></i>
                            </a>
@@ -79,14 +83,14 @@ echo "<!-- BEGIN HEADER -->
                        <!-- BEGIN USER LOGIN DROPDOWN -->
                        <li class='dropdown'>
                            <a href='#' class='dropdown-toggle' data-toggle='dropdown'>
-                               <img id='image_cover' src='img/image/{$image}' width='30' alt='profile' id='profilePic'>
+                               <img src='img/image/{$image}' width='30' alt='' id='profilePic'>
                                              
                                <span class='username'>{$username_allcaps}</span>
                                <b class='caret'></b>
                            </a>
                            <ul class='dropdown-menu'>
                                <li><a href='profile.php'><i class='icon-user'></i> Profile</a></li>
-                               <li><a href='#'><i class='icon-asterisk'></i> Setting</a></li>
+                               <li><a href='notification.php'><i class='icon-bell-alt'></i> Notification</a></li>
                                <li class='divider'></li>
                                <li><a href='login.php?logout=true'><i class='icon-key'></i> Log Out</a></li>
                            </ul>
@@ -159,12 +163,12 @@ echo "<!-- BEGIN HEADER -->
 				echo "</ul></li>";
 		}
 
-		 echo "
+		 /*echo "
 		 <li class='has-sub'>
 			<a class='' href='stripe/'>
 				<span class='icon-box'><i class='icon-cogs'></i>
-				</span> Credit Card
-				<span class=''></span></a>
+				</span> Credit Card */
+				echo "<span class=''></span></a>
 		 </ul></div>";
 	  
 ?>

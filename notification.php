@@ -15,7 +15,7 @@ include 'headers/_user-details.php';
 <!-- Mirrored from thevectorlab.net/adminlab/editable_table.html by HTTrack Website Copier/3.x [XR&CO'2013], Tue, 04 Nov 2014 07:58:54 GMT -->
 <head>
    <meta charset="utf-8" />
-   <title>LinkedUnion</title>
+   <title>Notification | LinkedUnion</title>
    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
    <meta content="" name="description" />
    <meta content="" name="author" />
@@ -78,22 +78,28 @@ include 'headers/menu-top-navigation.php';
 
             <!-- BEGIN ADVANCED TABLE widget-->
                       <?php
-			if(isset($_GET['sent']) == 'true')
+			if(isset($_GET['insert']) == 'true')
 			{
 				echo"
 			<div class='alert alert-success'>
 					<button class='close' data-dismiss='alert'>×</button>
-					<strong>Success!</strong> The Notification has been Send.
+					<strong>Success!</strong> The Notification has been added.
 				</div>";
 			}
-	 	else if(isset($_GET['sent']) == 'false'){
+	 	else if(isset($_GET['update']) == 'true'){
       echo"
-	    <div class='alert alert-danger'>
+	    <div class='alert alert-success'>
                 <button class='close' data-dismiss='alert'>×</button>
-                <strong>Sorry!</strong> Failed to Send Notification .
+                <strong>Success!</strong> The Notification has been updated.
             </div>";
 		}
-
+		else if(isset($_GET['delete']) == 'true'){
+      echo"
+	    <div class='alert alert-success'>
+                <button class='close' data-dismiss='alert'>×</button>
+                <strong>Success!</strong> The Notification has been Deleted.
+            </div>";
+		}
 ?>
             <div class="row-fluid">
                 <div class="span12">
@@ -134,14 +140,22 @@ include 'headers/menu-top-navigation.php';
 					<?php
 					$query = "select pm.*,pb.*,ap.* from `pushmessage` pm,`pushbridge`pb,`app` ap where pm.authorAppID = {$appID} and pm.pushID = pb.pushID AND pb.appID = ap.app_id order by pm.pushID";
 					$result = mysqli_query($con,$query);
-					$count = 1;
+					$count=1;
 					$s_no = 1;
 					$row = mysqli_fetch_array($result);
-					$tempID = $row['pushID'];
+					$tempID=$row['pushID'];
 					$tempStr = $row['app_name'];
 					$notification = $row['pushMessage'];
 					$timeStamp = $row['timeStamp'];
 					
+					echo"<tr class=''> 
+											<td id='table_width' style='width:10%'>{$s_no}</a></td>
+											<td style='width:25%'>{$notification}</a></td>
+											<td style='width:25%'>{$tempStr}</a></td>
+											<td style='width:24%'>{$timeStamp}</a>
+											<td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
+											<td style='display:none'><a class='' href='javascript:;'>Delete</a></td>
+											  </tr>";
 					
 					while($row = mysqli_fetch_array($result))
 					{	
@@ -173,7 +187,11 @@ include 'headers/menu-top-navigation.php';
 							$timeStamp = $row['timeStamp'];
 							
 						}
+						else
+						{
+						}
 
+						
 					}	
 
 					?>	

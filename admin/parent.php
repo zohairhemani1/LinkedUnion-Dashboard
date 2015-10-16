@@ -1,11 +1,12 @@
 <?php
 session_start();
+include '../headers/_user-details.php';
+include '../headers/connect_to_mysql.php';
 
 $parent =  "";
 $child = "";
 
-include '../headers/_user-details.php';
-include '../headers/connect_to_mysql.php';
+
 	$query_app = "SELECT distinct app_name FROM categories c, app a where c.app_id = a.app_id 
 	limit 50";
 		$result_app = mysqli_query($con,$query_app);
@@ -126,21 +127,21 @@ include 'headers/menu-top-navigation.php';
 				echo"
 			<div class='alert alert-success'>
 					<button class='close' data-dismiss='alert'>×</button>
-					<strong>Success!</strong> The  has been added.
+					<strong>Success!</strong> The Parent  has been added.
 				</div>";
 			}
 	 	else if(isset($_GET['update']) == 'true'){
       echo"
 	    <div class='alert alert-success'>
                 <button class='close' data-dismiss='alert'>×</button>
-                <strong>Success!</strong> The  has been updated.
+                <strong>Success!</strong> The Parent has been updated.
             </div>";
 		}
 		else if(isset($_GET['delete']) == 'true'){
       echo"
 	    <div class='alert alert-success'>
                 <button class='close' data-dismiss='alert'>×</button>
-                <strong>Success!</strong> The has been Deleted.
+                <strong>Success!</strong> The Parent has been Deleted.
             </div>";
 		}
 ?>
@@ -193,8 +194,8 @@ include 'headers/menu-top-navigation.php';
 								  <td style='width:4% !important'><a href='#'>{$parentName}</a></td>
 								<td style='width:14% !important'><a href='#'>{$childName}</a></td>
 								<td style='width:14% !important'><a href='#'>{$catName}</a></td>
-								  <td style='width:13% !important'><a href='insert_parent.php?uniqueID={$uniqueID}' 
-								  id='update_button' class='btn btn-success'> <i class='icon-edit'></i> </a>																					 							 	 
+								  <td style='width:13% !important; text-align:center' ><a style='display:none' href='insert_parent.php?uniqueID={$uniqueID}'> 
+								  <button id='update_button' class='btn btn-success'> <i class='icon-edit'></i></button> </a>																					 							 	 
 								  <a href='delete.php?uniqueID={$uniqueID}' id='delete_button'  class='btn btn-danger'>
 								  <i class='icon-trash'></i> </a>
 									  <td style='display:none'><a class='' href='javascript:;'>Edit</a></td>

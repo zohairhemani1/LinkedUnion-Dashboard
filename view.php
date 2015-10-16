@@ -13,16 +13,6 @@
 		$google = $row['google'];
 		$pinterest = $row['pinterest'];
 		$social = $row['social'];
-	if(isset['mobilemode'] == 'true')
-			{
-		echo "success";	
-			
-		}
-		else
-		{
-			echo"error";
-		}	
-		
 ?>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -93,7 +83,7 @@ include 'headers/menu-top-navigation.php';
                         </div>
                         <div class="widget-body">
 					<div class="btn-group" >
-				<a href="emulator.php?news_id=<?php echo $news_id;?>&mobilemode=true"><button id="addbutton" type="button" onClick="mobilemode();" class="btn btn-primary"> Enable Mobile Mode <i class="icon-plus"></i> </button></a>
+				<a href="emulator.php?news_id=<?php echo $news_id;?>"><button type="button" onClick="mobilemode();" class="btn btn-primary"> Enable Mobile Mode <i class="icon-plus"></i> </button></a>
 				</div><br><br>
 							<div class="row-fluid blog">
 

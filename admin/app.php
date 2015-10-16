@@ -149,10 +149,10 @@ include 'headers/menu-top-navigation.php';
 					<tr class=''> 
 								  <td style='width:1.5%'><a href='#'>{$count}</a></td>
 								  <td style='width:34%%'><a href='institutionDetail.php'>{$row['app_name']}</a></td>
-								  <td width='10%' ><a href='insert_app.php?app_id={$app_id}' 
-								  id='update_button' class='btn btn-success'> <i class='icon-edit'></i></a>																					 							 	 
-								  <a href='delete.php?app_id={$app_id}' id='delete_button'  class='btn btn-danger'>
-								  <i class='icon-trash'></i></a>
+								  <td style='text-align:center' width='10%' ><a href='insert_app.php?app_id={$app_id}'> 
+								  <button style='width:34% !important' type='button' id='update_button' class='btn btn-success'> <i class='icon-edit'></i></button></a>																					 							 	 
+								  <a href='delete.php?app_id={$app_id}'><button style='width:34% !important' type='button' id='delete_button'  class='btn btn-danger'>
+								  <i class='icon-trash'></i></button></a>
 									  <td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
 								 <td style='display:none'><a class='' href='javascript:;'>Delete</a></td>
 								  </tr>";

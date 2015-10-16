@@ -191,10 +191,10 @@ include 'headers/menu-top-navigation.php';
 								<td style='width:3%'><a href='#'>{$category_name}</a></td>
 								<td style='width:3%'><a href='#'>{$submenu_id}</a></td>
 								<td style='width:3%'><a href='#'>{$subCategory_name}</a></td>
-								  <td style='width:6%'><a href='insert_category.php?id={$id}' 
-								  id='update_button' class='btn btn-success'> <i class='icon-edit'></i> </a>																					 							 	 
-								  <a href='delete_category.php?id={$id}' id='delete_button'  class='btn btn-danger'>
-								  <i class='icon-trash'></i></a>
+								  <td style='width:6%;text-align:center;'><a href='insert_category.php?id={$id}'> 
+	  <button style='width:34% !important' type='button' id='update_button' class='btn btn-success'> <i class='icon-edit'></i></button></a>								    <a href='delete_category.php?id={$id}'>
+								<button style='width:34% !important' type='button'	id='delete_button'  class='btn btn-danger'>
+								  <i class='icon-trash'></i></button></a>
 									  <td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
 								 <td style='display:none'><a class='' href='javascript:;'>Delete</a></td>
 								  </tr>";

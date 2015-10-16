@@ -1,6 +1,6 @@
 
 <?php
-			$select_petition = "SELECT * FROM petition_people";
+			$select_petition = "SELECT * FROM petition_people where email != '' ";
 			$fetch_result = mysqli_query($con,$select_petition);
 			$row = mysqli_fetch_array($fetch_result)
 			or die('error');

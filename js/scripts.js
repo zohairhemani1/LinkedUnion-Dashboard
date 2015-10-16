@@ -1264,28 +1264,17 @@ var App = function () {
         }
     }
 
-     var handleLoginForm = function () {
+    var handleLoginForm = function () {
         jQuery('#forget-password').click(function () {
             jQuery('#loginform').hide();
             jQuery('#forgotform').show(200);
         });
 
-        /*jQuery('#btn-Forget').click(function () {
+        jQuery('#forget-btn').click(function () {
 
             jQuery('#loginform').slideDown(200);
             jQuery('#forgotform').slideUp(200);
-        });*/
-		
-		jQuery('#signup').click(function () {
-            jQuery('#loginform').hide();
-            jQuery('#registerform').show(200);
         });
-
-        /*jQuery('#btnSign').click(function () {
-
-            jQuery('#loginform').slideDown(200);
-            jQuery('#registerform').slideUp(200);
-        });*/
     }
 
     var handleFixInputPlaceholderForIE = function () {

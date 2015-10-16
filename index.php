@@ -62,11 +62,16 @@ include 'headers/menu-top-navigation.php';
             <!-- BEGIN PAGE CONTENT-->
 		<?php 
 			if($_GET['uniqueID'] = 1){
-      echo"
-	    <div class='alert alert-danger'>
-                <button class='close' data-dismiss='alert'>×</button>
-                <strong>Success!</strong> Your text will go here.
-            </div>";
+//      echo"
+//	    <div class='alert alert-danger'>
+//                <button class='close' data-dismiss='alert'>×</button>
+//                <strong>Success!</strong> Your text will go here.
+//            </div>";
+		}
+		else
+		{
+			echo"";
+			
 		}
             ?>
 			<div class="row-fluid">

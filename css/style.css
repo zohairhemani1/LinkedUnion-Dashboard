@@ -3524,16 +3524,14 @@ ul.amounts li {
 	float:right;
 	margin-top: -36px;
 }
-#float-right
+#form-left
 {
-	float:right;
+	
 }
 #a4size{
-  width: 620px;
+  width: 560px;
   margin-right: auto;
   margin-left: auto;
   border: 1px solid;
   padding: 4px;
-  padding-right:15px;
-  padding-left:15px;
 }

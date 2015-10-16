@@ -209,10 +209,11 @@ include 'headers/menu-top-navigation.php';
 								<td style='width:16% !important'><a href='#'>{$subcatName}</a></td>								
 								<td style='width:4% !important'><a href='#'>{$subcatID}</a></td>
 								<td style='width:4% !important'><a href='#'>{$webservice}</a></td>
-								  <td style='width:29% !important'><a href='insert_webservice_category.php?id={$id}' 
-								  id='update_button' class='btn btn-success'> <i class='icon-edit'></i></a>																					 							 	 
-								  <a href='delete_webservice_category.php?id={$id}' id='delete_button'  class='btn btn-danger'>
-								  <i class='icon-trash'></i></a>
+								  <td style='width:29% !important;text-align:center;' ><a href='insert_webservice_category.php?id={$id}'> 
+								  <button style='width:27% !important' type='button' id='update_button' class='btn btn-success'> <i class='icon-edit'></i></button></a>																					 							 	 
+								  <a href='delete_webservice_category.php?id={$id}'>
+								 <button style='width:27% !important' type='button' id='delete_button'  class='btn btn-danger'>
+								  <i class='icon-trash'></i></button></a>
 									  <td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
 								 <td style='display:none'><a class='' href='javascript:;'>Delete</a></td>
 								  </tr>";
@@ -223,7 +224,13 @@ include 'headers/menu-top-navigation.php';
                                 	    <tr>	
 
                                             <th>All</th>
-                                         	</tr>
+											<th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                         	<th></th>
+											</tr>
 									</tfoot>
 
                      

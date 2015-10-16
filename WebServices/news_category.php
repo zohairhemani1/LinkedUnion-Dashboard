@@ -24,12 +24,25 @@
 		
 		
 		$title = $row['title'];
-		$fileImage = $row['file'];
+		$fileImage = $row['new_image'];
 		$news_id = $row['news_id'];
+		$time_stamp = strtotime($row['time_cone']);
+		
+		$news_table = $row['news_table'];
 		$newArray['description'] = $description_toclean;
 		$newArray['title'] = $title;
 		$newArray['file'] = $fileImage;
 		$newArray['news_id'] = $news_id;
+		
+		$month = date('F', $time_stamp);
+		$day = date('d',$time_stamp);
+		$year = date('Y',$time_stamp);
+		
+		$time_stamp = "{$month} {$day}, {$year}";
+		
+		$newArray['time_stamp'] = $time_stamp;
+		$newArray['news_table'] = $news_table;
+		
 		
 		$returnArray[] = $newArray;
 

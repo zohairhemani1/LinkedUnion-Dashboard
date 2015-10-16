@@ -4,10 +4,14 @@ include 'headers/connect_to_mysql.php';
 include 'headers/_user-details.php';
 
 $notificationMsg = "";
+$channels = array();
 
 if($_POST)
 {
 	$app_id = $_POST['app_id'];
+	//print_r($app_id);
+	$channels = $_POST['channels'];
+	//var_dump($channels);
 	$android = $_POST['android'];
 	$ios = $_POST['ios'];
 	$notificationMsg = $_POST['notification'];
@@ -15,6 +19,8 @@ if($_POST)
 	$date = $_POST['date'];
 	$parseArray = $_POST['parseArray'];
 	$parseArray = unserialize($parseArray);
+	//print_r($parseArray);
+	
 	
 	$query = "INSERT INTO pushmessage(pushMessage,timeStamp,authorAppID) VALUES ('$notificationMsg',now(),'$appID')";
 	$result = mysqli_query($con,$query);
@@ -41,18 +47,15 @@ if($_POST)
 			
 			if($tempArray['appID'] == $app_id[$i])
 			{	
-				//echo "match found";
 				include 'parse.php';
-   		$url = "news.php?categoryID=$categoryID&update=true";
-			$redirect = 1;
 
-			  
 			}
 		}
 		
 	}
-		$url = "notification.php?sent=true";
-		$redirect = 1;
+		echo "<script>
+			window.location.href = 'notification.php';
+		</script>";
 }
 
 ?>
@@ -91,12 +94,6 @@ if($_POST)
    <link rel="stylesheet" type="text/css" href="assets/chosen-bootstrap/chosen/chosen.css" />
 
 <title>LinkedUnion -Dashboard </title>
-<script>
-			 if(<?php echo $redirect;?> == 1){
-			//alert('redirecting');
-			window.location.href = '<?php echo $url; ?>';
-	}
-	</script>
 
 </head>
 
@@ -158,6 +155,17 @@ include 'headers/menu-top-navigation.php';
                                       </select>
                                </div>
                              </div>
+							 
+							 <div class="control-group">
+                              <label class="control-label">Target By Employers / Stores </label>
+                              <div class="controls">
+                                 <select data-placeholder="Select Your Employer / Store" name="channels[]" class="span6 chosen" multiple="multiple" tabindex="1">
+                                    <option value=""></option>
+                                	<?php echo include 'headers/get_all_channels.php'; ?> 
+                                 </select>
+                              </div>
+                           </div>
+						   
                            <!-- <div class="control-group">
                               <label class="control-label">Platform</label>
                               <div class="controls">

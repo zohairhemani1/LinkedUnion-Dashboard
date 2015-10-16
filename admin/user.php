@@ -152,10 +152,11 @@ include 'headers/menu-top-navigation.php';
 								  <td style='width:2% !important'><a href='#'>{$user_id}</a></td>
 								<td style='width:8% !important'><a href='#'>{$user_name}</a></td>
 								<td style='width:8% !important'><a href='#'>{$app_name}</a></td>
-								  <td style='width:4% !important'><a href='insert_user.php?user_id={$user_id}' 
-								  id='update_button' class='btn btn-success'> <i class='icon-edit'></i> </a>																					 							 	 
-								  <a href='delete.php?user_id={$user_id}' id='delete_button'  class='btn btn-danger'>
-								  <i class='icon-trash'></i> </a>
+								  <td style='width:4% !important;text-align:center'><a href='insert_user.php?user_id={$user_id}'> 
+								 <button style='width:37% !important' type='button' id='update_button' class='btn btn-success'> <i class='icon-edit'></i></button> </a>																					 							 	 
+								  <a href='delete.php?user_id={$user_id}'>
+								 <button style='width:37% !important' type='button' id='delete_button'  class='btn btn-danger'>
+								  <i class='icon-trash'></i></button> </a>
 									  <td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
 								 <td style='display:none'><a class='' href='javascript:;'>Delete</a></td>
 								  </tr>";

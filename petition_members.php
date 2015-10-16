@@ -6,6 +6,7 @@ include 'headers/_user-details.php';
 $first_name = "";
 $last_name = "";
 $email = "";
+$address = "";
 if(!isset($publish_date))
 {
 	$publish_date = "" ;
@@ -158,6 +159,7 @@ include 'headers/menu-top-navigation.php';
                                     <th>First Name</th>
                                     <th>Last Name</th>
                                     <th>Email</th>
+									<th>Address</th>
 									<th>Action</th>
                                         <div class="widths">
                                         <th style="display:none">Edit</th>
@@ -177,14 +179,16 @@ include 'headers/menu-top-navigation.php';
 						$first_name = $row['first_name'];
 						$last_name = $row['last_name'];
 						$email = $row['email'];
+						$address=  $row['address'];
 						$count++;
 						
 					echo"
 					<tr class=''> 
 								  <td style='width:6%'><a href='#'>{$count}</a></td>
-								  <td  id='news_button' style='width:28% !important'><a href='institutionDetail.php'>{$first_name}</a></td>
-								  <td style='width:28% !important'>{$last_name}</span></td>
+								  <td  id='news_button' style='width:24% !important'><a href='institutionDetail.php'>{$first_name}</a></td>
+								  <td style='width:24% !important'>{$last_name}</span></td>
 								 <td style='width:3%'>{$email}</span></td>
+								 <td style='width:15%'>{$address}</span></td>
 								  <td><a href='insert_petition.php?member_id=$member_id' 
 								  id='update_button' class='btn btn-success'> <i class='icon-edit'></i></a>																					 							 	 
 								  <a href='delete.php?member_id={$member_id}' onclick='return ConfirmDelete()' id='delete_button' class='btn btn-danger'>

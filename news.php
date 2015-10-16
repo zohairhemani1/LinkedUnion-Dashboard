@@ -187,7 +187,7 @@ include 'headers/menu-top-navigation.php';
 					echo"
 					<tr class=''> 
 								  <td style='width:6%'><a href='#'>{$count}</a></td>
-								  <td  id='news_button' style='width:58%'><a href='institutionDetail.php'>{$row['title']}</a></td>
+								  <td  id='news_button' style='width:58%'><a href=''>{$row['title']}</a></td>
 								  <td style='width:3%'><span id='published' class='label label-warning label-mini'>{$published}</span></td>
 								  <td><a href='insert_form.php?categoryID=$categoryID&news_id={$news_id}' 
 								  id='update_button' class='btn btn-success'> <i class='icon-edit'></i></a>																					 							 	 

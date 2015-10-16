@@ -41,6 +41,7 @@ if(isset($_GET['news_id']))
 			$fetch_result = mysqli_query($con,$query_select);
 			$row = mysqli_fetch_array($fetch_result);
 			$title = $row['title'];
+            $news_table = $row['news_table'];
 			$description = $row['description'];
 			$file = $row['file'];
 			$facebook = $row['facebook'];
@@ -50,6 +51,7 @@ if(isset($_GET['news_id']))
 			$social = $row['social'];
 			$order = $row['order'];
 			$publish = $row['published'];
+            $new_image = $row['new_image'];
 			if($publish == 0)
 			{
 				$publish_toggleButton =  "";
@@ -67,10 +69,12 @@ if(isset($_GET['news_id']))
 }
 if($_POST)
 {
+
 		if(isset($_GET['news_id']))
 		  {
-			$title = $_POST['title'];
+            $title = $_POST['title'];
 			$title = str_replace("'","\'",$title); 	
+            $news_table = $_POST['news_table'];
 			$description = $_POST['description'];
 			$description = str_replace("'","\'",$description); 	
 			$facebook = $_POST['facebook'];
@@ -85,12 +89,17 @@ if($_POST)
 			{
 				$publishInt = 1;
 			}
-			
-			$query_update = "UPDATE news SET time_cone = now(), title = '$title',file = '$file', description = '$description',
-			facebook = '$facebook', twitter = '$twitter', google = '$google', pinterest = '$pinterest', social = '$social', published = '$publishInt'
+            if(!empty($_FILES["new_image"]["name"])){
+            include 'headers/news_image.php';
+			$query_update = "UPDATE news SET time_cone = now(), title = '$title',news_table = '$news_table',file = '$file', description = '$description', new_image = '$new_image',facebook = '$facebook', social = '$social', published = '$publishInt', time_cone = now()
+			  WHERE news_id = '$news_id'";            
+            }
+            else{    
+			$query_update = "UPDATE news SET time_cone = now(), title = '$title',news_table = '$news_table',file = '$file', description = '$description',
+			facebook = '$facebook', twitter = '$twitter', social = '$social', published = '$publishInt', time_cone = now()
 			  WHERE news_id = '$news_id'";
-			$result_update = mysqli_query($con,$query_update)
-			or die('update error');		
+            }
+            $result_update = mysqli_query($con,$query_update);
 			$url = "news.php?categoryID=$categoryID&update=true";
 			$redirect = 1;
 			
@@ -101,9 +110,11 @@ if($_POST)
 }
 else
 	  {
+        include 'headers/news_image.php';
 		//include 'parse.php';
 		$title = $_POST['title'];
 		$title = str_replace("'","\'",$title); 	
+        $news_table = $_POST['news_table'];
 		$description = $_POST['description'];
 		$description = str_replace("'","\'",$description);
 		$facebook = $_POST['facebook'];
@@ -119,10 +130,9 @@ else
 			$publishInt = 1;
 		}
 		
-		$query = "INSERT INTO news(title,description,file,time_cone,category,app_id,facebook,twitter,google,pinterest,social,published)
-				  VALUES ('$title','$description','$file',now(),'$categoryID','$appID','$facebook','$twitter','$google','$pinterest','$social','$publishInt')"
-				 or die ('error');
-		$result = mysqli_query($con,$query)
+		$query = "INSERT INTO news(title,news_table,description,file,time_cone,category,app_id,facebook,twitter,google,pinterest,social,published,new_image)
+VALUES('$title','$news_table','$description','$file',now(),'$categoryID','$appID','$facebook','$twitter','$google','$pinterest','$social','$publishInt','$new_image')";
+		$result = mysqli_query($con,$query)        
 	or die('error1');
 		if($social = "on")
 		{
@@ -131,7 +141,8 @@ else
 			$url = "news.php?categoryID=$categoryID&insert=true";
 			$redirect = 1;
 			//header ("Location:news.php?categoryID=$categoryID&insert=true");
-	  }
+    }
+
 
 }
 
@@ -172,7 +183,13 @@ else
    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
    <link rel="stylesheet" type="text/css" href="css/main.css" />
    <link rel="stylesheet" type="text/css" href="css/custom.css"/>
-   <script type="text/javascript" src="assets/ckeditor/ckeditor.js"></script>
+   <style type="text/css">
+	img#uploadPreview1 {
+    width: 100px;
+    height: 100px;
+    }
+    </style>
+    <script type="text/javascript" src="assets/ckeditor/ckeditor.js"></script>
    <script>
    if(<?php echo $redirect;?> == 1){
 			//alert('redirecting');
@@ -228,7 +245,7 @@ include 'headers/menu-top-navigation.php';
                      </div>
                      <div class="widget-body form">
                         <!-- BEGIN FORM-->
-                        <form name="myform" action="insert_form.php?categoryID=<?php echo $formAction; ?>" method="post" class="form-horizontal">
+                        <form name="myform" action="insert_form.php?categoryID=<?php echo $formAction; ?>" method="post"  enctype="multipart/form-data"  class="form-horizontal">
                            <div class="control-group">
                               <label class="control-label">News</label>
                               <div class="controls">
@@ -240,13 +257,37 @@ include 'headers/menu-top-navigation.php';
                               <input style="height:0px" readonly type="text" id="space" class="span1" name="countdown" value="200" size="1" />
                               </div>
                            </div>
+                             <div class="control-group">
+                              <label class="control-label">News Table</label>
+                              <div class="controls">
+                                 <input maxlength="230" name="news_table" value="<?php echo $news_table; ?>" type="text" class="span12" />
+                              </div>
+                           </div>
                                 <div class="control-group">
                                     <label class="control-label">Description</label>
                                     <div class="controls">
                                         <textarea name="description" class="span12 ckeditor" name="editor1" rows="6"><?php echo $description; ?></textarea>
                                     </div>
                                 </div>
-                              <div class="control-group">
+                           <div class="control-group">
+                            <label class="control-label">News Image</label>
+                            <div class="controls">
+                                <div class="fileupload fileupload-new" data-provides="fileupload">
+                                    <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+                                        <img src="<?php if($new_image == null) {echo "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image";}
+                                        else{echo "img/news/{$new_image}" ;}?>" alt="" />
+                                    </div>
+                                    <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                                    <div>
+                               <span class="btn btn-file"><span class="fileupload-new">Select image</span>
+                               <span class="fileupload-exists">Change</span>
+                               <input type="file" name="new_image" <?php if(!isset($_GET['news_id'])){echo "";}  ?> class="default" /></span>
+                                        <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+                                    </div>
+                                </div>
+                                    </div>
+                                </div> 
+                            <div class="control-group">
                                   <label class="control-label">Social</label>
                                   <div class="controls">
                           <div class="onoffswitch">
@@ -286,7 +327,7 @@ include 'headers/menu-top-navigation.php';
                       </div>
                       </div>
                       </div>
-                      <div class="control-group">
+                      <div style="display:none" class="control-group">
                       <label class="control-label">Pinterest</label>
                               <div class="controls">
                           <div class="input-icon left"> <i class="icon-pinterest"></i>
@@ -296,7 +337,7 @@ include 'headers/menu-top-navigation.php';
                       </div>
                       </div>
 
-                       <div class="control-group">
+                       <div style="display:none;" class="control-group">
                       <label class="control-label">Google</label>
                               <div class="controls">
                           <div class="input-icon left"> <i class="icon-google-plus"></i>
@@ -358,7 +399,7 @@ include 'headers/menu-top-navigation.php';
                         </div>
                         </div>
    			<div class="form-actions clearfix">
-				<input type="submit"  class="btn btn-success " />
+				<input type="submit" id="submit"  class="btn btn-success " />
                    </div>
                               </form>
  
@@ -416,6 +457,7 @@ include 'headers/menu-top-navigation.php';
          App.init();
       });
    </script>
+
    <script>
 function toggle() {
 	var ele = document.getElementById("ToggleText");

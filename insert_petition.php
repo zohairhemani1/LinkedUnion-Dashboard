@@ -5,6 +5,7 @@
 	$first_name = "";
 	$last_name = "";
 	$email = "";
+	$address = "";
 	$url = "";
 	$formAction = "";
 	$publish_date= 0;
@@ -20,6 +21,7 @@
 			$first_name = $row['first_name'];
 			$last_name = $row['last_name'];
 			$email = $row['email'];
+			$address=  $row['address'];
 	}
 if($_POST)
 {
@@ -28,7 +30,8 @@ if($_POST)
 		$first_name = $_POST['first_name'];
 		$last_name = $_POST['last_name'];
 		$email = $_POST['email'];
-		$query = "UPDATE petition_people SET first_name = '$first_name',  last_name = '$last_name', email = '$email' WHERE member_id = '$member_id'";
+		$address= $_POST['address'];
+		$query = "UPDATE petition_people SET first_name = '$first_name',  last_name = '$last_name', email = '$email',address = '$address' WHERE member_id = '$member_id'";
 		$result = mysqli_query($con,$query);
 		$url = "petition_members.php?update=true";
 		$redirect = 1;
@@ -39,8 +42,9 @@ if($_POST)
 		$first_name = $_POST['first_name'];
 		$last_name = $_POST['last_name'];
 		$email = $_POST['email'];
-		$query_location = "INSERT INTO petition_people(first_name,last_name,email,app_id)
-		VALUES ('$first_name','$last_name','$email','$appID')";
+		$address= $_POST['address'];
+		$query_location = "INSERT INTO petition_people(first_name,last_name,email,app_id,address)
+		VALUES ('$first_name','$last_name','$email','$appID','$address')";
 		mysqli_query($con,$query_location)
 		or die('error1');
 		$url = "petition_members.php?insert=true";
@@ -153,6 +157,13 @@ include 'headers/menu-top-navigation.php';
                               <div class="controls">
                                  <input required placeholder="Enter Your Last Name" name="last_name" 
                                  value="<?php echo $last_name; ?>" type="text" class="span6 " />
+                              </div>
+                           </div>
+						    <div class="control-group">
+                              <label class="control-label">Address</label>
+                              <div class="controls">
+                                 <input required placeholder="Enter Your Last Name" name="address" 
+                                 value="<?php echo $address; ?>" type="text" class="span6 " />
                               </div>
                            </div>
                            <div class="control-group">

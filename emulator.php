@@ -1,10 +1,7 @@
 <?php 
 		include 'headers/connect_to_mysql.php';
-	    $newsID = "";
-		$news_id = $_GET['news_id'];
-		$mobile = "true";
-		$newsID = $news_id.$mobile;
-		?>
+	    $news_id = $_GET['news_id'];
+?>
 
 <!DOCTYPE html>
 <html>
@@ -121,7 +118,7 @@ window.addEventListener("load", function(){
 
 					<div id="content">
 					<div style="height:0px;" >
-					<iframe  id="optomaFeed" src="http://quirktools.com/screenfly/#u=http%3A//myunionapp.com/view.php?mobilemode=<?php echo $mobile;?>&w=1024&h=600&s=1" scroll="no"
+					<iframe  id="optomaFeed" src="http://quirktools.com/screenfly/#u=http%3A//myunionapp.com/view.php?news_id=<?php echo $news_id?>&w=1024&h=600&s=1" scroll="no"
 						frameborder="" height="100%" width="100%" style="height: 816px; clip:rect(-19px,1599px,879px,4px);
 						  margin-top: -66px; margin-left: -13px;"></iframe>
 					</div>

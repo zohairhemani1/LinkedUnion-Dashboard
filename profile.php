@@ -3,6 +3,12 @@
 	include 'headers/connect_to_mysql.php';
 	include 'headers/_user-details.php'; 
 
+		$query_email = "SELECT email FROM `user` where user_id = '{$user_id}'";
+        $result = mysqli_query($con,$query_email);
+        $row = mysqli_fetch_array($result);
+        $email = $row['email'];
+        
+
 ?>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -13,7 +19,7 @@
 <!-- Mirrored from thevectorlab.net/adminlab/image.html by HTTrack Website Copier/3.x [XR&CO'2013], Tue, 04 Nov 2014 08:01:42 GMT -->
 <head>
    <meta charset="utf-8" />
-   <title>Profile</title>
+   <title>Profile | <?php echo $appName; ?></title>
    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
    <meta content="" name="description" />
    <meta content="" name="author" />
@@ -47,13 +53,13 @@ include 'headers/menu-top-navigation.php';
                   <!-- BEGIN PAGE TITLE & BREADCRUMB-->
                    <h3 class="page-title">
                        Profile
-                     <small>View your profile</small>
+                     <small>View profile page</small>
                   </h3>
                    <ul class="breadcrumb">
  						<li>
                            <a href="index.php"><i class="icon-home"></i></a> <span class="divider">&nbsp;</span>
                        </li>
-                       <li><a href="#">Profile</a><span class="divider-last">&nbsp;</span>
+                       <li><a href="#">image</a><span class="divider-last">&nbsp;</span>
                        </li>
                        
                    </ul>
@@ -66,7 +72,7 @@ include 'headers/menu-top-navigation.php';
                <div class="span12">
                   <div class="widget">
                         <div class="widget-title">
-                           <h4><i class="icon-user"></i>Profile</h4>
+                           <h4><i class="icon-user"></i>image</h4>
                            <span class="tools">
                            <a href="javascript:;" class="icon-chevron-down"></a>
                            </span>                    
@@ -78,7 +84,7 @@ include 'headers/menu-top-navigation.php';
                                 </div>
                             </div>
                             <div class="span6">
-                                <h4> <?php echo  $username_allcaps; ?> <br/><small></small></h4>
+                                <h4> <?php echo  $username_allcaps; ?> <br/><small style="display:none;">Web Developer</small></h4>
                                 <table class="table table-borderless">
                                     <tbody>
                                     <tr>
@@ -90,7 +96,7 @@ include 'headers/menu-top-navigation.php';
                                     <tr>
                                         <td class="span2">Password :</td>
                                         <td>
-                                           <?php echo $password; ?> 
+                                           <p id="password"><?php echo $password; ?></p> 
                                         </td>
                                     </tr>
                                     <tr>
@@ -161,6 +167,13 @@ include 'headers/menu-top-navigation.php';
          App.init();
       });
    </script>
+<script>
+    $(document).ready(function(){
+    var text = document.getElementById('password').innerText;
+        document.getElementById('password').innerHTML = text.replace(/./g, '*')
+    });
+    
+</script>
 
    <!-- END JAVASCRIPTS -->   
 </body>

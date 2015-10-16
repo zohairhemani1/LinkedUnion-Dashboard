@@ -143,8 +143,8 @@ include 'headers/menu-top-navigation.php';
 							   
 									<td style='width:19%;'><a href='insert_location.php?office_id=$office_id' id='update_button' class='btn btn-success' >
 									<i class='icon-trash'></i> </a>
-									<a href='#'><button class='btn btn-danger'> id='delete_button' onClick ='return confirmDelete();' ?>
-									<i class='icon-edit'></i></button> </a>
+									<a href='delete.php?office_id=$office_id' id='delete_button'  class='btn btn-danger'>
+									<i class='icon-edit'></i> </a>
 									<td style='display:none'><a class='' href='javascript:;'>Edit</a></td>
 									<td style='display:none'><a class='' href='javascript:;'>Delete</a></td>
 								</tr>";

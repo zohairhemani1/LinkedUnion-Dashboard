@@ -1,6 +1,7 @@
 <?php
 include 'headers/connect_to_mysql.php';
 include 'headers/_user-details.php';
+	$success = "";
 /*	var_dump($_POST);
 	if($_POST['email'] == "all")
 	{
@@ -100,9 +101,9 @@ var_dump($retval);
 {
 	var_dump($_POST);
 $email = $_POST['email'];
-$headers = "From: " . "info@myunionapp.com" . "\r\n";
-$headers .= "Reply-To: ". "info@myunionapp.com" . "\r\n";
-$headers .= "BCC: zohairhemani1@gmail.com\r\n";
+$headers = "From: " . "local480cwr@gmail.com" . "\r\n";
+$headers .= "Reply-To: ". "local480cwr@gmail.com" . "\r\n";
+$headers .= "BCC: jones436@gmail.com\r\n";
 $headers .= "MIME-Version: 1.0\r\n";
 $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 $sub = "Union Jobs = Good Jobs";
@@ -184,20 +185,14 @@ if($retval)
 	{
 		$success = "<div class='alert alert-success'>
                 <button class='close' data-dismiss='alert'>x</button>
-                <strong>Success!</strong> The Mail has Send.
+                <strong>Success!</strong> The Mail has been Sent.
             </div>";
 	} 
 	else 
 	{
 	var_dump($retval);   
-	//send mail end here//
+	//send mail end here/
 	}
-	
-
-			
-
-
-
 
 }
 
@@ -261,17 +256,15 @@ include 'headers/menu-top-navigation.php';
 
                    <!-- END THEME CUSTOMIZER-->
                   <h3 class="page-title">
-                     Notification
-                     <small>Adjust your Notification</small>
+                     Send Email
+                     <small>Send Mail</small>
                   </h3>
                   <ul class="breadcrumb">
                        <li>
-                           <a href="app.php"><i class="icon-home"></i></a><span class="divider">&nbsp;</span>
+                           <a href="index.php"><i class="icon-home"></i></a><span class="divider">&nbsp;</span>
                        </li>
-                       <li>
-                           <a href="webservices.php">Notification</a> <span class="divider">&nbsp;</span>
-                       </li>
-                       <li><a href="#">Insert Notification</a><span class="divider-last">&nbsp;</span></li>
+					   
+                       <li><a href="#">Send Email</a><span class="divider-last">&nbsp;</span></li>
                    </ul>
 
                </div>
@@ -293,10 +286,9 @@ include 'headers/menu-top-navigation.php';
                         <?php echo $success;?>
 						<form action="send_petition.php" method="post" class="form-horizontal">
                              <div class="control-group">
-                              <label class="control-label">Eamil</label>
+                              <label class="control-label">Email</label>
                               <div class="controls">
-                                 <select data-placeholder="Select Your email" name="email[]" class="span6 chosen" multiple="multiple" tabindex="2"
-								 onChange="changeSelection(this.value);"  id="ch">
+                                 <select data-placeholder="Select Your email" name="email[]" class="span6 chosen" multiple="multiple" tabindex="1">
 										<!--<option value='all'>all</option>-->
                                 	    <option value=''></option>
 							<?php echo include 'headers/petition_people.php'; ?> 
