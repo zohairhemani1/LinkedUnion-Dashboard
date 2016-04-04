@@ -138,7 +138,7 @@ include 'headers/menu-top-navigation.php';
 
 				
 					<?php
-					$query = "select pm.*,pb.*,ap.* from `pushmessage` pm,`pushbridge`pb,`app` ap where pm.authorAppID = {$appID} and pm.pushID = pb.pushID AND pb.appID = ap.app_id order by pm.pushID";
+					$query = "select pm.*,pb.*,ap.* from `pushmessage` pm,`pushbridge`pb,`app` ap where pm.authorAppID = {$appID} and pm.pushID = pb.pushID AND pb.appID = ap.app_id order by pm.pushID desc";
 					$result = mysqli_query($con,$query);
 					$count=1;
 					$s_no = 1;

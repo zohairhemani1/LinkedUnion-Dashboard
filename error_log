@@ -208,3 +208,150 @@ Stack trace:
 #3 /home/zohairhemani1/public_html/ufcw5/mobile_app/insert_notification.php(51): include('/home/zohairhem...')
 #4 {main}
   thrown in /home/zohairhemani1/public_html/ufcw5/mobile_app/parse-php-sdk/src/Parse/ParseClient.php on line 259
+[16-Oct-2015 14:41:41 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'You must call Parse::initialize() before making any requests.' in /home/zohairhemani1/public_html/ufcw5/mobile_app/parse-php-sdk/src/Parse/ParseClient.php:308
+Stack trace:
+#0 /home/zohairhemani1/public_html/ufcw5/mobile_app/parse-php-sdk/src/Parse/ParseClient.php(222): Parse\ParseClient::assertParseInitialized()
+#1 /home/zohairhemani1/public_html/ufcw5/mobile_app/parse-php-sdk/src/Parse/ParsePush.php(65): Parse\ParseClient::_request('POST', '/1/push', NULL, '{"channels":["u...', false)
+#2 /home/zohairhemani1/public_html/ufcw5/mobile_app/parse.php(41): Parse\ParsePush::send(Array)
+#3 /home/zohairhemani1/public_html/ufcw5/mobile_app/parse.php(21): pushNotification(NULL, Array)
+#4 /home/zohairhemani1/public_html/ufcw5/mobile_app/insert_form.php(146): include('/home/zohairhem...')
+#5 {main}
+  thrown in /home/zohairhemani1/public_html/ufcw5/mobile_app/parse-php-sdk/src/Parse/ParseClient.php on line 308
+[16-Oct-2015 14:43:17 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'You must call Parse::initialize() before making any requests.' in /home/zohairhemani1/public_html/ufcw5/mobile_app/parse-php-sdk/src/Parse/ParseClient.php:308
+Stack trace:
+#0 /home/zohairhemani1/public_html/ufcw5/mobile_app/parse-php-sdk/src/Parse/ParseClient.php(222): Parse\ParseClient::assertParseInitialized()
+#1 /home/zohairhemani1/public_html/ufcw5/mobile_app/parse-php-sdk/src/Parse/ParsePush.php(65): Parse\ParseClient::_request('POST', '/1/push', NULL, '{"channels":["u...', false)
+#2 /home/zohairhemani1/public_html/ufcw5/mobile_app/parse.php(41): Parse\ParsePush::send(Array)
+#3 /home/zohairhemani1/public_html/ufcw5/mobile_app/parse.php(21): pushNotification(NULL, Array)
+#4 /home/zohairhemani1/public_html/ufcw5/mobile_app/insert_form.php(146): include('/home/zohairhem...')
+#5 {main}
+  thrown in /home/zohairhemani1/public_html/ufcw5/mobile_app/parse-php-sdk/src/Parse/ParseClient.php on line 308
+[16-Oct-2015 14:44:45 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'You must call Parse::initialize() before making any requests.' in /home/zohairhemani1/public_html/ufcw5/mobile_app/parse-php-sdk/src/Parse/ParseClient.php:308
+Stack trace:
+#0 /home/zohairhemani1/public_html/ufcw5/mobile_app/parse-php-sdk/src/Parse/ParseClient.php(222): Parse\ParseClient::assertParseInitialized()
+#1 /home/zohairhemani1/public_html/ufcw5/mobile_app/parse-php-sdk/src/Parse/ParsePush.php(65): Parse\ParseClient::_request('POST', '/1/push', NULL, '{"channels":["u...', false)
+#2 /home/zohairhemani1/public_html/ufcw5/mobile_app/parse.php(41): Parse\ParsePush::send(Array)
+#3 /home/zohairhemani1/public_html/ufcw5/mobile_app/parse.php(21): pushNotification('New news added....', Array)
+#4 /home/zohairhemani1/public_html/ufcw5/mobile_app/insert_form.php(114): include('/home/zohairhem...')
+#5 {main}
+  thrown in /home/zohairhemani1/public_html/ufcw5/mobile_app/parse-php-sdk/src/Parse/ParseClient.php on line 308
+[16-Oct-2015 14:47:29 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'You must call Parse::initialize() before making any requests.' in /home/zohairhemani1/public_html/ufcw5/mobile_app/parse-php-sdk/src/Parse/ParseClient.php:308
+Stack trace:
+#0 /home/zohairhemani1/public_html/ufcw5/mobile_app/parse-php-sdk/src/Parse/ParseClient.php(222): Parse\ParseClient::assertParseInitialized()
+#1 /home/zohairhemani1/public_html/ufcw5/mobile_app/parse-php-sdk/src/Parse/ParsePush.php(65): Parse\ParseClient::_request('POST', '/1/push', NULL, '{"channels":["u...', false)
+#2 /home/zohairhemani1/public_html/ufcw5/mobile_app/parse.php(41): Parse\ParsePush::send(Array)
+#3 /home/zohairhemani1/public_html/ufcw5/mobile_app/parse.php(21): pushNotification('New news added....', Array)
+#4 /home/zohairhemani1/public_html/ufcw5/mobile_app/insert_form.php(115): include('/home/zohairhem...')
+#5 {main}
+  thrown in /home/zohairhemani1/public_html/ufcw5/mobile_app/parse-php-sdk/src/Parse/ParseClient.php on line 308
+[16-Oct-2015 14:48:01 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'You must call Parse::initialize() before making any requests.' in /home/zohairhemani1/public_html/ufcw5/mobile_app/parse-php-sdk/src/Parse/ParseClient.php:308
+Stack trace:
+#0 /home/zohairhemani1/public_html/ufcw5/mobile_app/parse-php-sdk/src/Parse/ParseClient.php(222): Parse\ParseClient::assertParseInitialized()
+#1 /home/zohairhemani1/public_html/ufcw5/mobile_app/parse-php-sdk/src/Parse/ParsePush.php(65): Parse\ParseClient::_request('POST', '/1/push', NULL, '{"channels":["u...', false)
+#2 /home/zohairhemani1/public_html/ufcw5/mobile_app/parse.php(41): Parse\ParsePush::send(Array)
+#3 /home/zohairhemani1/public_html/ufcw5/mobile_app/parse.php(21): pushNotification('New news added....', Array)
+#4 /home/zohairhemani1/public_html/ufcw5/mobile_app/insert_form.php(115): include('/home/zohairhem...')
+#5 {main}
+  thrown in /home/zohairhemani1/public_html/ufcw5/mobile_app/parse-php-sdk/src/Parse/ParseClient.php on line 308
+[16-Oct-2015 15:38:15 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'You must call Parse::initialize() before making any requests.' in /home/zohairhemani1/public_html/ufcw5/mobile_app/parse-php-sdk/src/Parse/ParseClient.php:308
+Stack trace:
+#0 /home/zohairhemani1/public_html/ufcw5/mobile_app/parse-php-sdk/src/Parse/ParseClient.php(222): Parse\ParseClient::assertParseInitialized()
+#1 /home/zohairhemani1/public_html/ufcw5/mobile_app/parse-php-sdk/src/Parse/ParsePush.php(65): Parse\ParseClient::_request('POST', '/1/push', NULL, '{"channels":["u...', false)
+#2 /home/zohairhemani1/public_html/ufcw5/mobile_app/parse.php(41): Parse\ParsePush::send(Array)
+#3 /home/zohairhemani1/public_html/ufcw5/mobile_app/parse.php(21): pushNotification(NULL, Array)
+#4 /home/zohairhemani1/public_html/ufcw5/mobile_app/insert_form.php(135): include('/home/zohairhem...')
+#5 {main}
+  thrown in /home/zohairhemani1/public_html/ufcw5/mobile_app/parse-php-sdk/src/Parse/ParseClient.php on line 308
+[26-Oct-2015 22:42:47 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [2002] No such file or directory' in /home/zohairhemani1/public_html/ufcw5/mobile_app/headers/connect_to_mysql.php:11
+Stack trace:
+#0 /home/zohairhemani1/public_html/ufcw5/mobile_app/headers/connect_to_mysql.php(11): PDO->__construct('mysql:host=loca...', 'ufcwFive', 'Hemani786!')
+#1 /home/zohairhemani1/public_html/ufcw5/mobile_app/news.php(3): include('/home/zohairhem...')
+#2 {main}
+  thrown in /home/zohairhemani1/public_html/ufcw5/mobile_app/headers/connect_to_mysql.php on line 11
+[11-Nov-2015 04:58:22 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [2002] No such file or directory' in /home/zohairhemani1/public_html/ufcw5/mobile_app/headers/connect_to_mysql.php:11
+Stack trace:
+#0 /home/zohairhemani1/public_html/ufcw5/mobile_app/headers/connect_to_mysql.php(11): PDO->__construct('mysql:host=loca...', 'ufcwFive', 'Hemani786!')
+#1 /home/zohairhemani1/public_html/ufcw5/mobile_app/emulator.php(2): include('/home/zohairhem...')
+#2 {main}
+  thrown in /home/zohairhemani1/public_html/ufcw5/mobile_app/headers/connect_to_mysql.php on line 11
+[04-Feb-2016 10:58:17 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [2002] No such file or directory' in /home/zohairhemani1/public_html/ufcw5/mobile_app/headers/connect_to_mysql.php:11
+Stack trace:
+#0 /home/zohairhemani1/public_html/ufcw5/mobile_app/headers/connect_to_mysql.php(11): PDO->__construct('mysql:host=loca...', 'ufcwFive', 'Hemani786!')
+#1 /home/zohairhemani1/public_html/ufcw5/mobile_app/insert_app.php(2): include('/home/zohairhem...')
+#2 {main}
+  thrown in /home/zohairhemani1/public_html/ufcw5/mobile_app/headers/connect_to_mysql.php on line 11
+[18-Feb-2016 10:58:07 UTC] PHP Fatal error:  Uncaught exception 'Parse\ParseException' with message 'Missing the push channels.' in /home/zohairhemani1/public_html/ufcw5/mobile_app/parse-php-sdk/src/Parse/ParseClient.php:259
+Stack trace:
+#0 /home/zohairhemani1/public_html/ufcw5/mobile_app/parse-php-sdk/src/Parse/ParsePush.php(65): Parse\ParseClient::_request('POST', '/1/push', NULL, '{"store_name":"...', false)
+#1 /home/zohairhemani1/public_html/ufcw5/mobile_app/parse_test.php(34): Parse\ParsePush::send(Array)
+#2 /home/zohairhemani1/public_html/ufcw5/mobile_app/parse_test.php(14): pushNotification('Test Notificati...', NULL)
+#3 {main}
+  thrown in /home/zohairhemani1/public_html/ufcw5/mobile_app/parse-php-sdk/src/Parse/ParseClient.php on line 259
+[18-Feb-2016 10:58:32 UTC] PHP Fatal error:  Uncaught exception 'Parse\ParseException' with message 'Invalid JSON: ['a']' in /home/zohairhemani1/public_html/ufcw5/mobile_app/parse-php-sdk/src/Parse/ParseClient.php:259
+Stack trace:
+#0 /home/zohairhemani1/public_html/ufcw5/mobile_app/parse-php-sdk/src/Parse/ParsePush.php(65): Parse\ParseClient::_request('POST', '/1/push', NULL, '{"channels":"['...', false)
+#1 /home/zohairhemani1/public_html/ufcw5/mobile_app/parse_test.php(35): Parse\ParsePush::send(Array)
+#2 /home/zohairhemani1/public_html/ufcw5/mobile_app/parse_test.php(14): pushNotification('Test Notificati...', NULL)
+#3 {main}
+  thrown in /home/zohairhemani1/public_html/ufcw5/mobile_app/parse-php-sdk/src/Parse/ParseClient.php on line 259
+[18-Feb-2016 11:55:59 UTC] PHP Fatal error:  Uncaught exception 'Parse\ParseException' with message 'Can't set channels for a query-targeted push.' in /home/zohairhemani1/public_html/ufcw5/mobile_app/parse-php-sdk/src/Parse/ParseClient.php:259
+Stack trace:
+#0 /home/zohairhemani1/public_html/ufcw5/mobile_app/parse-php-sdk/src/Parse/ParsePush.php(65): Parse\ParseClient::_request('POST', '/1/push', NULL, '{"where":{"stor...', false)
+#1 /home/zohairhemani1/public_html/ufcw5/mobile_app/parse_test.php(35): Parse\ParsePush::send(Array)
+#2 /home/zohairhemani1/public_html/ufcw5/mobile_app/parse_test.php(14): pushNotification('Test Notificati...', NULL)
+#3 {main}
+  thrown in /home/zohairhemani1/public_html/ufcw5/mobile_app/parse-php-sdk/src/Parse/ParseClient.php on line 259
+[18-Feb-2016 12:27:02 UTC] PHP Fatal error:  Uncaught exception 'Parse\ParseException' with message 'Missing the push channels.' in /home/zohairhemani1/public_html/ufcw5/mobile_app/parse-php-sdk/src/Parse/ParseClient.php:259
+Stack trace:
+#0 /home/zohairhemani1/public_html/ufcw5/mobile_app/parse-php-sdk/src/Parse/ParsePush.php(65): Parse\ParseClient::_request('POST', '/1/push', NULL, '{"where":null,"...', false)
+#1 /home/zohairhemani1/public_html/ufcw5/mobile_app/parse.php(44): Parse\ParsePush::send(Array)
+#2 /home/zohairhemani1/public_html/ufcw5/mobile_app/parse.php(26): pushToChannels('This is a test ...', Array)
+#3 /home/zohairhemani1/public_html/ufcw5/mobile_app/insert_notification.php(62): include('/home/zohairhem...')
+#4 {main}
+  thrown in /home/zohairhemani1/public_html/ufcw5/mobile_app/parse-php-sdk/src/Parse/ParseClient.php on line 259
+[18-Feb-2016 12:27:32 UTC] PHP Fatal error:  Uncaught exception 'Parse\ParseException' with message 'Missing the push channels.' in /home/zohairhemani1/public_html/ufcw5/mobile_app/parse-php-sdk/src/Parse/ParseClient.php:259
+Stack trace:
+#0 /home/zohairhemani1/public_html/ufcw5/mobile_app/parse-php-sdk/src/Parse/ParsePush.php(65): Parse\ParseClient::_request('POST', '/1/push', NULL, '{"channels":nul...', false)
+#1 /home/zohairhemani1/public_html/ufcw5/mobile_app/parse.php(43): Parse\ParsePush::send(Array)
+#2 /home/zohairhemani1/public_html/ufcw5/mobile_app/parse.php(26): pushToChannels('This is a test ...', Array)
+#3 /home/zohairhemani1/public_html/ufcw5/mobile_app/insert_notification.php(62): include('/home/zohairhem...')
+#4 {main}
+  thrown in /home/zohairhemani1/public_html/ufcw5/mobile_app/parse-php-sdk/src/Parse/ParseClient.php on line 259
+[18-Feb-2016 12:27:37 UTC] PHP Fatal error:  Uncaught exception 'Parse\ParseException' with message 'Missing the push channels.' in /home/zohairhemani1/public_html/ufcw5/mobile_app/parse-php-sdk/src/Parse/ParseClient.php:259
+Stack trace:
+#0 /home/zohairhemani1/public_html/ufcw5/mobile_app/parse-php-sdk/src/Parse/ParsePush.php(65): Parse\ParseClient::_request('POST', '/1/push', NULL, '{"channels":nul...', false)
+#1 /home/zohairhemani1/public_html/ufcw5/mobile_app/parse.php(43): Parse\ParsePush::send(Array)
+#2 /home/zohairhemani1/public_html/ufcw5/mobile_app/parse.php(26): pushToChannels('This is a test ...', Array)
+#3 /home/zohairhemani1/public_html/ufcw5/mobile_app/insert_notification.php(62): include('/home/zohairhem...')
+#4 {main}
+  thrown in /home/zohairhemani1/public_html/ufcw5/mobile_app/parse-php-sdk/src/Parse/ParseClient.php on line 259
+[18-Feb-2016 16:24:54 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [2002] No such file or directory' in /home/zohairhemani1/public_html/ufcw5/mobile_app/headers/connect_to_mysql.php:11
+Stack trace:
+#0 /home/zohairhemani1/public_html/ufcw5/mobile_app/headers/connect_to_mysql.php(11): PDO->__construct('mysql:host=loca...', 'ufcwFive', 'Hemani786!')
+#1 /home/zohairhemani1/public_html/ufcw5/mobile_app/delete_app.php(2): include('/home/zohairhem...')
+#2 {main}
+  thrown in /home/zohairhemani1/public_html/ufcw5/mobile_app/headers/connect_to_mysql.php on line 11
+[18-Feb-2016 16:24:56 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [2002] No such file or directory' in /home/zohairhemani1/public_html/ufcw5/mobile_app/headers/connect_to_mysql.php:11
+Stack trace:
+#0 /home/zohairhemani1/public_html/ufcw5/mobile_app/headers/connect_to_mysql.php(11): PDO->__construct('mysql:host=loca...', 'ufcwFive', 'Hemani786!')
+#1 /home/zohairhemani1/public_html/ufcw5/mobile_app/view.php(2): include('/home/zohairhem...')
+#2 {main}
+  thrown in /home/zohairhemani1/public_html/ufcw5/mobile_app/headers/connect_to_mysql.php on line 11
+[18-Feb-2016 16:24:58 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [2002] No such file or directory' in /home/zohairhemani1/public_html/ufcw5/mobile_app/headers/connect_to_mysql.php:11
+Stack trace:
+#0 /home/zohairhemani1/public_html/ufcw5/mobile_app/headers/connect_to_mysql.php(11): PDO->__construct('mysql:host=loca...', 'ufcwFive', 'Hemani786!')
+#1 /home/zohairhemani1/public_html/ufcw5/mobile_app/view.php(2): include('/home/zohairhem...')
+#2 {main}
+  thrown in /home/zohairhemani1/public_html/ufcw5/mobile_app/headers/connect_to_mysql.php on line 11
+[18-Feb-2016 16:24:59 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [2002] No such file or directory' in /home/zohairhemani1/public_html/ufcw5/mobile_app/headers/connect_to_mysql.php:11
+Stack trace:
+#0 /home/zohairhemani1/public_html/ufcw5/mobile_app/headers/connect_to_mysql.php(11): PDO->__construct('mysql:host=loca...', 'ufcwFive', 'Hemani786!')
+#1 /home/zohairhemani1/public_html/ufcw5/mobile_app/view.php(2): include('/home/zohairhem...')
+#2 {main}
+  thrown in /home/zohairhemani1/public_html/ufcw5/mobile_app/headers/connect_to_mysql.php on line 11
+[18-Feb-2016 16:25:01 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [2002] No such file or directory' in /home/zohairhemani1/public_html/ufcw5/mobile_app/headers/connect_to_mysql.php:11
+Stack trace:
+#0 /home/zohairhemani1/public_html/ufcw5/mobile_app/headers/connect_to_mysql.php(11): PDO->__construct('mysql:host=loca...', 'ufcwFive', 'Hemani786!')
+#1 /home/zohairhemani1/public_html/ufcw5/mobile_app/view.php(2): include('/home/zohairhem...')
+#2 {main}
+  thrown in /home/zohairhemani1/public_html/ufcw5/mobile_app/headers/connect_to_mysql.php on line 11

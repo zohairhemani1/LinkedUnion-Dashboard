@@ -9,14 +9,16 @@ $rest_key = "";
 $master_key = "";
 
 $notificationMsg = "";
-$channels = array();
+$storesArray = array();
+$employersArray = array();
+$allUsersArray = array();
 
 if($_POST)
 {
 	$app_id = $_POST['app_id'];
-	//print_r($app_id);
-	$channels = $_POST['channels'];
-	//var_dump($channels);
+	$storesArray = $_POST['stores'];
+	$employersArray = $_POST['employers'];
+	$allUsersArray = $_POST['all'];
 	$android = $_POST['android'];
 	$ios = $_POST['ios'];
 	$notificationMsg = $_POST['notification'];
@@ -24,7 +26,7 @@ if($_POST)
 	$date = $_POST['date'];
 	$parseArray = $_POST['parseArray'];
 	$parseArray = unserialize($parseArray);
-	//print_r($parseArray);
+	
 	
 	
 	$query = "INSERT INTO pushmessage(pushMessage,timeStamp,authorAppID) VALUES ('$notificationMsg',now(),'$appID')";
@@ -56,6 +58,7 @@ if($_POST)
 				$app_id_parse = $tempArray['applicationID'];
 				$rest_key = $tempArray['restKey'];
 				$master_key = $tempArray['masterKey'];
+				$type = $_POST['type'];
 				include 'parse.php';
 
 			}
@@ -166,14 +169,48 @@ include 'headers/menu-top-navigation.php';
                              </div>
 							 
 							 <div class="control-group">
-                              <label class="control-label">Target By Employers / Stores </label>
+                              <label class="control-label">Target By Employers </label>
                               <div class="controls">
-                                 <select data-placeholder="Select Your Employer / Store" name="channels[]" class="span6 chosen" multiple="multiple" tabindex="1">
+                                 <select data-placeholder="Select Your Stores" name="stores[]" class="span6 chosen" multiple="multiple" tabindex="1">
                                     <option value=""></option>
-                                	<?php echo include 'headers/get_all_channels.php'; ?> 
+                                	<?php echo include 'headers/get_all_stores.php'; ?> 
                                  </select>
                               </div>
-                           </div>
+							 </div>
+							 
+							 
+              <div class="control-group">
+                              <label class="control-label">Target By Stores</label>
+                              <div class="controls">
+                                 <select data-placeholder="Select Your Users" name="actual_stores[]" class="span6 chosen" multiple="multiple" tabindex="1">
+                                    <option value=""></option>
+                                  <?php echo include 'headers/get_all_correct_stores.php'; ?> 
+                                 </select>
+                              </div>
+               </div>
+
+							 <div class="control-group">
+                              <label class="control-label">Target By Users</label>
+                              <div class="controls">
+                                 <select data-placeholder="Select Your Users" name="employers[]" class="span6 chosen" multiple="multiple" tabindex="1">
+                                    <option value=""></option>
+                                	<?php echo include 'headers/get_all_employers.php'; ?> 
+                                 </select>
+                              </div>
+							 </div>
+							 
+							 
+							 
+							 <div class="control-group">
+                              <label class="control-label">Target All Registered / Un Registered Users </label>
+                              <div class="controls">
+                                 <select data-placeholder="Target All Registered / UnRegistered Users" name="all[]" class="span6 chosen" multiple="multiple" tabindex="1">
+                                    <option value=""></option>
+                                	<option value="register_all">Registered Users</option>
+									<option value="unregistered_users">Unregistered Users</option>
+                                 </select>
+                              </div>
+							 </div>
 						   
                            <!-- <div class="control-group">
                               <label class="control-label">Platform</label>
